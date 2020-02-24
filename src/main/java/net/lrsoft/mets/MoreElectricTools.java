@@ -1,5 +1,6 @@
 package net.lrsoft.mets;
 
+import net.lrsoft.mets.item.ItemManager;
 import net.lrsoft.mets.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -22,7 +23,7 @@ public class MoreElectricTools
 	public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("metsTabs") {
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(Items.DIAMOND);
+			return new ItemStack(ItemManager.advancedIridiumSword);
 		}
 	};
 	

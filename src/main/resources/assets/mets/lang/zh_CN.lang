@@ -1,2 +1,4 @@
 ﻿
-itemGroup.metsTabs=更多电力工具
+itemGroup.metsTabs=[METS]更多电力工具
+item.mets.advanced_iridium_sword.name=§b高级铱合金剑
+item.mets.lithium_battery.name=锂电池
