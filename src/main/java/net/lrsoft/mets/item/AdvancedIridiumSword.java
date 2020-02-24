@@ -21,6 +21,7 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 	private boolean isHyperState = false;
 	public AdvancedIridiumSword() {
 		super("advanced_iridium_sword", maxStorageEU, transferSpeed, 4);
+
 	}
 	
 	@Override
