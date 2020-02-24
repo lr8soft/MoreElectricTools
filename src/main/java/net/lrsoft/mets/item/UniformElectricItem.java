@@ -23,7 +23,7 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 		powerLevel = tier;
 		
 		setUnlocalizedName("mets." + itemName);
-		setRegistryName(MoreElectricTools.MODID, "itemName");
+		setRegistryName(MoreElectricTools.MODID, itemName);
 		setCreativeTab(MoreElectricTools.CREATIVE_TAB);
 		setMaxDamage(35);
 		setMaxStackSize(1);
