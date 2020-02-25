@@ -1,4 +1,9 @@
 ﻿
 itemGroup.metsTabs=[METS]More Electric Tools
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
-item.mets.lithium_battery.name=Lithium battery
+item.mets.lithium_battery.name=Lithium Battery
+
+mets.nano_shield.name=Nano Shield
+
+mets.info.ens.auto=Mode: Automatic supply
+mets.info.ens.disable=Mode: Disable Supply
