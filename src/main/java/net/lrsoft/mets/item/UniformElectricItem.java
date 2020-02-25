@@ -13,11 +13,13 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class UniformElectricItem extends Item implements IElectricItem, IItemHudInfo{
+public class UniformElectricItem extends Item implements IElectricItem, IItemHudInfo
+{
 	private double maxStorageEU = 0, transferSpeed = 0;
 	private int powerLevel = 0;
 	
-    public UniformElectricItem(String itemName, double maxEU, double tSpeed, int tier) {
+    public UniformElectricItem(String itemName, double maxEU, double tSpeed, int tier) 
+    {
 		maxStorageEU = maxEU;
 		transferSpeed =tSpeed;
 		powerLevel = tier;
@@ -32,32 +34,37 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 
 	
 	@Override
-	public List<String> getHudInfo(ItemStack stack, boolean advanced) {
+	public List<String> getHudInfo(ItemStack stack, boolean advanced)
+	{
 	    List<String> info = new LinkedList();
 	    info.add(ElectricItem.manager.getToolTip(stack));
 	    return info;
 	}
 
 	@Override
-	public boolean canProvideEnergy(ItemStack stack) {
+	public boolean canProvideEnergy(ItemStack stack)
+	{
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public double getMaxCharge(ItemStack stack) {
+	public double getMaxCharge(ItemStack stack) 
+	{
 		// TODO Auto-generated method stub
 		return maxStorageEU;
 	}
 
 	@Override
-	public int getTier(ItemStack stack) {
+	public int getTier(ItemStack stack)
+	{
 		// TODO Auto-generated method stub
 		return powerLevel;
 	}
 
 	@Override
-	public double getTransferLimit(ItemStack stack) {
+	public double getTransferLimit(ItemStack stack)
+	{
 		// TODO Auto-generated method stub
 		return transferSpeed;
 	}

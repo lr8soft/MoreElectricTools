@@ -20,9 +20,11 @@ public class MoreElectricTools
 	@SidedProxy(clientSide="net.lrsoft.mets.proxy.ClientProxy",
 			serverSide="net.lrsoft.mets.proxy.CommonProxy")
     public static CommonProxy proxy; 
-	public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("metsTabs") {
+	public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("metsTabs") 
+	{
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack getTabIconItem() 
+		{
 			return new ItemStack(ItemManager.advancedIridiumSword);
 		}
 	};

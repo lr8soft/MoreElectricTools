@@ -10,17 +10,21 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistry;
 
-public class CommonProxy {
+public class CommonProxy 
+{
 	
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event) 
+	{
 		ItemManager.getInstance().onItemInit();
 	}
 
-	public void init(FMLInitializationEvent event) {
-
+	public void init(FMLInitializationEvent event) 
+	{
+		ItemManager.getInstance().onRecipeInit();
 	}
 
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event)
+	{
 
 	}
 }
