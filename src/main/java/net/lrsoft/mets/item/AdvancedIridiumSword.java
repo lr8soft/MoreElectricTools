@@ -43,7 +43,7 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 			public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) 
 			{
 				boolean isHyperState = getHyperState(stack);
-				float hyperState = getHyperValue(stack);//stack.getItem().getNBTShareTag(stack).getFloat("hyperState");
+				float hyperState = getHyperValue(stack);
 				if(isHyperState) 
 				{
 					if(hyperState <= 0.71f)
@@ -65,7 +65,7 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 		// won't work while attacker != player
-		if(!(attacker instanceof EntityPlayer))
+		if(!(attacker instanceof EntityPlayer) || attacker.getEntityWorld().isRemote)
 			return true;
 		
 		double attackCost = 800d;
@@ -142,13 +142,4 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 		return value;
 	}
 	
-	private void setLastRightClick(ItemStack stack, long value) {stack.getItem().getNBTShareTag(stack).setLong("LastRightClick", value);}
-	private long getLastRightClick(ItemStack stack) 
-	{
-		long value = 0;
-		try {
-			value = stack.getItem().getNBTShareTag(stack).getLong("LastRightClick");
-		} catch (Exception expt) {}
-		return value;
-	}
 }
