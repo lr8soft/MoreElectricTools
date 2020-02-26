@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/lithium_battery"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:lithium_battery_value": 0.25 },
+      "model": "mets:item/battery/lithium_battery_1"
+    },
+    {
+      "predicate": { "mets:lithium_battery_value": 0.5 },
+      "model": "mets:item/battery/lithium_battery_2"
+    },
+    {
+      "predicate": { "mets:lithium_battery_value": 0.75 },
+      "model": "mets:item/battery/lithium_battery_3"
+    },
+    {
+      "predicate": { "mets:lithium_battery_value": 1.0 },
+      "model": "mets:item/battery/lithium_battery_4"
+    }
+  ]
+
+}

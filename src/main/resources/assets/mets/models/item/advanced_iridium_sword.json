@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/advanced_iridium_sword"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:iridium_sword_state": 0.1 },
+      "model": "mets:item/iridium_sword/advanced_iridium_sword_1"
+    },
+    {
+      "predicate": { "mets:iridium_sword_state": 0.2 },
+      "model": "mets:item/iridium_sword/advanced_iridium_sword_2"
+    },
+    {
+      "predicate": { "mets:iridium_sword_state": 0.3 },
+      "model": "mets:item/iridium_sword/advanced_iridium_sword_3"
+    },
+    {
+      "predicate": { "mets:iridium_sword_state": 0.4 },
+      "model": "mets:item/iridium_sword/advanced_iridium_sword_4"
+    },
+    {
+      "predicate": { "mets:iridium_sword_state": 0.5 },
+      "model": "mets:item/iridium_sword/advanced_iridium_sword_5"
+    },
+    {
+      "predicate": { "mets:iridium_sword_state": 0.6 },
+      "model": "mets:item/iridium_sword/advanced_iridium_sword_6"
+    },
+    {
+      "predicate": { "mets:iridium_sword_state": 0.7 },
+      "model": "mets:item/iridium_sword/advanced_iridium_sword_7"
+    }
+  ]
+
+
+}

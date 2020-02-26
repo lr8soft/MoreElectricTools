@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/electric_nutrition_supply"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:storage_energy_value": 0.25 },
+      "model": "mets:item/electric_nutrition_supply/electric_nutrition_supply_1"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 0.5 },
+      "model": "mets:item/electric_nutrition_supply/electric_nutrition_supply_2"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 0.75 },
+      "model": "mets:item/electric_nutrition_supply/electric_nutrition_supply_3"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 1.0 },
+      "model": "mets:item/electric_nutrition_supply/electric_nutrition_supply_4"
+    }
+  ]
+
+}

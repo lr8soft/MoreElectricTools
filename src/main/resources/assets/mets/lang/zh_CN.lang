@@ -5,6 +5,7 @@ item.mets.advanced_iridium_sword.name=§b量子剑
 item.mets.lithium_battery.name=锂电池
 item.mets.electric_nutrition_supply.name=电力营养供应器
 mets.nano_shield.name=纳米盾
+item.mets.plasma_air_cannon.name=§e等离子空气炮
 
 
 mets.info.ens.auto=模式：自动供应

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/iridium_sword/advanced_iridium_sword_3"
+  }
+}

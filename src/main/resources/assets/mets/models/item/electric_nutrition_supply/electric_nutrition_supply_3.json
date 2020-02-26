@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/electric_nutrition_supply/electric_nutrition_supply_3"
+  }
+}
