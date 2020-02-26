@@ -72,7 +72,7 @@ public class PlasmaAirCannon extends UniformElectricItem {
 				{
 					 Entity entity1 = list.get(index);
 					 double distance = currentPostion.distanceTo(new Vec3d(entity1.posX, entity1.posY, entity1.posZ));
-					 double damage = 8 + expandSize / (expandSize == 0d ? 1.0d : distance);
+					 double damage = 10 + expandSize / (expandSize == 0d ? 1.0d : distance);
 					 
 				     entity1.addVelocity(lookPosition.x * velocity, lookPosition.y * velocity, lookPosition.z * velocity);
 				     entity1.attackEntityFrom(DamageSource.causePlayerDamage(entityplayer), (float) damage);
@@ -80,7 +80,7 @@ public class PlasmaAirCannon extends UniformElectricItem {
 				
 				worldIn.playSound((EntityPlayer)null, 
 						entityplayer.posX , entityplayer.posY, entityplayer.posZ , 
-			    			SoundEvents.BLOCK_LAVA_EXTINGUISH, entityplayer.getSoundCategory(), 1.0f * (expandSize/15+1), 1.0F);	
+			    			SoundEvents.ENTITY_GENERIC_EXPLODE, entityplayer.getSoundCategory(), 1.0f * (expandSize/15+1), 1.0F);	
 				worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE,
 						entityplayer.posX, entityplayer.posY + 0.5f, entityplayer.posZ, lookPosition.x * 2, lookPosition.y * 2, lookPosition.z * 2, 3);
 			}

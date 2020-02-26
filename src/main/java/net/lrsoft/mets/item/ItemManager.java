@@ -100,6 +100,18 @@ public class ItemManager {
 						'B', IC2Items.getItem("re_battery")
 				});
 		
+		Recipes.advRecipes.addRecipe(new ItemStack(nanoBow), 
+				new Object[] {
+						"CMS",
+						"CBA",
+						"CMS",
+						'C', IC2Items.getItem("crafting", "carbon_plate"),
+						'B', IC2Items.getItem("energy_crystal"),
+						'M', IC2Items.getItem("crafting", "electric_motor"),
+						'S', Items.LEAD,
+						'A', IC2Items.getItem("crafting", "advanced_circuit")
+				});		
+		
 		Recipes.advRecipes.addRecipe(new ItemStack(plasmaAirCannon), 
 				new Object[] {
 						"CCB",
@@ -111,6 +123,10 @@ public class ItemManager {
 						'P', IC2Items.getItem("fluid_cell"),
 						'A', IC2Items.getItem("crafting", "advanced_circuit")
 				});
+		
+
+		
+		
 	}
 
 
