@@ -20,17 +20,23 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class ItemManager {
 	public static AdvancedIridiumSword advancedIridiumSword;
 	public static LithiumBattery lithiumBattery;
+	
 	public static ElectricNutritionSupply electricNutritionSupply;
+	public static ElectricFishingRod electricFishingRod;
+	
 	//public static NanoShield nanoShield;
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
+	
 	
 	private static ItemManager rInstance;
 	private ItemManager()
 	{
 		advancedIridiumSword = new AdvancedIridiumSword();
 		lithiumBattery = new LithiumBattery();
+		
 		electricNutritionSupply = new ElectricNutritionSupply();
+		electricFishingRod = new ElectricFishingRod();
 		//nanoShield = new NanoShield();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();
@@ -43,6 +49,7 @@ public class ItemManager {
 		ForgeRegistries.ITEMS.register(advancedIridiumSword);
 		ForgeRegistries.ITEMS.register(lithiumBattery);
 		ForgeRegistries.ITEMS.register(electricNutritionSupply);
+		ForgeRegistries.ITEMS.register(electricFishingRod);
 		//ForgeRegistries.ITEMS.register(nanoShield);
 		ForgeRegistries.ITEMS.register(nanoBow);
 		ForgeRegistries.ITEMS.register(plasmaAirCannon);
@@ -56,6 +63,8 @@ public class ItemManager {
 				new ModelResourceLocation(lithiumBattery.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(electricNutritionSupply, 0,
 				new ModelResourceLocation(electricNutritionSupply.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(electricFishingRod, 0,
+				new ModelResourceLocation(electricFishingRod.getRegistryName(), "inventory"));
 		//ModelLoader.setCustomModelResourceLocation(nanoShield, 0,
 		//		new ModelResourceLocation(nanoShield.getRegistryName(), "inventory"));
 		//nanoShield.setTileEntityItemStackRenderer(new NanoShieldRenderer());
@@ -98,6 +107,16 @@ public class ItemManager {
 						'C', IC2Items.getItem("crafting", "circuit"),
 						'H', IC2Items.getItem("heat_exchanger"),
 						'B', IC2Items.getItem("re_battery")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricFishingRod), 
+				new Object[] {
+						" SL",
+						"SDL",
+						" SL",
+						'S', IC2Items.getItem("casing", "iron"),
+						'L', Items.STRING,
+						'D', IC2Items.getItem("crafting", "small_power_unit")
 				});
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(nanoBow), 

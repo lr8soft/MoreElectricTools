@@ -3,8 +3,10 @@ itemGroup.metsTabs=[METS]More Electric Tools
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
 item.mets.lithium_battery.name=Lithium Battery
 
+item.mets.electric_fishing_rod.name=Electric Fishing Rod
+
 mets.nano_shield.name=Nano Shield
-item.mets.nano_bow.name=§eNano Composite bow
+item.mets.nano_bow.name=§eNano Composite Bow
 
 item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 
