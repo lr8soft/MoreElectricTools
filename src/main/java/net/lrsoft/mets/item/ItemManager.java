@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -22,6 +22,7 @@ public class ItemManager {
 	public static LithiumBattery lithiumBattery;
 	public static ElectricNutritionSupply electricNutritionSupply;
 	//public static NanoShield nanoShield;
+	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
 	
 	private static ItemManager rInstance;
@@ -31,7 +32,9 @@ public class ItemManager {
 		lithiumBattery = new LithiumBattery();
 		electricNutritionSupply = new ElectricNutritionSupply();
 		//nanoShield = new NanoShield();
+		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();
+
 	}
 	
 	public void onItemInit()
@@ -41,6 +44,7 @@ public class ItemManager {
 		ForgeRegistries.ITEMS.register(lithiumBattery);
 		ForgeRegistries.ITEMS.register(electricNutritionSupply);
 		//ForgeRegistries.ITEMS.register(nanoShield);
+		ForgeRegistries.ITEMS.register(nanoBow);
 		ForgeRegistries.ITEMS.register(plasmaAirCannon);
 	}
 	
@@ -55,6 +59,8 @@ public class ItemManager {
 		//ModelLoader.setCustomModelResourceLocation(nanoShield, 0,
 		//		new ModelResourceLocation(nanoShield.getRegistryName(), "inventory"));
 		//nanoShield.setTileEntityItemStackRenderer(new NanoShieldRenderer());
+		ModelLoader.setCustomModelResourceLocation(nanoBow, 0,
+				new ModelResourceLocation(nanoBow.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(plasmaAirCannon, 0,
 				new ModelResourceLocation(plasmaAirCannon.getRegistryName(), "inventory"));
 	}	
