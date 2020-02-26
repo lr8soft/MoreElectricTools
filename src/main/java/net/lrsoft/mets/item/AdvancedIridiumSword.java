@@ -13,13 +13,17 @@ import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import ic2.core.IC2;
 import net.lrsoft.mets.MoreElectricTools;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,12 +32,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 public class AdvancedIridiumSword  extends UniformElectricItem{
 	private final static double maxStorageEU = 10000000, transferSpeed = 2048;
+	private final static double sweepingDistance = 12d;
 	
 	public AdvancedIridiumSword() {
 		super("advanced_iridium_sword", maxStorageEU, transferSpeed, 4);
@@ -62,24 +68,49 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 		});
 	}
 	
+    private float getAttackDamage(ItemStack stack)
+    {
+    	boolean isHyperState = getHyperState(stack);
+    	float damage = 25f;
+		if(isHyperState) 
+		{
+			int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, stack);
+			damage *= (level==0) ? 1.5f : (level + 1);
+		}
+        return damage;
+    }
+	
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 		// won't work while attacker != player
 		if(!(attacker instanceof EntityPlayer) || attacker.getEntityWorld().isRemote)
 			return true;
 		
-		double attackCost = 800d;
+		boolean isHyperState = getHyperState(stack);
+		double attackCost = 800d * (isHyperState ? 1.5d : 1.0d);
 		if(ElectricItem.manager.canUse(stack, attackCost)) 
 		{
 			ElectricItem.manager.discharge(stack, attackCost, 4, true, false, false);
-			boolean isHyperState = getHyperState(stack);
-			float damage = 25f;
-			if(isHyperState) 
+			float attackDamage =  getAttackDamage(stack);
+			//sweeping edge
+			if(isHyperState && attacker instanceof EntityPlayer) 
 			{
-				int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, stack);
-				damage *= (level==0) ? 1.5f : (level + 1);
+				EntityPlayer player = (EntityPlayer)attacker;
+				World currentWorld = player.getEntityWorld();
+			    for (EntityLivingBase entitylivingbase : currentWorld.getEntitiesWithinAABB(EntityLivingBase.class, target.getEntityBoundingBox().grow(1.0D, 0.25D, 1.0D)))
+	            {
+	                if (entitylivingbase != player && entitylivingbase != target && player.getDistanceSq(entitylivingbase) < sweepingDistance)
+	                {
+	                    entitylivingbase.knockBack(player, 0.4F, (double)MathHelper.sin(player.rotationYaw * 0.017f), (double)(-MathHelper.cos(player.rotationYaw * 0.017f)));
+	                    entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage(player), attackDamage / 2.0f);
+	                }
+	            }	
+			    player.getEntityWorld().playSound((EntityPlayer)null, 
+			    			player.posX, player.posY, player.posZ, 
+			    			SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, player.getSoundCategory(), 1.0F, 1.0F);
 			}
-			target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), damage);	
+
+			target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), attackDamage);	
 		}
 		return true;
 	}
@@ -117,8 +148,18 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 			setLastRightClick(currentSword, lastRightClick);
 		}
 		
-		
 		return new ActionResult(EnumActionResult.SUCCESS, currentSword);
+	}
+	
+	@Override
+	public float getDestroySpeed(ItemStack stack, IBlockState state) {
+		 Block block = state.getBlock();
+	     if (block == Blocks.WEB)
+	     {
+	    	 return 18.0F;
+	     }
+	     else
+	    	 return 1.0f;
 	}
 	
 	private void setHyperState(ItemStack stack, boolean state) {stack.getItem().getNBTShareTag(stack).setBoolean("isHyperState", state);}
