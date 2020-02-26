@@ -4,6 +4,8 @@ item.mets.advanced_iridium_sword.name=§bQuantum Sword
 item.mets.lithium_battery.name=Lithium Battery
 
 mets.nano_shield.name=Nano Shield
+item.mets.nano_bow.name=§eNano Composite bow
+
 item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 
 mets.info.ens.auto=Mode: Automatic supply
