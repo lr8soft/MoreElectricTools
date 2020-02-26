@@ -24,9 +24,10 @@ public class ItemManager {
 	public static ElectricNutritionSupply electricNutritionSupply;
 	public static ElectricFishingRod electricFishingRod;
 	
-	//public static NanoShield nanoShield;
+	public static NanoShield nanoShield;
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
+	
 	
 	
 	private static ItemManager rInstance;
@@ -37,7 +38,7 @@ public class ItemManager {
 		
 		electricNutritionSupply = new ElectricNutritionSupply();
 		electricFishingRod = new ElectricFishingRod();
-		//nanoShield = new NanoShield();
+		nanoShield = new NanoShield();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();
 
@@ -50,9 +51,10 @@ public class ItemManager {
 		ForgeRegistries.ITEMS.register(lithiumBattery);
 		ForgeRegistries.ITEMS.register(electricNutritionSupply);
 		ForgeRegistries.ITEMS.register(electricFishingRod);
-		//ForgeRegistries.ITEMS.register(nanoShield);
+		ForgeRegistries.ITEMS.register(nanoShield);
 		ForgeRegistries.ITEMS.register(nanoBow);
 		ForgeRegistries.ITEMS.register(plasmaAirCannon);
+		
 	}
 	
 	public void onModelInit() 
@@ -65,13 +67,14 @@ public class ItemManager {
 				new ModelResourceLocation(electricNutritionSupply.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(electricFishingRod, 0,
 				new ModelResourceLocation(electricFishingRod.getRegistryName(), "inventory"));
-		//ModelLoader.setCustomModelResourceLocation(nanoShield, 0,
-		//		new ModelResourceLocation(nanoShield.getRegistryName(), "inventory"));
-		//nanoShield.setTileEntityItemStackRenderer(new NanoShieldRenderer());
+		ModelLoader.setCustomModelResourceLocation(nanoShield, 0,
+				new ModelResourceLocation(nanoShield.getRegistryName(), "inventory"));
+		nanoShield.setTileEntityItemStackRenderer(new NanoShieldRenderer());
 		ModelLoader.setCustomModelResourceLocation(nanoBow, 0,
 				new ModelResourceLocation(nanoBow.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(plasmaAirCannon, 0,
 				new ModelResourceLocation(plasmaAirCannon.getRegistryName(), "inventory"));
+		
 	}	
 	
 	public void onRecipeInit() 

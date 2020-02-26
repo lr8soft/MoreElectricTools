@@ -21,8 +21,13 @@ public class NanoShieldRenderer extends TileEntityItemStackRenderer {
 	@Override
 	public void renderByItem(ItemStack itemStackIn) {
 		TextureManager texManager = Minecraft.getMinecraft().getTextureManager();
+		
+	    GlStateManager.pushMatrix();
+        GlStateManager.scale(1.0F, -1.0F, -1.0F);
 		texManager.bindTexture(modelTexture);
 		model.render();
+		GlStateManager.popMatrix();
+		
 		GlStateManager.bindTexture(0);
 	}
 	
