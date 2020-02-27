@@ -146,6 +146,17 @@ public class ItemManager {
 						'A', IC2Items.getItem("crafting", "advanced_circuit")
 				});
 		
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricShield), 
+				new Object[] {
+						"SAS",
+						"SBS",
+						"SDS",
+						'S', IC2Items.getItem("plate", "steel"),
+						'B', lithiumBattery,
+						'D', IC2Items.getItem("crafting", "power_unit"),
+						'A', IC2Items.getItem("crafting", "advanced_circuit")
+				});
 
 		
 		
