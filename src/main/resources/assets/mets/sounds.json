@@ -1,0 +1,9 @@
+{
+    "plasma_charge_sound": {
+        "category": "block",
+        "subtitle": "mets.sound.plasma_charge_sound",
+        "sounds": [
+            "mets:music/plasma_charge"
+        ]
+    }
+}
