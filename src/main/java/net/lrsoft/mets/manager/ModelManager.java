@@ -28,6 +28,10 @@ public class ModelManager {
 		ModelLoader.setCustomModelResourceLocation(ItemManager.plasmaAirCannon, 0,
 				new ModelResourceLocation(ItemManager.plasmaAirCannon.getRegistryName(), "inventory"));
 		
+		
+		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
+				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
+		
 		ItemManager.electricShield.setTileEntityItemStackRenderer(new net.lrsoft.mets.renderer.NanoShieldRenderer());
 	}	
 }

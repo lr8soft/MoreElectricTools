@@ -3,6 +3,7 @@ package net.lrsoft.mets.manager;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.armor.DivingMask;
 import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
@@ -26,6 +27,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = MoreElectricTools.MODID)
 public class ItemManager {
+	
 	public static AdvancedIridiumSword advancedIridiumSword;
 	public static LithiumBattery lithiumBattery;
 	
@@ -35,6 +37,8 @@ public class ItemManager {
 	
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
+	
+	public static DivingMask divingMask;
 	
 	@SubscribeEvent
 	public static void onItemInit(RegistryEvent.Register<Item> event)
@@ -47,6 +51,8 @@ public class ItemManager {
 		electricShield = new ElectricShield();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
+		
+		divingMask = new DivingMask();
 		
 		onItemInit();
 		onRecipeInit();
@@ -61,6 +67,8 @@ public class ItemManager {
 		ForgeRegistries.ITEMS.register(electricShield);
 		ForgeRegistries.ITEMS.register(nanoBow);
 		ForgeRegistries.ITEMS.register(plasmaAirCannon);
+		
+		ForgeRegistries.ITEMS.register(divingMask);
 	}
 	
 	private static void onRecipeInit() 
