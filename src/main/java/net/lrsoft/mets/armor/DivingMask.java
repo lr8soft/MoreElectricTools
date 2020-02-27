@@ -8,6 +8,8 @@ import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import net.lrsoft.mets.MoreElectricTools;
 import net.minecraft.block.SoundType;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -17,12 +19,14 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class DivingMask extends ItemArmor implements ISpecialArmor, IElectricItem, IItemHudInfo {
 	private static ArmorMaterial divingMaskMaterial = EnumHelper.addArmorMaterial(
 			"divingMask", MoreElectricTools.MODID + ":diving_mask", 33, new int[]{2, 7, 5, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 9);
+	
 	public DivingMask() {
 		super(divingMaskMaterial, 0, EntityEquipmentSlot.HEAD);
 		setUnlocalizedName("mets.diving_mask");
@@ -36,8 +40,14 @@ public class DivingMask extends ItemArmor implements ISpecialArmor, IElectricIte
 	@Override
 	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
 			int slot) {
-		return null;
+		return new ArmorProperties(0, 1.0, 100);
 	}
+	
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+		super.onArmorTick(world, player, itemStack);
+	}
+	
 
 	@Override
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {

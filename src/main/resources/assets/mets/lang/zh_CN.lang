@@ -10,6 +10,7 @@ item.mets.electric_fishing_rod.name=电动鱼竿
 mets.electric_shield.name=钢制防爆盾
 item.mets.nano_bow.name=§e纳米复合弓
 item.mets.plasma_air_cannon.name=§e等离子空气炮
+item.mets.diving_mask.name=潜水面具
 
 
 mets.info.ens.auto=模式：自动供应
