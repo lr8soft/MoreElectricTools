@@ -22,8 +22,8 @@
       "scale": [ 1.25, 1.25, 1.25 ]
     },
     "gui": {
-      "rotation": [ 15, -25, -5 ],
-      "translation": [ 2, 3, 0 ],
+      "rotation": [ 0, 0, 0 ],
+      "translation": [ 3.5, 4.2, 0 ],
       "scale": [ 0.65, 0.65, 0.65 ]
     },
     "fixed": {
@@ -42,7 +42,7 @@
       "predicate": {
         "blocking": 1
       },
-      "model": "mets:item/nano_shield_blocking"
+      "model": "mets:item/electric_shield_blocking"
     }
   ]
 }

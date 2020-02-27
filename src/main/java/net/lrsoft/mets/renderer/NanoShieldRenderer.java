@@ -14,7 +14,7 @@ public class NanoShieldRenderer extends TileEntityItemStackRenderer {
 	private  ResourceLocation modelTexture;
 	public NanoShieldRenderer()
 	{
-		modelTexture = new ResourceLocation(MoreElectricTools.MODID, "textures/entity/nano_shield.png");
+		modelTexture = new ResourceLocation(MoreElectricTools.MODID, "textures/entity/electric_shield.png");
 		model = new NanoShieldModel();
 	}
 	

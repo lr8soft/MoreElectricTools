@@ -197,6 +197,6 @@ public class NanoBow extends ItemBow implements IElectricItem, IItemHudInfo {
 	public int getTier(ItemStack stack) {return 3;}
 
 	@Override
-	public double getTransferLimit(ItemStack stack) {return 128;}
+	public double getTransferLimit(ItemStack stack) {return 512;}
 
 }

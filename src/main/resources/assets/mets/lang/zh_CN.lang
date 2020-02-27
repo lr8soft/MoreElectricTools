@@ -7,7 +7,7 @@ item.mets.lithium_battery.name=锂电池
 item.mets.electric_nutrition_supply.name=电力营养供应器
 item.mets.electric_fishing_rod.name=电动鱼竿
 
-mets.nano_shield.name=纳米盾
+mets.electric_shield.name=电动盾
 item.mets.nano_bow.name=§e纳米复合弓
 item.mets.plasma_air_cannon.name=§e等离子空气炮
 

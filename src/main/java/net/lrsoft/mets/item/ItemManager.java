@@ -23,8 +23,8 @@ public class ItemManager {
 	
 	public static ElectricNutritionSupply electricNutritionSupply;
 	public static ElectricFishingRod electricFishingRod;
+	public static ElectricShield electricShield;
 	
-	public static NanoShield nanoShield;
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
 	
@@ -38,7 +38,7 @@ public class ItemManager {
 		
 		electricNutritionSupply = new ElectricNutritionSupply();
 		electricFishingRod = new ElectricFishingRod();
-		nanoShield = new NanoShield();
+		electricShield = new ElectricShield();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();
 
@@ -51,7 +51,7 @@ public class ItemManager {
 		ForgeRegistries.ITEMS.register(lithiumBattery);
 		ForgeRegistries.ITEMS.register(electricNutritionSupply);
 		ForgeRegistries.ITEMS.register(electricFishingRod);
-		ForgeRegistries.ITEMS.register(nanoShield);
+		ForgeRegistries.ITEMS.register(electricShield);
 		ForgeRegistries.ITEMS.register(nanoBow);
 		ForgeRegistries.ITEMS.register(plasmaAirCannon);
 		
@@ -67,9 +67,9 @@ public class ItemManager {
 				new ModelResourceLocation(electricNutritionSupply.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(electricFishingRod, 0,
 				new ModelResourceLocation(electricFishingRod.getRegistryName(), "inventory"));
-		ModelLoader.setCustomModelResourceLocation(nanoShield, 0,
-				new ModelResourceLocation(nanoShield.getRegistryName(), "inventory"));
-		nanoShield.setTileEntityItemStackRenderer(new NanoShieldRenderer());
+		ModelLoader.setCustomModelResourceLocation(electricShield, 0,
+				new ModelResourceLocation(electricShield.getRegistryName(), "inventory"));
+		electricShield.setTileEntityItemStackRenderer(new NanoShieldRenderer());
 		ModelLoader.setCustomModelResourceLocation(nanoBow, 0,
 				new ModelResourceLocation(nanoBow.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(plasmaAirCannon, 0,
