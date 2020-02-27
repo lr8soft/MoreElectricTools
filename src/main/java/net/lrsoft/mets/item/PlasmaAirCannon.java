@@ -8,10 +8,13 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import ic2.api.item.ElectricItem;
+import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.proxy.SoundManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
@@ -19,17 +22,38 @@ import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PlasmaAirCannon extends UniformElectricItem {
+	
 	private final static double storageEnergy = 200000d, transferSpeed = 128d;
 	public PlasmaAirCannon()
 	{
 		super("plasma_air_cannon", storageEnergy, transferSpeed, 2);
+		this.addPropertyOverride(new ResourceLocation(MoreElectricTools.MODID, "plasma_charge_percent"), new IItemPropertyGetter() {
+			@Override
+			@SideOnly(Side.CLIENT)
+			public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) 
+			{
+				if (entity == null) {
+					return 0.0F;
+				} else {
+					return entity.getActiveItemStack().getItem() != ItemManager.plasmaAirCannon? 0.0F
+							: (float) (stack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 25.0f;
+				}
+			}
+		});
 	}
 	
 	@Override
@@ -40,6 +64,10 @@ public class PlasmaAirCannon extends UniformElectricItem {
         {
         	return ret;
         }
+        worldIn.playSound((EntityPlayer)null, 
+        		playerIn.posX , playerIn.posY, playerIn.posZ , 
+	    		SoundManager.plasma_charge_sound, playerIn.getSoundCategory(), 1.0f, 1.0F);	
+        
         playerIn.setActiveHand(handIn);
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	}
@@ -50,8 +78,7 @@ public class PlasmaAirCannon extends UniformElectricItem {
 			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
 			int expandSize= this.getMaxItemUseDuration(stack) - timeLeft;
 			expandSize = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, expandSize, true);
-			if (expandSize < 0)	return;
-
+			if(expandSize < 10) return;
 			if(ElectricItem.manager.use(stack, 1000, entityplayer)) 
 			{
 				float pitch = entityplayer.rotationPitch , yaw = entityplayer.rotationYaw;
@@ -86,11 +113,13 @@ public class PlasmaAirCannon extends UniformElectricItem {
 			}
 		}
 	}
+	
+
 
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) 
 	{
-		return 6000;
+		return 240;
 	}
 
 	private static final Predicate<Entity> ATTACK_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE,
