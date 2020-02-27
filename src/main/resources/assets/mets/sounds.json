@@ -3,7 +3,7 @@
         "category": "block",
         "subtitle": "mets.sound.plasma_charge_sound",
         "sounds": [
-            "mets:music/plasma_charge"
+            "mets:plasma_charge"
         ]
     }
 }

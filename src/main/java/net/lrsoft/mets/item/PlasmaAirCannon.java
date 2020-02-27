@@ -9,7 +9,8 @@ import com.google.common.base.Predicates;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.MoreElectricTools;
-import net.lrsoft.mets.proxy.SoundManager;
+import net.lrsoft.mets.manager.ItemManager;
+import net.lrsoft.mets.manager.SoundManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

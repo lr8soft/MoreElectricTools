@@ -11,10 +11,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class NanoShieldRenderer extends TileEntityItemStackRenderer {
 	private NanoShieldModel model;
-	private  ResourceLocation modelTexture;
+	private static ResourceLocation modelTexture= new ResourceLocation(MoreElectricTools.MODID, "textures/entity/electric_shield.png");
 	public NanoShieldRenderer()
 	{
-		modelTexture = new ResourceLocation(MoreElectricTools.MODID, "textures/entity/electric_shield.png");
 		model = new NanoShieldModel();
 	}
 	

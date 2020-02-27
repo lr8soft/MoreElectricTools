@@ -1,4 +1,4 @@
-package net.lrsoft.mets.proxy;
+package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.item.PlasmaAirCannon;
