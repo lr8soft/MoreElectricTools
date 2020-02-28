@@ -1,7 +1,9 @@
 package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
@@ -11,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(value = Side.CLIENT, modid = MoreElectricTools.MODID)
 public class ModelManager {
 	@SubscribeEvent
-	public static void onModelInit(ModelRegistryEvent event) 
+	public static void onItemModelInit(ModelRegistryEvent event) 
 	{
 		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedIridiumSword, 0,
 				new ModelResourceLocation(ItemManager.advancedIridiumSword.getRegistryName(), "inventory"));
@@ -32,6 +34,13 @@ public class ModelManager {
 		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
 				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
 		
+		
 		ItemManager.electricShield.setTileEntityItemStackRenderer(new net.lrsoft.mets.renderer.NanoShieldRenderer());
 	}	
+	
+	@SubscribeEvent
+	public static void onBlockModelInit(ModelRegistryEvent event) 
+	{
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.lesuStorager), 0, new ModelResourceLocation(BlockManager.lesuStorager.getRegistryName(),"normal"));
+	}
 }

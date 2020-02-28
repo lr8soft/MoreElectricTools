@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "normal": {
+            "model": "mets:lithium_energy_storage_unit_block"
+        }
+    }
+}

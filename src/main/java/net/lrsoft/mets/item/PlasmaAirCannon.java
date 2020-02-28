@@ -1,6 +1,7 @@
 package net.lrsoft.mets.item;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -37,7 +38,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PlasmaAirCannon extends UniformElectricItem {
-	
 	private final static double storageEnergy = 200000d, transferSpeed = 128d;
 	public PlasmaAirCannon()
 	{
@@ -109,10 +109,23 @@ public class PlasmaAirCannon extends UniformElectricItem {
 				worldIn.playSound((EntityPlayer)null, 
 						entityplayer.posX , entityplayer.posY, entityplayer.posZ , 
 			    			SoundEvents.ENTITY_GENERIC_EXPLODE, entityplayer.getSoundCategory(), 1.0f * (expandSize/15+1), 1.0F);	
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE,
-						entityplayer.posX, entityplayer.posY + 0.5f, entityplayer.posZ, lookPosition.x * 2, lookPosition.y * 2, lookPosition.z * 2, 3);
+
+				for(int p = 0; p < 15; p++)
+				{
+					float newYaw = yaw + getRandomFromRange(8, -8);
+					float newPitch = pitch + getRandomFromRange(8, -8);
+					Vec3d shootPosition = new Vec3d(-MathHelper.sin(newYaw * 0.0174F) * MathHelper.cos(newPitch * 0.0174F),
+							-MathHelper.sin(newPitch * 0.0174F), MathHelper.cos(newYaw * 0.0174F) * MathHelper.cos(newPitch * 0.0174F));
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE,
+							entityplayer.posX, entityplayer.posY + 0.5f, entityplayer.posZ, shootPosition.x * velocity, shootPosition.y * velocity, shootPosition.z * velocity, 1);
+				}
 			}
 		}
+	}
+	
+	private int getRandomFromRange(int max, int min)
+	{
+		return new Random().nextInt(max-min)+min;
 	}
 	
 

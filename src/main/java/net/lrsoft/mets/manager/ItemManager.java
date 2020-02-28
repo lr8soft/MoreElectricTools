@@ -40,8 +40,7 @@ public class ItemManager {
 	
 	public static DivingMask divingMask;
 	
-	@SubscribeEvent
-	public static void onItemInit(RegistryEvent.Register<Item> event)
+	static 
 	{
 		advancedIridiumSword = new AdvancedIridiumSword();
 		lithiumBattery = new LithiumBattery();
@@ -52,23 +51,22 @@ public class ItemManager {
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		
-		divingMask = new DivingMask();
-		
-		onItemInit();
-		onRecipeInit();
+		divingMask = new DivingMask();		
 	}
 	
-	private static void onItemInit() 
+	@SubscribeEvent
+	public static void onItemInit(RegistryEvent.Register<Item> event)
 	{
-		ForgeRegistries.ITEMS.register(advancedIridiumSword);
-		ForgeRegistries.ITEMS.register(lithiumBattery);
-		ForgeRegistries.ITEMS.register(electricNutritionSupply);
-		ForgeRegistries.ITEMS.register(electricFishingRod);
-		ForgeRegistries.ITEMS.register(electricShield);
-		ForgeRegistries.ITEMS.register(nanoBow);
-		ForgeRegistries.ITEMS.register(plasmaAirCannon);
+		event.getRegistry().register(advancedIridiumSword);
+		event.getRegistry().register(lithiumBattery);
+		event.getRegistry().register(electricNutritionSupply);
+		event.getRegistry().register(electricFishingRod);
+		event.getRegistry().register(electricShield);
+		event.getRegistry().register(nanoBow);
+		event.getRegistry().register(plasmaAirCannon);
 		
-		ForgeRegistries.ITEMS.register(divingMask);
+		event.getRegistry().register(divingMask);
+		onRecipeInit();
 	}
 	
 	private static void onRecipeInit() 
