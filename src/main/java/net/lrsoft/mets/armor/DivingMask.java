@@ -7,6 +7,7 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.block.SoundType;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
@@ -26,7 +27,7 @@ import net.minecraftforge.common.util.EnumHelper;
 public class DivingMask extends ItemArmor implements ISpecialArmor, IElectricItem, IItemHudInfo {
 	private static ArmorMaterial divingMaskMaterial = EnumHelper.addArmorMaterial(
 			"divingMask", MoreElectricTools.MODID + ":diving_mask", 33, new int[]{2, 7, 5, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 9);
-	
+	private static double maskCost = 15d;
 	public DivingMask() {
 		super(divingMaskMaterial, 0, EntityEquipmentSlot.HEAD);
 		setUnlocalizedName("mets.diving_mask");
@@ -45,7 +46,15 @@ public class DivingMask extends ItemArmor implements ISpecialArmor, IElectricIte
 	
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-		super.onArmorTick(world, player, itemStack);
+		if(itemStack.getItem() != ItemManager.divingMask) return;
+		if(player.isInWater() && player.getAir() < 300)
+		{
+			if(ElectricItem.manager.use(itemStack, maskCost, player))
+			{
+				player.setAir(1 + player.getAir());
+				player.inventoryContainer.detectAndSendChanges();
+			}
+		}
 	}
 	
 
