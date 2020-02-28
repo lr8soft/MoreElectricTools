@@ -107,4 +107,7 @@ public class ElectricShield extends ItemShield implements IElectricItem, IItemHu
     public Item getChargedItem(ItemStack itemStack) {return this;}
     
     public Item getEmptyItem(ItemStack itemStack) {return this;}
+    
+    @Override
+    public boolean isShield(ItemStack stack, @Nullable EntityLivingBase entity) {return true;}
 }

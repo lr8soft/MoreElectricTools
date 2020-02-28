@@ -9,6 +9,7 @@ mets.electric_shield.name=Steel Explosion-proof Shield
 item.mets.nano_bow.name=§eNano Composite Bow
 
 item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
+item.mets.diving_mask.name=Diving Mask
 
 mets.info.ens.auto=Mode: Automatic supply
 mets.info.ens.disable=Mode: Disable Supply

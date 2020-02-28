@@ -151,5 +151,20 @@ public class ItemManager {
 						'D', IC2Items.getItem("crafting", "power_unit"),
 						'A', IC2Items.getItem("crafting", "advanced_circuit")
 				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(divingMask), 
+				new Object[] {
+						"EBE",
+						"FGF",
+						"SCS",
+						'E', IC2Items.getItem("component_heat_exchanger"),
+						'B', lithiumBattery,
+						'G', IC2Items.getItem("glass", "reinforced"),
+						'F', IC2Items.getItem("fluid_cell"),
+						'C', IC2Items.getItem("crafting", "advanced_circuit"),
+						'S', IC2Items.getItem("crafting", "rubber")
+				});
+		
+		
 		}	
 }
