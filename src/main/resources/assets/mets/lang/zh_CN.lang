@@ -2,6 +2,7 @@
 itemGroup.metsTabs=[METS]更多电力工具
 
 item.mets.advanced_iridium_sword.name=§b量子剑
+item.mets.advanced_lithium_battery.name=高级锂电池
 item.mets.lithium_battery.name=锂电池
 
 item.mets.electric_nutrition_supply.name=电力营养供应器

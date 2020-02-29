@@ -1,6 +1,7 @@
 ﻿
 itemGroup.metsTabs=[METS]More Electric Tools
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
+item.mets.advanced_lithium_battery.name=Advanced Lithium Battery
 item.mets.lithium_battery.name=Lithium Battery
 
 item.mets.electric_fishing_rod.name=Electric Fishing Rod

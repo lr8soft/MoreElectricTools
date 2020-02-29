@@ -43,7 +43,7 @@ public class BlockManager {
 						"BBB",
 						"AAA",
 						'A', IC2Items.getItem("plate", "steel"),
-						'B', ItemManager.lithiumBattery,
+						'B', ItemManager.advancedLithiumBattery,
 						'L', IC2Items.getItem("cable", "type:copper,insulation:1")
 				});
 	}

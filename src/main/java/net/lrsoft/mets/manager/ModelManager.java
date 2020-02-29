@@ -17,14 +17,19 @@ public class ModelManager {
 	{
 		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedIridiumSword, 0,
 				new ModelResourceLocation(ItemManager.advancedIridiumSword.getRegistryName(), "inventory"));
+		
+		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedLithiumBattery, 0,
+				new ModelResourceLocation(ItemManager.advancedLithiumBattery.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.lithiumBattery, 0,
 				new ModelResourceLocation(ItemManager.lithiumBattery.getRegistryName(), "inventory"));
+		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricNutritionSupply, 0,
 				new ModelResourceLocation(ItemManager.electricNutritionSupply.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricFishingRod, 0,
 				new ModelResourceLocation(ItemManager.electricFishingRod.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricShield, 0,
 				new ModelResourceLocation(ItemManager.electricShield.getRegistryName(), "inventory"));
+		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.nanoBow, 0,
 				new ModelResourceLocation(ItemManager.nanoBow.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.plasmaAirCannon, 0,
