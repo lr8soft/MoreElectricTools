@@ -2,6 +2,7 @@
 itemGroup.metsTabs=[METS]更多电力工具
 
 item.mets.advanced_iridium_sword.name=§b量子剑
+item.mets.advanced_lithium_battery.name=高级锂电池
 item.mets.lithium_battery.name=锂电池
 
 item.mets.electric_nutrition_supply.name=电力营养供应器
@@ -11,6 +12,8 @@ mets.electric_shield.name=钢制防爆盾
 item.mets.nano_bow.name=§e纳米复合弓
 item.mets.plasma_air_cannon.name=§e等离子空气炮
 item.mets.diving_mask.name=潜水面具
+
+mets.te.lesu=LESU储电箱
 
 
 mets.info.ens.auto=模式：自动供应

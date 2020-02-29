@@ -8,9 +8,10 @@ import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.ElectricShield;
-import net.lrsoft.mets.item.LithiumBattery;
 import net.lrsoft.mets.item.NanoBow;
 import net.lrsoft.mets.item.PlasmaAirCannon;
+import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
+import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 
@@ -29,6 +30,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class ItemManager {
 	
 	public static AdvancedIridiumSword advancedIridiumSword;
+	
+	public static AdvancedLithiumBattery advancedLithiumBattery;
 	public static LithiumBattery lithiumBattery;
 	
 	public static ElectricNutritionSupply electricNutritionSupply;
@@ -40,10 +43,11 @@ public class ItemManager {
 	
 	public static DivingMask divingMask;
 	
-	@SubscribeEvent
-	public static void onItemInit(RegistryEvent.Register<Item> event)
+	static 
 	{
 		advancedIridiumSword = new AdvancedIridiumSword();
+		
+		advancedLithiumBattery = new AdvancedLithiumBattery();
 		lithiumBattery = new LithiumBattery();
 		
 		electricNutritionSupply = new ElectricNutritionSupply();
@@ -52,23 +56,23 @@ public class ItemManager {
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		
-		divingMask = new DivingMask();
-		
-		onItemInit();
-		onRecipeInit();
+		divingMask = new DivingMask();		
 	}
 	
-	private static void onItemInit() 
+	@SubscribeEvent
+	public static void onItemInit(RegistryEvent.Register<Item> event)
 	{
-		ForgeRegistries.ITEMS.register(advancedIridiumSword);
-		ForgeRegistries.ITEMS.register(lithiumBattery);
-		ForgeRegistries.ITEMS.register(electricNutritionSupply);
-		ForgeRegistries.ITEMS.register(electricFishingRod);
-		ForgeRegistries.ITEMS.register(electricShield);
-		ForgeRegistries.ITEMS.register(nanoBow);
-		ForgeRegistries.ITEMS.register(plasmaAirCannon);
+		event.getRegistry().register(advancedIridiumSword);
+		event.getRegistry().register(advancedLithiumBattery);
+		event.getRegistry().register(lithiumBattery);
+		event.getRegistry().register(electricNutritionSupply);
+		event.getRegistry().register(electricFishingRod);
+		event.getRegistry().register(electricShield);
+		event.getRegistry().register(nanoBow);
+		event.getRegistry().register(plasmaAirCannon);
 		
-		ForgeRegistries.ITEMS.register(divingMask);
+		event.getRegistry().register(divingMask);
+		onRecipeInit();
 	}
 	
 	private static void onRecipeInit() 
@@ -82,6 +86,17 @@ public class ItemManager {
 						'I', IC2Items.getItem("crafting", "iridium"),
 						'C', IC2Items.getItem("crafting", "carbon_plate"),
 						'D', IC2Items.getItem("lapotron_crystal")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedLithiumBattery), 
+				new Object[] {
+						"CSC",
+						"SLS",
+						"SPS",
+						'C', IC2Items.getItem("cable", "type:copper,insulation:1"),
+						'S', IC2Items.getItem("casing", "steel"),
+						'L', IC2Items.getItem("dust", "lithium"),
+						'P', IC2Items.getItem("dust", "lead")
 				});
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(lithiumBattery), 

@@ -1,6 +1,7 @@
 ﻿
 itemGroup.metsTabs=[METS]More Electric Tools
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
+item.mets.advanced_lithium_battery.name=Advanced Lithium Battery
 item.mets.lithium_battery.name=Lithium Battery
 
 item.mets.electric_fishing_rod.name=Electric Fishing Rod
@@ -10,6 +11,8 @@ item.mets.nano_bow.name=§eNano Composite Bow
 
 item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 item.mets.diving_mask.name=Diving Mask
+
+mets.te.lesu=LESU
 
 mets.info.ens.auto=Mode: Automatic supply
 mets.info.ens.disable=Mode: Disable Supply
