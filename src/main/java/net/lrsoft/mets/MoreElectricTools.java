@@ -1,6 +1,7 @@
 package net.lrsoft.mets;
 
-import net.lrsoft.mets.manager.GuiManager;
+import ic2.core.block.TeBlockRegistry;
+import net.lrsoft.mets.block.MetsTeBlock;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,9 +25,6 @@ public class MoreElectricTools
 			serverSide="net.lrsoft.mets.proxy.CommonProxy")
     public static CommonProxy proxy; 
 	
-	@Instance(MODID)
-	public static MoreElectricTools instance;
-	
 	public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("metsTabs") 
 	{
 		@Override
@@ -35,12 +33,11 @@ public class MoreElectricTools
 			return new ItemStack(ItemManager.advancedIridiumSword);
 		}
 	};
-	
-    @EventHandler
+
+   @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         proxy.preInit(event);
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiManager());
     }
 
     @EventHandler

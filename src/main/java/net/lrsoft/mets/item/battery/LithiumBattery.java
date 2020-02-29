@@ -1,4 +1,4 @@
-package net.lrsoft.mets.item;
+package net.lrsoft.mets.item.battery;
 
 import javax.annotation.Nullable;
 
@@ -6,6 +6,7 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.core.IC2;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.item.UniformElectricItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;

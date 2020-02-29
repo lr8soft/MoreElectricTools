@@ -12,6 +12,8 @@ item.mets.nano_bow.name=§e纳米复合弓
 item.mets.plasma_air_cannon.name=§e等离子空气炮
 item.mets.diving_mask.name=潜水面具
 
+mets.te.lesu=LESU储电箱
+
 
 mets.info.ens.auto=模式：自动供应
 mets.info.ens.disable=模式：禁用

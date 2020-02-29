@@ -8,9 +8,9 @@ import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.ElectricShield;
-import net.lrsoft.mets.item.LithiumBattery;
 import net.lrsoft.mets.item.NanoBow;
 import net.lrsoft.mets.item.PlasmaAirCannon;
+import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 

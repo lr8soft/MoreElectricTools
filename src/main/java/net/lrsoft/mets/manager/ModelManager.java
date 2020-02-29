@@ -41,6 +41,6 @@ public class ModelManager {
 	@SubscribeEvent
 	public static void onBlockModelInit(ModelRegistryEvent event) 
 	{
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.lesuStorager), 0, new ModelResourceLocation(BlockManager.lesuStorager.getRegistryName(),"normal"));
+		//ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.lesuStorager), 0, new ModelResourceLocation(BlockManager.lesuStorager.getRegistryName(),"normal"));
 	}
 }

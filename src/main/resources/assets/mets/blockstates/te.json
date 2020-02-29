@@ -1,0 +1,8 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "type": {
+            "lesu":{"model" : "mets:lithium_energy_storage_unit_block"} 
+        }
+    }
+}
