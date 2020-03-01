@@ -13,6 +13,8 @@ item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 item.mets.diving_mask.name=Diving Mask
 
 mets.te.lesu=LESU
+mets.te.drop_generator=Loot Generator
+
 
 mets.info.ens.auto=Mode: Automatic supply
 mets.info.ens.disable=Mode: Disable Supply
