@@ -12,6 +12,7 @@ import net.lrsoft.mets.item.NanoBow;
 import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
+import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 
@@ -72,6 +73,9 @@ public class ItemManager {
 		event.getRegistry().register(plasmaAirCannon);
 		
 		event.getRegistry().register(divingMask);
+		
+		ItemCraftingManager.onCraftingItemInit(event);
+		ItemCraftingManager.onCraftingItemRecipeInit();
 		onRecipeInit();
 	}
 	

@@ -30,10 +30,12 @@ public class DropGeneratorInfo {
 		dropItemList.put(Items.BLAZE_ROD, 1000);
 		dropItemList.put(Items.ENDER_EYE, 1000);
 		dropItemList.put(Items.GHAST_TEAR, 1000);
+		dropItemList.put(Items.PRISMARINE_SHARD , 1000);
 		
 		dropItemList.put(Items.NETHER_STAR, 100000);
 		dropItemList.put(Item.getItemFromBlock(Blocks.DRAGON_EGG), 1000000);
 		dropItemList.put(Items.SKULL, 8000);
+		dropItemList.put(Items.TOTEM_OF_UNDYING, 8000);
 		
 		dropItemList.put(Items.APPLE, 100);
 		dropItemList.put(Items.MUTTON, 100);
@@ -50,13 +52,14 @@ public class DropGeneratorInfo {
 		dropItemList.put(Items.RABBIT, 100);
 		dropItemList.put(Items.RABBIT_FOOT, 100);
 		dropItemList.put(Items.LEATHER, 100);
+		dropItemList.put(Items.POTATO, 100);
 		
 		dropItemList.put(Items.COOKED_MUTTON, 200);
-		dropItemList.put(Items.COOKED_BEEF, 100);
-		dropItemList.put(Items.COOKED_FISH, 100);
+		dropItemList.put(Items.COOKED_BEEF, 200);
+		dropItemList.put(Items.COOKED_FISH, 200);
 		dropItemList.put(Items.COOKED_PORKCHOP, 100);
 		dropItemList.put(Items.COOKED_RABBIT, 100);
-		dropItemList.put(Items.POTATO, 100);
+		dropItemList.put(Items.BAKED_POTATO, 200);
 		
 		dropItemList.put(Items.GLASS_BOTTLE, 50);
 		dropItemList.put(Items.GLOWSTONE_DUST, 100);

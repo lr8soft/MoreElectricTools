@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/ore/niobium_ore",
+    "down": "mets:blocks/ore/niobium_ore",
+    "up": "mets:blocks/ore/niobium_ore",
+    "north": "mets:blocks/ore/niobium_ore",
+    "south": "mets:blocks/ore/niobium_ore",
+    "west": "mets:blocks/ore/niobium_ore",
+    "east": "mets:blocks/ore/niobium_ore"
+  }
+}

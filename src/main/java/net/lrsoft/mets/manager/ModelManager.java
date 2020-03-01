@@ -1,6 +1,7 @@
 package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -41,11 +42,13 @@ public class ModelManager {
 		
 		
 		ItemManager.electricShield.setTileEntityItemStackRenderer(new net.lrsoft.mets.renderer.NanoShieldRenderer());
+		
+		ItemCraftingManager.onCraftingItemModelInit();
 	}	
 	
 	@SubscribeEvent
 	public static void onBlockModelInit(ModelRegistryEvent event) 
 	{
-		//ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.lesuStorager), 0, new ModelResourceLocation(BlockManager.lesuStorager.getRegistryName(),"normal"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.niobiumOre), 0, new ModelResourceLocation(BlockManager.niobiumOre.getRegistryName(),"normal"));
 	}
 }
