@@ -38,9 +38,28 @@ public class DropGeneratorInfo {
 		dropItemList.put(Items.APPLE, 100);
 		dropItemList.put(Items.MUTTON, 100);
 		dropItemList.put(Items.BEEF, 100);
+		dropItemList.put(Items.CHICKEN, 100);
 		dropItemList.put(Items.BEETROOT, 100);
 		dropItemList.put(Items.ARROW, 200);
 		dropItemList.put(Items.BAKED_POTATO, 200);
 		dropItemList.put(Items.BEETROOT_SEEDS, 50);
+		dropItemList.put(Items.MELON_SEEDS, 50);
+		dropItemList.put(Items.PUMPKIN_SEEDS, 50);
+		dropItemList.put(Items.WHEAT_SEEDS, 50);
+		dropItemList.put(Items.FISH, 100);
+		dropItemList.put(Items.RABBIT, 100);
+		dropItemList.put(Items.RABBIT_FOOT, 100);
+		dropItemList.put(Items.LEATHER, 100);
+		
+		dropItemList.put(Items.COOKED_MUTTON, 200);
+		dropItemList.put(Items.COOKED_BEEF, 100);
+		dropItemList.put(Items.COOKED_FISH, 100);
+		dropItemList.put(Items.COOKED_PORKCHOP, 100);
+		dropItemList.put(Items.COOKED_RABBIT, 100);
+		dropItemList.put(Items.POTATO, 100);
+		
+		dropItemList.put(Items.GLASS_BOTTLE, 50);
+		dropItemList.put(Items.GLOWSTONE_DUST, 100);
+		dropItemList.put(Items.REDSTONE, 100);
 	}
 }
