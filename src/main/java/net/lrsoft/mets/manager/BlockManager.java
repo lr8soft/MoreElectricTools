@@ -15,6 +15,7 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.MetsTeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
@@ -36,7 +37,6 @@ public class BlockManager {
 		BlockTileEntity teBlock = TeBlockRegistry.get(MetsTeBlock.loc);
 		
 		ItemStack lesuStack = teBlock.getItemStack(MetsTeBlock.lesu);
-		lesuStack.getItem().setCreativeTab(MoreElectricTools.CREATIVE_TAB);
 		Recipes.advRecipes.addRecipe(lesuStack, 
 				new Object[] {
 						"ALA",
@@ -45,6 +45,19 @@ public class BlockManager {
 						'A', IC2Items.getItem("plate", "steel"),
 						'B', ItemManager.advancedLithiumBattery,
 						'L', IC2Items.getItem("cable", "type:copper,insulation:1")
+				});
+		
+		ItemStack lootGenerator = teBlock.getItemStack(MetsTeBlock.drop_generator);
+		Recipes.advRecipes.addRecipe(lootGenerator, 
+				new Object[] {
+						"BTB",
+						"PAP",
+						"PGP",
+						'A', IC2Items.getItem("crafting", "advanced_circuit"),
+						'T', ItemManager.lithiumBattery,
+						'P', IC2Items.getItem("casing", "steel"),
+						'B', Items.BLAZE_ROD,
+						'G', IC2Items.getItem("te", "generator")
 				});
 	}
 	

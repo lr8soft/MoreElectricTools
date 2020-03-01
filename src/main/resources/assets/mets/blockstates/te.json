@@ -2,7 +2,9 @@
     "forge_marker": 1,
   "variants": {
     "type": {
-      "lesu": { "model": "mets:lithium_energy_storage_unit_block" }
+      "lesu": { "model": "mets:lithium_energy_storage_unit_block" },
+      "drop_generator": { "model": "mets:drop_generator" },
+      "drop_generator_active": { "model": "mets:drop_generator_active" }
     },
     "facing": {
       "down": { "x": 90 },
