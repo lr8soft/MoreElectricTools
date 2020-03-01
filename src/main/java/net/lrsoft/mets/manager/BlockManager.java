@@ -44,7 +44,7 @@ public class BlockManager {
 						"AAA",
 						'A', IC2Items.getItem("plate", "steel"),
 						'B', ItemManager.advancedLithiumBattery,
-						'L', IC2Items.getItem("cable", "type:copper,insulation:1")
+						'L', IC2Items.getItem("cable", "type:gold,insulation:2")
 				});
 		
 		ItemStack lootGenerator = teBlock.getItemStack(MetsTeBlock.drop_generator);
