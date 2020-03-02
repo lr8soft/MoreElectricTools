@@ -31,6 +31,7 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod.EventBusSubscriber(modid = MoreElectricTools.MODID)
 public class BlockManager {
@@ -59,7 +60,7 @@ public class BlockManager {
 						"BBB",
 						"AAA",
 						'A', IC2Items.getItem("plate", "steel"),
-						'B', ItemManager.advancedLithiumBattery,
+						'B', getAllTypeStack(ItemManager.advancedLithiumBattery),
 						'L', IC2Items.getItem("cable", "type:gold,insulation:2")
 				});
 		
@@ -70,7 +71,7 @@ public class BlockManager {
 						"PAP",
 						"PGP",
 						'A', IC2Items.getItem("crafting", "advanced_circuit"),
-						'T', ItemManager.lithiumBattery,
+						'T', getAllTypeStack(ItemManager.lithiumBattery),
 						'P', IC2Items.getItem("casing", "steel"),
 						'B', Items.BLAZE_ROD,
 						'G', IC2Items.getItem("te", "generator")
@@ -90,6 +91,16 @@ public class BlockManager {
 	public static void onCommonBlockItemInit(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(new ItemBlock(niobiumOre).setRegistryName(niobiumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumOre).setRegistryName(titaniumOre.getRegistryName()));
+	}
+	
+	private static ItemStack getAllTypeStack(ItemStack itemstack)
+	{
+		return new ItemStack(itemstack.getItem(), 1, OreDictionary.WILDCARD_VALUE);
+	}
+	
+	private static ItemStack getAllTypeStack(Item item)
+	{
+		return new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE);
 	}
 	
 }
