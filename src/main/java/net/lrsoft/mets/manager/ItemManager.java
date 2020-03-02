@@ -12,6 +12,7 @@ import net.lrsoft.mets.item.NanoBow;
 import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
+import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 
@@ -25,6 +26,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod.EventBusSubscriber(modid = MoreElectricTools.MODID)
 public class ItemManager {
@@ -70,11 +72,16 @@ public class ItemManager {
 		event.getRegistry().register(electricShield);
 		event.getRegistry().register(nanoBow);
 		event.getRegistry().register(plasmaAirCannon);
-		
 		event.getRegistry().register(divingMask);
+		
+		OreDictionary.registerOre("advancedLithiumBattery", advancedLithiumBattery);
+		OreDictionary.registerOre("lithiumBattery", lithiumBattery);
+		
+		ItemCraftingManager.onCraftingItemInit(event);
+		ItemCraftingManager.onCraftingItemRecipeInit();
 		onRecipeInit();
 	}
-	
+	// new ItemStack(IC2Items.getItem("lapotron_crystal").getItem(), 1, OreDictionary.WILDCARD_VALUE),//IC2Items.getItem("energy_crystal"),
 	private static void onRecipeInit() 
 	{
 		Recipes.advRecipes.addRecipe(new ItemStack(advancedIridiumSword), 
@@ -85,7 +92,7 @@ public class ItemManager {
 						'S', IC2Items.getItem("casing", "steel"),
 						'I', IC2Items.getItem("crafting", "iridium"),
 						'C', IC2Items.getItem("crafting", "carbon_plate"),
-						'D', IC2Items.getItem("lapotron_crystal")
+						'D', getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
 				});
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(advancedLithiumBattery), 
@@ -118,7 +125,7 @@ public class ItemManager {
 						'S', IC2Items.getItem("casing", "gold"),
 						'C', IC2Items.getItem("crafting", "circuit"),
 						'H', IC2Items.getItem("heat_exchanger"),
-						'B', IC2Items.getItem("re_battery")
+						'B', getAllTypeStack(IC2Items.getItem("re_battery"))//IC2Items.getItem("re_battery")
 				});
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(electricFishingRod), 
@@ -137,7 +144,7 @@ public class ItemManager {
 						"CBA",
 						"CMS",
 						'C', IC2Items.getItem("crafting", "carbon_plate"),
-						'B', IC2Items.getItem("energy_crystal"),
+						'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),//IC2Items.getItem("energy_crystal"),
 						'M', IC2Items.getItem("crafting", "electric_motor"),
 						'S', Items.LEAD,
 						'A', IC2Items.getItem("crafting", "advanced_circuit")
@@ -149,7 +156,7 @@ public class ItemManager {
 						"LPA",
 						"LLB",
 						'C', IC2Items.getItem("crafting", "coil"),
-						'B', lithiumBattery,
+						'B', getAllTypeStack(lithiumBattery),
 						'L', IC2Items.getItem("crafting", "alloy"),
 						'P', IC2Items.getItem("fluid_cell"),
 						'A', IC2Items.getItem("crafting", "advanced_circuit")
@@ -162,7 +169,7 @@ public class ItemManager {
 						"SBS",
 						"SDS",
 						'S', IC2Items.getItem("plate", "steel"),
-						'B', lithiumBattery,
+						'B', getAllTypeStack(lithiumBattery),
 						'D', IC2Items.getItem("crafting", "power_unit"),
 						'A', IC2Items.getItem("crafting", "advanced_circuit")
 				});
@@ -173,7 +180,7 @@ public class ItemManager {
 						"FGF",
 						"SCS",
 						'E', IC2Items.getItem("component_heat_exchanger"),
-						'B', lithiumBattery,
+						'B', getAllTypeStack(lithiumBattery),
 						'G', IC2Items.getItem("glass", "reinforced"),
 						'F', IC2Items.getItem("fluid_cell"),
 						'C', IC2Items.getItem("crafting", "advanced_circuit"),
@@ -182,4 +189,14 @@ public class ItemManager {
 		
 		
 		}	
+	
+		private static ItemStack getAllTypeStack(ItemStack itemstack)
+		{
+			return new ItemStack(itemstack.getItem(), 1, OreDictionary.WILDCARD_VALUE);
+		}
+		
+		private static ItemStack getAllTypeStack(Item item)
+		{
+			return new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE);
+		}
 }

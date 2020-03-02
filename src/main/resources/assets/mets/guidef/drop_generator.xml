@@ -5,5 +5,5 @@
     <slot name="charge" x="56" y="16"/>
     <energygauge x="100" y="39" style="bar"/>
     <gauge name="fuel" x="57" y="36" style="fuel"/>
-       <playerInventory x="7" y="83"/>
+    <playerInventory x="7" y="83"/>
 </gui>

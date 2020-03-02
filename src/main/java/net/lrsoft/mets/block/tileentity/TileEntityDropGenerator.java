@@ -41,7 +41,7 @@ public class TileEntityDropGenerator extends TileEntityBaseGenerator implements 
 	public double getFuelRatio() {
 		if (this.fuel <= 0)
 			return 0.0D;
-		return this.fuel / this.totalFuel;
+		return (double)this.fuel / (double)this.totalFuel;
 	}
 
 	@Override

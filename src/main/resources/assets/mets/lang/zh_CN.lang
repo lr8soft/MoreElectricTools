@@ -1,6 +1,19 @@
 ﻿
 itemGroup.metsTabs=[METS]更多电力工具
 
+tile.mets.niobium_ore.name=铌矿石
+tile.mets.titanium_ore.name=钛矿石
+
+item.mets.crafting.niobium_crushed.name=粉碎铌矿石
+item.mets.crafting.titanium_crushed.name=粉碎钛矿石
+
+item.mets.crafting.niobium_dust.name=铌粉
+item.mets.crafting.titanium_dust.name=钛粉
+
+item.mets.crafting.niobium_titanium_dust.name=铌钛混合粉
+item.mets.crafting.niobium_titanium_ingot.name=铌钛合金锭
+item.mets.crafting.niobium_titanium_plate.name=铌钛合金板
+
 item.mets.advanced_iridium_sword.name=§b量子剑
 item.mets.advanced_lithium_battery.name=高级锂电池
 item.mets.lithium_battery.name=锂电池
