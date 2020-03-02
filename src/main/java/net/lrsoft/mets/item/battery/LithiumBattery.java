@@ -54,7 +54,7 @@ public class LithiumBattery extends UniformElectricItem
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) 
 	{
-		ItemStack currentBattery = playerIn.getHeldItemMainhand();
+		ItemStack currentBattery = playerIn.getHeldItem(handIn);
 		if(!worldIn.isRemote && currentBattery != null && currentBattery.getCount() == 1)
 		{
 			for(int i=0; i < 9; i++)

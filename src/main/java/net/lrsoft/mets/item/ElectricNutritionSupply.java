@@ -70,15 +70,13 @@ public class ElectricNutritionSupply extends UniformElectricItem {
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack stack = playerIn.getHeldItemMainhand();
-		
+		ItemStack stack = playerIn.getHeldItem(handIn);
 		long lastRightClick = getLastRightClick(stack);
 		long currentTime = System.currentTimeMillis();
 		boolean autoSupplement = getAutoSupplement(stack);
-		
-		if(currentTime - lastRightClick > 100)
-		{
-			autoSupplement = !autoSupplement;	
+
+		if (currentTime - lastRightClick > 100) {
+			autoSupplement = !autoSupplement;
 			lastRightClick = currentTime;
 			try {
 				if (autoSupplement) {
@@ -92,7 +90,7 @@ public class ElectricNutritionSupply extends UniformElectricItem {
 			setLastRightClick(stack, lastRightClick);
 			setAutoSupplement(stack, autoSupplement);
 		}
-		
+
 		return new ActionResult(EnumActionResult.SUCCESS, stack);
 	}
 	
