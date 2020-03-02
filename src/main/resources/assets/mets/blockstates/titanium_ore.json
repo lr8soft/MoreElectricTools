@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "mets:ore/titanium_ore"
+    }
+  }
+}
