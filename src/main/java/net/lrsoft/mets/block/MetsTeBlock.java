@@ -20,7 +20,8 @@ import net.lrsoft.mets.block.tileentity.*;
 public enum MetsTeBlock implements ITeBlock {
 	
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	drop_generator((Class)TileEntityDropGenerator.class, 1, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	drop_generator((Class)TileEntityDropGenerator.class, 1, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	superconducting_cable(TileEntitySuperconductingCable.delegate(), 2, false, Util.noFacings, false, HarvestTool.Pickaxe, DefaultDrop.Self, 0.5F, 5.0F, EnumRarity.COMMON, Material.CLOTH, true);
 
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private final Class<? extends TileEntityBlock> teClass;
@@ -53,6 +54,7 @@ public enum MetsTeBlock implements ITeBlock {
 	private final float explosionResistance;private final EnumRarity rarity;private final Material material;private final boolean transparent;private TileEntityBlock dummyTe;private ITePlaceHandler placeHandler;
 
 	static {
+		
 		for (MetsTeBlock block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}

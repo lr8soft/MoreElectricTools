@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+  "textures": {
+    "all": "mets:blocks/wiring/superconducting_cable"
+  }
+}
