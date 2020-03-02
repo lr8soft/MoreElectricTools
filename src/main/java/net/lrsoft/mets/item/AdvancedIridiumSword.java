@@ -133,7 +133,7 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack currentSword = playerIn.getHeldItemMainhand();
+		ItemStack currentSword = playerIn.getHeldItem(handIn);
 		
 		long lastRightClick = getLastRightClick(currentSword);
 		long currentTime = System.currentTimeMillis();
