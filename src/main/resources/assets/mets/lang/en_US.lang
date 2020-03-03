@@ -9,6 +9,11 @@ item.mets.crafting.titanium_crushed.name=Crushed Titanium Ore
 
 item.mets.crafting.niobium_dust.name=Niobium Dust
 item.mets.crafting.titanium_dust.name=Titanium Dust
+item.mets.crafting.titanium_ingot.name=Titanium Ingot
+item.mets.crafting.titanium_plate.name=Titanium Plate
+
+item.mets.crafting.titanium_iron_rotor_blade.name=Titanium Iron Alloy Rotor Blade
+item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Blade
 
 item.mets.crafting.niobium_titanium_dust.name=Niobium Titanium Powder
 item.mets.crafting.niobium_titanium_ingot.name=§bNiobium Titanium Alloy Ingot
@@ -33,7 +38,11 @@ mets.te.lesu=LESU
 mets.te.eesu=§bEESU
 mets.te.drop_generator=Loot Generator
 
+item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
+item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor
 
 mets.info.ens.auto=Mode: Automatic supply
 mets.info.ens.disable=Mode: Disable Supply
 mets.info.crafting_only=For crafting only
+
+mets.info.rotor=Suitable for wind and hydraulic~!

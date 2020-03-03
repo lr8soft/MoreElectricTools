@@ -14,7 +14,7 @@ public class WorldGenManager implements IWorldGenerator {
 	private WorldGenMinable titaniumOre;
 	public WorldGenManager() {
 		niobiumOre = new WorldGenMinable(BlockManager.niobiumOre.getDefaultState(), 3);//Each chunk less than 10 blocks
-		titaniumOre = new WorldGenMinable(BlockManager.titaniumOre.getDefaultState(), 3);
+		titaniumOre = new WorldGenMinable(BlockManager.titaniumOre.getDefaultState(), 4);
 	}
 	private static void runGenerator(WorldGenMinable normalore, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight, int maxHeight) {
 	    if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
@@ -35,8 +35,8 @@ public class WorldGenManager implements IWorldGenerator {
 		case -1:
 			break;
 		case 0:
-			this.runGenerator(this.niobiumOre, world, random, chunkX, chunkZ, 6, 6, 70);
-			this.runGenerator(this.titaniumOre, world, random, chunkX, chunkZ, 12, 6, 70);
+			this.runGenerator(this.niobiumOre, world, random, chunkX, chunkZ, 8, 0, 70);
+			this.runGenerator(this.titaniumOre, world, random, chunkX, chunkZ, 15, 0, 70);
 			break;
 		default:
 		}
