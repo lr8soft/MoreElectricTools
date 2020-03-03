@@ -14,6 +14,8 @@ import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
+import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 
@@ -33,9 +35,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ItemManager {
 	
 	public static SuperLapotronCrystal superLapotronCrystal;
-	
 	public static AdvancedIridiumSword advancedIridiumSword;
-	
 	public static AdvancedLithiumBattery advancedLithiumBattery;
 	public static LithiumBattery lithiumBattery;
 	
@@ -48,10 +48,11 @@ public class ItemManager {
 	
 	public static DivingMask divingMask;
 	
+	public static TitaniumIronAlloyRotor titaniumIronAlloyRotor;
+	public static SuperIridiumRotor superIridiumRotor;
 	static 
 	{
 		superLapotronCrystal = new SuperLapotronCrystal();
-		
 		advancedIridiumSword = new AdvancedIridiumSword();
 		
 		advancedLithiumBattery = new AdvancedLithiumBattery();
@@ -63,7 +64,9 @@ public class ItemManager {
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		
-		divingMask = new DivingMask();		
+		divingMask = new DivingMask();	
+		titaniumIronAlloyRotor = new TitaniumIronAlloyRotor();
+		superIridiumRotor = new SuperIridiumRotor();
 	}
 	
 	@SubscribeEvent
@@ -79,6 +82,8 @@ public class ItemManager {
 		event.getRegistry().register(nanoBow);
 		event.getRegistry().register(plasmaAirCannon);
 		event.getRegistry().register(divingMask);
+		event.getRegistry().register(titaniumIronAlloyRotor);
+		event.getRegistry().register(superIridiumRotor);
 		
 		OreDictionary.registerOre("superLapotronCrystal", superLapotronCrystal);
 		OreDictionary.registerOre("advancedLithiumBattery", advancedLithiumBattery);
@@ -204,7 +209,23 @@ public class ItemManager {
 						'S', IC2Items.getItem("crafting", "rubber")
 				});
 		
+		Recipes.advRecipes.addRecipe(new ItemStack(titaniumIronAlloyRotor), 
+				new Object[] {
+						" B ",
+						"BHB",
+						" B ",
+						'H', IC2Items.getItem("crafting", "steel_shaft"),
+						'B', getAllTypeStack(ItemCraftingManager.titanium_iron_rotor_blade)
+				});
 		
+		Recipes.advRecipes.addRecipe(new ItemStack(superIridiumRotor), 
+				new Object[] {
+						" B ",
+						"BHB",
+						" B ",
+						'H', IC2Items.getItem("crafting", "steel_shaft"),
+						'B', getAllTypeStack(ItemCraftingManager.super_iridium_blade)
+				});
 		}	
 	
 		private static ItemStack getAllTypeStack(ItemStack itemstack)

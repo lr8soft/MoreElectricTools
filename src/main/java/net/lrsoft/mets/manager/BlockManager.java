@@ -52,7 +52,7 @@ public class BlockManager {
 	{
 		TeBlockRegistry.addAll(MetsTeBlock.class, MetsTeBlock.loc);
 		TeBlockRegistry.addCreativeRegisterer((list, block, itemblock, tab) -> {
-			if (tab == IC2.tabIC2 || tab == CreativeTabs.SEARCH || tab == MoreElectricTools.CREATIVE_TAB) {
+			if (tab == CreativeTabs.SEARCH || tab == MoreElectricTools.CREATIVE_TAB) {
 				block.getAllTypes().forEach(type -> {
 					if (type.hasItem()) {
 						list.add(block.getItemStack(type));

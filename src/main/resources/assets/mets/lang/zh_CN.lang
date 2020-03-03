@@ -9,6 +9,11 @@ item.mets.crafting.titanium_crushed.name=粉碎钛矿石
 
 item.mets.crafting.niobium_dust.name=铌粉
 item.mets.crafting.titanium_dust.name=钛粉
+item.mets.crafting.titanium_ingot.name=钛锭
+item.mets.crafting.titanium_plate.name=钛板
+
+item.mets.crafting.titanium_iron_rotor_blade.name=钛铁合金扇叶
+item.mets.crafting.super_iridium_blade.name=§b超级铱合金扇叶
 
 item.mets.crafting.niobium_titanium_dust.name=铌钛混合粉
 item.mets.crafting.niobium_titanium_ingot.name=§b铌钛合金锭
@@ -29,6 +34,9 @@ item.mets.nano_bow.name=§e纳米复合弓
 item.mets.plasma_air_cannon.name=§e等离子空气炮
 item.mets.diving_mask.name=潜水面具
 
+item.mets.titanium_iron_alloy_rotor.name=钛铁合金转子
+item.mets.super_iridium_rotor.name=§b超级铱合金转子
+
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§bEESU储电箱
 mets.te.drop_generator=掉落物发电机
@@ -37,3 +45,5 @@ mets.te.drop_generator=掉落物发电机
 mets.info.ens.auto=模式：自动供应
 mets.info.ens.disable=模式：禁用
 mets.info.crafting_only=仅用于合成
+
+mets.info.rotor=适用于风力水力~！

@@ -26,6 +26,8 @@ public class ItemCraftingManager {
 	
 	public static Item niobium_dust;
 	public static Item titanium_dust;
+	public static Item titanium_ingot;
+	public static Item titanium_plate;
 	
 	public static Item niobium_titanium_dust;
 	public static Item niobium_titanium_ingot;
@@ -33,6 +35,9 @@ public class ItemCraftingManager {
 	
 	public static Item superconducting_cable;
 	public static Item super_circuit;
+	
+	public static Item titanium_iron_rotor_blade;
+	public static Item super_iridium_blade;
 	static 
 	{
 		niobium_crushed = new UniformCraftingItem("niobium_crushed", 64);
@@ -40,6 +45,8 @@ public class ItemCraftingManager {
 		
 		titanium_crushed = new UniformCraftingItem("titanium_crushed", 64);
 		titanium_dust = new UniformCraftingItem("titanium_dust", 64);
+		titanium_ingot = new UniformCraftingItem("titanium_ingot", 64);
+		titanium_plate = new UniformCraftingItem("titanium_plate", 64);
 		
 		niobium_titanium_dust = new UniformCraftingItem("niobium_titanium_dust", 64);	
 		niobium_titanium_ingot = new UniformCraftingItem("niobium_titanium_ingot", 64);
@@ -54,6 +61,8 @@ public class ItemCraftingManager {
 		};
 		
 		super_circuit = new UniformCraftingItem("super_circuit", 64);
+		titanium_iron_rotor_blade = new UniformCraftingItem("titanium_iron_rotor_blade", 64);
+		super_iridium_blade = new UniformCraftingItem("super_iridium_blade", 64);
 	}
 	
 	public static void onCraftingItemInit(RegistryEvent.Register<Item> event)
@@ -63,6 +72,8 @@ public class ItemCraftingManager {
 		
 		event.getRegistry().register(titanium_crushed);
 		event.getRegistry().register(titanium_dust);
+		event.getRegistry().register(titanium_ingot);
+		event.getRegistry().register(titanium_plate);
 		
 		event.getRegistry().register(niobium_titanium_dust);
 		event.getRegistry().register(niobium_titanium_ingot);
@@ -70,6 +81,8 @@ public class ItemCraftingManager {
 		
 		event.getRegistry().register(superconducting_cable);
 		event.getRegistry().register(super_circuit);
+		event.getRegistry().register(titanium_iron_rotor_blade);
+		event.getRegistry().register(super_iridium_blade);
 	}
 	
 	public static void onCraftingItemModelInit()
@@ -83,6 +96,10 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(titanium_crushed.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(titanium_dust, 0,
 				new ModelResourceLocation(titanium_dust.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(titanium_ingot, 0,
+				new ModelResourceLocation(titanium_ingot.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(titanium_plate, 0,
+				new ModelResourceLocation(titanium_plate.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(niobium_titanium_dust, 0,
 				new ModelResourceLocation(niobium_titanium_dust.getRegistryName(), "inventory"));
@@ -95,6 +112,11 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(superconducting_cable.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(super_circuit, 0,
 				new ModelResourceLocation(super_circuit.getRegistryName(), "inventory"));
+		
+		ModelLoader.setCustomModelResourceLocation(titanium_iron_rotor_blade, 0,
+				new ModelResourceLocation(titanium_iron_rotor_blade.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(super_iridium_blade, 0,
+				new ModelResourceLocation(super_iridium_blade.getRegistryName(), "inventory"));
 	}
 	
 	public static void onCraftingItemOreDictInit()
@@ -104,6 +126,8 @@ public class ItemCraftingManager {
 		
 		OreDictionary.registerOre("crushedTitanium", titanium_crushed);
 		OreDictionary.registerOre("dustTitanium", titanium_dust);
+		OreDictionary.registerOre("ingotTitanium", titanium_ingot);
+		OreDictionary.registerOre("plateTitanium", titanium_plate);
 		
 		OreDictionary.registerOre("dustNiobiumTitanium", niobium_titanium_dust);
 		OreDictionary.registerOre("ingotNiobiumTitanium", niobium_titanium_ingot);
@@ -117,15 +141,19 @@ public class ItemCraftingManager {
 	{
 		NBTTagCompound heat=new NBTTagCompound();
 		heat.setInteger("minHeat", 3500);
-		
+		//Nb
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("oreNiobium"), null, false, new ItemStack(niobium_crushed, 2));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedNiobium"), heat, false,
 				new ItemStack[] {new ItemStack(niobium_dust), IC2Items.getItem("dust", "stone")});
-		
+		//Ti
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("oreTitanium"), null, false, new ItemStack(titanium_crushed, 2));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedTitanium"), heat, false,
 				new ItemStack[] {new ItemStack(titanium_dust), IC2Items.getItem("dust", "stone")});
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"),
+				null, false, new ItemStack(titanium_plate));
+		GameRegistry.addSmelting(titanium_dust, new ItemStack(titanium_ingot), 5);
 		
+		//Nb_Ti
 		Recipes.advRecipes.addShapelessRecipe(new ItemStack(niobium_titanium_dust),
 				niobium_dust, titanium_dust, titanium_dust, titanium_dust);
 		
@@ -138,6 +166,7 @@ public class ItemCraftingManager {
 		
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("ingotNiobiumTitanium"),
 				null, false, new ItemStack(niobium_titanium_plate));
+		
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(superconducting_cable, 2),
 				new Object[] {
@@ -157,6 +186,24 @@ public class ItemCraftingManager {
 						'S', IC2Items.getItem("crafting", "advanced_circuit"),
 						'T', niobium_titanium_plate,
 						'X', superconducting_cable
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(titanium_iron_rotor_blade), 
+				new Object[] {
+						"ASA",
+						"ASA",
+						"ASA",
+						'A', IC2Items.getItem("plate", "steel"),
+						'S', titanium_plate
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(super_iridium_blade), 
+				new Object[] {
+						"ASA",
+						"ASA",
+						"ASA",
+						'S', IC2Items.getItem("crafting", "iridium"),
+						'A', niobium_titanium_plate
 				});
 		
 	}
