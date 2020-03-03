@@ -10,10 +10,13 @@ item.mets.crafting.titanium_crushed.name=Crushed Titanium Ore
 item.mets.crafting.niobium_dust.name=Niobium Dust
 item.mets.crafting.titanium_dust.name=Titanium Dust
 
-item.mets.crafting.niobium_titanium_dust.name=Niobium Titanium powder
-item.mets.crafting.niobium_titanium_ingot.name=Niobium Titanium Alloy Ingot
-item.mets.crafting.niobium_titanium_plate.name=Niobium Titanium Alloy Plate
+item.mets.crafting.niobium_titanium_dust.name=Niobium Titanium Powder
+item.mets.crafting.niobium_titanium_ingot.name=§bNiobium Titanium Alloy Ingot
+item.mets.crafting.niobium_titanium_plate.name=§bNiobium Titanium Alloy Plate
+item.mets.crafting.superconducting_cable.name=§bSuperconducting Cable
+item.mets.crafting.super_circuit.name=§bSuper Circuit
 
+item.mets.super_lapotron_crystal.name=§bSuper_Lapotron_Crystal
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
 item.mets.advanced_lithium_battery.name=Advanced Lithium Battery
 item.mets.lithium_battery.name=Lithium Battery
@@ -27,8 +30,10 @@ item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 item.mets.diving_mask.name=Diving Mask
 
 mets.te.lesu=LESU
+mets.te.eesu=§bEESU
 mets.te.drop_generator=Loot Generator
 
 
 mets.info.ens.auto=Mode: Automatic supply
 mets.info.ens.disable=Mode: Disable Supply
+mets.info.crafting_only=For crafting only

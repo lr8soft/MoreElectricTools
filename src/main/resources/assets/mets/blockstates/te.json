@@ -4,7 +4,8 @@
     "type": {
       "lesu": { "model": "mets:lithium_energy_storage_unit_block" },
       "drop_generator": { "model": "mets:drop_generator" },
-      "drop_generator_active": { "model": "mets:drop_generator_active" }
+      "drop_generator_active": { "model": "mets:drop_generator_active" },
+      "eesu": { "model": "mets:extreme_energy_storage_unit_block" }
     },
     "facing": {
       "down": { "x": 90 },

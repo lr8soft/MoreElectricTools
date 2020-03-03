@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/super_lapotron_crystal"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:super_lapotron_crystal_value": 0.25 },
+      "model": "mets:item/battery/super_lapotron_crystal_1"
+    },
+    {
+      "predicate": { "mets:super_lapotron_crystal_value": 0.5 },
+      "model": "mets:item/battery/super_lapotron_crystal_2"
+    },
+    {
+      "predicate": { "mets:super_lapotron_crystal_value": 0.75 },
+      "model": "mets:item/battery/super_lapotron_crystal_3"
+    },
+    {
+      "predicate": { "mets:super_lapotron_crystal_value": 1.0 },
+      "model": "mets:item/battery/super_lapotron_crystal_4"
+    }
+  ]
+
+}
