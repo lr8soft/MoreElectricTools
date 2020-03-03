@@ -12,6 +12,7 @@ import net.lrsoft.mets.item.NanoBow;
 import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
+import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
@@ -31,6 +32,8 @@ import net.minecraftforge.oredict.OreDictionary;
 @Mod.EventBusSubscriber(modid = MoreElectricTools.MODID)
 public class ItemManager {
 	
+	public static SuperLapotronCrystal superLapotronCrystal;
+	
 	public static AdvancedIridiumSword advancedIridiumSword;
 	
 	public static AdvancedLithiumBattery advancedLithiumBattery;
@@ -47,6 +50,8 @@ public class ItemManager {
 	
 	static 
 	{
+		superLapotronCrystal = new SuperLapotronCrystal();
+		
 		advancedIridiumSword = new AdvancedIridiumSword();
 		
 		advancedLithiumBattery = new AdvancedLithiumBattery();
@@ -64,6 +69,7 @@ public class ItemManager {
 	@SubscribeEvent
 	public static void onItemInit(RegistryEvent.Register<Item> event)
 	{
+		event.getRegistry().register(superLapotronCrystal);
 		event.getRegistry().register(advancedIridiumSword);
 		event.getRegistry().register(advancedLithiumBattery);
 		event.getRegistry().register(lithiumBattery);
@@ -74,6 +80,7 @@ public class ItemManager {
 		event.getRegistry().register(plasmaAirCannon);
 		event.getRegistry().register(divingMask);
 		
+		OreDictionary.registerOre("superLapotronCrystal", superLapotronCrystal);
 		OreDictionary.registerOre("advancedLithiumBattery", advancedLithiumBattery);
 		OreDictionary.registerOre("lithiumBattery", lithiumBattery);
 		
@@ -84,6 +91,16 @@ public class ItemManager {
 	// new ItemStack(IC2Items.getItem("lapotron_crystal").getItem(), 1, OreDictionary.WILDCARD_VALUE),//IC2Items.getItem("energy_crystal"),
 	private static void onRecipeInit() 
 	{
+		Recipes.advRecipes.addRecipe(new ItemStack(superLapotronCrystal), 
+				new Object[] {
+						"SCS",
+						"SDS",
+						"SCS",
+						'S', ItemCraftingManager.niobium_titanium_plate,
+						'C', ItemCraftingManager.super_circuit,
+						'D', getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
+				});
+		
 		Recipes.advRecipes.addRecipe(new ItemStack(advancedIridiumSword), 
 				new Object[] {
 						"SIS",

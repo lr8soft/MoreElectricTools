@@ -9,6 +9,8 @@ import ic2.api.event.TeBlockFinalCallEvent;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
+import ic2.api.tile.IEnergyStorage;
+import ic2.core.IC2;
 import ic2.core.block.BlockTileEntity;
 import ic2.core.block.TeBlockRegistry;
 import ic2.core.ref.TeBlock;
@@ -16,6 +18,8 @@ import ic2.core.util.StackUtil;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.MetsTeBlock;
 import net.lrsoft.mets.block.UniformResourceBlock;
+import net.lrsoft.mets.block.tileentity.IMets;
+import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,7 +36,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
-
+import ic2.core.block.ITeBlock;
 @Mod.EventBusSubscriber(modid = MoreElectricTools.MODID)
 public class BlockManager {
 	public static Block niobiumOre;
@@ -47,6 +51,21 @@ public class BlockManager {
 	public static void onTeBlockInit(TeBlockFinalCallEvent event)
 	{
 		TeBlockRegistry.addAll(MetsTeBlock.class, MetsTeBlock.loc);
+		TeBlockRegistry.addCreativeRegisterer((list, block, itemblock, tab) -> {
+			if (tab == IC2.tabIC2 || tab == CreativeTabs.SEARCH || tab == MoreElectricTools.CREATIVE_TAB) {
+				block.getAllTypes().forEach(type -> {
+					if (type.hasItem()) {
+						list.add(block.getItemStack(type));
+						if (type.getDummyTe() instanceof IEnergyStorage) {
+							ItemStack filled = block.getItemStack(type);
+							StackUtil.getOrCreateNbtData(filled).setDouble("energy",
+									((IEnergyStorage) type.getDummyTe()).getCapacity());
+							list.add(filled);
+						}
+					}
+				});
+			}
+		}, MetsTeBlock.loc);
 	}
 	
 	public static void onBlockRecipeInit()
@@ -75,6 +94,17 @@ public class BlockManager {
 						'P', IC2Items.getItem("casing", "steel"),
 						'B', Items.BLAZE_ROD,
 						'G', IC2Items.getItem("te", "generator")
+				});
+		
+		ItemStack eesuStorage = teBlock.getItemStack(MetsTeBlock.eesu);
+		Recipes.advRecipes.addRecipe(eesuStorage, 
+				new Object[] {
+						"BCB",
+						"BAB",
+						"BCB",
+						'A', IC2Items.getItem("te", "mfsu"),
+						'B', getAllTypeStack(ItemManager.superLapotronCrystal),
+						'C', ItemCraftingManager.super_circuit
 				});
 	}
 	

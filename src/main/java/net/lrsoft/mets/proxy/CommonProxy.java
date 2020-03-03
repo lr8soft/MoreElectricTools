@@ -3,7 +3,6 @@ import java.util.Set;
 
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.MetsTeBlock;
-import net.lrsoft.mets.block.tileentity.TileEntitySuperconductingCable;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.manager.OreDictManager;
@@ -22,11 +21,9 @@ public class CommonProxy
 	
 	public void preInit(FMLPreInitializationEvent event) 
 	{
-		DynamicEnumUtils.addEnum(CableType.class, "superconducting",
+		/*DynamicEnumUtils.addEnum(CableType.class, "superconducting",
 				new Class<?>[] { int.class, int.class, float.class, double.class, int.class },
-				new Object[] { 0, 0, 0.25F, 0.0D, 16384});
-		
-		//superconducting_cable(TileEntitySuperconductingCable.delegate(), 2, false, Util.noFacings, false, HarvestTool.Pickaxe, DefaultDrop.Self, 0.5F, 5.0F, EnumRarity.COMMON, Material.CLOTH, true);
+				new Object[] { 0, 0, 0.25F, 0.0D, 16384});*/
 	}
 
 	public void init(FMLInitializationEvent event) 

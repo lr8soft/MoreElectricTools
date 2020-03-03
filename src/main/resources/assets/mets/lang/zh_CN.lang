@@ -11,9 +11,12 @@ item.mets.crafting.niobium_dust.name=铌粉
 item.mets.crafting.titanium_dust.name=钛粉
 
 item.mets.crafting.niobium_titanium_dust.name=铌钛混合粉
-item.mets.crafting.niobium_titanium_ingot.name=铌钛合金锭
-item.mets.crafting.niobium_titanium_plate.name=铌钛合金板
+item.mets.crafting.niobium_titanium_ingot.name=§b铌钛合金锭
+item.mets.crafting.niobium_titanium_plate.name=§b铌钛合金板
+item.mets.crafting.superconducting_cable.name=§b超导合金导线
+item.mets.crafting.super_circuit.name=§b超级电路板
 
+item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.advanced_iridium_sword.name=§b量子剑
 item.mets.advanced_lithium_battery.name=高级锂电池
 item.mets.lithium_battery.name=锂电池
@@ -27,8 +30,10 @@ item.mets.plasma_air_cannon.name=§e等离子空气炮
 item.mets.diving_mask.name=潜水面具
 
 mets.te.lesu=LESU储电箱
+mets.te.eesu=§bEESU储电箱
 mets.te.drop_generator=掉落物发电机
 
 
 mets.info.ens.auto=模式：自动供应
 mets.info.ens.disable=模式：禁用
+mets.info.crafting_only=仅用于合成

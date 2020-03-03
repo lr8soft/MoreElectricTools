@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import sun.reflect.ConstructorAccessor;
-import sun.reflect.FieldAccessor;
-import sun.reflect.ReflectionFactory;
+//import sun.reflect.ConstructorAccessor;
+//import sun.reflect.FieldAccessor;
+//import sun.reflect.ReflectionFactory;
 
 public class DynamicEnumUtils {
 
-   private static ReflectionFactory reflectionFactory = ReflectionFactory.getReflectionFactory();
+ /*  private static ReflectionFactory reflectionFactory = ReflectionFactory.getReflectionFactory();
 
    private static void setFailsafeFieldValue(Field field, Object target, Object value) throws NoSuchFieldException,
            IllegalAccessException {
@@ -68,7 +68,7 @@ public class DynamicEnumUtils {
        parms[1] = Integer.valueOf(ordinal);
        System.arraycopy(additionalValues, 0, parms, 2, additionalValues.length);
        return enumClass.cast(getConstructorAccessor(enumClass, additionalTypes).newInstance(parms));
-   }
+   }*/
 
    /**
     * Add an enum instance to the enum class given as argument
@@ -77,6 +77,8 @@ public class DynamicEnumUtils {
     * @param enumType the class of the enum to be modified
     * @param enumName the name of the new enum instance to be added to the class.
     */
+	
+	  /*
    @SuppressWarnings("unchecked")
    public static <T extends Enum<?>> void addEnum(Class<T> enumType, String enumName, Class<?>[] additionalTypes, Object[] additionalValues) {
 
@@ -117,5 +119,5 @@ public class DynamicEnumUtils {
        } catch (Exception e) {
            throw new RuntimeException(e.getMessage(), e);
        }
-   }
+   }*/
 }

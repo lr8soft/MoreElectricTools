@@ -2,26 +2,33 @@ package net.lrsoft.mets.block;
 
 import java.util.Set;
 
+import ic2.api.tile.IEnergyStorage;
+import ic2.core.IC2;
 import ic2.core.block.*;
+import ic2.core.item.block.ItemBlockTileEntity;
 import ic2.core.ref.TeBlock;
 import ic2.core.ref.TeBlock.*;
 import ic2.core.ref.TeBlock.DefaultDrop;
 import ic2.core.ref.TeBlock.HarvestTool;
 import ic2.core.ref.IC2Material;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import ic2.core.util.StackUtil;
 import ic2.core.util.Util;
+import ic2.core.profile.Version;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.*;
 
 public enum MetsTeBlock implements ITeBlock {
-	
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	drop_generator((Class)TileEntityDropGenerator.class, 1, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	superconducting_cable(TileEntitySuperconductingCable.delegate(), 2, false, Util.noFacings, false, HarvestTool.Pickaxe, DefaultDrop.Self, 0.5F, 5.0F, EnumRarity.COMMON, Material.CLOTH, true);
+	eesu((Class)TileEntityEESU.class, 2, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private final Class<? extends TileEntityBlock> teClass;
@@ -54,7 +61,6 @@ public enum MetsTeBlock implements ITeBlock {
 	private final float explosionResistance;private final EnumRarity rarity;private final Material material;private final boolean transparent;private TileEntityBlock dummyTe;private ITePlaceHandler placeHandler;
 
 	static {
-		
 		for (MetsTeBlock block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}
@@ -155,5 +161,5 @@ public enum MetsTeBlock implements ITeBlock {
 		// TODO Auto-generated method stub
 		return (this.teClass != null && this.itemMeta != -1);
 	}
-
+	
 }
