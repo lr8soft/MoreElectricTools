@@ -35,8 +35,10 @@ item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 item.mets.diving_mask.name=Diving Mask
 
 mets.te.lesu=LESU
-mets.te.eesu=§bEESU
+mets.te.eesu=§9EESU
 mets.te.drop_generator=Loot Generator
+mets.te.advanced_kinetic_generator=Turbocharged Kinetic Generator
+mets.te.super_kinetic_generator=§9Twin-turbocharged Kinetic Generator
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

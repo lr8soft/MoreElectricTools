@@ -38,8 +38,10 @@ item.mets.titanium_iron_alloy_rotor.name=钛铁合金转子
 item.mets.super_iridium_rotor.name=§b超级铱合金转子
 
 mets.te.lesu=LESU储电箱
-mets.te.eesu=§bEESU储电箱
+mets.te.eesu=§9EESU储电箱
 mets.te.drop_generator=掉落物发电机
+mets.te.advanced_kinetic_generator=涡轮增压动能发电机
+mets.te.super_kinetic_generator=§9双涡轮增压动能发电机
 
 
 mets.info.ens.auto=模式：自动供应
