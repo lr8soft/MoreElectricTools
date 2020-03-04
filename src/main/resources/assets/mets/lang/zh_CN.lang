@@ -11,6 +11,7 @@ item.mets.crafting.niobium_dust.name=铌粉
 item.mets.crafting.titanium_dust.name=钛粉
 item.mets.crafting.titanium_ingot.name=钛锭
 item.mets.crafting.titanium_plate.name=钛板
+item.mets.crafting.titanium_casing.name=钛制外壳
 
 item.mets.crafting.titanium_iron_rotor_blade.name=钛铁合金扇叶
 item.mets.crafting.super_iridium_blade.name=§b超级铱合金扇叶
@@ -42,6 +43,7 @@ mets.te.eesu=§9EESU储电箱
 mets.te.drop_generator=掉落物发电机
 mets.te.advanced_kinetic_generator=涡轮增压动能发电机
 mets.te.super_kinetic_generator=§9双涡轮增压动能发电机
+mets.te.advanced_blast_furnace=进阶高炉
 
 
 mets.info.ens.auto=模式：自动供应

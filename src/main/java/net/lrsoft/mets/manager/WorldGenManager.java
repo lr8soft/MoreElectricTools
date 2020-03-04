@@ -32,14 +32,13 @@ public class WorldGenManager implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
 		switch (world.provider.getDimension()) {
-		case -1:
-			break;
-		case 0:
-			this.runGenerator(this.niobiumOre, world, random, chunkX, chunkZ, 8, 0, 70);
-			this.runGenerator(this.titaniumOre, world, random, chunkX, chunkZ, 15, 0, 70);
-			break;
+		case 1:  break;
+		case -1: break;
 		default:
+			this.runGenerator(this.niobiumOre, world, random, chunkX, chunkZ, 9, 0, 75);
+			this.runGenerator(this.titaniumOre, world, random, chunkX, chunkZ, 18, 0, 75);	
 		}
+
 	}
 
 }

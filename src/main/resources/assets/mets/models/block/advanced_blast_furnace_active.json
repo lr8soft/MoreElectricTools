@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/advanced_blast_furnace/leftright",
+    "down": "mets:blocks/advanced_blast_furnace/bottom",
+    "up": "mets:blocks/advanced_blast_furnace/top_active",
+    "north": "mets:blocks/advanced_blast_furnace/front",
+    "south": "mets:blocks/advanced_blast_furnace/back",
+    "west": "mets:blocks/advanced_blast_furnace/leftright_active",
+    "east": "mets:blocks/advanced_blast_furnace/leftright_active"
+  }
+}
