@@ -28,6 +28,7 @@ public class ItemCraftingManager {
 	public static Item titanium_dust;
 	public static Item titanium_ingot;
 	public static Item titanium_plate;
+	public static Item titanium_casing;
 	
 	public static Item niobium_titanium_dust;
 	public static Item niobium_titanium_ingot;
@@ -47,6 +48,7 @@ public class ItemCraftingManager {
 		titanium_dust = new UniformCraftingItem("titanium_dust", 64);
 		titanium_ingot = new UniformCraftingItem("titanium_ingot", 64);
 		titanium_plate = new UniformCraftingItem("titanium_plate", 64);
+		titanium_casing = new UniformCraftingItem("titanium_casing", 64);
 		
 		niobium_titanium_dust = new UniformCraftingItem("niobium_titanium_dust", 64);	
 		niobium_titanium_ingot = new UniformCraftingItem("niobium_titanium_ingot", 64);
@@ -74,6 +76,7 @@ public class ItemCraftingManager {
 		event.getRegistry().register(titanium_dust);
 		event.getRegistry().register(titanium_ingot);
 		event.getRegistry().register(titanium_plate);
+		event.getRegistry().register(titanium_casing);
 		
 		event.getRegistry().register(niobium_titanium_dust);
 		event.getRegistry().register(niobium_titanium_ingot);
@@ -100,6 +103,8 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(titanium_ingot.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(titanium_plate, 0,
 				new ModelResourceLocation(titanium_plate.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(titanium_casing, 0,
+				new ModelResourceLocation(titanium_casing.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(niobium_titanium_dust, 0,
 				new ModelResourceLocation(niobium_titanium_dust.getRegistryName(), "inventory"));
@@ -128,6 +133,7 @@ public class ItemCraftingManager {
 		OreDictionary.registerOre("dustTitanium", titanium_dust);
 		OreDictionary.registerOre("ingotTitanium", titanium_ingot);
 		OreDictionary.registerOre("plateTitanium", titanium_plate);
+		OreDictionary.registerOre("casingTitanium", titanium_casing);
 		
 		OreDictionary.registerOre("dustNiobiumTitanium", niobium_titanium_dust);
 		OreDictionary.registerOre("ingotNiobiumTitanium", niobium_titanium_ingot);
@@ -152,7 +158,8 @@ public class ItemCraftingManager {
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"),
 				null, false, new ItemStack(titanium_plate));
 		GameRegistry.addSmelting(titanium_dust, new ItemStack(titanium_ingot), 5);
-		
+		Recipes.metalformerExtruding.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"),
+				null, false,new ItemStack[] {new ItemStack(titanium_casing, 2)});
 		//Nb_Ti
 		Recipes.advRecipes.addShapelessRecipe(new ItemStack(niobium_titanium_dust),
 				niobium_dust, titanium_dust, titanium_dust, titanium_dust);

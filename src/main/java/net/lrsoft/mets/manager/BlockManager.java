@@ -129,6 +129,17 @@ public class BlockManager {
 						'G', advancedKineticGenerator,
 						'M', ItemManager.superIridiumRotor
 				});
+		
+		ItemStack advancedBlastFurnace = teBlock.getItemStack(MetsTeBlock.advanced_blast_furnace);
+		Recipes.advRecipes.addRecipe(advancedBlastFurnace, 
+				new Object[] {
+						"SSS",
+						"SMS",
+						"SCS",
+						'M', IC2Items.getItem("te", "blast_furnace"),
+						'S', ItemCraftingManager.titanium_casing,
+						'C', IC2Items.getItem("advanced_heat_exchanger")
+				});
 	}
 	
 	@SubscribeEvent
