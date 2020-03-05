@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/advanced_macerator/leftrightback",
+    "down": "mets:blocks/advanced_macerator/bottom",
+    "up": "mets:blocks/advanced_macerator/top_active",
+    "north": "mets:blocks/advanced_macerator/front_active",
+    "east": "mets:blocks/advanced_macerator/leftrightback",
+    "south": "mets:blocks/advanced_macerator/leftrightback",
+    "west": "mets:blocks/advanced_macerator/leftrightback"
+  }
+}
