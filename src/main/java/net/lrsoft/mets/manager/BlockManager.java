@@ -140,6 +140,30 @@ public class BlockManager {
 						'S', ItemCraftingManager.titanium_casing,
 						'C', IC2Items.getItem("advanced_heat_exchanger")
 				});
+		
+		
+		ItemStack advancedMacerator = teBlock.getItemStack(MetsTeBlock.advanced_macerator);
+		Recipes.advRecipes.addRecipe(advancedMacerator, 
+				new Object[] {
+						"DDD",
+						"BMB",
+						" C ",
+						'M', IC2Items.getItem("te", "macerator"),
+						'B', ItemCraftingManager.titanium_plate,
+						'D', Items.DIAMOND,
+						'C', ItemCraftingManager.super_circuit
+				});
+		
+		ItemStack advancedCompressor = teBlock.getItemStack(MetsTeBlock.advanced_compressor);
+		Recipes.advRecipes.addRecipe(advancedCompressor, 
+				new Object[] {
+						"B B",
+						"BMB",
+						"BCB",
+						'M', IC2Items.getItem("te", "compressor"),
+						'B', ItemCraftingManager.titanium_plate,
+						'C', ItemCraftingManager.super_circuit
+				});
 	}
 	
 	@SubscribeEvent

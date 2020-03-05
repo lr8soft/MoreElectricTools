@@ -40,7 +40,9 @@ mets.te.eesu=§9EESU
 mets.te.drop_generator=Loot Generator
 mets.te.advanced_kinetic_generator=Turbocharged Kinetic Generator
 mets.te.super_kinetic_generator=§9Twin-turbocharged Kinetic Generator
-mets.te.advanced_blast_furnace=Advanced Blast Furnace
+mets.te.advanced_blast_furnace=Advanced Titanium Alloy Blast Furnace
+mets.te.advanced_macerator=Advanced Cyclone Powder Machine
+mets.te.advanced_compressor=Advanced High-pressure Compressor
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

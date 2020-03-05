@@ -43,8 +43,9 @@ mets.te.eesu=§9EESU储电箱
 mets.te.drop_generator=掉落物发电机
 mets.te.advanced_kinetic_generator=涡轮增压动能发电机
 mets.te.super_kinetic_generator=§9双涡轮增压动能发电机
-mets.te.advanced_blast_furnace=进阶高炉
-
+mets.te.advanced_blast_furnace=进阶钛合金高炉
+mets.te.advanced_macerator=进阶旋风打粉机
+mets.te.advanced_compressor=进阶高压压缩机
 
 mets.info.ens.auto=模式：自动供应
 mets.info.ens.disable=模式：禁用

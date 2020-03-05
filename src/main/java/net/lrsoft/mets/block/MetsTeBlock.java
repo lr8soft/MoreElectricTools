@@ -31,7 +31,9 @@ public enum MetsTeBlock implements ITeBlock {
 	eesu((Class)TileEntityEESU.class, 2, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	advanced_kinetic_generator((Class)TileEntityAdvancedKineticGenerator.class, 3, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	super_kinetic_generator((Class)TileEntitySuperKineticGenerator.class, 4, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	advanced_blast_furnace((Class)TileEntityAdvancedBlastFurnace.class, 5, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	advanced_blast_furnace((Class)TileEntityAdvancedBlastFurnace.class, 5, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	advanced_macerator((Class)TileEntityAdvancedMacerator.class, 6, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	advanced_compressor((Class)TileEntityAdvancedCompressor.class, 7, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private final Class<? extends TileEntityBlock> teClass;
