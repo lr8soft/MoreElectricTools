@@ -9,6 +9,7 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,7 +33,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NanoBow extends ItemBow implements IElectricItem, IItemHudInfo {
-	private final static float bowCost = 300f; 
 	public NanoBow()
 	{
 		setUnlocalizedName("mets.nano_bow");
@@ -89,7 +89,7 @@ public class NanoBow extends ItemBow implements IElectricItem, IItemHudInfo {
 
 	                float arrowVelocity = getNanoArrowVelocity(i);
 
-	                if ((double)arrowVelocity >= 0.1D && ElectricItem.manager.canUse(stack, bowCost))
+	                if ((double)arrowVelocity >= 0.1D && ElectricItem.manager.canUse(stack, ConfigManager.NanoBowBaseCost))
 	                {
 	                    boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemArrow && ((ItemArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
 
@@ -119,7 +119,7 @@ public class NanoBow extends ItemBow implements IElectricItem, IItemHudInfo {
 	                            entityarrow.setFire(100);
 	                        }
 	                        
-	                        ElectricItem.manager.use(stack, bowCost, entityplayer);
+	                        ElectricItem.manager.use(stack, ConfigManager.NanoBowBaseCost, entityplayer);
 
 	                        if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW))
 	                        {
@@ -176,9 +176,9 @@ public class NanoBow extends ItemBow implements IElectricItem, IItemHudInfo {
     {
         float v = (float)charge;
         v = (v * v + v * 2.0F) / 5.0F;
-        if(v > 5.0f) 
+        if(v > ConfigManager.NanoBowMaxVelocity) 
         {
-        	v = 5.0f;
+        	v = ConfigManager.NanoBowMaxVelocity;
         }
         return v;
     }

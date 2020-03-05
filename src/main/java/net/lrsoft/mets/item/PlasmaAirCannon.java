@@ -10,6 +10,7 @@ import com.google.common.base.Predicates;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.manager.SoundManager;
 import net.minecraft.entity.Entity;
@@ -80,7 +81,7 @@ public class PlasmaAirCannon extends UniformElectricItem {
 			int expandSize= this.getMaxItemUseDuration(stack) - timeLeft;
 			expandSize = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, expandSize, true);
 			if(expandSize < 10) return;
-			if(ElectricItem.manager.use(stack, 1000, entityplayer)) 
+			if(ElectricItem.manager.use(stack, ConfigManager.PlasmaAirCannonBaseCost, entityplayer)) 
 			{
 				float pitch = entityplayer.rotationPitch , yaw = entityplayer.rotationYaw;
 				Vec3d currentPostion = new Vec3d(entityplayer.posX, entityplayer.posY, entityplayer.posZ);
@@ -100,7 +101,7 @@ public class PlasmaAirCannon extends UniformElectricItem {
 				{
 					 Entity entity1 = list.get(index);
 					 double distance = currentPostion.distanceTo(new Vec3d(entity1.posX, entity1.posY, entity1.posZ));
-					 double damage = 10 + expandSize / (expandSize == 0d ? 1.0d : distance);
+					 double damage = ConfigManager.PlasmaAirCannonBaseDamage + expandSize / (expandSize == 0d ? 1.0d : distance);
 					 
 				     entity1.addVelocity(lookPosition.x * velocity, lookPosition.y * velocity, lookPosition.z * velocity);
 				     entity1.attackEntityFrom(DamageSource.causePlayerDamage(entityplayer), (float) damage);

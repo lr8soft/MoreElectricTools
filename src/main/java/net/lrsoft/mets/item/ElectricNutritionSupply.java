@@ -3,7 +3,9 @@ package net.lrsoft.mets.item;
 import javax.annotation.Nullable;
 
 import ic2.api.item.ElectricItem;
+import ic2.core.init.Localization;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -59,8 +61,8 @@ public class ElectricNutritionSupply extends UniformElectricItem {
 			FoodStats foodStats = player.getFoodStats();
 			if(foodStats.needFood())
 			{
-				if (ElectricItem.manager.canUse(stack, 200)) {
-					ElectricItem.manager.use(stack, 200, player);
+				if (ElectricItem.manager.canUse(stack, ConfigManager.ElectricNutritionSupplyCost)) {
+					ElectricItem.manager.use(stack, ConfigManager.ElectricNutritionSupplyCost, player);
 					foodStats.addStats(1, 0.2f);
 				}
 				player.inventoryContainer.detectAndSendChanges();
@@ -80,12 +82,11 @@ public class ElectricNutritionSupply extends UniformElectricItem {
 			lastRightClick = currentTime;
 			try {
 				if (autoSupplement) {
-					playerIn.sendMessage(new TextComponentString(I18n.format("mets.info.ens.auto")));
+					playerIn.sendMessage(new TextComponentString(Localization.translate("mets.info.ens.auto")));
 				} else {
-					playerIn.sendMessage(new TextComponentString(I18n.format("mets.info.ens.disable")));
+					playerIn.sendMessage(new TextComponentString(Localization.translate("mets.info.ens.disable")));
 				}
-			} catch (Exception expt) {
-			}
+			} catch (Exception expt) {}
 
 			setLastRightClick(stack, lastRightClick);
 			setAutoSupplement(stack, autoSupplement);

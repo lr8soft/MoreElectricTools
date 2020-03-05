@@ -113,7 +113,7 @@ public class ItemManager {
 						"CDC",
 						'S', IC2Items.getItem("casing", "steel"),
 						'I', IC2Items.getItem("crafting", "iridium"),
-						'C', IC2Items.getItem("crafting", "carbon_plate"),
+						'C', ItemCraftingManager.niobium_titanium_plate,
 						'D', getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
 				});
 		
@@ -147,7 +147,7 @@ public class ItemManager {
 						'S', IC2Items.getItem("casing", "gold"),
 						'C', IC2Items.getItem("crafting", "circuit"),
 						'H', IC2Items.getItem("heat_exchanger"),
-						'B', getAllTypeStack(IC2Items.getItem("re_battery"))//IC2Items.getItem("re_battery")
+						'B', getAllTypeStack(lithiumBattery)//IC2Items.getItem("re_battery")
 				});
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(electricFishingRod), 
