@@ -13,6 +13,7 @@ import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import ic2.core.IC2;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -40,7 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class AdvancedIridiumSword  extends UniformElectricItem{
 	private final static double maxStorageEU = 10000000, transferSpeed = 2048;
 	private final static double sweepingDistance = 12d;
-	
+
 	public AdvancedIridiumSword() {
 		super("advanced_iridium_sword", maxStorageEU, transferSpeed, 4);
 		this.addPropertyOverride(new ResourceLocation(MoreElectricTools.MODID, "iridium_sword_state"), new IItemPropertyGetter() {
@@ -71,7 +72,7 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
     private float getAttackDamage(ItemStack stack)
     {
     	boolean isHyperState = getHyperState(stack);
-    	float damage = 25f;
+    	float damage = ConfigManager.AdvancedIridiumSwordBaseAttackDamage;
 		if(isHyperState) 
 		{
 			int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, stack);
@@ -87,7 +88,7 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 			return true;
 		
 		boolean isHyperState = getHyperState(stack);
-		double attackCost = 800d * (isHyperState ? 1.5d : 1.0d);
+		double attackCost = ConfigManager.AdvancedIridiumSwordBaseCost * (isHyperState ? 1.5d : 1.0d);
 		if(ElectricItem.manager.canUse(stack, attackCost)) 
 		{
 			ElectricItem.manager.discharge(stack, attackCost, 4, true, false, false);

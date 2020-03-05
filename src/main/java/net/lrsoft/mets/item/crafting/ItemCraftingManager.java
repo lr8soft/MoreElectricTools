@@ -158,7 +158,7 @@ public class ItemCraftingManager {
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"),
 				null, false, new ItemStack(titanium_plate));
 		GameRegistry.addSmelting(titanium_dust, new ItemStack(titanium_ingot), 5);
-		Recipes.metalformerExtruding.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"),
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"),
 				null, false,new ItemStack[] {new ItemStack(titanium_casing, 2)});
 		//Nb_Ti
 		Recipes.advRecipes.addShapelessRecipe(new ItemStack(niobium_titanium_dust),
