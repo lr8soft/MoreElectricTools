@@ -214,7 +214,7 @@ public class ItemManager {
 						" B ",
 						"BHB",
 						" B ",
-						'H', IC2Items.getItem("crafting", "steel_shaft"),
+						'H', ItemCraftingManager.titanium_shaft,
 						'B', getAllTypeStack(ItemCraftingManager.titanium_iron_rotor_blade)
 				});
 		
@@ -223,7 +223,7 @@ public class ItemManager {
 						" B ",
 						"BHB",
 						" B ",
-						'H', IC2Items.getItem("crafting", "steel_shaft"),
+						'H', ItemCraftingManager.titanium_shaft,
 						'B', getAllTypeStack(ItemCraftingManager.super_iridium_blade)
 				});
 		}	

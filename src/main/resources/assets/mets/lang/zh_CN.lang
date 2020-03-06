@@ -1,8 +1,9 @@
 ﻿
-itemGroup.metsTabs=[METS]更多电力工具
+itemGroup.metsTabs=[METS]更多电力装置
 
 tile.mets.niobium_ore.name=铌矿石
 tile.mets.titanium_ore.name=钛矿石
+tile.mets.titanium_block.name=钛块
 
 item.mets.crafting.niobium_crushed.name=粉碎铌矿石
 item.mets.crafting.titanium_crushed.name=粉碎钛矿石
@@ -12,6 +13,7 @@ item.mets.crafting.titanium_dust.name=钛粉
 item.mets.crafting.titanium_ingot.name=钛锭
 item.mets.crafting.titanium_plate.name=钛板
 item.mets.crafting.titanium_casing.name=钛制外壳
+item.mets.crafting.titanium_shaft.name=钛柄
 
 item.mets.crafting.titanium_iron_rotor_blade.name=钛铁合金扇叶
 item.mets.crafting.super_iridium_blade.name=§b超级铱合金扇叶

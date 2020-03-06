@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/ore/titanium_block",
+    "down": "mets:blocks/ore/titanium_block",
+    "up": "mets:blocks/ore/titanium_block",
+    "north": "mets:blocks/ore/titanium_block",
+    "south": "mets:blocks/ore/titanium_block",
+    "west": "mets:blocks/ore/titanium_block",
+    "east": "mets:blocks/ore/titanium_block"
+  }
+}

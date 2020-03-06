@@ -17,7 +17,7 @@ public class TitaniumIronAlloyRotor extends Item implements IKineticRotor {
 		setUnlocalizedName("mets.titanium_iron_alloy_rotor");
 		setRegistryName(MoreElectricTools.MODID, "titanium_iron_alloy_rotor");
 		setCreativeTab(MoreElectricTools.CREATIVE_TAB);
-		setMaxDamage(172800);
+		setMaxDamage(192800);
 		setMaxStackSize(1);
 	}
 

@@ -3,6 +3,7 @@ itemGroup.metsTabs=[METS]More Electric Tools
 
 tile.mets.niobium_ore.name=Niobium Ore
 tile.mets.titanium_ore.name=Titanium Ore
+tile.mets.titanium_block.name=Titanium Block
 
 item.mets.crafting.niobium_crushed.name=Crushed Niobium Ore
 item.mets.crafting.titanium_crushed.name=Crushed Titanium Ore
@@ -12,6 +13,7 @@ item.mets.crafting.titanium_dust.name=Titanium Dust
 item.mets.crafting.titanium_ingot.name=Titanium Ingot
 item.mets.crafting.titanium_plate.name=Titanium Plate
 item.mets.crafting.titanium_casing.name=Titanium Casing
+item.mets.crafting.titanium_shaft.name=Titanium Shaft
 
 item.mets.crafting.titanium_iron_rotor_blade.name=Titanium Iron Alloy Rotor Blade
 item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Blade
