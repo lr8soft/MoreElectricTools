@@ -23,6 +23,7 @@ import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -165,6 +166,30 @@ public class BlockManager {
 						'M', IC2Items.getItem("te", "compressor"),
 						'B', ItemCraftingManager.titanium_plate,
 						'C', ItemCraftingManager.super_circuit
+				});
+		
+		ItemStack charpad_eesu = teBlock.getItemStack(MetsTeBlock.chargepad_eesu);
+		Recipes.advRecipes.addRecipe(charpad_eesu, 
+				new Object[] {
+						"CPC",
+						"SMS",
+						"   ",
+						'S', IC2Items.getItem("crafting", "rubber"),
+						'P', Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE),
+						'M', eesuStorage,
+						'C', ItemCraftingManager.super_circuit
+				});
+		
+		ItemStack charpad_lesu = teBlock.getItemStack(MetsTeBlock.chargepad_lesu);
+		Recipes.advRecipes.addRecipe(charpad_lesu, 
+				new Object[] {
+						"CPC",
+						"SMS",
+						"   ",
+						'S', IC2Items.getItem("crafting", "rubber"),
+						'P', Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE),
+						'M', lesuStack,
+						'C', IC2Items.getItem("crafting", "circuit")
 				});
 		
 		Recipes.compressor.addRecipe(

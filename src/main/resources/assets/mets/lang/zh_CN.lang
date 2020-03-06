@@ -29,6 +29,7 @@ item.mets.advanced_iridium_sword.name=§b量子剑
 item.mets.advanced_lithium_battery.name=高级锂电池
 item.mets.lithium_battery.name=锂电池
 
+item.mets.electric_first_aid_life_support.name=电力生命维护仪
 item.mets.electric_nutrition_supply.name=电力营养供应器
 item.mets.electric_fishing_rod.name=电动鱼竿
 
@@ -48,8 +49,10 @@ mets.te.super_kinetic_generator=§9双涡轮增压动能发电机
 mets.te.advanced_blast_furnace=进阶钛合金高炉
 mets.te.advanced_macerator=进阶旋风打粉机
 mets.te.advanced_compressor=进阶高压压缩机
+mets.te.chargepad_eesu=§9EESU充电座
+mets.te.chargepad_lesu=LESU充电座
 
-mets.info.ens.auto=模式：自动供应
+mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
 mets.info.crafting_only=仅用于合成
 

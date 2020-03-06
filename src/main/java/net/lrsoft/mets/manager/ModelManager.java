@@ -27,6 +27,8 @@ public class ModelManager {
 		ModelLoader.setCustomModelResourceLocation(ItemManager.lithiumBattery, 0,
 				new ModelResourceLocation(ItemManager.lithiumBattery.getRegistryName(), "inventory"));
 		
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricFirstAidLifeSupport, 0,
+				new ModelResourceLocation(ItemManager.electricFirstAidLifeSupport.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricNutritionSupply, 0,
 				new ModelResourceLocation(ItemManager.electricNutritionSupply.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricFishingRod, 0,
