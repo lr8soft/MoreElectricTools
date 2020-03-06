@@ -41,10 +41,12 @@ import ic2.core.block.ITeBlock;
 public class BlockManager {
 	public static Block niobiumOre;
 	public static Block titaniumOre;
+	public static Block titaniumBlock;
 	static 
 	{
 		niobiumOre = new UniformResourceBlock("niobium_ore", 2.5f, 2);
 		titaniumOre = new UniformResourceBlock("titanium_ore", 2.5f, 2);
+		titaniumBlock = new UniformResourceBlock("titanium_block", Material.IRON, 5.0f, 1);
 	}
 	
 	@SubscribeEvent
@@ -164,12 +166,16 @@ public class BlockManager {
 						'B', ItemCraftingManager.titanium_plate,
 						'C', ItemCraftingManager.super_circuit
 				});
+		
+		Recipes.compressor.addRecipe(
+				Recipes.inputFactory.forOreDict("ingotTitanium", 9), null, false, new ItemStack(titaniumBlock));
 	}
 	
 	@SubscribeEvent
 	public static void onCommonBlockInit(RegistryEvent.Register<Block> event) {
 	    event.getRegistry().register(niobiumOre);
 	    event.getRegistry().register(titaniumOre);
+	    event.getRegistry().register(titaniumBlock);
 	    //
 	    //onCommonBlockItemInit();
 	    //
@@ -179,6 +185,7 @@ public class BlockManager {
 	public static void onCommonBlockItemInit(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(new ItemBlock(niobiumOre).setRegistryName(niobiumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumOre).setRegistryName(titaniumOre.getRegistryName()));
+		event.getRegistry().register(new ItemBlock(titaniumBlock).setRegistryName(titaniumBlock.getRegistryName()));
 	}
 	
 	private static ItemStack getAllTypeStack(ItemStack itemstack)

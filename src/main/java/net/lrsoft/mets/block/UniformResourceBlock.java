@@ -16,7 +16,11 @@ import net.minecraft.item.ItemBlock;
 public class UniformResourceBlock extends Block{
 	
 	public UniformResourceBlock(String blockName,float hardness, int harvestLevel) {
-		super(Material.ROCK);
+		this( blockName,Material.ROCK, hardness, harvestLevel);
+	}
+	
+	public UniformResourceBlock(String blockName, Material type, float hardness, int harvestLevel) {
+		super(type);
 		setUnlocalizedName("mets." + blockName);
 		setRegistryName(MoreElectricTools.MODID, blockName);
 		setHardness(hardness);

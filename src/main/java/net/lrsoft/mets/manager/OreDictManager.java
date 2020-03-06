@@ -9,6 +9,7 @@ public class OreDictManager {
 	{
 		OreDictionary.registerOre("oreNiobium", BlockManager.niobiumOre);
 		OreDictionary.registerOre("oreTitanium", BlockManager.titaniumOre);
+		OreDictionary.registerOre("blockTitanium", BlockManager.titaniumBlock);
 		
 		ItemCraftingManager.onCraftingItemOreDictInit();
 	}
