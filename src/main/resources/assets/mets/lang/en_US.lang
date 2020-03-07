@@ -50,6 +50,7 @@ mets.te.advanced_macerator=Advanced Cyclone Powder Machine
 mets.te.advanced_compressor=Advanced High-pressure Compressor
 mets.te.chargepad_eesu=§9Chargepad EESU
 mets.te.chargepad_lesu=Chargepad LESU
+mets.te.advanced_stirling_generator=Advanced Stirling Generator
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

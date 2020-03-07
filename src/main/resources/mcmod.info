@@ -1,15 +1,15 @@
 [
 {
   "modid": "mets",
-  "name": "More electric tools",
-  "description":"None",
+  "name": "More Electric Tools",
+  "description":"An addon mod for Industrial Craft 2 Experimental",
   "version": "0.37",
   "mcversion": "1.12.2",
   "url": "http://lrsoft.azurewebsites.net/",
   "updateUrl": "",
   "authorList": [ "LT_lrsoft"],
   "credits": "",
-  "logoFile": "",
+  "logoFile": "assets/textures/mets.png",
   "screenshots": [],
   "requiredMods": [],
   "dependencies": []

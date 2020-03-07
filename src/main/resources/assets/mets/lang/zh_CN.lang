@@ -51,6 +51,7 @@ mets.te.advanced_macerator=进阶旋风打粉机
 mets.te.advanced_compressor=进阶高压压缩机
 mets.te.chargepad_eesu=§9EESU充电座
 mets.te.chargepad_lesu=LESU充电座
+mets.te.advanced_stirling_generator=进阶斯特林发电机
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用

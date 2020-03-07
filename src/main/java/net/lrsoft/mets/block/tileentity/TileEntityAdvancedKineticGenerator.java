@@ -6,7 +6,7 @@ import ic2.core.util.ConfigUtil;
 
 @NotClassic
 public class TileEntityAdvancedKineticGenerator extends TileEntityKineticGenerator {
-	private final double euPerKu = 1.0D * ConfigUtil.getFloat(MainConfig.get(), "balance/energy/generator/Kinetic");
+	private final double euPerKu = 0.75D * ConfigUtil.getFloat(MainConfig.get(), "balance/energy/generator/Kinetic");
 	@Override
 	protected double getMultiplier() 
 	{
