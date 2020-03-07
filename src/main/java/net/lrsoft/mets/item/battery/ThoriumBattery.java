@@ -82,4 +82,10 @@ public class ThoriumBattery extends Item implements IElectricItem, IItemHudInfo{
 	{
 		return 1;
 	}
+	
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

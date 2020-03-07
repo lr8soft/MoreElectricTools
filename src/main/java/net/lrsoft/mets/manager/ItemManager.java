@@ -3,6 +3,7 @@ package net.lrsoft.mets.manager;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
 import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
@@ -52,6 +53,7 @@ public class ItemManager {
 	public static PlasmaAirCannon plasmaAirCannon;
 	
 	public static DivingMask divingMask;
+	public static AdvancedQuantumSuit advancedQuantumChest;
 	
 	public static TitaniumIronAlloyRotor titaniumIronAlloyRotor;
 	public static SuperIridiumRotor superIridiumRotor;
@@ -72,6 +74,8 @@ public class ItemManager {
 		plasmaAirCannon = new PlasmaAirCannon();	
 		
 		divingMask = new DivingMask();	
+		advancedQuantumChest = new AdvancedQuantumSuit();
+		
 		titaniumIronAlloyRotor = new TitaniumIronAlloyRotor();
 		superIridiumRotor = new SuperIridiumRotor();
 	}
@@ -90,7 +94,10 @@ public class ItemManager {
 		event.getRegistry().register(electricShield);
 		event.getRegistry().register(nanoBow);
 		event.getRegistry().register(plasmaAirCannon);
+		
 		event.getRegistry().register(divingMask);
+		event.getRegistry().register(advancedQuantumChest);
+		
 		event.getRegistry().register(titaniumIronAlloyRotor);
 		event.getRegistry().register(superIridiumRotor);
 		
