@@ -2,6 +2,7 @@ package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -54,6 +55,7 @@ public class ModelManager {
 		ItemManager.electricShield.setTileEntityItemStackRenderer(new net.lrsoft.mets.renderer.NanoShieldRenderer());
 		
 		ItemCraftingManager.onCraftingItemModelInit();
+		ReactorItemManager.onItemModelInit();
 	}	
 	
 	@SubscribeEvent

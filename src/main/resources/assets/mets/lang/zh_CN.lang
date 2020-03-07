@@ -41,6 +41,8 @@ item.mets.diving_mask.name=潜水面具
 item.mets.titanium_iron_alloy_rotor.name=钛铁合金转子
 item.mets.super_iridium_rotor.name=§b超级铱合金转子
 
+item.mets.advanced_oc_heat_vent.name=§b铱金超频散热器
+
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱
 mets.te.drop_generator=掉落物发电机

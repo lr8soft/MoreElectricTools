@@ -15,6 +15,7 @@ import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -94,8 +95,11 @@ public class ItemManager {
 		OreDictionary.registerOre("lithiumBattery", lithiumBattery);
 		
 		ItemCraftingManager.onCraftingItemInit(event);
-		ItemCraftingManager.onCraftingItemRecipeInit();
+		ReactorItemManager.onItemInit(event);
+		
 		onRecipeInit();
+		ItemCraftingManager.onCraftingItemRecipeInit();
+		ReactorItemManager.onItemRecipeInit();
 	}
 	// new ItemStack(IC2Items.getItem("lapotron_crystal").getItem(), 1, OreDictionary.WILDCARD_VALUE),//IC2Items.getItem("energy_crystal"),
 	private static void onRecipeInit() 
