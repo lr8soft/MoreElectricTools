@@ -35,6 +35,9 @@ public class ItemCraftingManager {
 	public static Item niobium_titanium_ingot;
 	public static Item niobium_titanium_plate;
 	
+	public static Item thorium_pile;
+	public static Item thorium_dust;
+	
 	public static Item superconducting_cable;
 	public static Item super_circuit;
 	
@@ -51,6 +54,9 @@ public class ItemCraftingManager {
 		titanium_plate = new UniformCraftingItem("titanium_plate", 64);
 		titanium_casing = new UniformCraftingItem("titanium_casing", 64);
 		titanium_shaft = new UniformCraftingItem("titanium_shaft", 64);
+		
+		thorium_pile = new UniformCraftingItem("thorium_pile", 64);
+		thorium_dust = new UniformCraftingItem("thorium_dust", 64);
 		
 		niobium_titanium_dust = new UniformCraftingItem("niobium_titanium_dust", 64);	
 		niobium_titanium_ingot = new UniformCraftingItem("niobium_titanium_ingot", 64);
@@ -80,6 +86,9 @@ public class ItemCraftingManager {
 		event.getRegistry().register(titanium_plate);
 		event.getRegistry().register(titanium_casing);
 		event.getRegistry().register(titanium_shaft);
+		
+		event.getRegistry().register(thorium_pile);
+		event.getRegistry().register(thorium_dust);
 		
 		event.getRegistry().register(niobium_titanium_dust);
 		event.getRegistry().register(niobium_titanium_ingot);
@@ -111,6 +120,11 @@ public class ItemCraftingManager {
 		ModelLoader.setCustomModelResourceLocation(titanium_shaft, 0,
 				new ModelResourceLocation(titanium_shaft.getRegistryName(), "inventory"));
 		
+		ModelLoader.setCustomModelResourceLocation(thorium_pile, 0,
+				new ModelResourceLocation(thorium_pile.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(thorium_dust, 0,
+				new ModelResourceLocation(thorium_dust.getRegistryName(), "inventory"));
+		
 		ModelLoader.setCustomModelResourceLocation(niobium_titanium_dust, 0,
 				new ModelResourceLocation(niobium_titanium_dust.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(niobium_titanium_ingot, 0,
@@ -141,6 +155,9 @@ public class ItemCraftingManager {
 		OreDictionary.registerOre("casingTitanium", titanium_casing);
 		OreDictionary.registerOre("shaftTitanium", titanium_shaft);
 		
+		OreDictionary.registerOre("pileThorium", thorium_pile);
+		OreDictionary.registerOre("dustThorium", thorium_dust);
+		
 		OreDictionary.registerOre("dustNiobiumTitanium", niobium_titanium_dust);
 		OreDictionary.registerOre("ingotNiobiumTitanium", niobium_titanium_ingot);
 		OreDictionary.registerOre("plateNiobiumTitanium", niobium_titanium_plate);
@@ -157,10 +174,10 @@ public class ItemCraftingManager {
 		NBTTagCompound tiblastfurnace = new NBTTagCompound();
 		tiblastfurnace.setInteger("fluid", 1);
 		tiblastfurnace.setInteger("duration", 750);
-		//Nb
+		//Nb(Th source)
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("oreNiobium"), null, false, new ItemStack(niobium_crushed, 2));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedNiobium"), heat, false,
-				new ItemStack[] {new ItemStack(niobium_dust), IC2Items.getItem("dust", "stone")});
+				new ItemStack[] {new ItemStack(niobium_dust), new ItemStack(thorium_pile), IC2Items.getItem("dust", "stone")});
 		//Ti
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("oreTitanium"), null, false, new ItemStack(titanium_crushed, 2));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forOreDict("crushedTitanium"), heat, false,
@@ -226,6 +243,11 @@ public class ItemCraftingManager {
 						'S', IC2Items.getItem("crafting", "iridium"),
 						'A', niobium_titanium_plate
 				});
+		
+		
+		//Th
+		Recipes.advRecipes.addShapelessRecipe(new ItemStack(thorium_dust),
+				thorium_pile, thorium_pile, thorium_pile, thorium_pile);
 		
 	}
 }

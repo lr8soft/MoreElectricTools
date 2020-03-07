@@ -15,6 +15,9 @@ item.mets.crafting.titanium_plate.name=钛板
 item.mets.crafting.titanium_casing.name=钛制外壳
 item.mets.crafting.titanium_shaft.name=钛柄
 
+item.mets.crafting.thorium_pile.name=一小堆钍
+item.mets.crafting.thorium_dust.name=钍粉
+
 item.mets.crafting.titanium_iron_rotor_blade.name=钛铁合金扇叶
 item.mets.crafting.super_iridium_blade.name=§b超级铱合金扇叶
 
@@ -28,6 +31,7 @@ item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.advanced_iridium_sword.name=§b量子剑
 item.mets.advanced_lithium_battery.name=高级锂电池
 item.mets.lithium_battery.name=锂电池
+item.mets.thorium_battery.name=钍电池
 
 item.mets.electric_first_aid_life_support.name=电力生命维护仪
 item.mets.electric_nutrition_supply.name=电力营养供应器
@@ -42,6 +46,7 @@ item.mets.titanium_iron_alloy_rotor.name=钛铁合金转子
 item.mets.super_iridium_rotor.name=§b超级铱合金转子
 
 item.mets.advanced_oc_heat_vent.name=§b铱金超频散热器
+item.mets.advanced_heat_vent.name=§b铱金散热器
 
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱
@@ -60,3 +65,4 @@ mets.info.ens.disable=模式：禁用
 mets.info.crafting_only=仅用于合成
 
 mets.info.rotor=适用于风力水力~！
+mets.info.th_battery=§9无限电力，但可能致癌~

@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": [ "LT_lrsoft"],
   "credits": "",
-  "logoFile": "assets/textures/mets.png",
+  "logoFile": "assets/mets/textures/mets.png",
   "screenshots": [],
   "requiredMods": [],
   "dependencies": []

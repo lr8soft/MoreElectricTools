@@ -14,6 +14,7 @@ import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
+import net.lrsoft.mets.item.battery.ThoriumBattery;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
@@ -40,6 +41,7 @@ public class ItemManager {
 	public static AdvancedIridiumSword advancedIridiumSword;
 	public static AdvancedLithiumBattery advancedLithiumBattery;
 	public static LithiumBattery lithiumBattery;
+	public static ThoriumBattery thoriumBattery;
 	
 	public static ElectricFirstAidLifeSupport electricFirstAidLifeSupport;
 	public static ElectricNutritionSupply electricNutritionSupply;
@@ -60,6 +62,7 @@ public class ItemManager {
 		
 		advancedLithiumBattery = new AdvancedLithiumBattery();
 		lithiumBattery = new LithiumBattery();
+		thoriumBattery = new ThoriumBattery();
 		
 		electricFirstAidLifeSupport = new ElectricFirstAidLifeSupport();
 		electricNutritionSupply = new ElectricNutritionSupply();
@@ -80,6 +83,7 @@ public class ItemManager {
 		event.getRegistry().register(advancedIridiumSword);
 		event.getRegistry().register(advancedLithiumBattery);
 		event.getRegistry().register(lithiumBattery);
+		event.getRegistry().register(thoriumBattery);
 		event.getRegistry().register(electricFirstAidLifeSupport);
 		event.getRegistry().register(electricNutritionSupply);
 		event.getRegistry().register(electricFishingRod);
@@ -144,6 +148,16 @@ public class ItemManager {
 						'C', IC2Items.getItem("cable", "type:copper,insulation:1"),
 						'S', IC2Items.getItem("casing", "copper"),
 						'L', IC2Items.getItem("dust", "lithium")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(thoriumBattery), 
+				new Object[] {
+						" C ",
+						"SLS",
+						"SLS",
+						'C', IC2Items.getItem("cable", "type:tin,insulation:1"),
+						'S', IC2Items.getItem("casing", "lead"),
+						'L', ItemCraftingManager.thorium_dust
 				});
 		
 		if(ConfigManager.EnableElectricNutritionSupplyCost)
