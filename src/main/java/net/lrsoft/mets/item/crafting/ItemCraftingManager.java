@@ -43,6 +43,7 @@ public class ItemCraftingManager {
 	
 	public static Item titanium_iron_rotor_blade;
 	public static Item super_iridium_blade;
+	public static Item super_iridium_compress_plate;
 	static 
 	{
 		niobium_crushed = new UniformCraftingItem("niobium_crushed", 64);
@@ -73,6 +74,7 @@ public class ItemCraftingManager {
 		super_circuit = new UniformCraftingItem("super_circuit", 64);
 		titanium_iron_rotor_blade = new UniformCraftingItem("titanium_iron_rotor_blade", 64);
 		super_iridium_blade = new UniformCraftingItem("super_iridium_blade", 64);
+		super_iridium_compress_plate = new UniformCraftingItem("super_iridium_compress_plate", 64);
 	}
 	
 	public static void onCraftingItemInit(RegistryEvent.Register<Item> event)
@@ -98,6 +100,7 @@ public class ItemCraftingManager {
 		event.getRegistry().register(super_circuit);
 		event.getRegistry().register(titanium_iron_rotor_blade);
 		event.getRegistry().register(super_iridium_blade);
+		event.getRegistry().register(super_iridium_compress_plate);
 	}
 	
 	public static void onCraftingItemModelInit()
@@ -141,6 +144,8 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(titanium_iron_rotor_blade.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(super_iridium_blade, 0,
 				new ModelResourceLocation(super_iridium_blade.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(super_iridium_compress_plate, 0,
+				new ModelResourceLocation(super_iridium_compress_plate.getRegistryName(), "inventory"));
 	}
 	
 	public static void onCraftingItemOreDictInit()
@@ -243,6 +248,8 @@ public class ItemCraftingManager {
 						'S', IC2Items.getItem("crafting", "iridium"),
 						'A', niobium_titanium_plate
 				});
+		
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(super_iridium_blade, 3)), null, false, new ItemStack(super_iridium_compress_plate));
 		
 		
 		//Th

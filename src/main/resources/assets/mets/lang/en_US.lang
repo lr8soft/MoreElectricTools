@@ -19,7 +19,8 @@ item.mets.crafting.thorium_pile.name=A Tiny Pile of Thorium
 item.mets.crafting.thorium_dust.name=Thorium Dust
 
 item.mets.crafting.titanium_iron_rotor_blade.name=Titanium Iron Alloy Rotor Blade
-item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Blade
+item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Plate
+item.mets.crafting.super_iridium_compress_plate.name=§bDense Super Iridium Alloy Plate
 
 item.mets.crafting.niobium_titanium_dust.name=Niobium Titanium Powder
 item.mets.crafting.niobium_titanium_ingot.name=§bNiobium Titanium Alloy Ingot

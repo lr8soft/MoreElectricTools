@@ -2,6 +2,7 @@ package net.lrsoft.mets.manager;
 
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
+import ic2.core.item.armor.jetpack.JetpackAttachmentRecipe;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
@@ -273,6 +274,18 @@ public class ItemManager {
 							'T', ItemCraftingManager.super_circuit
 					});
 		}
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedQuantumChest), new Object[] {
+				"SBS",
+				"CAC",
+				"SRS",
+				'A', getAllTypeStack(IC2Items.getItem("quantum_chestplate")),
+				'B', getAllTypeStack(superLapotronCrystal),
+				'R', getAllTypeStack(electricFirstAidLifeSupport),
+				'S', ItemCraftingManager.super_iridium_compress_plate,
+				'C', ItemCraftingManager.super_circuit
+		});
+		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
 	}	
 	
 	private static ItemStack getAllTypeStack(ItemStack itemstack) {
