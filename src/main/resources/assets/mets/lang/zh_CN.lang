@@ -15,8 +15,12 @@ item.mets.crafting.titanium_plate.name=钛板
 item.mets.crafting.titanium_casing.name=钛制外壳
 item.mets.crafting.titanium_shaft.name=钛柄
 
+item.mets.crafting.thorium_pile.name=一小堆钍
+item.mets.crafting.thorium_dust.name=钍粉
+
 item.mets.crafting.titanium_iron_rotor_blade.name=钛铁合金扇叶
 item.mets.crafting.super_iridium_blade.name=§b超级铱合金扇叶
+item.mets.crafting.super_iridium_compress_plate.name=§b致密超级铱合金板
 
 item.mets.crafting.niobium_titanium_dust.name=铌钛混合粉
 item.mets.crafting.niobium_titanium_ingot.name=§b铌钛合金锭
@@ -28,7 +32,9 @@ item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.advanced_iridium_sword.name=§b量子剑
 item.mets.advanced_lithium_battery.name=高级锂电池
 item.mets.lithium_battery.name=锂电池
+item.mets.thorium_battery.name=钍电池
 
+item.mets.electric_first_aid_life_support.name=电力生命维护仪
 item.mets.electric_nutrition_supply.name=电力营养供应器
 item.mets.electric_fishing_rod.name=电动鱼竿
 
@@ -36,9 +42,13 @@ mets.electric_shield.name=钢制防爆盾
 item.mets.nano_bow.name=§e纳米复合弓
 item.mets.plasma_air_cannon.name=§e等离子空气炮
 item.mets.diving_mask.name=潜水面具
+item.mets.advanced_quantum_chest.name=§b进阶量子胸甲
 
 item.mets.titanium_iron_alloy_rotor.name=钛铁合金转子
 item.mets.super_iridium_rotor.name=§b超级铱合金转子
+
+item.mets.advanced_oc_heat_vent.name=§b铱金超频散热器
+item.mets.advanced_heat_vent.name=§b铱金散热器
 
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱
@@ -48,9 +58,13 @@ mets.te.super_kinetic_generator=§9双涡轮增压动能发电机
 mets.te.advanced_blast_furnace=进阶钛合金高炉
 mets.te.advanced_macerator=进阶旋风打粉机
 mets.te.advanced_compressor=进阶高压压缩机
+mets.te.chargepad_eesu=§9EESU充电座
+mets.te.chargepad_lesu=LESU充电座
+mets.te.advanced_stirling_generator=进阶斯特林发电机
 
-mets.info.ens.auto=模式：自动供应
+mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
 mets.info.crafting_only=仅用于合成
 
 mets.info.rotor=适用于风力水力~！
+mets.info.th_battery=§9无限电力，但可能致癌~

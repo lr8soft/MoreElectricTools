@@ -15,8 +15,12 @@ item.mets.crafting.titanium_plate.name=Titanium Plate
 item.mets.crafting.titanium_casing.name=Titanium Casing
 item.mets.crafting.titanium_shaft.name=Titanium Shaft
 
+item.mets.crafting.thorium_pile.name=A Tiny Pile of Thorium
+item.mets.crafting.thorium_dust.name=Thorium Dust
+
 item.mets.crafting.titanium_iron_rotor_blade.name=Titanium Iron Alloy Rotor Blade
-item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Blade
+item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Plate
+item.mets.crafting.super_iridium_compress_plate.name=§bDense Super Iridium Alloy Plate
 
 item.mets.crafting.niobium_titanium_dust.name=Niobium Titanium Powder
 item.mets.crafting.niobium_titanium_ingot.name=§bNiobium Titanium Alloy Ingot
@@ -29,6 +33,9 @@ item.mets.advanced_iridium_sword.name=§bQuantum Sword
 item.mets.advanced_lithium_battery.name=Advanced Lithium Battery
 item.mets.lithium_battery.name=Lithium Battery
 
+
+item.mets.electric_first_aid_life_support.name=Electric First Aid Life Support
+item.mets.electric_nutrition_supply.name=Electric Nutrition Supply
 item.mets.electric_fishing_rod.name=Electric Fishing Rod
 
 mets.electric_shield.name=Steel Explosion-proof Shield
@@ -36,6 +43,10 @@ item.mets.nano_bow.name=§eNano Composite Bow
 
 item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 item.mets.diving_mask.name=Diving Mask
+item.mets.advanced_quantum_chest.name=§bAdvanced Quantum Chest
+
+item.mets.advanced_oc_heat_vent.name=§bIridium Overclocking Heat Vent
+item.mets.advanced_heat_vent.name=§bIridium Heat Vent
 
 mets.te.lesu=LESU
 mets.te.eesu=§9EESU
@@ -45,12 +56,16 @@ mets.te.super_kinetic_generator=§9Twin-turbocharged Kinetic Generator
 mets.te.advanced_blast_furnace=Advanced Titanium Alloy Blast Furnace
 mets.te.advanced_macerator=Advanced Cyclone Powder Machine
 mets.te.advanced_compressor=Advanced High-pressure Compressor
+mets.te.chargepad_eesu=§9Chargepad EESU
+mets.te.chargepad_lesu=Chargepad LESU
+mets.te.advanced_stirling_generator=Advanced Stirling Generator
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor
 
-mets.info.ens.auto=Mode: Automatic supply
-mets.info.ens.disable=Mode: Disable Supply
+mets.info.ens.auto=Mode: Automatic
+mets.info.ens.disable=Mode: Disable
 mets.info.crafting_only=For crafting only
 
 mets.info.rotor=Suitable for wind and hydraulic~!
+mets.info.th_battery=May cause cancer -> §2 Harmless in Minecraft~

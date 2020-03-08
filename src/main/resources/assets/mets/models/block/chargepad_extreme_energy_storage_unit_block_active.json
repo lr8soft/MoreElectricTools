@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/eesu/leftrightback",
+    "down": "mets:blocks/eesu/bottomtop",
+    "up": "mets:blocks/eesu/chargepad_top_active",
+    "north": "mets:blocks/eesu/front",
+    "south": "mets:blocks/eesu/leftrightback",
+    "west": "mets:blocks/eesu/leftrightback",
+    "east": "mets:blocks/eesu/leftrightback"
+  }
+}

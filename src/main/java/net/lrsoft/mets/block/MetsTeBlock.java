@@ -33,8 +33,10 @@ public enum MetsTeBlock implements ITeBlock {
 	super_kinetic_generator((Class)TileEntitySuperKineticGenerator.class, 4, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	advanced_blast_furnace((Class)TileEntityAdvancedBlastFurnace.class, 5, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	advanced_macerator((Class)TileEntityAdvancedMacerator.class, 6, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	advanced_compressor((Class)TileEntityAdvancedCompressor.class, 7, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
-	
+	advanced_compressor((Class)TileEntityAdvancedCompressor.class, 7, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	chargepad_eesu((Class)TileEntityChargepadEESU.class, 8, true, Util.downSideFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	chargepad_lesu((Class)TileEntityChargepadLESU.class, 9, true, Util.downSideFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	advanced_stirling_generator((Class)TileEntityAdvancedStirlingGenerator.class, 10, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private final Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;

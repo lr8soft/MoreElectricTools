@@ -2,9 +2,12 @@ package net.lrsoft.mets.manager;
 
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
+import ic2.core.item.armor.jetpack.JetpackAttachmentRecipe;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
 import net.lrsoft.mets.item.AdvancedIridiumSword;
+import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.ElectricShield;
@@ -13,7 +16,9 @@ import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
+import net.lrsoft.mets.item.battery.ThoriumBattery;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -38,7 +43,9 @@ public class ItemManager {
 	public static AdvancedIridiumSword advancedIridiumSword;
 	public static AdvancedLithiumBattery advancedLithiumBattery;
 	public static LithiumBattery lithiumBattery;
+	public static ThoriumBattery thoriumBattery;
 	
+	public static ElectricFirstAidLifeSupport electricFirstAidLifeSupport;
 	public static ElectricNutritionSupply electricNutritionSupply;
 	public static ElectricFishingRod electricFishingRod;
 	public static ElectricShield electricShield;
@@ -47,6 +54,7 @@ public class ItemManager {
 	public static PlasmaAirCannon plasmaAirCannon;
 	
 	public static DivingMask divingMask;
+	public static AdvancedQuantumSuit advancedQuantumChest;
 	
 	public static TitaniumIronAlloyRotor titaniumIronAlloyRotor;
 	public static SuperIridiumRotor superIridiumRotor;
@@ -57,7 +65,9 @@ public class ItemManager {
 		
 		advancedLithiumBattery = new AdvancedLithiumBattery();
 		lithiumBattery = new LithiumBattery();
+		thoriumBattery = new ThoriumBattery();
 		
+		electricFirstAidLifeSupport = new ElectricFirstAidLifeSupport();
 		electricNutritionSupply = new ElectricNutritionSupply();
 		electricFishingRod = new ElectricFishingRod();
 		electricShield = new ElectricShield();
@@ -65,6 +75,8 @@ public class ItemManager {
 		plasmaAirCannon = new PlasmaAirCannon();	
 		
 		divingMask = new DivingMask();	
+		advancedQuantumChest = new AdvancedQuantumSuit();
+		
 		titaniumIronAlloyRotor = new TitaniumIronAlloyRotor();
 		superIridiumRotor = new SuperIridiumRotor();
 	}
@@ -76,12 +88,17 @@ public class ItemManager {
 		event.getRegistry().register(advancedIridiumSword);
 		event.getRegistry().register(advancedLithiumBattery);
 		event.getRegistry().register(lithiumBattery);
+		event.getRegistry().register(thoriumBattery);
+		event.getRegistry().register(electricFirstAidLifeSupport);
 		event.getRegistry().register(electricNutritionSupply);
 		event.getRegistry().register(electricFishingRod);
 		event.getRegistry().register(electricShield);
 		event.getRegistry().register(nanoBow);
 		event.getRegistry().register(plasmaAirCannon);
+		
 		event.getRegistry().register(divingMask);
+		event.getRegistry().register(advancedQuantumChest);
+		
 		event.getRegistry().register(titaniumIronAlloyRotor);
 		event.getRegistry().register(superIridiumRotor);
 		
@@ -90,8 +107,11 @@ public class ItemManager {
 		OreDictionary.registerOre("lithiumBattery", lithiumBattery);
 		
 		ItemCraftingManager.onCraftingItemInit(event);
-		ItemCraftingManager.onCraftingItemRecipeInit();
+		ReactorItemManager.onItemInit(event);
+		
 		onRecipeInit();
+		ItemCraftingManager.onCraftingItemRecipeInit();
+		ReactorItemManager.onItemRecipeInit();
 	}
 	// new ItemStack(IC2Items.getItem("lapotron_crystal").getItem(), 1, OreDictionary.WILDCARD_VALUE),//IC2Items.getItem("energy_crystal"),
 	private static void onRecipeInit() 
@@ -138,17 +158,31 @@ public class ItemManager {
 						'L', IC2Items.getItem("dust", "lithium")
 				});
 		
-		Recipes.advRecipes.addRecipe(new ItemStack(electricNutritionSupply), 
+		Recipes.advRecipes.addRecipe(new ItemStack(thoriumBattery), 
 				new Object[] {
-						"SPS",
-						"HCH",
-						"SBS",
-						'P', IC2Items.getItem("treetap"),
-						'S', IC2Items.getItem("casing", "gold"),
-						'C', IC2Items.getItem("crafting", "circuit"),
-						'H', IC2Items.getItem("heat_exchanger"),
-						'B', getAllTypeStack(lithiumBattery)//IC2Items.getItem("re_battery")
+						" C ",
+						"SLS",
+						"SLS",
+						'C', IC2Items.getItem("cable", "type:tin,insulation:1"),
+						'S', IC2Items.getItem("casing", "lead"),
+						'L', ItemCraftingManager.thorium_dust
 				});
+		
+		if(ConfigManager.EnableElectricNutritionSupplyCost)
+		{
+			Recipes.advRecipes.addRecipe(new ItemStack(electricNutritionSupply), 
+					new Object[] {
+							"SPS",
+							"HCH",
+							"SBS",
+							'P', IC2Items.getItem("treetap"),
+							'S', IC2Items.getItem("casing", "gold"),
+							'C', IC2Items.getItem("crafting", "circuit"),
+							'H', IC2Items.getItem("heat_exchanger"),
+							'B', getAllTypeStack(lithiumBattery)//IC2Items.getItem("re_battery")
+					});			
+		}
+
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(electricFishingRod), 
 				new Object[] {
@@ -226,15 +260,39 @@ public class ItemManager {
 						'H', ItemCraftingManager.titanium_shaft,
 						'B', getAllTypeStack(ItemCraftingManager.super_iridium_blade)
 				});
-		}	
-	
-		private static ItemStack getAllTypeStack(ItemStack itemstack)
+		
+		if(ConfigManager.EnableElectricFirstAidLifeSupportRecipe)
 		{
-			return new ItemStack(itemstack.getItem(), 1, OreDictionary.WILDCARD_VALUE);
+			Recipes.advRecipes.addRecipe(new ItemStack(electricFirstAidLifeSupport), 
+					new Object[] {
+							"ITI",
+							"MBM",
+							"ITI",
+							'M', getAllTypeStack(electricNutritionSupply),
+							'B', getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
+							'I', IC2Items.getItem("crafting", "iridium"),
+							'T', ItemCraftingManager.super_circuit
+					});
 		}
 		
-		private static ItemStack getAllTypeStack(Item item)
-		{
-			return new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE);
-		}
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedQuantumChest), new Object[] {
+				"SBS",
+				"CAC",
+				"SRS",
+				'A', getAllTypeStack(IC2Items.getItem("quantum_chestplate")),
+				'B', getAllTypeStack(superLapotronCrystal),
+				'R', getAllTypeStack(electricFirstAidLifeSupport),
+				'S', ItemCraftingManager.super_iridium_compress_plate,
+				'C', ItemCraftingManager.super_circuit
+		});
+		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
+	}	
+	
+	private static ItemStack getAllTypeStack(ItemStack itemstack) {
+		return new ItemStack(itemstack.getItem(), 1, OreDictionary.WILDCARD_VALUE);
+	}
+
+	private static ItemStack getAllTypeStack(Item item) {
+		return new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE);
+	}
 }

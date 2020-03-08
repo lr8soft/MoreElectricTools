@@ -20,9 +20,11 @@ import net.lrsoft.mets.block.MetsTeBlock;
 import net.lrsoft.mets.block.UniformResourceBlock;
 import net.lrsoft.mets.block.tileentity.IMets;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -124,12 +126,13 @@ public class BlockManager {
 		ItemStack superKineticGenerator = teBlock.getItemStack(MetsTeBlock.super_kinetic_generator);
 		Recipes.advRecipes.addRecipe(superKineticGenerator, 
 				new Object[] {
-						"SSS",
+						"SES",
 						"GMG",
-						"SSS",
+						"SES",
 						'S', IC2Items.getItem("crafting", "iridium"),
 						'G', advancedKineticGenerator,
-						'M', ItemManager.superIridiumRotor
+						'M', ItemManager.superIridiumRotor,
+						'E', ReactorItemManager.advOCHeatVent
 				});
 		
 		ItemStack advancedBlastFurnace = teBlock.getItemStack(MetsTeBlock.advanced_blast_furnace);
@@ -165,6 +168,41 @@ public class BlockManager {
 						'M', IC2Items.getItem("te", "compressor"),
 						'B', ItemCraftingManager.titanium_plate,
 						'C', ItemCraftingManager.super_circuit
+				});
+		
+		ItemStack charpad_eesu = teBlock.getItemStack(MetsTeBlock.chargepad_eesu);
+		Recipes.advRecipes.addRecipe(charpad_eesu, 
+				new Object[] {
+						"CPC",
+						"SMS",
+						"   ",
+						'S', IC2Items.getItem("crafting", "rubber"),
+						'P', Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE),
+						'M', eesuStorage,
+						'C', ItemCraftingManager.super_circuit
+				});
+		
+		ItemStack charpad_lesu = teBlock.getItemStack(MetsTeBlock.chargepad_lesu);
+		Recipes.advRecipes.addRecipe(charpad_lesu, 
+				new Object[] {
+						"CPC",
+						"SMS",
+						"   ",
+						'S', IC2Items.getItem("crafting", "rubber"),
+						'P', Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE),
+						'M', lesuStack,
+						'C', IC2Items.getItem("crafting", "circuit")
+				});
+		
+		ItemStack advanced_stirling_generator = teBlock.getItemStack(MetsTeBlock.advanced_stirling_generator);
+		Recipes.advRecipes.addRecipe(advanced_stirling_generator, 
+				new Object[] {
+						"SPS",
+						"SMS",
+						"SSS",
+						'S', ItemCraftingManager.titanium_casing,
+						'P', IC2Items.getItem("advanced_heat_exchanger"),
+						'M', IC2Items.getItem("te", "stirling_generator")
 				});
 		
 		Recipes.compressor.addRecipe(

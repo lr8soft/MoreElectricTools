@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/electric_first_aid_life_support"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:storage_energy_value": 0.25 },
+      "model": "mets:item/electric_first_aid_life_support/electric_first_aid_life_support_1"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 0.5 },
+      "model": "mets:item/electric_first_aid_life_support/electric_first_aid_life_support_2"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 0.75 },
+      "model": "mets:item/electric_first_aid_life_support/electric_first_aid_life_support_3"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 1.0 },
+      "model": "mets:item/electric_first_aid_life_support/electric_first_aid_life_support_4"
+    }
+  ]
+
+}

@@ -2,6 +2,7 @@ package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -26,7 +27,11 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.advancedLithiumBattery.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.lithiumBattery, 0,
 				new ModelResourceLocation(ItemManager.lithiumBattery.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.thoriumBattery, 0,
+				new ModelResourceLocation(ItemManager.thoriumBattery.getRegistryName(), "inventory"));
 		
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricFirstAidLifeSupport, 0,
+				new ModelResourceLocation(ItemManager.electricFirstAidLifeSupport.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricNutritionSupply, 0,
 				new ModelResourceLocation(ItemManager.electricNutritionSupply.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricFishingRod, 0,
@@ -42,6 +47,8 @@ public class ModelManager {
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
 				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedQuantumChest, 0,
+				new ModelResourceLocation(ItemManager.advancedQuantumChest.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.titaniumIronAlloyRotor, 0,
 				new ModelResourceLocation(ItemManager.titaniumIronAlloyRotor.getRegistryName(), "inventory"));
@@ -52,6 +59,7 @@ public class ModelManager {
 		ItemManager.electricShield.setTileEntityItemStackRenderer(new net.lrsoft.mets.renderer.NanoShieldRenderer());
 		
 		ItemCraftingManager.onCraftingItemModelInit();
+		ReactorItemManager.onItemModelInit();
 	}	
 	
 	@SubscribeEvent

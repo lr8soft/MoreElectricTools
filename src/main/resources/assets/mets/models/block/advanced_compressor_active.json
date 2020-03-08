@@ -1,12 +1,12 @@
 {
   "parent": "block/cube",
   "textures": {
-    "particle": "mets:blocks/advanced_macerator/leftrightback",
-    "down": "mets:blocks/advanced_macerator/bottom",
-    "up": "mets:blocks/advanced_macerator/top",
-    "north": "mets:blocks/advanced_macerator/front_active",
-    "east": "mets:blocks/advanced_macerator/leftrightback",
-    "south": "mets:blocks/advanced_macerator/leftrightback",
-    "west": "mets:blocks/advanced_macerator/leftrightback"
+    "particle": "mets:blocks/advanced_compressor/leftrightback",
+    "down": "mets:blocks/advanced_compressor/bottom",
+    "up": "mets:blocks/advanced_compressor/top",
+    "north": "mets:blocks/advanced_compressor/front_active",
+    "east": "mets:blocks/advanced_compressor/leftrightback",
+    "south": "mets:blocks/advanced_compressor/leftrightback",
+    "west": "mets:blocks/advanced_compressor/leftrightback"
   }
 }

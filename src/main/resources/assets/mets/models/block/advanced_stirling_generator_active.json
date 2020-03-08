@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/advanced_stirling_generator/leftright",
+    "down": "mets:blocks/advanced_stirling_generator/top",
+    "up": "mets:blocks/advanced_stirling_generator/bottom",
+    "north": "mets:blocks/advanced_stirling_generator/front_active",
+    "south": "mets:blocks/advanced_stirling_generator/back",
+    "west": "mets:blocks/advanced_stirling_generator/leftright",
+    "east": "mets:blocks/advanced_stirling_generator/leftright"
+  }
+}
+

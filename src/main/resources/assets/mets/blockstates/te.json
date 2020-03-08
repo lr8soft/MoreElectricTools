@@ -15,7 +15,15 @@
       "advanced_macerator": { "model": "mets:advanced_macerator" },
       "advanced_macerator_active": { "model": "mets:advanced_macerator_active" },
       "advanced_compressor": { "model": "mets:advanced_compressor" },
-      "advanced_compressor_active": { "model": "mets:advanced_compressor_active" }
+      "advanced_compressor_active": { "model": "mets:advanced_compressor_active" },
+
+      "chargepad_eesu": { "model": "mets:chargepad_extreme_energy_storage_unit_block" },
+      "chargepad_eesu_active": { "model": "mets:chargepad_extreme_energy_storage_unit_block_active" },
+      "chargepad_lesu": { "model": "mets:chargepad_lithium_energy_storage_unit_block" },
+      "chargepad_lesu_active": { "model": "mets:chargepad_lithium_energy_storage_unit_block_active" },
+
+      "advanced_stirling_generator": { "model": "mets:advanced_stirling_generator" },
+      "advanced_stirling_generator_active": { "model": "mets:advanced_stirling_generator_active" }
     },
     "facing": {
       "down": { "x": 90 },
