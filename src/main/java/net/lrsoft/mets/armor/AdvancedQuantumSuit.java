@@ -16,6 +16,7 @@ import ic2.core.IC2;
 import ic2.core.IC2Potion;
 import ic2.core.init.Localization;
 import ic2.core.item.IPseudoDamageItem;
+import ic2.core.item.armor.jetpack.IBoostingJetpack;
 import ic2.core.item.armor.jetpack.IJetpack;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.manager.ConfigManager;
@@ -44,35 +45,42 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class AdvancedQuantumSuit extends ItemArmor
-		implements ISpecialArmor, IPseudoDamageItem, IElectricItem, IItemHudInfo, IJetpack, IHazmatLike {
+		implements ISpecialArmor, IPseudoDamageItem, IElectricItem, IItemHudInfo, IBoostingJetpack, IHazmatLike {
 	private static ArmorMaterial defaultMaterial = EnumHelper.addArmorMaterial(
-			"advanced_quantum_suit", MoreElectricTools.MODID + ":advanced_quantum_suit", 50, new int[]{7, 15, 9, 6}, 40, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 9);
+			"advanced_quantum_suit", MoreElectricTools.MODID + ":advanced_quantum_suit", 50, new int[]{7, 15, 9, 6}, 40, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2);
 	public final static UUID KNOWBACK_MODIFER = UUID.fromString("ba65c41a-e46e-47da-b9ee-4d3ad479b50b");
-	
 	private static double maxStorageEnergy = 100000000d, transferSpeed = 8192d;
 	private static int suitTier = 5;
-    public AdvancedQuantumSuit() {
-		super(defaultMaterial, 0, EntityEquipmentSlot.CHEST);
-		setUnlocalizedName("mets.advanced_quantum_chest");
-		setRegistryName(MoreElectricTools.MODID, "advanced_quantum_chest");
+	private EntityEquipmentSlot currentType;
+    public AdvancedQuantumSuit(String itemName, EntityEquipmentSlot type) {
+		super(defaultMaterial, 0, type);
+		setUnlocalizedName("mets." + itemName);//advanced_quantum_chest
+		setRegistryName(MoreElectricTools.MODID, itemName);
 		setCreativeTab(MoreElectricTools.CREATIVE_TAB);
 		setMaxDamage(2333);
 		setMaxStackSize(1);
 		setNoRepair();
+		currentType = type;
 	}
     
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-    	IC2.platform.profilerStartSection("QuantumBodyarmor");
-    	player.extinguish();
-    	float currentHealth = player.getHealth();
-		if(currentHealth < player.getMaxHealth())
-		{
-			if (ElectricItem.manager.use(itemStack, ConfigManager.AdvancedQuantumSuitCureCost, player)) {
-				player.setHealth(currentHealth+1);
-			}
-		}
-    	IC2.platform.profilerEndSection();
+    	switch(currentType)
+    	{
+    	case CHEST:
+        	IC2.platform.profilerStartSection("QuantumBodyarmor");
+        	player.extinguish();
+        	float currentHealth = player.getHealth();
+    		if(currentHealth < player.getMaxHealth())
+    		{
+    			if (ElectricItem.manager.use(itemStack, ConfigManager.AdvancedQuantumSuitCureCost, player)) {
+    				player.setHealth(currentHealth+1);
+    			}
+    		}
+        	IC2.platform.profilerEndSection();
+    		break;
+    	}
+
     }
    
 	@Override
@@ -123,7 +131,7 @@ public class AdvancedQuantumSuit extends ItemArmor
 	public float getPower(ItemStack arg0) {return 1.0f;}
 
 	@Override
-	public float getWorldHeightDivisor(ItemStack arg0) {return 0.9f;}
+	public float getWorldHeightDivisor(ItemStack arg0) {return 0.1f;}
 
 	@Override
 	public boolean isJetpackActive(ItemStack arg0) {return true;}
@@ -166,4 +174,18 @@ public class AdvancedQuantumSuit extends ItemArmor
 	
 	@Override
 	public boolean isEnchantable(ItemStack stack) {return false;}
+
+	@Override
+	public float getBaseThrust(ItemStack arg0, boolean arg1) {return 0.35f;}
+
+	@Override
+	public float getBoostThrust(EntityPlayer arg0, ItemStack arg1, boolean arg2) {return 0.2f;}
+
+	@Override
+	public float getHoverBoost(EntityPlayer arg0, ItemStack arg1, boolean arg2) {return 0.2f;}
+
+	@Override
+	public boolean useBoostPower(ItemStack pack, float amount) {
+		return (ElectricItem.manager.discharge(pack, (amount + 3), Integer.MAX_VALUE, true, false, false) > 0.0D);
+	}
 }

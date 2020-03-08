@@ -26,7 +26,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class DivingMask extends ItemArmor implements ISpecialArmor, IElectricItem, IItemHudInfo {
 	private static ArmorMaterial divingMaskMaterial = EnumHelper.addArmorMaterial(
-			"divingMask", MoreElectricTools.MODID + ":diving_mask", 33, new int[]{2, 7, 5, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 9);
+			"divingMask", MoreElectricTools.MODID + ":diving_mask", 33, new int[]{2, 7, 5, 2}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2);
 	private static double maskCost = 15d;
 	public DivingMask() {
 		super(divingMaskMaterial, 0, EntityEquipmentSlot.HEAD);

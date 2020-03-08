@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/advanced_semifluid_generator/leftright",
+    "down": "mets:blocks/advanced_semifluid_generator/bottom",
+    "up": "mets:blocks/advanced_semifluid_generator/top",
+    "north": "mets:blocks/advanced_semifluid_generator/front",
+    "east": "mets:blocks/advanced_semifluid_generator/leftright",
+    "south": "mets:blocks/advanced_semifluid_generator/back",
+    "west": "mets:blocks/advanced_semifluid_generator/leftright"
+  }
+}

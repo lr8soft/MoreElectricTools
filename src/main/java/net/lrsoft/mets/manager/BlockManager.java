@@ -205,6 +205,19 @@ public class BlockManager {
 						'M', IC2Items.getItem("te", "stirling_generator")
 				});
 		
+		ItemStack advanced_semifluid_generator = teBlock.getItemStack(MetsTeBlock.advanced_semifluid_generator);
+		Recipes.advRecipes.addRecipe(advanced_semifluid_generator, 
+				new Object[] {
+						"SPS",
+						"MEM",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'E', IC2Items.getItem("advanced_heat_exchanger"),
+						'M', IC2Items.getItem("te", "semifluid_generator"),
+						'P', IC2Items.getItem("upgrade", "fluid_pulling")
+				});
+		
 		Recipes.compressor.addRecipe(
 				Recipes.inputFactory.forOreDict("ingotTitanium", 9), null, false, new ItemStack(titaniumBlock));
 	}
