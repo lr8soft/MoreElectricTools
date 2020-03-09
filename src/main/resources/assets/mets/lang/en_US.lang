@@ -61,6 +61,9 @@ mets.te.chargepad_eesu=§9Chargepad EESU
 mets.te.chargepad_lesu=Chargepad LESU
 mets.te.advanced_stirling_generator=Advanced Stirling Generator
 mets.te.advanced_semifluid_generator=Advanced Diesel Generator
+mets.te.extruding_machine=Advanced Metal Extruder
+mets.te.bending_machine=Advanced Metal Rolling Machine
+mets.te.cutting_machine=Advanced Metal Shearing Machine
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

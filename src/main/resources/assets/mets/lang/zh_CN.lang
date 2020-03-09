@@ -63,6 +63,9 @@ mets.te.chargepad_eesu=§9EESU充电座
 mets.te.chargepad_lesu=LESU充电座
 mets.te.advanced_stirling_generator=进阶斯特林发电机
 mets.te.advanced_semifluid_generator=进阶半流质发电机
+mets.te.extruding_machine=进阶金属挤压机
+mets.te.bending_machine=进阶金属辊压机
+mets.te.cutting_machine=进阶金属剪切机
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用

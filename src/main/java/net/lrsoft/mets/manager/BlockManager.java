@@ -220,6 +220,33 @@ public class BlockManager {
 		
 		Recipes.compressor.addRecipe(
 				Recipes.inputFactory.forOreDict("ingotTitanium", 9), null, false, new ItemStack(titaniumBlock));
+		
+		
+		ItemStack extruding_machine = teBlock.getItemStack(MetsTeBlock.extruding_machine);
+		Recipes.advRecipes.addRecipe(extruding_machine, 
+				new Object[] {
+						"SKS",
+						"KMK",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'M', IC2Items.getItem("te", "metal_former"),
+						'K', IC2Items.getItem("cutter"),
+						'P', IC2Items.getItem("upgrade", "fluid_pulling")
+				});
+		ItemStack bending_machine = teBlock.getItemStack(MetsTeBlock.bending_machine);
+		Recipes.advRecipes.addRecipe(bending_machine, 
+				new Object[] {
+						"SKS",
+						"GMG",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'M', IC2Items.getItem("te", "metal_former"),
+						'K', IC2Items.getItem("forge_hammer"),
+						'G', Item.getItemFromBlock(BlockManager.titaniumBlock),
+						'P', IC2Items.getItem("upgrade", "fluid_pulling")
+				});
 	}
 	
 	@SubscribeEvent
