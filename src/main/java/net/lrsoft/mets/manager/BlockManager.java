@@ -226,13 +226,13 @@ public class BlockManager {
 		Recipes.advRecipes.addRecipe(extruding_machine, 
 				new Object[] {
 						"SKS",
-						"KMK",
+						"GMG",
 						"SCS",
 						'S', ItemCraftingManager.titanium_casing,
 						'C', ItemCraftingManager.super_circuit,
 						'M', IC2Items.getItem("te", "metal_former"),
 						'K', IC2Items.getItem("cutter"),
-						'P', IC2Items.getItem("upgrade", "fluid_pulling")
+						'G', IC2Items.getItem("crafting", "electric_motor")
 				});
 		ItemStack bending_machine = teBlock.getItemStack(MetsTeBlock.bending_machine);
 		Recipes.advRecipes.addRecipe(bending_machine, 
@@ -244,8 +244,20 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit,
 						'M', IC2Items.getItem("te", "metal_former"),
 						'K', IC2Items.getItem("forge_hammer"),
-						'G', Item.getItemFromBlock(BlockManager.titaniumBlock),
-						'P', IC2Items.getItem("upgrade", "fluid_pulling")
+						'G', IC2Items.getItem("crafting", "electric_motor")
+				});
+		
+		ItemStack cutting_machine = teBlock.getItemStack(MetsTeBlock.cutting_machine);
+		Recipes.advRecipes.addRecipe(cutting_machine, 
+				new Object[] {
+						"SKS",
+						"GMG",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'M', IC2Items.getItem("te", "metal_former"),
+						'K', IC2Items.getItem("block_cutting_blade", "diamond"),
+						'G', IC2Items.getItem("crafting", "electric_motor")
 				});
 	}
 	
