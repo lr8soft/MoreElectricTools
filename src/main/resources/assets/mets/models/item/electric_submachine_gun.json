@@ -1,0 +1,24 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/plasma_air_cannon"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:plasma_charge_percent": 0.25 },
+      "model": "mets:item/plasma_air_cannon/charge_1"
+    },
+    {
+      "predicate": { "mets:plasma_charge_percent": 0.5 },
+      "model": "mets:item/plasma_air_cannon/charge_2"
+    },
+    {
+      "predicate": { "mets:plasma_charge_percent": 0.75 },
+      "model": "mets:item/plasma_air_cannon/charge_3"
+    },
+    {
+      "predicate": { "mets:plasma_charge_percent": 1.0 },
+      "model": "mets:item/plasma_air_cannon/charge_4"
+    }
+  ]
+}
