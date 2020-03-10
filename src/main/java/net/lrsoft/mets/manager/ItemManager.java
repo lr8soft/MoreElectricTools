@@ -322,6 +322,32 @@ public class ItemManager {
 				'P', IC2Items.getItem("upgrade", "fluid_ejector")
 				});
 		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricSubmachineGun), new Object[]
+				{
+				"SSB",
+				"LJC",
+				"SSD",
+				'S', IC2Items.getItem("plate", "iron"),
+				'B', getAllTypeStack(lithiumBattery),
+				'L', ItemCraftingManager.lens,
+				'J', IC2Items.getItem("neutron_reflector"),
+				'C', IC2Items.getItem("crafting", "advanced_circuit"),
+				'D', IC2Items.getItem("crafting", "power_unit")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedElectricSubmachineGun), new Object[]
+				{
+				"SSB",
+				"LJC",
+				"SSD",
+				'S', ItemCraftingManager.niobium_titanium_plate,
+				'B', getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
+				'L', ItemCraftingManager.diamond_lens,
+				'J', IC2Items.getItem("iridium_reflector"),
+				'C', ItemCraftingManager.super_circuit,
+				'D', getAllTypeStack(electricSubmachineGun)
+				});
+		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
 		

@@ -10,6 +10,8 @@ import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.util.ItemStackUtils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -38,6 +40,9 @@ public class ItemCraftingManager {
 	public static Item thorium_pile;
 	public static Item thorium_dust;
 	
+	public static Item lens;
+	public static Item diamond_lens;
+	
 	public static Item superconducting_cable;
 	public static Item super_circuit;
 	
@@ -58,6 +63,9 @@ public class ItemCraftingManager {
 		
 		thorium_pile = new UniformCraftingItem("thorium_pile", 64);
 		thorium_dust = new UniformCraftingItem("thorium_dust", 64);
+		
+		lens = new UniformCraftingItem("lens", 64);
+		diamond_lens = new UniformCraftingItem("diamond_lens", 64);
 		
 		niobium_titanium_dust = new UniformCraftingItem("niobium_titanium_dust", 64);	
 		niobium_titanium_ingot = new UniformCraftingItem("niobium_titanium_ingot", 64);
@@ -95,6 +103,9 @@ public class ItemCraftingManager {
 		event.getRegistry().register(niobium_titanium_dust);
 		event.getRegistry().register(niobium_titanium_ingot);
 		event.getRegistry().register(niobium_titanium_plate);
+		
+		event.getRegistry().register(lens);
+		event.getRegistry().register(diamond_lens);
 		
 		event.getRegistry().register(superconducting_cable);
 		event.getRegistry().register(super_circuit);
@@ -134,6 +145,11 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(niobium_titanium_ingot.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(niobium_titanium_plate, 0,
 				new ModelResourceLocation(niobium_titanium_plate.getRegistryName(), "inventory"));
+		
+		ModelLoader.setCustomModelResourceLocation(lens, 0,
+				new ModelResourceLocation(lens.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(diamond_lens, 0,
+				new ModelResourceLocation(diamond_lens.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(superconducting_cable, 0,
 				new ModelResourceLocation(superconducting_cable.getRegistryName(), "inventory"));
@@ -247,6 +263,26 @@ public class ItemCraftingManager {
 						"ASA",
 						'S', IC2Items.getItem("crafting", "iridium"),
 						'A', niobium_titanium_plate
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(lens), 
+				new Object[] {
+						"GFG",
+						"FRF",
+						"GFG",
+						'F', IC2Items.getItem("plate", "iron"),
+						'G', Item.getItemFromBlock(Blocks.GLASS),
+						'R', IC2Items.getItem("glass", "reinforced")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(diamond_lens), 
+				new Object[] {
+						"GFG",
+						"FRF",
+						"GFG",
+						'F', niobium_titanium_plate,
+						'G', IC2Items.getItem("glass", "reinforced"),
+						'R', Items.DIAMOND
 				});
 		
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(super_iridium_blade, 3)), null, false, new ItemStack(super_iridium_compress_plate));

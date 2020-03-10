@@ -12,7 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class AdvancedElectricSubmachineGun extends UniformElectricItem {
-	private final static double storageEnergy = 1000000, transferSpeed = 2048;
+	private final static double storageEnergy = 5000000, transferSpeed = 2048;
 	public AdvancedElectricSubmachineGun()
 	{
 		super("advanced_electric_submachine_gun", storageEnergy, transferSpeed, 4);
@@ -23,12 +23,12 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
 		ItemStack currentSword = playerIn.getHeldItem(handIn);
 		long lastRightClick = getLastRightClick(currentSword);
 		long currentTime = System.currentTimeMillis();
-		if(currentTime - lastRightClick > ConfigManager.ElectricSubmachineGunInterval)
+		if(currentTime - lastRightClick > ConfigManager.AdvancedElectricSubmachineGunInterval)
 		{
 			lastRightClick = currentTime;
-			if(ElectricItem.manager.use(currentSword, ConfigManager.ElectricSubmachineGunCost, playerIn))
+			if(ElectricItem.manager.use(currentSword, ConfigManager.AdvancedElectricSubmachineGunCost, playerIn))
 			{
-				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 20f, 360);
+				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 25f, 360);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
 				worldIn.spawnEntity(entity);				
 				
