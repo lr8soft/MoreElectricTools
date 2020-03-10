@@ -5,18 +5,17 @@ import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class ElectricSubmachineGun extends UniformElectricItem {
-	private final static double storageEnergy = 50000, transferSpeed = 128;
-	public ElectricSubmachineGun()
+public class AdvancedElectricSubmachineGun extends UniformElectricItem {
+	private final static double storageEnergy = 1000000, transferSpeed = 2048;
+	public AdvancedElectricSubmachineGun()
 	{
-		super("electric_submachine_gun", storageEnergy, transferSpeed, 2);
+		super("advanced_electric_submachine_gun", storageEnergy, transferSpeed, 4);
 	}
 	
 	@Override
@@ -29,12 +28,12 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 			lastRightClick = currentTime;
 			if(ElectricItem.manager.use(currentSword, ConfigManager.ElectricSubmachineGunCost, playerIn))
 			{
-				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 6f, 250);
+				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 20f, 360);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
 				worldIn.spawnEntity(entity);				
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
-						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);
+						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.65F);
 			}
 			setLastRightClick(currentSword, lastRightClick);
 		}

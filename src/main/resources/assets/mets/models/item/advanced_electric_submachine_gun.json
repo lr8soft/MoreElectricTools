@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "mets:items/gun/electric_submachine_gun"
+    "layer0": "mets:items/gun/advanced_electric_submachine_gun"
   }
 }

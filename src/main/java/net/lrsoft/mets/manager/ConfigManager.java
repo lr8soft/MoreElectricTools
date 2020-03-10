@@ -34,4 +34,9 @@ public class ConfigManager {
 	 public static double AdvancedQuantumSuitDamageEnergyCost = 10000d;
 	 @Config.RequiresMcRestart
 	 public static double AdvancedQuantumSuitCureCost = 30000d;
+	 
+	 @Config.RequiresMcRestart
+	 public static double ElectricSubmachineGunCost = 100d;
+	 @Config.RequiresMcRestart
+	 public static int ElectricSubmachineGunInterval = 90;
 }

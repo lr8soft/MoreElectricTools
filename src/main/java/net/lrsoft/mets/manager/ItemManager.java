@@ -7,6 +7,7 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.armor.AdvancedJetPack;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
+import net.lrsoft.mets.item.AdvancedElectricSubmachineGun;
 import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
@@ -55,6 +56,7 @@ public class ItemManager {
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
 	public static ElectricSubmachineGun electricSubmachineGun;
+	public static AdvancedElectricSubmachineGun advancedElectricSubmachineGun;
 	
 	public static DivingMask divingMask;
 	public static AdvancedQuantumSuit advancedQuantumChest;
@@ -77,7 +79,9 @@ public class ItemManager {
 		electricShield = new ElectricShield();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
+		
 		electricSubmachineGun = new ElectricSubmachineGun();
+		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
 		
 		divingMask = new DivingMask();	
 		advancedQuantumChest = new AdvancedQuantumSuit("advanced_quantum_chest", EntityEquipmentSlot.CHEST);
@@ -102,6 +106,7 @@ public class ItemManager {
 		event.getRegistry().register(nanoBow);
 		event.getRegistry().register(plasmaAirCannon);
 		event.getRegistry().register(electricSubmachineGun);
+		event.getRegistry().register(advancedElectricSubmachineGun);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);

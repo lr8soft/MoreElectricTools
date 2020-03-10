@@ -35,16 +35,18 @@ public class EntityGunBullet extends Entity {
 	
 	private EntityPlayer shooter;
 	private int ticksInAir;
+	private int maxExistTicks;
 	private float power;
 	private float velocity;
 	
-	public EntityGunBullet(World world, EntityPlayer owner, float power) {
+	public EntityGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
-		setSize(0.38F, 0.38F);
-		setPosition(owner.posX, owner.posY + 1.0d, owner.posZ);
+		setSize(0.39F, 0.39F);
+		setPosition(owner.posX, owner.posY + 1.4d, owner.posZ);
 		this.power = power;
+		this.maxExistTicks = maxTick;
 	}
 	
 	@Override
@@ -106,6 +108,11 @@ public class EntityGunBullet extends Entity {
             	setDead();
             }
         }
+        
+        if(this.ticksInAir > maxExistTicks)
+        {
+        	setDead();
+        }
 
         //from arrow
         this.posX += this.motionX;
@@ -154,11 +161,12 @@ public class EntityGunBullet extends Entity {
         float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
         this.shoot((double)f, (double)f1, (double)f2, velocity);
         this.motionX += shooter.motionX;
+        this.motionY += shooter.motionY;
         this.motionZ += shooter.motionZ;
         this.velocity = velocity;
 	}
 	
-    public void shoot(double x, double y, double z, float velocity)
+    private void shoot(double x, double y, double z, float velocity)
     {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / (double)f;
@@ -189,6 +197,7 @@ public class EntityGunBullet extends Entity {
 		this.ticksInAir =  compound.getInteger("ticksInAir");
 		this.power = compound.getFloat("power");
 		this.velocity = compound.getFloat("velocity");
+		this.maxExistTicks = compound.getInteger("maxExistTicks");
 	}
 
 	@Override
@@ -197,5 +206,6 @@ public class EntityGunBullet extends Entity {
         compound.setInteger("ticksInAir", this.ticksInAir);
         compound.setFloat("power", this.power);
         compound.setFloat("velocity", this.velocity);
+        compound.setInteger("maxExistTicks", this.maxExistTicks);
 	}
 }

@@ -47,7 +47,7 @@ public class BulletRenderer extends Render<EntityGunBullet>{
 		GlStateManager.enableRescaleNormal();
 
 		GlStateManager.rotate(90.0f, 1.0F, 0.0F, 0.0F);
-		GlStateManager.scale(0.038, 0.038, 0.038);
+		GlStateManager.scale(0.039, 0.039, 0.039);
 		GlStateManager.translate(-4.0F, 0.0F, 0.0F);
 
 		if (this.renderOutlines) {

@@ -1,9 +1,16 @@
 {
-    "plasma_charge_sound": {
-        "category": "block",
-        "subtitle": "mets.sound.plasma_charge_sound",
-        "sounds": [
-            "mets:plasma_charge"
-        ]
-    }
+  "plasma_charge_sound": {
+    "category": "block",
+    "subtitle": "mets.sound.plasma_charge_sound",
+    "sounds": [
+      "mets:plasma_charge"
+    ]
+  },
+  "laser_bullet_shoot": {
+    "category": "block",
+    "subtitle": "mets.sound.laser_bullet_shoot",
+    "sounds": [
+      "mets:laser_bullet_shoot"
+    ]
+  }
 }
