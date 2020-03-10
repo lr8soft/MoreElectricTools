@@ -28,11 +28,16 @@ item.mets.crafting.niobium_titanium_plate.name=§bNiobium Titanium Alloy Plate
 item.mets.crafting.superconducting_cable.name=§bSuperconducting Cable
 item.mets.crafting.super_circuit.name=§bSuper Circuit
 
+item.mets.crafting.lens.name=Lens
+item.mets.crafting.diamond_lens.name=§bDiamond Lens
+
 item.mets.super_lapotron_crystal.name=§bSuper_Lapotron_Crystal
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
 item.mets.advanced_lithium_battery.name=Advanced Lithium Battery
 item.mets.lithium_battery.name=Lithium Battery
 
+item.mets.electric_submachine_gun.name=Electric Submachine Gun
+item.mets.advanced_electric_submachine_gun.name=§bAdvanced Electric Submachine Gun
 
 item.mets.electric_first_aid_life_support.name=Electric First Aid Life Support
 item.mets.electric_nutrition_supply.name=Electric Nutrition Supply

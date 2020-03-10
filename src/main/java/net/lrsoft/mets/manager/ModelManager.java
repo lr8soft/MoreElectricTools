@@ -1,13 +1,21 @@
 package net.lrsoft.mets.manager;
 
+import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
+import net.lrsoft.mets.renderer.BulletRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -43,6 +51,10 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.nanoBow.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.plasmaAirCannon, 0,
 				new ModelResourceLocation(ItemManager.plasmaAirCannon.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricSubmachineGun, 0,
+				new ModelResourceLocation(ItemManager.electricSubmachineGun.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedElectricSubmachineGun, 0,
+				new ModelResourceLocation(ItemManager.advancedElectricSubmachineGun.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
 				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
@@ -69,5 +81,17 @@ public class ModelManager {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.niobiumOre), 0, new ModelResourceLocation(BlockManager.niobiumOre.getRegistryName(),"normal"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.titaniumOre), 0, new ModelResourceLocation(BlockManager.titaniumOre.getRegistryName(),"normal"));
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.titaniumBlock), 0, new ModelResourceLocation(BlockManager.titaniumBlock.getRegistryName(),"normal"));
+	}
+	
+	@SubscribeEvent
+	public static void onEntityModelInit(ModelRegistryEvent event)
+	{
+		RenderingRegistry.registerEntityRenderingHandler(EntityGunBullet.class, new IRenderFactory<EntityGunBullet>() {
+			public Render<EntityGunBullet> createRenderFor(RenderManager manager) {
+				return (Render<EntityGunBullet>) new BulletRenderer(manager,
+						new ResourceLocation("mets", "textures/entity/bullet.png"));
+			}
+		});
+		
 	}
 }

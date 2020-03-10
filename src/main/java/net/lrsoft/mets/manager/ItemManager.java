@@ -7,11 +7,13 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.armor.AdvancedJetPack;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
+import net.lrsoft.mets.item.AdvancedElectricSubmachineGun;
 import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.ElectricShield;
+import net.lrsoft.mets.item.ElectricSubmachineGun;
 import net.lrsoft.mets.item.NanoBow;
 import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
@@ -53,6 +55,8 @@ public class ItemManager {
 	
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
+	public static ElectricSubmachineGun electricSubmachineGun;
+	public static AdvancedElectricSubmachineGun advancedElectricSubmachineGun;
 	
 	public static DivingMask divingMask;
 	public static AdvancedQuantumSuit advancedQuantumChest;
@@ -76,6 +80,9 @@ public class ItemManager {
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		
+		electricSubmachineGun = new ElectricSubmachineGun();
+		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
+		
 		divingMask = new DivingMask();	
 		advancedQuantumChest = new AdvancedQuantumSuit("advanced_quantum_chest", EntityEquipmentSlot.CHEST);
 		advancedJetPack = new AdvancedJetPack();
@@ -98,6 +105,8 @@ public class ItemManager {
 		event.getRegistry().register(electricShield);
 		event.getRegistry().register(nanoBow);
 		event.getRegistry().register(plasmaAirCannon);
+		event.getRegistry().register(electricSubmachineGun);
+		event.getRegistry().register(advancedElectricSubmachineGun);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
@@ -311,6 +320,32 @@ public class ItemManager {
 				'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
 				'J', getAllTypeStack(IC2Items.getItem("jetpack_electric")),
 				'P', IC2Items.getItem("upgrade", "fluid_ejector")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricSubmachineGun), new Object[]
+				{
+				"SSB",
+				"LJC",
+				"SSD",
+				'S', IC2Items.getItem("plate", "iron"),
+				'B', getAllTypeStack(lithiumBattery),
+				'L', ItemCraftingManager.lens,
+				'J', IC2Items.getItem("neutron_reflector"),
+				'C', IC2Items.getItem("crafting", "advanced_circuit"),
+				'D', IC2Items.getItem("crafting", "power_unit")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedElectricSubmachineGun), new Object[]
+				{
+				"SSB",
+				"LJC",
+				"SSD",
+				'S', ItemCraftingManager.niobium_titanium_plate,
+				'B', getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
+				'L', ItemCraftingManager.diamond_lens,
+				'J', IC2Items.getItem("iridium_reflector"),
+				'C', ItemCraftingManager.super_circuit,
+				'D', getAllTypeStack(electricSubmachineGun)
 				});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
