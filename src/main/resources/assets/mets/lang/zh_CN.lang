@@ -43,6 +43,7 @@ item.mets.nano_bow.name=§e纳米复合弓
 item.mets.plasma_air_cannon.name=§e等离子空气炮
 item.mets.diving_mask.name=潜水面具
 item.mets.advanced_quantum_chest.name=§b进阶量子胸甲
+item.mets.advanced_jetpack.name=进阶电力超频喷气背包
 
 item.mets.titanium_iron_alloy_rotor.name=钛铁合金转子
 item.mets.super_iridium_rotor.name=§b超级铱合金转子
@@ -61,6 +62,10 @@ mets.te.advanced_compressor=进阶高压压缩机
 mets.te.chargepad_eesu=§9EESU充电座
 mets.te.chargepad_lesu=LESU充电座
 mets.te.advanced_stirling_generator=进阶斯特林发电机
+mets.te.advanced_semifluid_generator=进阶半流质发电机
+mets.te.extruding_machine=进阶金属挤压机
+mets.te.bending_machine=进阶金属辊压机
+mets.te.cutting_machine=进阶金属剪切机
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用

@@ -205,8 +205,60 @@ public class BlockManager {
 						'M', IC2Items.getItem("te", "stirling_generator")
 				});
 		
+		ItemStack advanced_semifluid_generator = teBlock.getItemStack(MetsTeBlock.advanced_semifluid_generator);
+		Recipes.advRecipes.addRecipe(advanced_semifluid_generator, 
+				new Object[] {
+						"SPS",
+						"MEM",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'E', IC2Items.getItem("advanced_heat_exchanger"),
+						'M', IC2Items.getItem("te", "semifluid_generator"),
+						'P', IC2Items.getItem("upgrade", "fluid_pulling")
+				});
+		
 		Recipes.compressor.addRecipe(
 				Recipes.inputFactory.forOreDict("ingotTitanium", 9), null, false, new ItemStack(titaniumBlock));
+		
+		
+		ItemStack extruding_machine = teBlock.getItemStack(MetsTeBlock.extruding_machine);
+		Recipes.advRecipes.addRecipe(extruding_machine, 
+				new Object[] {
+						"SKS",
+						"GMG",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'M', IC2Items.getItem("te", "metal_former"),
+						'K', IC2Items.getItem("cutter"),
+						'G', IC2Items.getItem("crafting", "electric_motor")
+				});
+		ItemStack bending_machine = teBlock.getItemStack(MetsTeBlock.bending_machine);
+		Recipes.advRecipes.addRecipe(bending_machine, 
+				new Object[] {
+						"SKS",
+						"GMG",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'M', IC2Items.getItem("te", "metal_former"),
+						'K', IC2Items.getItem("forge_hammer"),
+						'G', IC2Items.getItem("crafting", "electric_motor")
+				});
+		
+		ItemStack cutting_machine = teBlock.getItemStack(MetsTeBlock.cutting_machine);
+		Recipes.advRecipes.addRecipe(cutting_machine, 
+				new Object[] {
+						"SKS",
+						"GMG",
+						"SCS",
+						'S', ItemCraftingManager.titanium_casing,
+						'C', ItemCraftingManager.super_circuit,
+						'M', IC2Items.getItem("te", "metal_former"),
+						'K', IC2Items.getItem("block_cutting_blade", "diamond"),
+						'G', IC2Items.getItem("crafting", "electric_motor")
+				});
 	}
 	
 	@SubscribeEvent

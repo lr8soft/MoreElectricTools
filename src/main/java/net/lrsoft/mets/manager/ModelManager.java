@@ -44,11 +44,12 @@ public class ModelManager {
 		ModelLoader.setCustomModelResourceLocation(ItemManager.plasmaAirCannon, 0,
 				new ModelResourceLocation(ItemManager.plasmaAirCannon.getRegistryName(), "inventory"));
 		
-		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
 				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedQuantumChest, 0,
 				new ModelResourceLocation(ItemManager.advancedQuantumChest.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedJetPack, 0,
+				new ModelResourceLocation(ItemManager.advancedJetPack.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.titaniumIronAlloyRotor, 0,
 				new ModelResourceLocation(ItemManager.titaniumIronAlloyRotor.getRegistryName(), "inventory"));

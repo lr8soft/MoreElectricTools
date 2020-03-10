@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/simple_machine/leftrightback",
+    "down": "mets:blocks/simple_machine/bottom",
+    "up": "mets:blocks/simple_machine/top_active",
+    "north": "mets:blocks/simple_machine/cutting_machine",
+    "east": "mets:blocks/simple_machine/leftrightback",
+    "south": "mets:blocks/simple_machine/leftrightback",
+    "west": "mets:blocks/simple_machine/leftrightback"
+  }
+}

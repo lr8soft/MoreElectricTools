@@ -1,0 +1,71 @@
+﻿
+itemGroup.metsTabs = [METS] Weitere Elektrowerkzeuge
+
+tile.mets.niobium_ore.name = Nioberz
+tile.mets.titanium_ore.name = Titanerz
+tile.mets.titanium_block.name = Titanblock
+
+item.mets.crafting.niobium_crushed.name = Zerkleinertes Nioberz
+item.mets.crafting.titanium_crushed.name = Zerkleinertes Titanerz
+
+item.mets.crafting.niobium_dust.name = Niobstaub
+item.mets.crafting.titanium_dust.name = Titanstaub
+item.mets.crafting.titanium_ingot.name = Titanbarren
+item.mets.crafting.titanium_plate.name = Titanplatte
+item.mets.crafting.titanium_casing.name = Titangehäuse
+item.mets.crafting.titanium_shaft.name = Titanium Shaft
+
+item.mets.crafting.thorium_pile.name = Ein kleiner Haufen Thorium
+item.mets.crafting.thorium_dust.name = Thoriumstaub
+
+item.mets.crafting.titanium_iron_rotor_blade.name = Rotorblatt aus Titan-Eisenlegierung
+item.mets.crafting.super_iridium_blade.name = §bSuper Iridium Platte
+item.mets.crafting.super_iridium_compress_plate.name = §bDense Super Iridium Alloy Plate
+
+item.mets.crafting.niobium_titanium_dust.name = Niob-Titanpulver
+item.mets.crafting.niobium_titanium_ingot.name = §bNiobium Titanium Alloy Ingot
+item.mets.crafting.niobium_titanium_plate.name = §bNiobium Titanium Alloy Platte
+item.mets.crafting.superconducting_cable.name = §bSupraleitendes Kabel
+item.mets.crafting.super_circuit.name = §bSuper Circuit
+
+item.mets.super_lapotron_crystal.name = §bSuper_Lapotron_Crystal
+item.mets.advanced_iridium_sword.name = §bQuantum Sword
+item.mets.advanced_lithium_battery.name = Erweiterte Lithiumbatterie
+item.mets.lithium_battery.name = Lithiumbatterie
+
+
+item.mets.electric_first_aid_life_support.name = Elektrische Erste-Hilfe-Lebenserhaltung
+item.mets.electric_nutrition_supply.name = Elektrische Ernährungsversorgung
+item.mets.electric_fishing_rod.name = Elektrische Angelrute
+
+mets.electric_shield.name = Explosionsgeschützter Stahlschild
+item.mets.nano_bow.name = §eNano Composite Bow
+
+item.mets.plasma_air_cannon.name = §ePlasma Luftkanone
+item.mets.diving_mask.name = Tauchmaske
+item.mets.advanced_quantum_chest.name = §bAdvanced Quantum Chest
+
+item.mets.advanced_oc_heat_vent.name = §bIridium Overclocking Heat Vent
+item.mets.advanced_heat_vent.name = §bIridium Heat Vent
+
+mets.te.lesu = LESU
+mets.te.eesu = §9EESU
+mets.te.drop_generator = Beutegenerator
+mets.te.advanced_kinetic_generator = Kinetischer Generator mit Turbolader
+mets.te.super_kinetic_generator = §9 Kinetischer Generator mit zwei Turboladern
+mets.te.advanced_blast_furnace = Hochofen aus fortschrittlicher Titanlegierung
+mets.te.advanced_macerator = Advanced Cyclone Powder Machine
+mets.te.advanced_compressor = Erweiterter Hochdruckkompressor
+mets.te.chargepad_eesu = §9Chargepad EESU
+mets.te.chargepad_lesu = Chargepad LESU
+mets.te.advanced_stirling_generator = Erweiterter Stirlinggenerator
+
+item.mets.titanium_iron_alloy_rotor.name = Rotor aus Titan-Eisenlegierung
+item.mets.super_iridium_rotor.name = §bSuper Iridium Rotor
+
+mets.info.ens.auto = Modus: Automatisch
+mets.info.ens.disable = Modus: Deaktivieren
+mets.info.crafting_only = Nur zum Basteln
+
+mets.info.rotor = Geeignet für Wind und Hydraulik ~!
+mets.info.th_battery = Kann Krebs verursachen -> §2 Harmlos in Minecraft ~

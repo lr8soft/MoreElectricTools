@@ -4,6 +4,7 @@ import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
 import ic2.core.item.armor.jetpack.JetpackAttachmentRecipe;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.armor.AdvancedJetPack;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
 import net.lrsoft.mets.item.AdvancedIridiumSword;
@@ -23,7 +24,7 @@ import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
-
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -55,6 +56,7 @@ public class ItemManager {
 	
 	public static DivingMask divingMask;
 	public static AdvancedQuantumSuit advancedQuantumChest;
+	public static AdvancedJetPack advancedJetPack;
 	
 	public static TitaniumIronAlloyRotor titaniumIronAlloyRotor;
 	public static SuperIridiumRotor superIridiumRotor;
@@ -75,7 +77,8 @@ public class ItemManager {
 		plasmaAirCannon = new PlasmaAirCannon();	
 		
 		divingMask = new DivingMask();	
-		advancedQuantumChest = new AdvancedQuantumSuit();
+		advancedQuantumChest = new AdvancedQuantumSuit("advanced_quantum_chest", EntityEquipmentSlot.CHEST);
+		advancedJetPack = new AdvancedJetPack();
 		
 		titaniumIronAlloyRotor = new TitaniumIronAlloyRotor();
 		superIridiumRotor = new SuperIridiumRotor();
@@ -98,6 +101,7 @@ public class ItemManager {
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
+		event.getRegistry().register(advancedJetPack);
 		
 		event.getRegistry().register(titaniumIronAlloyRotor);
 		event.getRegistry().register(superIridiumRotor);
@@ -133,6 +137,18 @@ public class ItemManager {
 						"CDC",
 						'S', IC2Items.getItem("casing", "steel"),
 						'I', IC2Items.getItem("crafting", "iridium"),
+						'C', ItemCraftingManager.niobium_titanium_plate,
+						'D', getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedIridiumSword), 
+				new Object[] {
+						"SIS",
+						"SBS",
+						"CDC",
+						'S', IC2Items.getItem("casing", "steel"),
+						'I', IC2Items.getItem("crafting", "iridium"),
+						'B', getAllTypeStack(IC2Items.getItem("nano_saber")),
 						'C', ItemCraftingManager.niobium_titanium_plate,
 						'D', getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
 				});
@@ -285,7 +301,23 @@ public class ItemManager {
 				'S', ItemCraftingManager.super_iridium_compress_plate,
 				'C', ItemCraftingManager.super_circuit
 		});
+
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedJetPack), new Object[]
+				{
+				"SBS",
+				"SJS",
+				"P P",
+				'S', ItemCraftingManager.titanium_plate,
+				'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
+				'J', getAllTypeStack(IC2Items.getItem("jetpack_electric")),
+				'P', IC2Items.getItem("upgrade", "fluid_ejector")
+				});
+		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
+		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
+		
+		//Other
+		Recipes.semiFluidGenerator.addFluid("ic2creosote", 10,  Math.round(8.0f));
 	}	
 	
 	private static ItemStack getAllTypeStack(ItemStack itemstack) {

@@ -44,6 +44,7 @@ item.mets.nano_bow.name=§eNano Composite Bow
 item.mets.plasma_air_cannon.name=§ePlasma Air Cannon
 item.mets.diving_mask.name=Diving Mask
 item.mets.advanced_quantum_chest.name=§bAdvanced Quantum Chest
+item.mets.advanced_jetpack.name=Advanced Electric Overclocking Jet Backpack
 
 item.mets.advanced_oc_heat_vent.name=§bIridium Overclocking Heat Vent
 item.mets.advanced_heat_vent.name=§bIridium Heat Vent
@@ -59,6 +60,10 @@ mets.te.advanced_compressor=Advanced High-pressure Compressor
 mets.te.chargepad_eesu=§9Chargepad EESU
 mets.te.chargepad_lesu=Chargepad LESU
 mets.te.advanced_stirling_generator=Advanced Stirling Generator
+mets.te.advanced_semifluid_generator=Advanced Diesel Generator
+mets.te.extruding_machine=Advanced Metal Extruder
+mets.te.bending_machine=Advanced Metal Rolling Machine
+mets.te.cutting_machine=Advanced Metal Shearing Machine
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

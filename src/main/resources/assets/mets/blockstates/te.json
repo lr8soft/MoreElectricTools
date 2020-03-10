@@ -23,7 +23,18 @@
       "chargepad_lesu_active": { "model": "mets:chargepad_lithium_energy_storage_unit_block_active" },
 
       "advanced_stirling_generator": { "model": "mets:advanced_stirling_generator" },
-      "advanced_stirling_generator_active": { "model": "mets:advanced_stirling_generator_active" }
+      "advanced_stirling_generator_active": { "model": "mets:advanced_stirling_generator_active" },
+      "advanced_semifluid_generator": { "model": "mets:advanced_semifluid_generator" },
+      "advanced_semifluid_generator_active": { "model": "mets:advanced_semifluid_generator_active" },
+
+      "extruding_machine": { "model": "mets:simple_machine/extruding_machine" },
+      "extruding_machine_active": { "model": "mets:simple_machine/extruding_machine_active" },
+
+      "bending_machine": { "model": "mets:simple_machine/bending_machine" },
+      "bending_machine_active": { "model": "mets:simple_machine/bending_machine_active" },
+
+      "cutting_machine": { "model": "mets:simple_machine/cutting_machine" },
+      "cutting_machine_active": { "model": "mets:simple_machine/cutting_machine_active" }
     },
     "facing": {
       "down": { "x": 90 },
