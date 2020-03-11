@@ -6,6 +6,7 @@ import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
 import ic2.core.init.Localization;
 import net.lrsoft.mets.manager.BlockManager;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.util.ItemStackUtils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -42,6 +43,7 @@ public class ItemCraftingManager {
 	
 	public static Item lens;
 	public static Item diamond_lens;
+	public static Item rocket;
 	
 	public static Item superconducting_cable;
 	public static Item super_circuit;
@@ -66,6 +68,7 @@ public class ItemCraftingManager {
 		
 		lens = new UniformCraftingItem("lens", 64);
 		diamond_lens = new UniformCraftingItem("diamond_lens", 64);
+		rocket = new UniformCraftingItem("rocket", 64);
 		
 		niobium_titanium_dust = new UniformCraftingItem("niobium_titanium_dust", 64);	
 		niobium_titanium_ingot = new UniformCraftingItem("niobium_titanium_ingot", 64);
@@ -106,6 +109,7 @@ public class ItemCraftingManager {
 		
 		event.getRegistry().register(lens);
 		event.getRegistry().register(diamond_lens);
+		event.getRegistry().register(rocket);
 		
 		event.getRegistry().register(superconducting_cable);
 		event.getRegistry().register(super_circuit);
@@ -150,6 +154,8 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(lens.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(diamond_lens, 0,
 				new ModelResourceLocation(diamond_lens.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(rocket, 0,
+				new ModelResourceLocation(rocket.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(superconducting_cable, 0,
 				new ModelResourceLocation(superconducting_cable.getRegistryName(), "inventory"));
@@ -285,6 +291,20 @@ public class ItemCraftingManager {
 						'R', Items.DIAMOND
 				});
 		
+		if(ConfigManager.EnableRocketRecipe)
+		{
+			Recipes.advRecipes.addRecipe(new ItemStack(rocket), 
+					new Object[] {
+							"TST",
+							"SBS",
+							"YYY",
+							'T', Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE),
+							'S', titanium_casing,
+							'B', IC2Items.getItem("te", "itnt"),
+							'Y', Items.FIREWORKS
+					});			
+		}
+
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(super_iridium_blade, 3)), null, false, new ItemStack(super_iridium_compress_plate));
 		
 		

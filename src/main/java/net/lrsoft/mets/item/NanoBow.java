@@ -146,7 +146,7 @@ public class NanoBow extends ItemBow implements IElectricItem, IItemHudInfo {
 	        }
 	    }
 	
-    private ItemStack findAmmo(EntityPlayer player)
+    protected ItemStack findAmmo(EntityPlayer player)
     {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND)))
         {

@@ -1,8 +1,7 @@
 package net.lrsoft.mets.renderer;
 
-import org.lwjgl.util.glu.GLU;
-
 import net.lrsoft.mets.entity.EntityGunBullet;
+import net.lrsoft.mets.entity.EntityRocket;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -11,16 +10,15 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
-public class BulletRenderer extends Render<EntityGunBullet>{
-	private static String info = "Code From Minecraft";
+public class RocketRender extends Render<EntityRocket> {
 	private final ResourceLocation texture;
-	public BulletRenderer(RenderManager manager, ResourceLocation texture)
+	public RocketRender(RenderManager manager, ResourceLocation texture)
 	{
 		super(manager);
 		this.texture = texture;
 	}
 	//From minecraft
-	public void doRender(EntityGunBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(EntityRocket entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		this.bindEntityTexture(entity);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();
@@ -34,11 +32,20 @@ public class BulletRenderer extends Render<EntityGunBullet>{
 				1.0F);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
-
+		int i = 0;
+		float f = 0.0F;
+		float f1 = 0.5F;
+		float f2 = 0.0F;
+		float f3 = 0.15625F;
+		float f4 = 0.0F;
+		float f5 = 0.15625F;
+		float f6 = 0.15625F;
+		float f7 = 0.3125F;
+		float f8 = 0.05625F;
 		GlStateManager.enableRescaleNormal();
 
 		GlStateManager.rotate(90.0f, 1.0F, 0.0F, 0.0F);
-		GlStateManager.scale(0.039, 0.039, 0.039);
+		GlStateManager.scale(0.1, 0.1, 0.1);
 		GlStateManager.translate(-4.0F, 0.0F, 0.0F);
 
 		if (this.renderOutlines) {
@@ -85,7 +92,7 @@ public class BulletRenderer extends Render<EntityGunBullet>{
 	}
 	
 	@Override
-	protected ResourceLocation getEntityTexture(EntityGunBullet entity)
+	protected ResourceLocation getEntityTexture(EntityRocket entity)
 	{
 		return texture;
 	}

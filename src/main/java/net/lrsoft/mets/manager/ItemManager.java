@@ -12,6 +12,7 @@ import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
+import net.lrsoft.mets.item.ElectricRocketLauncher;
 import net.lrsoft.mets.item.ElectricShield;
 import net.lrsoft.mets.item.ElectricSubmachineGun;
 import net.lrsoft.mets.item.NanoBow;
@@ -57,6 +58,7 @@ public class ItemManager {
 	public static PlasmaAirCannon plasmaAirCannon;
 	public static ElectricSubmachineGun electricSubmachineGun;
 	public static AdvancedElectricSubmachineGun advancedElectricSubmachineGun;
+	public static ElectricRocketLauncher electricRocketLauncher;
 	
 	public static DivingMask divingMask;
 	public static AdvancedQuantumSuit advancedQuantumChest;
@@ -82,6 +84,7 @@ public class ItemManager {
 		
 		electricSubmachineGun = new ElectricSubmachineGun();
 		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
+		electricRocketLauncher = new ElectricRocketLauncher();
 		
 		divingMask = new DivingMask();	
 		advancedQuantumChest = new AdvancedQuantumSuit("advanced_quantum_chest", EntityEquipmentSlot.CHEST);
@@ -107,6 +110,7 @@ public class ItemManager {
 		event.getRegistry().register(plasmaAirCannon);
 		event.getRegistry().register(electricSubmachineGun);
 		event.getRegistry().register(advancedElectricSubmachineGun);
+		event.getRegistry().register(electricRocketLauncher);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
@@ -346,6 +350,20 @@ public class ItemManager {
 				'J', IC2Items.getItem("iridium_reflector"),
 				'C', ItemCraftingManager.super_circuit,
 				'D', getAllTypeStack(electricSubmachineGun)
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricRocketLauncher), new Object[]
+				{
+				"SSB",
+				"XLC",//XLC
+				"SFD",
+				'S', ItemCraftingManager.titanium_plate,
+				'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
+				'X', IC2Items.getItem("crafting", "coil"),
+				'L', IC2Items.getItem("upgrade", "ejector"),
+				'C', IC2Items.getItem("crafting", "advanced_circuit"),
+				'F', IC2Items.getItem("frequency_transmitter"),
+				'D', IC2Items.getItem("crafting", "power_unit")
 				});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E

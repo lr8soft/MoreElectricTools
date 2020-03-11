@@ -1,7 +1,7 @@
 package net.lrsoft.mets.block.tileentity;
 
 import java.util.Random;
-
+import ic2.core.block.TileEntityInventory;
 import ic2.core.block.generator.tileentity.TileEntityBaseGenerator;
 import ic2.core.block.invslot.InvSlotConsumableFuel;
 import ic2.core.block.machine.tileentity.TileEntityIronFurnace;
@@ -13,14 +13,15 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityDropGenerator extends TileEntityBaseGenerator implements IMets, IGuiValueProvider {
-	public final DropGeneratorSlot fuelSlot;
+public class TileEntityDropGenerator extends TileEntityBaseGenerator implements IMets, IGuiValueProvider{
+	public DropGeneratorSlot fuelSlot;
 	@GuiSynced
 	public int totalFuel;
 
 	public TileEntityDropGenerator() {
 		super(20.0D, 2, 10000);
 		this.totalFuel = 0;
+		//this.fuelSlot = new DropGeneratorSlot((IInventorySlotHolder)this, "fuel", 1);
 		this.fuelSlot = new DropGeneratorSlot(this, "fuel", 1);
 	}
 	

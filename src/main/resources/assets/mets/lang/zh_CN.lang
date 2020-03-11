@@ -30,6 +30,7 @@ item.mets.crafting.super_circuit.name=§b超级电路板
 
 item.mets.crafting.lens.name=玻璃透镜
 item.mets.crafting.diamond_lens.name=§b钻石透镜
+item.mets.crafting.rocket.name=火箭弹
 
 item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.advanced_iridium_sword.name=§b量子剑
@@ -39,6 +40,7 @@ item.mets.thorium_battery.name=钍电池
 
 item.mets.electric_submachine_gun.name=电力激光镭射步枪
 item.mets.advanced_electric_submachine_gun.name=§b进阶电力激光镭射步枪
+item.mets.electric_rocket_launcher.name=火箭筒
 
 item.mets.electric_first_aid_life_support.name=电力生命维护仪
 item.mets.electric_nutrition_supply.name=电力营养供应器

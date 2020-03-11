@@ -3,9 +3,11 @@ package net.lrsoft.mets.manager;
 import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.entity.EntityGunBullet;
+import net.lrsoft.mets.entity.EntityRocket;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.renderer.BulletRenderer;
+import net.lrsoft.mets.renderer.RocketRender;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.Render;
@@ -55,6 +57,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.electricSubmachineGun.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedElectricSubmachineGun, 0,
 				new ModelResourceLocation(ItemManager.advancedElectricSubmachineGun.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricRocketLauncher, 0,
+				new ModelResourceLocation(ItemManager.electricRocketLauncher.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
 				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
@@ -93,5 +97,11 @@ public class ModelManager {
 			}
 		});
 		
+		RenderingRegistry.registerEntityRenderingHandler(EntityRocket.class, new IRenderFactory<EntityRocket>() {
+			public Render<EntityRocket> createRenderFor(RenderManager manager) {
+				return (Render<EntityRocket>) new RocketRender(manager,
+						new ResourceLocation("mets", "textures/entity/rocket.png"));
+			}
+		});
 	}
 }
