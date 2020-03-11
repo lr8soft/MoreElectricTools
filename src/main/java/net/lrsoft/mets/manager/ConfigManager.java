@@ -41,6 +41,13 @@ public class ConfigManager {
 	 public static int ElectricSubmachineGunInterval = 90;
 	 
 	 @Config.RequiresMcRestart
+	 public static boolean EnableRocketRecipe = true;
+	 @Config.RequiresMcRestart
+	 public static int ElectricRocketLauncherInterval = 1500;
+	 @Config.RequiresMcRestart
+	 public static double ElectricRocketLauncherCost = 50000d;
+	 
+	 @Config.RequiresMcRestart
 	 public static double AdvancedElectricSubmachineGunCost = 5000d;
 	 @Config.RequiresMcRestart
 	 public static int AdvancedElectricSubmachineGunInterval = 80;

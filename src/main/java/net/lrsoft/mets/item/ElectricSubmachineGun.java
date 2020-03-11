@@ -21,13 +21,13 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack currentSword = playerIn.getHeldItem(handIn);
-		long lastRightClick = getLastRightClick(currentSword);
+		ItemStack currentGun = playerIn.getHeldItem(handIn);
+		long lastRightClick = getLastRightClick(currentGun);
 		long currentTime = System.currentTimeMillis();
 		if(currentTime - lastRightClick > ConfigManager.ElectricSubmachineGunInterval)
 		{
 			lastRightClick = currentTime;
-			if(ElectricItem.manager.use(currentSword, ConfigManager.ElectricSubmachineGunCost, playerIn))
+			if(ElectricItem.manager.use(currentGun, ConfigManager.ElectricSubmachineGunCost, playerIn))
 			{
 				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 6f, 250);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
@@ -35,11 +35,12 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);
+				return new ActionResult(EnumActionResult.SUCCESS, currentGun);
 			}
-			setLastRightClick(currentSword, lastRightClick);
+			setLastRightClick(currentGun, lastRightClick);
 		}
 		
-		return new ActionResult(EnumActionResult.SUCCESS, currentSword);
+		return new ActionResult(EnumActionResult.PASS, currentGun);
 	}
 	
 	@Override

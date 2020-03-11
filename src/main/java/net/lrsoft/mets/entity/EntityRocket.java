@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
-import ic2.core.util.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -24,29 +24,24 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class EntityGunBullet extends Entity {
-	private static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
+public class EntityRocket extends Entity {
+	
+	private static final Predicate<Entity> ROCKET_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
     {
         public boolean apply(@Nullable Entity entity)
         {
             return entity.canBeCollidedWith();
         }
     });
-	
-	private EntityPlayer shooter;
 	private int ticksInAir;
-	private int maxExistTicks;
 	private float power;
 	private float velocity;
 	
-	public EntityGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
+	public EntityRocket(World world, float power) {
 		super(world);
 		this.ticksInAir = 0;
-		this.shooter = owner;
-		setSize(0.39F, 0.39F);
-		setPosition(owner.posX, owner.posY + 1.4d, owner.posZ);
+		setSize(0.4F, 0.4F);
 		this.power = power;
-		this.maxExistTicks = maxTick;
 	}
 	
 	@Override
@@ -71,6 +66,8 @@ public class EntityGunBullet extends Entity {
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
+            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
+            	rangeAttack();
                 setDead();
                 return;
             }
@@ -100,27 +97,55 @@ public class EntityGunBullet extends Entity {
             Entity target = raytraceresult.entityHit;
             if (target != null)
             {
-            	if(shooter != null)
-            	{
-            		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);
-            	}else {
-            		target.attackEntityFrom(DamageSource.MAGIC, power);
-            	}
+            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
+            	rangeAttack();
             	setDead();
             	return;
             }
         }
-        
-        if(this.ticksInAir > maxExistTicks)
-        {
-        	setDead();
-        	return;
-        }
 
-        //from arrow
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
+        
+        float f4 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
+
+        for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+        {
+            ;
+        }
+
+        while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
+        {
+            this.prevRotationPitch += 360.0F;
+        }
+
+        while (this.rotationYaw - this.prevRotationYaw < -180.0F)
+        {
+            this.prevRotationYaw -= 360.0F;
+        }
+
+        while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
+        {
+            this.prevRotationYaw += 360.0F;
+        }
+
+        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+        
+        world.spawnParticle(EnumParticleTypes.SMOKE_LARGE,
+			this.posX, this.posY, this.posZ, -this.motionX * velocity, -this.motionY * velocity, -this.motionZ * velocity, 0);
+        
+        float f1 = 0.99F;
+        this.motionX *= (double)f1;
+        this.motionY *= (double)f1;
+        this.motionZ *= (double)f1;
+        
+        if (!this.hasNoGravity())
+        {
+            this.motionY -= 0.06d;
+        }
 
         this.setPosition(this.posX, this.posY, this.posZ);
         
@@ -132,14 +157,14 @@ public class EntityGunBullet extends Entity {
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
     {
         Entity entity = null;
-        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), GUN_TARGETS);
+        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), ROCKET_TARGETS);
         double d0 = 0.0D;
 
         for (int i = 0; i < list.size(); ++i)
         {
             Entity entity1 = list.get(i);
 
-            if (this.ticksInAir >= (5 / velocity))
+            if (this.ticksInAir >= 3)
             {
                 AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
                 RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
@@ -160,11 +185,12 @@ public class EntityGunBullet extends Entity {
         return entity;
     }
 	
-	public void shoot(float yaw, float pitch, float velocity)
+	public void shoot(EntityPlayer shooter, float yaw, float pitch, float velocity)
 	{
         float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
         float f1 = -MathHelper.sin(pitch * 0.017453292F);
         float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        setPosition(shooter.posX, shooter.posY + 1.4d, shooter.posZ);
         this.shoot((double)f, (double)f1, (double)f2, velocity);
         this.motionX += shooter.motionX;
         this.motionY += shooter.motionY;
@@ -193,6 +219,21 @@ public class EntityGunBullet extends Entity {
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
     }
+    
+    private void rangeAttack()
+    {
+		for (int dist = 0; dist < power; dist++) {
+			AxisAlignedBB bb = this.getEntityBoundingBox();
+			bb = bb.grow(2.0f, 0.25f, 2.0f);
+			bb = bb.offset((float) dist, (float) dist, (float) dist);
+
+			List<Entity> list = world.getEntitiesInAABBexcluding(this, bb, ROCKET_TARGETS);
+			for (Entity curEntity : list) {
+				EntityLivingBase livingBase = (EntityLivingBase) curEntity;
+				livingBase.attackEntityFrom(DamageSource.GENERIC, power);
+			}
+		}
+    }
 
 	@Override
 	protected void entityInit(){}
@@ -203,7 +244,6 @@ public class EntityGunBullet extends Entity {
 		this.ticksInAir =  compound.getInteger("ticksInAir");
 		this.power = compound.getFloat("power");
 		this.velocity = compound.getFloat("velocity");
-		this.maxExistTicks = compound.getInteger("maxExistTicks");
 	}
 
 	@Override
@@ -212,6 +252,5 @@ public class EntityGunBullet extends Entity {
         compound.setInteger("ticksInAir", this.ticksInAir);
         compound.setFloat("power", this.power);
         compound.setFloat("velocity", this.velocity);
-        compound.setInteger("maxExistTicks", this.maxExistTicks);
 	}
 }

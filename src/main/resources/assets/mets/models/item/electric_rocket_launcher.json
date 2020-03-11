@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/gun/electric_rocket_launcher"
+  }
+}

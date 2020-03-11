@@ -30,6 +30,7 @@ item.mets.crafting.super_circuit.name=§bSuper Circuit
 
 item.mets.crafting.lens.name=Lens
 item.mets.crafting.diamond_lens.name=§bDiamond Lens
+item.mets.crafting.rocket.name=Rocket Missile
 
 item.mets.super_lapotron_crystal.name=§bSuper_Lapotron_Crystal
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
@@ -38,6 +39,7 @@ item.mets.lithium_battery.name=Lithium Battery
 
 item.mets.electric_submachine_gun.name=Electric Submachine Gun
 item.mets.advanced_electric_submachine_gun.name=§bAdvanced Electric Submachine Gun
+item.mets.electric_rocket_launcher.name=Rocket Launcher
 
 item.mets.electric_first_aid_life_support.name=Electric First Aid Life Support
 item.mets.electric_nutrition_supply.name=Electric Nutrition Supply
