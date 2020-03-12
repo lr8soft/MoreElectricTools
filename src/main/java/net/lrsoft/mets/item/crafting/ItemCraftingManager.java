@@ -293,7 +293,7 @@ public class ItemCraftingManager {
 		
 		if(ConfigManager.EnableRocketRecipe)
 		{
-			Recipes.advRecipes.addRecipe(new ItemStack(rocket), 
+			Recipes.advRecipes.addRecipe(new ItemStack(rocket, 3), 
 					new Object[] {
 							"TST",
 							"SBS",

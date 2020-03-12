@@ -66,8 +66,8 @@ public class EntityRocket extends Entity {
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
-            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
             	rangeAttack();
+            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
                 setDead();
                 return;
             }
@@ -97,8 +97,8 @@ public class EntityRocket extends Entity {
             Entity target = raytraceresult.entityHit;
             if (target != null)
             {
-            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
             	rangeAttack();
+            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
             	setDead();
             	return;
             }
@@ -229,8 +229,11 @@ public class EntityRocket extends Entity {
 
 			List<Entity> list = world.getEntitiesInAABBexcluding(this, bb, ROCKET_TARGETS);
 			for (Entity curEntity : list) {
-				EntityLivingBase livingBase = (EntityLivingBase) curEntity;
-				livingBase.attackEntityFrom(DamageSource.GENERIC, power);
+				if(curEntity instanceof EntityLivingBase)
+				{
+					EntityLivingBase livingBase = (EntityLivingBase) curEntity;
+					livingBase.attackEntityFrom(DamageSource.GENERIC, power);					
+				}
 			}
 		}
     }
