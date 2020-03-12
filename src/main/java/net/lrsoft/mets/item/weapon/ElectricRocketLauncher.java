@@ -50,7 +50,7 @@ public class ElectricRocketLauncher extends UniformElectricItem {
 				
 				if(shouldLaunch)
 				{
-					EntityRocket entity = new EntityRocket(worldIn, 12f);
+					EntityRocket entity = new EntityRocket(worldIn, 8f);
 					entity.shoot(playerIn, playerIn.rotationYaw, playerIn.rotationPitch, 2.5f);
 					worldIn.spawnEntity(entity);
 					setLastRightClick(currentLauncher, lastRightClick);

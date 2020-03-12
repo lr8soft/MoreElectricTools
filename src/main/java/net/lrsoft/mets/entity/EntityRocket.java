@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import net.lrsoft.mets.manager.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class EntityRocket extends Entity {
@@ -67,7 +69,10 @@ public class EntityRocket extends Entity {
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
             	rangeAttack();
-            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
+            	Explosion explosion = new Explosion(world, this,  this.posX, this.posY, this.posZ, power, true, ConfigManager.WeaponDamagesTerrain);
+            	explosion.doExplosionA();
+            	explosion.doExplosionB(false);
+            	explosion.clearAffectedBlockPositions();
                 setDead();
                 return;
             }
@@ -98,7 +103,10 @@ public class EntityRocket extends Entity {
             if (target != null)
             {
             	rangeAttack();
-            	this.world.createExplosion(this, this.posX, this.posY, this.posZ, power, true);
+            	Explosion explosion = new Explosion(world, this,  this.posX, this.posY, this.posZ, power, true, ConfigManager.WeaponDamagesTerrain);
+            	explosion.doExplosionA();
+            	explosion.doExplosionB(false);
+            	explosion.clearAffectedBlockPositions();
             	setDead();
             	return;
             }
@@ -232,7 +240,7 @@ public class EntityRocket extends Entity {
 				if(curEntity instanceof EntityLivingBase)
 				{
 					EntityLivingBase livingBase = (EntityLivingBase) curEntity;
-					livingBase.attackEntityFrom(DamageSource.GENERIC, power);					
+					livingBase.attackEntityFrom(DamageSource.GENERIC, power * 2);					
 				}
 			}
 		}

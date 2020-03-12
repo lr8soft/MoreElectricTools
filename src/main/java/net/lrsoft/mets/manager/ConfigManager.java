@@ -6,6 +6,9 @@ import net.minecraftforge.common.config.Config;
 @Config(modid = MoreElectricTools.MODID) 
 public class ConfigManager {
 	 @Config.RequiresMcRestart
+	 public static boolean WeaponDamagesTerrain = true;
+	
+	 @Config.RequiresMcRestart
 	 public static double AdvancedIridiumSwordBaseCost = 800d;
 	 @Config.RequiresMcRestart
 	 public static float AdvancedIridiumSwordBaseAttackDamage = 25f;
@@ -40,8 +43,6 @@ public class ConfigManager {
 	 @Config.RequiresMcRestart
 	 public static int ElectricSubmachineGunInterval = 90;
 	 
-	 @Config.RequiresMcRestart
-	 public static boolean EnableRocketRecipe = true;
 	 @Config.RequiresMcRestart
 	 public static int ElectricRocketLauncherInterval = 1500;
 	 @Config.RequiresMcRestart

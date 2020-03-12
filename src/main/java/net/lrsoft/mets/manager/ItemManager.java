@@ -25,6 +25,7 @@ import net.lrsoft.mets.item.weapon.ElectricShield;
 import net.lrsoft.mets.item.weapon.ElectricSubmachineGun;
 import net.lrsoft.mets.item.weapon.NanoBow;
 import net.lrsoft.mets.item.weapon.PlasmaAirCannon;
+import net.lrsoft.mets.item.weapon.TacticalLaserSubmachineGun;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -58,6 +59,7 @@ public class ItemManager {
 	public static PlasmaAirCannon plasmaAirCannon;
 	public static ElectricSubmachineGun electricSubmachineGun;
 	public static AdvancedElectricSubmachineGun advancedElectricSubmachineGun;
+	public static TacticalLaserSubmachineGun tacticalLaserSubmachineGun;
 	public static ElectricRocketLauncher electricRocketLauncher;
 	
 	public static DivingMask divingMask;
@@ -85,6 +87,7 @@ public class ItemManager {
 		
 		electricSubmachineGun = new ElectricSubmachineGun();
 		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
+		tacticalLaserSubmachineGun = new TacticalLaserSubmachineGun();
 		electricRocketLauncher = new ElectricRocketLauncher();
 		
 		divingMask = new DivingMask();	
@@ -111,6 +114,7 @@ public class ItemManager {
 		event.getRegistry().register(plasmaAirCannon);
 		event.getRegistry().register(electricSubmachineGun);
 		event.getRegistry().register(advancedElectricSubmachineGun);
+		event.getRegistry().register(tacticalLaserSubmachineGun);
 		event.getRegistry().register(electricRocketLauncher);
 		
 		event.getRegistry().register(divingMask);

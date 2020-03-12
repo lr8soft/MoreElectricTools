@@ -71,7 +71,9 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.titaniumIronAlloyRotor.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.superIridiumRotor, 0,
 				new ModelResourceLocation(ItemManager.superIridiumRotor.getRegistryName(), "inventory"));
-
+		ModelLoader.setCustomModelResourceLocation(ItemManager.tacticalLaserSubmachineGun, 0,
+				new ModelResourceLocation(ItemManager.tacticalLaserSubmachineGun.getRegistryName(), "inventory"));
+		
 		ItemManager.electricShield.setTileEntityItemStackRenderer(new net.lrsoft.mets.renderer.NanoShieldRenderer());
 		
 		ItemCraftingManager.onCraftingItemModelInit();
