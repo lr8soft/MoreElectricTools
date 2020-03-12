@@ -1,7 +1,7 @@
 package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
-import net.lrsoft.mets.item.PlasmaAirCannon;
+import net.lrsoft.mets.item.weapon.PlasmaAirCannon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;

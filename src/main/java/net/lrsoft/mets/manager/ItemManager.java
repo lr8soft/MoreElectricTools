@@ -7,16 +7,9 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.armor.AdvancedJetPack;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
-import net.lrsoft.mets.item.AdvancedElectricSubmachineGun;
-import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
-import net.lrsoft.mets.item.ElectricRocketLauncher;
-import net.lrsoft.mets.item.ElectricShield;
-import net.lrsoft.mets.item.ElectricSubmachineGun;
-import net.lrsoft.mets.item.NanoBow;
-import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
@@ -25,6 +18,13 @@ import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
+import net.lrsoft.mets.item.weapon.AdvancedElectricSubmachineGun;
+import net.lrsoft.mets.item.weapon.AdvancedIridiumSword;
+import net.lrsoft.mets.item.weapon.ElectricRocketLauncher;
+import net.lrsoft.mets.item.weapon.ElectricShield;
+import net.lrsoft.mets.item.weapon.ElectricSubmachineGun;
+import net.lrsoft.mets.item.weapon.NanoBow;
+import net.lrsoft.mets.item.weapon.PlasmaAirCannon;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -66,6 +66,7 @@ public class ItemManager {
 	
 	public static TitaniumIronAlloyRotor titaniumIronAlloyRotor;
 	public static SuperIridiumRotor superIridiumRotor;
+	
 	static 
 	{
 		superLapotronCrystal = new SuperLapotronCrystal();

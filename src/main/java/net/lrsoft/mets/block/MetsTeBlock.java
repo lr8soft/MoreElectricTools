@@ -41,7 +41,8 @@ public enum MetsTeBlock implements ITeBlock {
 	
 	extruding_machine((Class)TileEntityExtrudingMachine.class, 12, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	bending_machine((Class)TileEntityBlendingMachine.class, 13, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	cutting_machine((Class)TileEntityCuttingMachine.class, 14, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	cutting_machine((Class)TileEntityCuttingMachine.class, 14, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	titanium_storage_box((Class)TileEntityTitaniumStorageBox.class, 15, false, Util.noFacings, false, HarvestTool.Wrench, DefaultDrop.Self, 3.0F, 100.0F, EnumRarity.EPIC, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private final Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;

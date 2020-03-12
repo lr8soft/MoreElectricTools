@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui width="265" height="233">
+    <text y="6" align="center">%name%</text>
+    <slotgrid name="inventory" x="7" y="16" cols="14" rows="6"/>
+    <playerInventory x="54" y="150"/>
+</gui>

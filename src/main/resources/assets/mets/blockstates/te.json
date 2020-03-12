@@ -34,7 +34,8 @@
       "bending_machine_active": { "model": "mets:simple_machine/bending_machine_active" },
 
       "cutting_machine": { "model": "mets:simple_machine/cutting_machine" },
-      "cutting_machine_active": { "model": "mets:simple_machine/cutting_machine_active" }
+      "cutting_machine_active": { "model": "mets:simple_machine/cutting_machine_active" },
+      "titanium_storage_box": { "model": "mets:simple_machine/titanium_storage_box" }
     },
     "facing": {
       "down": { "x": 90 },
