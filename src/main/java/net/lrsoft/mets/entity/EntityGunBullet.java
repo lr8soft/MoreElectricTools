@@ -25,7 +25,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class EntityGunBullet extends Entity {
-	private static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
+	public static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
     {
         public boolean apply(@Nullable Entity entity)
         {
@@ -33,11 +33,11 @@ public class EntityGunBullet extends Entity {
         }
     });
 	
-	private EntityPlayer shooter;
-	private int ticksInAir;
-	private int maxExistTicks;
-	private float power;
-	private float velocity;
+	protected EntityPlayer shooter;
+	protected int ticksInAir;
+	protected int maxExistTicks;
+	protected float power;
+	protected float velocity;
 	
 	public EntityGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
 		super(world);
@@ -104,7 +104,7 @@ public class EntityGunBullet extends Entity {
             	{
             		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);
             	}else {
-            		target.attackEntityFrom(DamageSource.MAGIC, power);
+            		target.attackEntityFrom(DamageSource.GENERIC, power);
             	}
             	setDead();
             	return;
@@ -172,7 +172,7 @@ public class EntityGunBullet extends Entity {
         this.velocity = velocity;
 	}
 	
-    private void shoot(double x, double y, double z, float velocity)
+    protected void shoot(double x, double y, double z, float velocity)
     {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / (double)f;

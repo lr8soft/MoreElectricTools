@@ -2,6 +2,7 @@ package net.lrsoft.mets.item.weapon;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.entity.EntityGunBullet;
+import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
@@ -29,7 +30,7 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
 			lastRightClick = currentTime;
 			if(ElectricItem.manager.use(currentGun, 10000, playerIn))
 			{
-				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 50f, 360);
+				EntityHyperGunBullet entity = new EntityHyperGunBullet(worldIn, playerIn, 50f, 360);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
 				worldIn.spawnEntity(entity);				
 				
