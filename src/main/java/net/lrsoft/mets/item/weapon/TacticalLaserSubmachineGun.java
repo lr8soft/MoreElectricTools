@@ -6,11 +6,14 @@ import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class TacticalLaserSubmachineGun extends UniformElectricItem {
@@ -28,7 +31,7 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
 		if(currentTime - lastRightClick > 10)
 		{
 			lastRightClick = currentTime;
-			if(ElectricItem.manager.use(currentGun, 10000, playerIn))
+			if(ElectricItem.manager.use(currentGun, ConfigManager.TacticalLaserSubmachineGunCost, playerIn))
 			{
 				EntityHyperGunBullet entity = new EntityHyperGunBullet(worldIn, playerIn, 50f, 360);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
@@ -42,6 +45,21 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
 		}
 		
 		return new ActionResult(EnumActionResult.PASS, currentGun);
+	}
+	
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase targetEntity, EntityLivingBase attacker) {
+		 if (targetEntity instanceof EntityLivingBase && attacker instanceof EntityPlayer)
+         {
+			EntityPlayer player = (EntityPlayer) attacker;
+			EntityLivingBase enemyEntity = (EntityLivingBase) targetEntity;
+			if (ElectricItem.manager.use(stack, ConfigManager.TacticalLaserSubmachineGunCost, player)) {
+				enemyEntity.knockBack(attacker, 1.0f, (double) MathHelper.sin(player.rotationYaw * 0.017453292F),
+						(double) (-MathHelper.cos(player.rotationYaw * 0.017453292F)));
+				enemyEntity.attackEntityFrom(DamageSource.causePlayerDamage(player), 20.0f);
+			}
+         }
+		return true;
 	}
 	
 	@Override

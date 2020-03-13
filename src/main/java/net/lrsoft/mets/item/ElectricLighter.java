@@ -2,7 +2,6 @@ package net.lrsoft.mets.item;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
-import net.lrsoft.mets.entity.EntityLighter;
 import net.lrsoft.mets.manager.SoundManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -27,8 +26,9 @@ public class ElectricLighter extends UniformElectricItem {
 			lastRightClick = currentTime;
 			if(ElectricItem.manager.use(currentItem, 50, playerIn))
 			{
-				EntityLighter entityLighter = new EntityLighter(worldIn, playerIn, 2, 300);
-				worldIn.spawnEntity(entityLighter);
+				//EntityLighter entityLighter = new EntityLighter(worldIn, playerIn, 2, 300);
+				//worldIn.spawnEntity(entityLighter);
+				
 				return new ActionResult(EnumActionResult.SUCCESS, currentItem);
 			}
 			setLastRightClick(currentItem, lastRightClick);

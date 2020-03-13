@@ -100,6 +100,8 @@ public class EntityGunBullet extends Entity {
             Entity target = raytraceresult.entityHit;
             if (target != null)
             {
+            	target.hurtResistantTime = 0;
+            	
             	if(shooter != null)
             	{
             		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);

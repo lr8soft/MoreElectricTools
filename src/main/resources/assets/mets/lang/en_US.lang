@@ -39,6 +39,7 @@ item.mets.lithium_battery.name=Lithium Battery
 
 item.mets.electric_submachine_gun.name=Electric Submachine Gun
 item.mets.advanced_electric_submachine_gun.name=§bAdvanced Electric Submachine Gun
+item.mets.tactical_laser_submachine_gun.name=§bTactical Laser Submachine Gun with Iridium Bayonet
 item.mets.electric_rocket_launcher.name=Rocket Launcher
 
 item.mets.electric_first_aid_life_support.name=Electric First Aid Life Support

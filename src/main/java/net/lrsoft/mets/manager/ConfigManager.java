@@ -52,4 +52,7 @@ public class ConfigManager {
 	 public static double AdvancedElectricSubmachineGunCost = 5000d;
 	 @Config.RequiresMcRestart
 	 public static int AdvancedElectricSubmachineGunInterval = 80;
+	 
+	 @Config.RequiresMcRestart
+	 public static double TacticalLaserSubmachineGunCost = 10000d;
 }
