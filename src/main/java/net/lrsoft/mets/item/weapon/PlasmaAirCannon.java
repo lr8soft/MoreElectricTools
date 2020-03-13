@@ -1,4 +1,4 @@
-package net.lrsoft.mets.item;
+package net.lrsoft.mets.item.weapon;
 
 import java.util.List;
 import java.util.Random;
@@ -10,6 +10,7 @@ import com.google.common.base.Predicates;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.manager.SoundManager;

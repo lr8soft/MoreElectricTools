@@ -7,16 +7,10 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.armor.AdvancedJetPack;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
-import net.lrsoft.mets.item.AdvancedElectricSubmachineGun;
-import net.lrsoft.mets.item.AdvancedIridiumSword;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
+import net.lrsoft.mets.item.ElectricLighter;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
-import net.lrsoft.mets.item.ElectricRocketLauncher;
-import net.lrsoft.mets.item.ElectricShield;
-import net.lrsoft.mets.item.ElectricSubmachineGun;
-import net.lrsoft.mets.item.NanoBow;
-import net.lrsoft.mets.item.PlasmaAirCannon;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
@@ -25,6 +19,14 @@ import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
+import net.lrsoft.mets.item.weapon.AdvancedElectricSubmachineGun;
+import net.lrsoft.mets.item.weapon.AdvancedIridiumSword;
+import net.lrsoft.mets.item.weapon.ElectricRocketLauncher;
+import net.lrsoft.mets.item.weapon.ElectricShield;
+import net.lrsoft.mets.item.weapon.ElectricSubmachineGun;
+import net.lrsoft.mets.item.weapon.NanoBow;
+import net.lrsoft.mets.item.weapon.PlasmaAirCannon;
+import net.lrsoft.mets.item.weapon.TacticalLaserSubmachineGun;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -53,11 +55,13 @@ public class ItemManager {
 	public static ElectricNutritionSupply electricNutritionSupply;
 	public static ElectricFishingRod electricFishingRod;
 	public static ElectricShield electricShield;
+	//public static ElectricLighter electricLighter;
 	
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
 	public static ElectricSubmachineGun electricSubmachineGun;
 	public static AdvancedElectricSubmachineGun advancedElectricSubmachineGun;
+	public static TacticalLaserSubmachineGun tacticalLaserSubmachineGun;
 	public static ElectricRocketLauncher electricRocketLauncher;
 	
 	public static DivingMask divingMask;
@@ -66,6 +70,7 @@ public class ItemManager {
 	
 	public static TitaniumIronAlloyRotor titaniumIronAlloyRotor;
 	public static SuperIridiumRotor superIridiumRotor;
+	
 	static 
 	{
 		superLapotronCrystal = new SuperLapotronCrystal();
@@ -81,9 +86,11 @@ public class ItemManager {
 		electricShield = new ElectricShield();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
+		//electricLighter = new ElectricLighter();
 		
 		electricSubmachineGun = new ElectricSubmachineGun();
 		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
+		tacticalLaserSubmachineGun = new TacticalLaserSubmachineGun();
 		electricRocketLauncher = new ElectricRocketLauncher();
 		
 		divingMask = new DivingMask();	
@@ -110,7 +117,9 @@ public class ItemManager {
 		event.getRegistry().register(plasmaAirCannon);
 		event.getRegistry().register(electricSubmachineGun);
 		event.getRegistry().register(advancedElectricSubmachineGun);
+		event.getRegistry().register(tacticalLaserSubmachineGun);
 		event.getRegistry().register(electricRocketLauncher);
+		//event.getRegistry().register(electricLighter);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
@@ -350,6 +359,18 @@ public class ItemManager {
 				'J', IC2Items.getItem("iridium_reflector"),
 				'C', ItemCraftingManager.super_circuit,
 				'D', getAllTypeStack(electricSubmachineGun)
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(tacticalLaserSubmachineGun), new Object[]
+				{
+				"SSB",
+				"LJC",
+				"SSB",
+				'S', ItemCraftingManager.super_iridium_compress_plate,
+				'B', getAllTypeStack(superLapotronCrystal),
+				'L', getAllTypeStack(advancedIridiumSword),
+				'J', getAllTypeStack(advancedElectricSubmachineGun),
+				'C', ItemCraftingManager.super_circuit
 				});
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(electricRocketLauncher), new Object[]

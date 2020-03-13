@@ -1,8 +1,9 @@
-package net.lrsoft.mets.item;
+package net.lrsoft.mets.item.weapon;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.entity.EntityRocket;
+import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
@@ -49,7 +50,7 @@ public class ElectricRocketLauncher extends UniformElectricItem {
 				
 				if(shouldLaunch)
 				{
-					EntityRocket entity = new EntityRocket(worldIn, 12f);
+					EntityRocket entity = new EntityRocket(worldIn, 8f);
 					entity.shoot(playerIn, playerIn.rotationYaw, playerIn.rotationPitch, 2.5f);
 					worldIn.spawnEntity(entity);
 					setLastRightClick(currentLauncher, lastRightClick);

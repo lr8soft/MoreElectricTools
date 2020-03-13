@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
-public class BulletRenderer extends Render<EntityGunBullet>{
+public class BulletRenderer<T extends EntityGunBullet> extends Render<T>{
 	private static String info = "Code From Minecraft";
 	private final ResourceLocation texture;
 	public BulletRenderer(RenderManager manager, ResourceLocation texture)
@@ -20,7 +20,7 @@ public class BulletRenderer extends Render<EntityGunBullet>{
 		this.texture = texture;
 	}
 	//From minecraft
-	public void doRender(EntityGunBullet entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		this.bindEntityTexture(entity);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();

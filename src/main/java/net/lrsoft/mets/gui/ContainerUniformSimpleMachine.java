@@ -1,4 +1,4 @@
-package net.lrsoft.mets.block.compenent;
+package net.lrsoft.mets.gui;
 
 import ic2.core.block.machine.container.ContainerStandardMachine;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;

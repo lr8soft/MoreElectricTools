@@ -1,4 +1,4 @@
-package net.lrsoft.mets.block.compenent;
+package net.lrsoft.mets.gui;
 
 import com.google.common.base.Supplier;
 import ic2.core.ContainerBase;

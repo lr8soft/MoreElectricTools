@@ -1,4 +1,4 @@
-package net.lrsoft.mets.item;
+package net.lrsoft.mets.item.weapon;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +13,7 @@ import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import ic2.core.IC2;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

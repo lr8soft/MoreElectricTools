@@ -1,4 +1,4 @@
-package net.lrsoft.mets.block.compenent;
+package net.lrsoft.mets.gui;
 
 import ic2.api.info.Info;
 import ic2.api.energy.tile.IChargingSlot;

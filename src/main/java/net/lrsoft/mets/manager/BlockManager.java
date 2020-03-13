@@ -259,6 +259,16 @@ public class BlockManager {
 						'K', IC2Items.getItem("block_cutting_blade", "diamond"),
 						'G', IC2Items.getItem("crafting", "electric_motor")
 				});
+		
+		ItemStack titanium_storage_box = teBlock.getItemStack(MetsTeBlock.titanium_storage_box);
+		Recipes.advRecipes.addRecipe(titanium_storage_box, 
+				new Object[] {
+						"PSP",
+						"S S",
+						"PSP",
+						'S', ItemCraftingManager.titanium_casing,
+						'P', ItemCraftingManager.titanium_plate
+				});
 	}
 	
 	@SubscribeEvent

@@ -39,6 +39,7 @@ item.mets.lithium_battery.name=Lithium Battery
 
 item.mets.electric_submachine_gun.name=Electric Submachine Gun
 item.mets.advanced_electric_submachine_gun.name=§bAdvanced Electric Submachine Gun
+item.mets.tactical_laser_submachine_gun.name=§bTactical Laser Submachine Gun with Iridium Bayonet
 item.mets.electric_rocket_launcher.name=Rocket Launcher
 
 item.mets.electric_first_aid_life_support.name=Electric First Aid Life Support
@@ -71,6 +72,7 @@ mets.te.advanced_semifluid_generator=Advanced Diesel Generator
 mets.te.extruding_machine=Advanced Metal Extruder
 mets.te.bending_machine=Advanced Metal Rolling Machine
 mets.te.cutting_machine=Advanced Metal Shearing Machine
+mets.te.titanium_storage_box=Titanium Storage Box
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

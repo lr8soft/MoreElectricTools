@@ -291,19 +291,16 @@ public class ItemCraftingManager {
 						'R', Items.DIAMOND
 				});
 		
-		if(ConfigManager.EnableRocketRecipe)
-		{
-			Recipes.advRecipes.addRecipe(new ItemStack(rocket), 
-					new Object[] {
-							"TST",
-							"SBS",
-							"YYY",
-							'T', Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE),
-							'S', titanium_casing,
-							'B', IC2Items.getItem("te", "itnt"),
-							'Y', Items.FIREWORKS
-					});			
-		}
+
+		Recipes.advRecipes.addRecipe(new ItemStack(rocket, 3),
+				new Object[] {
+						"TST",
+						"SBS", 
+						"YYY", 
+						'T', Item.getItemFromBlock(Blocks.STONE_PRESSURE_PLATE), 
+						'S', titanium_casing,
+						'B', IC2Items.getItem("te", "itnt"),
+						'Y', Items.FIREWORKS });	
 
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(super_iridium_blade, 3)), null, false, new ItemStack(super_iridium_compress_plate));
 		

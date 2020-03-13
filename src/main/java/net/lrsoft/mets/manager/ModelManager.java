@@ -3,6 +3,7 @@ package net.lrsoft.mets.manager;
 import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.entity.EntityGunBullet;
+import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.entity.EntityRocket;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
@@ -48,6 +49,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.electricFishingRod.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricShield, 0,
 				new ModelResourceLocation(ItemManager.electricShield.getRegistryName(), "inventory"));
+		//ModelLoader.setCustomModelResourceLocation(ItemManager.electricLighter, 0,
+		//		new ModelResourceLocation(ItemManager.electricLighter.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.nanoBow, 0,
 				new ModelResourceLocation(ItemManager.nanoBow.getRegistryName(), "inventory"));
@@ -71,7 +74,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.titaniumIronAlloyRotor.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.superIridiumRotor, 0,
 				new ModelResourceLocation(ItemManager.superIridiumRotor.getRegistryName(), "inventory"));
-		
+		ModelLoader.setCustomModelResourceLocation(ItemManager.tacticalLaserSubmachineGun, 0,
+				new ModelResourceLocation(ItemManager.tacticalLaserSubmachineGun.getRegistryName(), "inventory"));
 		
 		ItemManager.electricShield.setTileEntityItemStackRenderer(new net.lrsoft.mets.renderer.NanoShieldRenderer());
 		
@@ -94,6 +98,13 @@ public class ModelManager {
 			public Render<EntityGunBullet> createRenderFor(RenderManager manager) {
 				return (Render<EntityGunBullet>) new BulletRenderer(manager,
 						new ResourceLocation("mets", "textures/entity/bullet.png"));
+			}
+		});
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityHyperGunBullet.class, new IRenderFactory<EntityHyperGunBullet>() {
+			public Render<EntityHyperGunBullet> createRenderFor(RenderManager manager) {
+				return (Render<EntityHyperGunBullet>) new BulletRenderer(manager,
+						new ResourceLocation("mets", "textures/entity/hyper_bullet.png"));
 			}
 		});
 		

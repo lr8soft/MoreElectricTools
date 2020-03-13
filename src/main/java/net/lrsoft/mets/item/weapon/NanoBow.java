@@ -1,4 +1,4 @@
-package net.lrsoft.mets.item;
+package net.lrsoft.mets.item.weapon;
 
 import java.util.LinkedList;
 import java.util.List;

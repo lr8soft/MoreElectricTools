@@ -7,7 +7,7 @@ import ic2.core.block.invslot.InvSlotConsumableFuel;
 import ic2.core.block.machine.tileentity.TileEntityIronFurnace;
 import ic2.core.gui.dynamic.IGuiValueProvider;
 import ic2.core.network.GuiSynced;
-import net.lrsoft.mets.block.compenent.DropGeneratorSlot;
+import net.lrsoft.mets.gui.DropGeneratorSlot;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
