@@ -275,7 +275,8 @@ public class ItemCraftingManager {
 						'A', niobium_titanium_plate
 				});
 		
-		Recipes.extractor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(super_iridium_alloy)),
+		
+		Recipes.metalformerExtruding.addRecipe(Recipes.inputFactory.forStack(new ItemStack(super_iridium_alloy)),
 				null, false, new ItemStack(super_iridium_blade));
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(lens), 

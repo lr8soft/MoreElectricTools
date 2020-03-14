@@ -125,9 +125,7 @@ public class EntityGunBullet extends Entity {
         this.posZ += this.motionZ;
 
         this.setPosition(this.posX, this.posY, this.posZ);
-        
- 
-        
+
         this.doBlockCollisions();
 	}
 	
