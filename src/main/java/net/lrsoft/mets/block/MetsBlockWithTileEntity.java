@@ -25,7 +25,7 @@ import ic2.core.profile.Version;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.*;
 
-public enum MetsTeBlock implements ITeBlock {
+public enum MetsBlockWithTileEntity implements ITeBlock {
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	drop_generator((Class)TileEntityDropGenerator.class, 1, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	eesu((Class)TileEntityEESU.class, 2, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
@@ -53,7 +53,7 @@ public enum MetsTeBlock implements ITeBlock {
 	private final DefaultDrop defaultDrop;
 	private final float hardness;
 
-	MetsTeBlock(Class<? extends TileEntityBlock> teClass, int itemMeta, boolean hasActive,
+	MetsBlockWithTileEntity(Class<? extends TileEntityBlock> teClass, int itemMeta, boolean hasActive,
 			Set<EnumFacing> supportedFacings, boolean allowWrenchRotating, HarvestTool harvestTool,
 			DefaultDrop defaultDrop, float hardness, float explosionResistance, EnumRarity rarity, Material material,
 			boolean transparent) {
@@ -74,13 +74,13 @@ public enum MetsTeBlock implements ITeBlock {
 	private final float explosionResistance;private final EnumRarity rarity;private final Material material;private final boolean transparent;private TileEntityBlock dummyTe;private ITePlaceHandler placeHandler;
 
 	static {
-		for (MetsTeBlock block : values()) {
+		for (MetsBlockWithTileEntity block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}
 	}
 
 	public static void buildDummies() {
- 		for (MetsTeBlock block : values()) {
+ 		for (MetsBlockWithTileEntity block : values()) {
  			if (block.teClass != null) {
  				try {
  					block.dummyTe = block.teClass.newInstance();

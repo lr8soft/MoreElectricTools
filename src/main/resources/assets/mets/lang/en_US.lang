@@ -19,6 +19,7 @@ item.mets.crafting.thorium_pile.name=A Tiny Pile of Thorium
 item.mets.crafting.thorium_dust.name=Thorium Dust
 
 item.mets.crafting.titanium_iron_rotor_blade.name=Titanium Iron Alloy Rotor Blade
+item.mets.crafting.super_iridium_alloy.name=§bSuper Iridium Alloy
 item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Plate
 item.mets.crafting.super_iridium_compress_plate.name=§bDense Super Iridium Alloy Plate
 
@@ -32,7 +33,8 @@ item.mets.crafting.lens.name=Lens
 item.mets.crafting.diamond_lens.name=§bDiamond Lens
 item.mets.crafting.rocket.name=Rocket Missile
 
-item.mets.super_lapotron_crystal.name=§bSuper_Lapotron_Crystal
+item.mets.super_lapotron_crystal.name=§bSuper Lapotron Crystal
+item.mets.charging_super_lapotron_crystal.name=§bCharging Super Lapotron Crystal
 item.mets.advanced_iridium_sword.name=§bQuantum Sword
 item.mets.advanced_lithium_battery.name=Advanced Lithium Battery
 item.mets.lithium_battery.name=Lithium Battery

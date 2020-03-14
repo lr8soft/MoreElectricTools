@@ -25,6 +25,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.ExplosionEvent;
 
 public class EntityRocket extends Entity {
 	
@@ -69,10 +71,9 @@ public class EntityRocket extends Entity {
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
             	rangeAttack();
-            	Explosion explosion = new Explosion(world, this,  this.posX, this.posY, this.posZ, power, true, ConfigManager.WeaponDamagesTerrain);
+            	Explosion explosion = new Explosion(world, this,  this.posX, this.posY, this.posZ, power, false, ConfigManager.WeaponDamagesTerrain);
             	explosion.doExplosionA();
-            	explosion.doExplosionB(false);
-            	explosion.clearAffectedBlockPositions();
+            	explosion.doExplosionB(true);
                 setDead();
                 return;
             }
@@ -103,10 +104,9 @@ public class EntityRocket extends Entity {
             if (target != null)
             {
             	rangeAttack();
-            	Explosion explosion = new Explosion(world, this,  this.posX, this.posY, this.posZ, power, true, ConfigManager.WeaponDamagesTerrain);
+            	Explosion explosion = new Explosion(world, this,  this.posX, this.posY, this.posZ, power, false, ConfigManager.WeaponDamagesTerrain);
             	explosion.doExplosionA();
-            	explosion.doExplosionB(false);
-            	explosion.clearAffectedBlockPositions();
+            	explosion.doExplosionB(true);
             	setDead();
             	return;
             }
@@ -232,9 +232,7 @@ public class EntityRocket extends Entity {
     {
 		for (int dist = 0; dist < power; dist++) {
 			AxisAlignedBB bb = this.getEntityBoundingBox();
-			bb = bb.grow(2.0f, 0.25f, 2.0f);
-			bb = bb.offset((float) dist, (float) dist, (float) dist);
-
+			bb = bb.grow(2.0f, 2.0f, 2.0f);
 			List<Entity> list = world.getEntitiesInAABBexcluding(this, bb, ROCKET_TARGETS);
 			for (Entity curEntity : list) {
 				if(curEntity instanceof EntityLivingBase)

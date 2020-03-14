@@ -30,6 +30,8 @@ public class ModelManager {
 	{
 		ModelLoader.setCustomModelResourceLocation(ItemManager.superLapotronCrystal, 0,
 				new ModelResourceLocation(ItemManager.superLapotronCrystal.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.chargingSuperLapotronCrystal, 0,
+				new ModelResourceLocation(ItemManager.chargingSuperLapotronCrystal.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedIridiumSword, 0,
 				new ModelResourceLocation(ItemManager.advancedIridiumSword.getRegistryName(), "inventory"));

@@ -5,12 +5,14 @@ import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class ElectricSubmachineGun extends UniformElectricItem {
@@ -42,6 +44,20 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 		}
 		
 		return new ActionResult(EnumActionResult.PASS, currentGun);
+	}
+	
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase targetEntity, EntityLivingBase attacker) {
+		 if (targetEntity instanceof EntityLivingBase && attacker instanceof EntityPlayer)
+         {
+			EntityPlayer player = (EntityPlayer) attacker;
+			EntityLivingBase enemyEntity = (EntityLivingBase) targetEntity;
+			if (ElectricItem.manager.use(stack, ConfigManager.ElectricSubmachineGunCost / 5.0, player)) {
+				enemyEntity.knockBack(attacker, 0.5f, (double) MathHelper.sin(player.rotationYaw * 0.017453292F),
+						(double) (-MathHelper.cos(player.rotationYaw * 0.017453292F)));
+			}
+         }
+		return true;
 	}
 	
 	@Override
