@@ -2,7 +2,7 @@ package net.lrsoft.mets.proxy;
 import java.util.Set;
 
 import net.lrsoft.mets.MoreElectricTools;
-import net.lrsoft.mets.block.MetsTeBlock;
+import net.lrsoft.mets.block.MetsBlockWithTileEntity;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.manager.OreDictManager;
@@ -29,7 +29,7 @@ public class CommonProxy
 	public void init(FMLInitializationEvent event) 
 	{
 		//ItemManager.onRecipeInit();
-		MetsTeBlock.buildDummies();
+		MetsBlockWithTileEntity.buildDummies();
 		BlockManager.onBlockRecipeInit();
 		OreDictManager.onOreDictInit();
 		GameRegistry.registerWorldGenerator(new WorldGenManager(), 0);

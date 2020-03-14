@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/battery/charging_super_lapotron_crystal_4"
+  }
+}

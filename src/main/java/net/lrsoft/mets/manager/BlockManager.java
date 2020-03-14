@@ -16,7 +16,7 @@ import ic2.core.block.TeBlockRegistry;
 import ic2.core.ref.TeBlock;
 import ic2.core.util.StackUtil;
 import net.lrsoft.mets.MoreElectricTools;
-import net.lrsoft.mets.block.MetsTeBlock;
+import net.lrsoft.mets.block.MetsBlockWithTileEntity;
 import net.lrsoft.mets.block.UniformResourceBlock;
 import net.lrsoft.mets.block.tileentity.IMets;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
@@ -54,7 +54,7 @@ public class BlockManager {
 	@SubscribeEvent
 	public static void onTeBlockInit(TeBlockFinalCallEvent event)
 	{
-		TeBlockRegistry.addAll(MetsTeBlock.class, MetsTeBlock.loc);
+		TeBlockRegistry.addAll(MetsBlockWithTileEntity.class, MetsBlockWithTileEntity.loc);
 		TeBlockRegistry.addCreativeRegisterer((list, block, itemblock, tab) -> {
 			if (tab == CreativeTabs.SEARCH || tab == MoreElectricTools.CREATIVE_TAB) {
 				block.getAllTypes().forEach(type -> {
@@ -69,14 +69,14 @@ public class BlockManager {
 					}
 				});
 			}
-		}, MetsTeBlock.loc);
+		}, MetsBlockWithTileEntity.loc);
 	}
 	
 	public static void onBlockRecipeInit()
 	{
-		BlockTileEntity teBlock = TeBlockRegistry.get(MetsTeBlock.loc);
+		BlockTileEntity teBlock = TeBlockRegistry.get(MetsBlockWithTileEntity.loc);
 		
-		ItemStack lesuStack = teBlock.getItemStack(MetsTeBlock.lesu);
+		ItemStack lesuStack = teBlock.getItemStack(MetsBlockWithTileEntity.lesu);
 		Recipes.advRecipes.addRecipe(lesuStack, 
 				new Object[] {
 						"ALA",
@@ -87,7 +87,7 @@ public class BlockManager {
 						'L', IC2Items.getItem("cable", "type:gold,insulation:2")
 				});
 		
-		ItemStack lootGenerator = teBlock.getItemStack(MetsTeBlock.drop_generator);
+		ItemStack lootGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.drop_generator);
 		Recipes.advRecipes.addRecipe(lootGenerator, 
 				new Object[] {
 						"BTB",
@@ -100,7 +100,7 @@ public class BlockManager {
 						'G', IC2Items.getItem("te", "generator")
 				});
 		
-		ItemStack eesuStorage = teBlock.getItemStack(MetsTeBlock.eesu);
+		ItemStack eesuStorage = teBlock.getItemStack(MetsBlockWithTileEntity.eesu);
 		Recipes.advRecipes.addRecipe(eesuStorage, 
 				new Object[] {
 						"BCB",
@@ -111,7 +111,7 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit
 				});
 		
-		ItemStack advancedKineticGenerator = teBlock.getItemStack(MetsTeBlock.advanced_kinetic_generator);
+		ItemStack advancedKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_kinetic_generator);
 		Recipes.advRecipes.addRecipe(advancedKineticGenerator, 
 				new Object[] {
 						"SSS",
@@ -123,7 +123,7 @@ public class BlockManager {
 						'X', ItemCraftingManager.super_circuit
 				});
 		
-		ItemStack superKineticGenerator = teBlock.getItemStack(MetsTeBlock.super_kinetic_generator);
+		ItemStack superKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.super_kinetic_generator);
 		Recipes.advRecipes.addRecipe(superKineticGenerator, 
 				new Object[] {
 						"SES",
@@ -135,7 +135,7 @@ public class BlockManager {
 						'E', ReactorItemManager.advOCHeatVent
 				});
 		
-		ItemStack advancedBlastFurnace = teBlock.getItemStack(MetsTeBlock.advanced_blast_furnace);
+		ItemStack advancedBlastFurnace = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_blast_furnace);
 		Recipes.advRecipes.addRecipe(advancedBlastFurnace, 
 				new Object[] {
 						"SSS",
@@ -147,7 +147,7 @@ public class BlockManager {
 				});
 		
 		
-		ItemStack advancedMacerator = teBlock.getItemStack(MetsTeBlock.advanced_macerator);
+		ItemStack advancedMacerator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_macerator);
 		Recipes.advRecipes.addRecipe(advancedMacerator, 
 				new Object[] {
 						"DDD",
@@ -159,7 +159,7 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit
 				});
 		
-		ItemStack advancedCompressor = teBlock.getItemStack(MetsTeBlock.advanced_compressor);
+		ItemStack advancedCompressor = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_compressor);
 		Recipes.advRecipes.addRecipe(advancedCompressor, 
 				new Object[] {
 						"B B",
@@ -170,7 +170,7 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit
 				});
 		
-		ItemStack charpad_eesu = teBlock.getItemStack(MetsTeBlock.chargepad_eesu);
+		ItemStack charpad_eesu = teBlock.getItemStack(MetsBlockWithTileEntity.chargepad_eesu);
 		Recipes.advRecipes.addRecipe(charpad_eesu, 
 				new Object[] {
 						"CPC",
@@ -182,7 +182,7 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit
 				});
 		
-		ItemStack charpad_lesu = teBlock.getItemStack(MetsTeBlock.chargepad_lesu);
+		ItemStack charpad_lesu = teBlock.getItemStack(MetsBlockWithTileEntity.chargepad_lesu);
 		Recipes.advRecipes.addRecipe(charpad_lesu, 
 				new Object[] {
 						"CPC",
@@ -194,7 +194,7 @@ public class BlockManager {
 						'C', IC2Items.getItem("crafting", "circuit")
 				});
 		
-		ItemStack advanced_stirling_generator = teBlock.getItemStack(MetsTeBlock.advanced_stirling_generator);
+		ItemStack advanced_stirling_generator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_stirling_generator);
 		Recipes.advRecipes.addRecipe(advanced_stirling_generator, 
 				new Object[] {
 						"SPS",
@@ -205,7 +205,7 @@ public class BlockManager {
 						'M', IC2Items.getItem("te", "stirling_generator")
 				});
 		
-		ItemStack advanced_semifluid_generator = teBlock.getItemStack(MetsTeBlock.advanced_semifluid_generator);
+		ItemStack advanced_semifluid_generator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_semifluid_generator);
 		Recipes.advRecipes.addRecipe(advanced_semifluid_generator, 
 				new Object[] {
 						"SPS",
@@ -222,7 +222,7 @@ public class BlockManager {
 				Recipes.inputFactory.forOreDict("ingotTitanium", 9), null, false, new ItemStack(titaniumBlock));
 		
 		
-		ItemStack extruding_machine = teBlock.getItemStack(MetsTeBlock.extruding_machine);
+		ItemStack extruding_machine = teBlock.getItemStack(MetsBlockWithTileEntity.extruding_machine);
 		Recipes.advRecipes.addRecipe(extruding_machine, 
 				new Object[] {
 						"SKS",
@@ -234,7 +234,7 @@ public class BlockManager {
 						'K', IC2Items.getItem("cutter"),
 						'G', IC2Items.getItem("crafting", "electric_motor")
 				});
-		ItemStack bending_machine = teBlock.getItemStack(MetsTeBlock.bending_machine);
+		ItemStack bending_machine = teBlock.getItemStack(MetsBlockWithTileEntity.bending_machine);
 		Recipes.advRecipes.addRecipe(bending_machine, 
 				new Object[] {
 						"SKS",
@@ -247,7 +247,7 @@ public class BlockManager {
 						'G', IC2Items.getItem("crafting", "electric_motor")
 				});
 		
-		ItemStack cutting_machine = teBlock.getItemStack(MetsTeBlock.cutting_machine);
+		ItemStack cutting_machine = teBlock.getItemStack(MetsBlockWithTileEntity.cutting_machine);
 		Recipes.advRecipes.addRecipe(cutting_machine, 
 				new Object[] {
 						"SKS",
@@ -260,7 +260,7 @@ public class BlockManager {
 						'G', IC2Items.getItem("crafting", "electric_motor")
 				});
 		
-		ItemStack titanium_storage_box = teBlock.getItemStack(MetsTeBlock.titanium_storage_box);
+		ItemStack titanium_storage_box = teBlock.getItemStack(MetsBlockWithTileEntity.titanium_storage_box);
 		Recipes.advRecipes.addRecipe(titanium_storage_box, 
 				new Object[] {
 						"PSP",

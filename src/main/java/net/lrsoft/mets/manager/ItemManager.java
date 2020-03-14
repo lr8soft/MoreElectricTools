@@ -12,6 +12,7 @@ import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricLighter;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
+import net.lrsoft.mets.item.battery.ChargingSuperLapotronCrystal;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
 import net.lrsoft.mets.item.battery.ThoriumBattery;
@@ -46,6 +47,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ItemManager {
 	
 	public static SuperLapotronCrystal superLapotronCrystal;
+	public static ChargingSuperLapotronCrystal chargingSuperLapotronCrystal;
 	public static AdvancedIridiumSword advancedIridiumSword;
 	public static AdvancedLithiumBattery advancedLithiumBattery;
 	public static LithiumBattery lithiumBattery;
@@ -74,6 +76,7 @@ public class ItemManager {
 	static 
 	{
 		superLapotronCrystal = new SuperLapotronCrystal();
+		chargingSuperLapotronCrystal = new ChargingSuperLapotronCrystal();
 		advancedIridiumSword = new AdvancedIridiumSword();
 		
 		advancedLithiumBattery = new AdvancedLithiumBattery();
@@ -105,6 +108,7 @@ public class ItemManager {
 	public static void onItemInit(RegistryEvent.Register<Item> event)
 	{
 		event.getRegistry().register(superLapotronCrystal);
+		event.getRegistry().register(chargingSuperLapotronCrystal);
 		event.getRegistry().register(advancedIridiumSword);
 		event.getRegistry().register(advancedLithiumBattery);
 		event.getRegistry().register(lithiumBattery);
@@ -385,6 +389,17 @@ public class ItemManager {
 				'C', IC2Items.getItem("crafting", "advanced_circuit"),
 				'F', IC2Items.getItem("frequency_transmitter"),
 				'D', IC2Items.getItem("crafting", "power_unit")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(chargingSuperLapotronCrystal), new Object[]
+				{
+				"EBS",
+				"BOB",//XLC
+				"SBE",
+				'B', getAllTypeStack(ItemManager.superLapotronCrystal),
+				'E', ReactorItemManager.advHeatVent,
+				'S', IC2Items.getItem("advanced_heat_exchanger"),
+				'O', getAllTypeStack(IC2Items.getItem("charging_lapotron_crystal"))
 				});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E

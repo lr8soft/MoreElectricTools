@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ic2.api.item.ElectricItem;
+import ic2.api.item.IBoxable;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import net.lrsoft.mets.MoreElectricTools;
@@ -13,7 +14,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class UniformElectricItem extends Item implements IElectricItem, IItemHudInfo
+public class UniformElectricItem extends Item implements IElectricItem, IItemHudInfo, IBoxable
 {
 	private double maxStorageEU = 0, transferSpeed = 0;
 	private int powerLevel = 0;
@@ -82,5 +83,8 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 		} catch (Exception expt) {}
 		return value;
 	}
+	
+	@Override
+	public boolean canBeStoredInToolbox(ItemStack stack) {return true;}
 
 }
