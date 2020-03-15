@@ -38,9 +38,10 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);
+				setLastRightClick(currentGun, lastRightClick);
 				return new ActionResult(EnumActionResult.SUCCESS, currentGun);
 			}
-			setLastRightClick(currentGun, lastRightClick);
+			
 		}
 		
 		return new ActionResult(EnumActionResult.PASS, currentGun);
