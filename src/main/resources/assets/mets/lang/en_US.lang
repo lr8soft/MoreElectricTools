@@ -46,6 +46,7 @@ item.mets.electric_rocket_launcher.name=Rocket Launcher
 
 item.mets.electric_first_aid_life_support.name=Electric First Aid Life Support
 item.mets.electric_nutrition_supply.name=Electric Nutrition Supply
+item.mets.electric_force_field_generator.name=Electrical Injury Absorber
 item.mets.electric_fishing_rod.name=Electric Fishing Rod
 
 mets.electric_shield.name=Steel Explosion-proof Shield
@@ -85,3 +86,6 @@ mets.info.crafting_only=For crafting only
 
 mets.info.rotor=Suitable for wind and hydraulic~!
 mets.info.th_battery=May cause cancer -> §2 Harmless in Minecraft~
+mets.info.extralife=§6Extra life！
+
+enchantment.efficient_energy_cost=Efficient EU

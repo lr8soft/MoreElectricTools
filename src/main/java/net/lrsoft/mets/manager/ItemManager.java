@@ -9,6 +9,7 @@ import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
+import net.lrsoft.mets.item.ElectricForceFieldGenerator;
 import net.lrsoft.mets.item.ElectricLighter;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
@@ -22,7 +23,6 @@ import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
 import net.lrsoft.mets.item.weapon.AdvancedElectricSubmachineGun;
 import net.lrsoft.mets.item.weapon.AdvancedIridiumSword;
-import net.lrsoft.mets.item.weapon.ElectricForceFieldGenerator;
 import net.lrsoft.mets.item.weapon.ElectricRocketLauncher;
 import net.lrsoft.mets.item.weapon.ElectricShield;
 import net.lrsoft.mets.item.weapon.ElectricSubmachineGun;
@@ -314,7 +314,7 @@ public class ItemManager {
 							"ITI",
 							"MBM",
 							"ITI",
-							'M', getAllTypeStack(electricNutritionSupply),
+							'M', getAllTypeStack(electricForceFieldGenerator),
 							'B', getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
 							'I', IC2Items.getItem("crafting", "iridium"),
 							'T', ItemCraftingManager.super_circuit
@@ -404,6 +404,17 @@ public class ItemManager {
 				'E', ReactorItemManager.advHeatVent,
 				'S', IC2Items.getItem("advanced_heat_exchanger"),
 				'O', getAllTypeStack(IC2Items.getItem("charging_lapotron_crystal"))
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricForceFieldGenerator), new Object[]
+				{
+				"SCS",
+				"MBM",
+				"SCS",
+				'S', ItemCraftingManager.titanium_casing,
+				'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
+				'M', getAllTypeStack(electricNutritionSupply),
+				'C', IC2Items.getItem("crafting", "advanced_circuit")
 				});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E

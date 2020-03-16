@@ -47,6 +47,7 @@ item.mets.electric_rocket_launcher.name=火箭筒
 
 item.mets.electric_first_aid_life_support.name=电力生命维护仪
 item.mets.electric_nutrition_supply.name=电力营养供应器
+item.mets.electric_force_field_generator.name=电力伤害吸收仪
 item.mets.electric_fishing_rod.name=电动鱼竿
 
 mets.electric_shield.name=钢制防爆盾
@@ -85,3 +86,6 @@ mets.info.crafting_only=仅用于合成
 
 mets.info.rotor=适用于风力水力~！
 mets.info.th_battery=§9无限电力，但可能致癌~
+mets.info.extralife=§6额外的生命！
+
+enchantment.efficient_energy_cost=高效EU

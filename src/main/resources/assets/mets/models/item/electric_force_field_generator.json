@@ -1,0 +1,25 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/electric_force_field_generator"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:storage_energy_value": 0.25 },
+      "model": "mets:item/electric_force_field_generator/electric_force_field_generator_1"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 0.5 },
+      "model": "mets:item/electric_force_field_generator/electric_force_field_generator_2"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 0.75 },
+      "model": "mets:item/electric_force_field_generator/electric_force_field_generator_3"
+    },
+    {
+      "predicate": { "mets:storage_energy_value": 1.0 },
+      "model": "mets:item/electric_force_field_generator/electric_force_field_generator_4"
+    }
+  ]
+
+}

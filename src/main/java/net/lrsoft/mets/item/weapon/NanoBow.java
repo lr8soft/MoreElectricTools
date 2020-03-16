@@ -9,7 +9,9 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.enchantment.EfficientEnergyCost;
 import net.lrsoft.mets.manager.ConfigManager;
+import net.lrsoft.mets.manager.EnchantmentManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -118,8 +120,8 @@ public class NanoBow extends ItemBow implements IElectricItem, IItemHudInfo {
 	                        {
 	                            entityarrow.setFire(100);
 	                        }
-	                        
-	                        ElectricItem.manager.use(stack, ConfigManager.NanoBowBaseCost, entityplayer);
+	                        float ratio = EfficientEnergyCost.getAttenuationRatio(EnchantmentHelper.getEnchantmentLevel(EnchantmentManager.efficientEu, stack));
+	                        ElectricItem.manager.use(stack, ConfigManager.NanoBowBaseCost * ratio, entityplayer);
 
 	                        if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW))
 	                        {

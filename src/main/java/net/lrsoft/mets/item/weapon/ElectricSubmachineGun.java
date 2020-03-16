@@ -5,6 +5,7 @@ import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -65,4 +66,5 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 	{
 		return false;
 	}
+	
 }
