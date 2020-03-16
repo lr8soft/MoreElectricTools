@@ -74,7 +74,10 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
     
     public Item getEmptyItem(ItemStack itemStack) {return this;}
     
-	protected void setLastRightClick(ItemStack stack, long value) {stack.getItem().getNBTShareTag(stack).setLong("LastRightClick", value);}
+	protected void setLastRightClick(ItemStack stack, long value) 
+	{
+		stack.getItem().getNBTShareTag(stack).setLong("LastRightClick", value);
+		}
 	protected long getLastRightClick(ItemStack stack) 
 	{
 		long value = 0;

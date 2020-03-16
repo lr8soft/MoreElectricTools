@@ -7,52 +7,48 @@ import net.minecraftforge.common.config.Config;
 public class ConfigManager {
 	 @Config.RequiresMcRestart
 	 public static boolean WeaponDamagesTerrain = true;
-	
-	 @Config.RequiresMcRestart
-	 public static double AdvancedIridiumSwordBaseCost = 800d;
-	 @Config.RequiresMcRestart
-	 public static float AdvancedIridiumSwordBaseAttackDamage = 25f;
-	 
-	 @Config.RequiresMcRestart
-	 public static double NanoBowBaseCost = 300d;
-	 @Config.RequiresMcRestart
-	 public static float NanoBowMaxVelocity = 5.0f;
-	 
-	 @Config.RequiresMcRestart
-	 public static boolean EnableElectricNutritionSupplyCost = true;
-	 @Config.RequiresMcRestart
-	 public static double ElectricNutritionSupplyCost = 200d;
-	 
 	 @Config.RequiresMcRestart
 	 public static boolean EnableElectricFirstAidLifeSupportRecipe = true;
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
+	 public static boolean EnableElectricNutritionSupplyCost = true;
+	
+	 @Config.RequiresWorldRestart
+	 public static double AdvancedIridiumSwordBaseCost = 800d;
+	 @Config.RequiresWorldRestart
+	 public static float AdvancedIridiumSwordBaseAttackDamage = 25f;
+	 
+	 @Config.RequiresWorldRestart
+	 public static double NanoBowBaseCost = 300d;
+	 @Config.RequiresWorldRestart
+	 public static float NanoBowMaxVelocity = 5.0f;
+
+	 @Config.RequiresWorldRestart
+	 public static double ElectricNutritionSupplyCost = 200d;
+
+	 @Config.RequiresWorldRestart
 	 public static double ElectricFirstAidLifeSupport = 10000d;
 	 
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double PlasmaAirCannonBaseCost = 1000d;
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double PlasmaAirCannonBaseDamage = 10d;
 	 
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double AdvancedQuantumSuitDamageEnergyCost = 10000d;
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double AdvancedQuantumSuitCureCost = 30000d;
 	 
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double ElectricSubmachineGunCost = 100d;
-	 @Config.RequiresMcRestart
-	 public static int ElectricSubmachineGunInterval = 90;
 	 
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static int ElectricRocketLauncherInterval = 1500;
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double ElectricRocketLauncherCost = 50000d;
 	 
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double AdvancedElectricSubmachineGunCost = 5000d;
-	 @Config.RequiresMcRestart
-	 public static int AdvancedElectricSubmachineGunInterval = 80;
 	 
-	 @Config.RequiresMcRestart
+	 @Config.RequiresWorldRestart
 	 public static double TacticalLaserSubmachineGunCost = 10000d;
 }

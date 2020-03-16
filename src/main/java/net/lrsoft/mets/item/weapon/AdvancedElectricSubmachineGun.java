@@ -27,7 +27,7 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
 		ItemStack currentGun = playerIn.getHeldItem(handIn);
 		long lastRightClick = getLastRightClick(currentGun);
 		long currentTime = System.currentTimeMillis();
-		if(currentTime - lastRightClick > ConfigManager.AdvancedElectricSubmachineGunInterval)
+		if(currentTime - lastRightClick > 100)
 		{
 			lastRightClick = currentTime;
 			if(ElectricItem.manager.use(currentGun, ConfigManager.AdvancedElectricSubmachineGunCost, playerIn))
@@ -39,7 +39,6 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.65F);
 				setLastRightClick(currentGun, lastRightClick);
-				return new ActionResult(EnumActionResult.SUCCESS, currentGun);
 			}
 			
 		}
