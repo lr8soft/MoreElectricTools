@@ -82,7 +82,8 @@ public class PlasmaAirCannon extends UniformElectricItem {
 			int expandSize= this.getMaxItemUseDuration(stack) - timeLeft;
 			expandSize = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, entityplayer, expandSize, true);
 			if(expandSize < 10) return;
-			if(ElectricItem.manager.use(stack, ConfigManager.PlasmaAirCannonBaseCost, entityplayer)) 
+			float ratio = getElectricItemAttenuationRatio(stack);
+			if(ElectricItem.manager.use(stack, ConfigManager.PlasmaAirCannonBaseCost * ratio, entityplayer)) 
 			{
 				float pitch = entityplayer.rotationPitch , yaw = entityplayer.rotationYaw;
 				Vec3d currentPostion = new Vec3d(entityplayer.posX, entityplayer.posY, entityplayer.posZ);
@@ -147,9 +148,4 @@ public class PlasmaAirCannon extends UniformElectricItem {
 		}
 	});
 	
-	@Override
-	public boolean isEnchantable(ItemStack stack)
-	{
-		return false;
-	}
 }

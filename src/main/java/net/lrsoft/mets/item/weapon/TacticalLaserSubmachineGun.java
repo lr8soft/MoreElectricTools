@@ -35,7 +35,7 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
 		long currentTime = System.currentTimeMillis();
 		if(currentTime - lastRightClick > 150)
 		{
-			float ratio = EfficientEnergyCost.getAttenuationRatio(EnchantmentHelper.getEnchantmentLevel(EnchantmentManager.efficientEu, currentGun));
+			float ratio = getElectricItemAttenuationRatio(currentGun);
 			if(ElectricItem.manager.use(currentGun, ConfigManager.TacticalLaserSubmachineGunCost * ratio, playerIn))
 			{
 				EntityHyperGunBullet entity = new EntityHyperGunBullet(worldIn, playerIn, 50f, 360);
@@ -57,7 +57,7 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
          {
 			EntityPlayer player = (EntityPlayer) attacker;
 			EntityLivingBase enemyEntity = (EntityLivingBase) targetEntity;
-			float ratio = EfficientEnergyCost.getAttenuationRatio(EnchantmentHelper.getEnchantmentLevel(EnchantmentManager.efficientEu, stack));
+			float ratio = getElectricItemAttenuationRatio(stack);
 			if (ElectricItem.manager.use(stack, ConfigManager.TacticalLaserSubmachineGunCost * ratio, player)) {
 				enemyEntity.knockBack(attacker, 1.0f, (double) MathHelper.sin(player.rotationYaw * 0.017453292F),
 						(double) (-MathHelper.cos(player.rotationYaw * 0.017453292F)));
@@ -76,13 +76,11 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
     
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-    	if(enchantment == EnchantmentManager.efficientEu || enchantment == Enchantments.SHARPNESS)
+    	boolean value = super.canApplyAtEnchantingTable(stack, enchantment);
+    	if(enchantment == Enchantments.SHARPNESS)
     	{
-    		return true;
+    		value = true;
     	}
-    	else
-    	{
-    		return false;
-    	}
+    	return value;
     }
 }

@@ -30,7 +30,8 @@ public class ElectricRocketLauncher extends UniformElectricItem {
 		{
 			lastRightClick = currentTime;
 			boolean isCreativeMode = playerIn.capabilities.isCreativeMode;
-			if(ElectricItem.manager.canUse(currentLauncher, ConfigManager.ElectricRocketLauncherCost) || isCreativeMode)
+			float ratio = getElectricItemAttenuationRatio(currentLauncher);
+			if(ElectricItem.manager.canUse(currentLauncher, ConfigManager.ElectricRocketLauncherCost * ratio) || isCreativeMode)
 			{
 				boolean shouldLaunch = false;
 				if(isCreativeMode)
@@ -42,7 +43,7 @@ public class ElectricRocketLauncher extends UniformElectricItem {
 					
 					if(ammo != ItemStack.EMPTY)
 					{
-						ElectricItem.manager.use(currentLauncher, ConfigManager.ElectricRocketLauncherCost, playerIn);
+						ElectricItem.manager.use(currentLauncher, ConfigManager.ElectricRocketLauncherCost * ratio, playerIn);
 						ammo.setCount(ammo.getCount()-1);
 						shouldLaunch = true;
 					}

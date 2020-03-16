@@ -11,6 +11,8 @@ public class ConfigManager {
 	 public static boolean EnableElectricFirstAidLifeSupportRecipe = true;
 	 @Config.RequiresWorldRestart
 	 public static boolean EnableElectricNutritionSupplyCost = true;
+	 @Config.RequiresMcRestart
+	 public static boolean EnableOreGenerate = true;
 	
 	 @Config.RequiresWorldRestart
 	 public static double AdvancedIridiumSwordBaseCost = 800d;

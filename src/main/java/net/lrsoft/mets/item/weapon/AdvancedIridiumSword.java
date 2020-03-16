@@ -93,7 +93,7 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 			return true;
 		
 		boolean isHyperState = getHyperState(stack);
-		float ratio = EfficientEnergyCost.getAttenuationRatio(EnchantmentHelper.getEnchantmentLevel(EnchantmentManager.efficientEu, stack));
+		float ratio = getElectricItemAttenuationRatio(stack);
 		double attackCost = (ConfigManager.AdvancedIridiumSwordBaseCost * (isHyperState ? 1.5d : 1.0d)) * ratio;
 		if(ElectricItem.manager.canUse(stack, attackCost)) 
 		{
