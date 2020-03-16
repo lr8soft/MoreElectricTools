@@ -22,6 +22,7 @@ import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
 import net.lrsoft.mets.item.weapon.AdvancedElectricSubmachineGun;
 import net.lrsoft.mets.item.weapon.AdvancedIridiumSword;
+import net.lrsoft.mets.item.weapon.ElectricForceFieldGenerator;
 import net.lrsoft.mets.item.weapon.ElectricRocketLauncher;
 import net.lrsoft.mets.item.weapon.ElectricShield;
 import net.lrsoft.mets.item.weapon.ElectricSubmachineGun;
@@ -57,6 +58,7 @@ public class ItemManager {
 	public static ElectricNutritionSupply electricNutritionSupply;
 	public static ElectricFishingRod electricFishingRod;
 	public static ElectricShield electricShield;
+	public static ElectricForceFieldGenerator electricForceFieldGenerator;
 	//public static ElectricLighter electricLighter;
 	
 	public static NanoBow nanoBow;
@@ -87,6 +89,7 @@ public class ItemManager {
 		electricNutritionSupply = new ElectricNutritionSupply();
 		electricFishingRod = new ElectricFishingRod();
 		electricShield = new ElectricShield();
+		electricForceFieldGenerator = new ElectricForceFieldGenerator();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		//electricLighter = new ElectricLighter();
@@ -123,6 +126,7 @@ public class ItemManager {
 		event.getRegistry().register(advancedElectricSubmachineGun);
 		event.getRegistry().register(tacticalLaserSubmachineGun);
 		event.getRegistry().register(electricRocketLauncher);
+		event.getRegistry().register(electricForceFieldGenerator);
 		//event.getRegistry().register(electricLighter);
 		
 		event.getRegistry().register(divingMask);
