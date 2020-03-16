@@ -39,9 +39,10 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.2f, 1.0F);
+				setLastRightClick(currentGun, lastRightClick);
 				return new ActionResult(EnumActionResult.SUCCESS, currentGun);
 			}
-			setLastRightClick(currentGun, lastRightClick);
+			
 		}
 		
 		return new ActionResult(EnumActionResult.PASS, currentGun);
