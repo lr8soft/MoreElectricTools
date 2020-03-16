@@ -13,11 +13,14 @@ import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import ic2.core.IC2;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.enchantment.EfficientEnergyCost;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
+import net.lrsoft.mets.manager.EnchantmentManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -33,6 +36,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -89,7 +93,8 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 			return true;
 		
 		boolean isHyperState = getHyperState(stack);
-		double attackCost = ConfigManager.AdvancedIridiumSwordBaseCost * (isHyperState ? 1.5d : 1.0d);
+		float ratio = getElectricItemAttenuationRatio(stack);
+		double attackCost = (ConfigManager.AdvancedIridiumSwordBaseCost * (isHyperState ? 1.5d : 1.0d)) * ratio;
 		if(ElectricItem.manager.canUse(stack, attackCost)) 
 		{
 			ElectricItem.manager.discharge(stack, attackCost, 4, true, false, false);
@@ -117,21 +122,6 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 		return true;
 	}
 	
-/*	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-		boolean isHyperState = getHyperState(stack);
-		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected && isHyperState);
-		if(isHyperState && entityIn instanceof EntityPlayer) 
-		{
-			EntityPlayer player = (EntityPlayer)entityIn;
-			if(!ElectricItem.manager.use(stack, 200, player))
-			{
-				isHyperState = false;
-			}
-		}
-		setHyperState(stack, isHyperState);
-	}
-	*/
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
@@ -184,5 +174,17 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 		} catch (Exception expt) {}
 		return value;
 	}
+	
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+    	if(enchantment == EnchantmentManager.efficientEu || enchantment == Enchantments.SHARPNESS)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
 	
 }

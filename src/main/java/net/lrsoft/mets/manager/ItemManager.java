@@ -9,6 +9,7 @@ import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
+import net.lrsoft.mets.item.ElectricForceFieldGenerator;
 import net.lrsoft.mets.item.ElectricLighter;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
@@ -57,6 +58,7 @@ public class ItemManager {
 	public static ElectricNutritionSupply electricNutritionSupply;
 	public static ElectricFishingRod electricFishingRod;
 	public static ElectricShield electricShield;
+	public static ElectricForceFieldGenerator electricForceFieldGenerator;
 	//public static ElectricLighter electricLighter;
 	
 	public static NanoBow nanoBow;
@@ -87,6 +89,7 @@ public class ItemManager {
 		electricNutritionSupply = new ElectricNutritionSupply();
 		electricFishingRod = new ElectricFishingRod();
 		electricShield = new ElectricShield();
+		electricForceFieldGenerator = new ElectricForceFieldGenerator();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		//electricLighter = new ElectricLighter();
@@ -123,6 +126,7 @@ public class ItemManager {
 		event.getRegistry().register(advancedElectricSubmachineGun);
 		event.getRegistry().register(tacticalLaserSubmachineGun);
 		event.getRegistry().register(electricRocketLauncher);
+		event.getRegistry().register(electricForceFieldGenerator);
 		//event.getRegistry().register(electricLighter);
 		
 		event.getRegistry().register(divingMask);
@@ -310,7 +314,7 @@ public class ItemManager {
 							"ITI",
 							"MBM",
 							"ITI",
-							'M', getAllTypeStack(electricNutritionSupply),
+							'M', getAllTypeStack(electricForceFieldGenerator),
 							'B', getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
 							'I', IC2Items.getItem("crafting", "iridium"),
 							'T', ItemCraftingManager.super_circuit
@@ -400,6 +404,17 @@ public class ItemManager {
 				'E', ReactorItemManager.advHeatVent,
 				'S', IC2Items.getItem("advanced_heat_exchanger"),
 				'O', getAllTypeStack(IC2Items.getItem("charging_lapotron_crystal"))
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricForceFieldGenerator), new Object[]
+				{
+				"SCS",
+				"MBM",
+				"SCS",
+				'S', ItemCraftingManager.titanium_casing,
+				'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
+				'M', getAllTypeStack(electricNutritionSupply),
+				'C', IC2Items.getItem("crafting", "advanced_circuit")
 				});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E

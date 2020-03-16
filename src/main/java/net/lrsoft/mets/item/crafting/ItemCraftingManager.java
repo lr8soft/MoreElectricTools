@@ -217,6 +217,7 @@ public class ItemCraftingManager {
 				null, false, new ItemStack(titanium_plate));
 		Recipes.blastfurnace.addRecipe(Recipes.inputFactory.forOreDict("dustTitanium"), tiblastfurnace, false, 
 				new ItemStack[] {new ItemStack(titanium_ingot),IC2Items.getItem("misc_resource", "slag")});
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(titanium_dust));
 		
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"),
 				null, false,new ItemStack[] {new ItemStack(titanium_casing, 2)});

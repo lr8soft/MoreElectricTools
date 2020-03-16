@@ -58,6 +58,7 @@ public class ElectricFishingRod extends ItemFishingRod  implements IElectricItem
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
+
         if(!ElectricItem.manager.canUse(itemstack, rodCost)) return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
         if (playerIn.fishEntity != null)
         {

@@ -27,10 +27,11 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
 		ItemStack currentGun = playerIn.getHeldItem(handIn);
 		long lastRightClick = getLastRightClick(currentGun);
 		long currentTime = System.currentTimeMillis();
-		if(currentTime - lastRightClick > ConfigManager.AdvancedElectricSubmachineGunInterval)
+		if(currentTime - lastRightClick > 125)
 		{
 			lastRightClick = currentTime;
-			if(ElectricItem.manager.use(currentGun, ConfigManager.AdvancedElectricSubmachineGunCost, playerIn))
+			float ratio = getElectricItemAttenuationRatio(currentGun);
+			if(ElectricItem.manager.use(currentGun, ConfigManager.AdvancedElectricSubmachineGunCost * ratio, playerIn))
 			{
 				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 25f, 360);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
@@ -39,7 +40,6 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.65F);
 				setLastRightClick(currentGun, lastRightClick);
-				return new ActionResult(EnumActionResult.SUCCESS, currentGun);
 			}
 			
 		}
@@ -53,7 +53,8 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
          {
 			EntityPlayer player = (EntityPlayer) attacker;
 			EntityLivingBase enemyEntity = (EntityLivingBase) targetEntity;
-			if (ElectricItem.manager.use(stack, ConfigManager.AdvancedElectricSubmachineGunCost / 5.0, player)) {
+			float ratio = getElectricItemAttenuationRatio(stack);
+			if (ElectricItem.manager.use(stack, ratio * ConfigManager.AdvancedElectricSubmachineGunCost / 5.0, player)) {
 				enemyEntity.knockBack(attacker, 0.75f, (double) MathHelper.sin(player.rotationYaw * 0.017453292F),
 						(double) (-MathHelper.cos(player.rotationYaw * 0.017453292F)));
 			}
@@ -61,9 +62,4 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
 		return true;
 	}
 	
-	@Override
-	public boolean isEnchantable(ItemStack stack) 
-	{
-		return false;
-	}
 }

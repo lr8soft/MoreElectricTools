@@ -51,6 +51,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.electricFishingRod.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricShield, 0,
 				new ModelResourceLocation(ItemManager.electricShield.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricForceFieldGenerator, 0,
+				new ModelResourceLocation(ItemManager.electricForceFieldGenerator.getRegistryName(), "inventory"));
 		//ModelLoader.setCustomModelResourceLocation(ItemManager.electricLighter, 0,
 		//		new ModelResourceLocation(ItemManager.electricLighter.getRegistryName(), "inventory"));
 		

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/electric_force_field_generator/electric_force_field_generator_1"
+  }
+}

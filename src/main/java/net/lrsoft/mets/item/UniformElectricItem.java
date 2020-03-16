@@ -8,6 +8,11 @@ import ic2.api.item.IBoxable;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.enchantment.EfficientEnergyCost;
+import net.lrsoft.mets.manager.EnchantmentManager;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
@@ -74,7 +79,10 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
     
     public Item getEmptyItem(ItemStack itemStack) {return this;}
     
-	protected void setLastRightClick(ItemStack stack, long value) {stack.getItem().getNBTShareTag(stack).setLong("LastRightClick", value);}
+	protected void setLastRightClick(ItemStack stack, long value) 
+	{
+		stack.getItem().getNBTShareTag(stack).setLong("LastRightClick", value);
+		}
 	protected long getLastRightClick(ItemStack stack) 
 	{
 		long value = 0;
@@ -86,5 +94,20 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 	
 	@Override
 	public boolean canBeStoredInToolbox(ItemStack stack) {return true;}
+	
+	
+	public float getElectricItemAttenuationRatio(ItemStack stack)
+	{
+		return EfficientEnergyCost.getAttenuationRatio(EnchantmentHelper.getEnchantmentLevel(EnchantmentManager.efficientEu, stack));
+	}
+	
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if (enchantment == EnchantmentManager.efficientEu) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
