@@ -70,7 +70,7 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
     private float getAttackDamage(float damage, ItemStack stack)
     {
 		int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, stack);
-		damage *= (level == 0) ? 1.0f : (level + 1);
+		damage *= (level == 0) ? 1.0f : level * 1.25f;
         return damage;
     }
     

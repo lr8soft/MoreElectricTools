@@ -43,10 +43,10 @@ public class AdvancedJetPack extends ItemArmor implements IElectricItem, IItemHu
 	}
 
 	@Override
-	public double getChargeLevel(ItemStack arg0) {return 3;}
+	public double getChargeLevel(ItemStack stack) {return ElectricItem.manager.getCharge(stack) / getMaxCharge(stack);}
 
 	@Override
-	public float getDropPercentage(ItemStack arg0) {return 0.01f;}
+	public float getDropPercentage(ItemStack arg0) {return 0.0f;}
 
 	@Override
 	public float getHoverMultiplier(ItemStack arg0, boolean arg1) {return 1.0f;}
