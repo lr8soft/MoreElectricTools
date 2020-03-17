@@ -111,30 +111,33 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit
 				});
 		
-		ItemStack advancedKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_kinetic_generator);
-		Recipes.advRecipes.addRecipe(advancedKineticGenerator, 
-				new Object[] {
-						"SSS",
-						"GMX",
-						"SSS",
-						'S', ItemCraftingManager.titanium_plate,
-						'G', IC2Items.getItem("te","kinetic_generator"),
-						'M', ItemManager.titaniumIronAlloyRotor,
-						'X', ItemCraftingManager.super_circuit
-				});
-		
-		ItemStack superKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.super_kinetic_generator);
-		Recipes.advRecipes.addRecipe(superKineticGenerator, 
-				new Object[] {
-						"SES",
-						"GMG",
-						"SES",
-						'S', IC2Items.getItem("crafting", "iridium"),
-						'G', advancedKineticGenerator,
-						'M', ItemManager.superIridiumRotor,
-						'E', ReactorItemManager.advOCHeatVent
-				});
-		
+		if(ConfigManager.EnableMoreKineticGenerator)
+		{
+			ItemStack advancedKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_kinetic_generator);
+			Recipes.advRecipes.addRecipe(advancedKineticGenerator, 
+					new Object[] {
+							"SSS",
+							"GMX",
+							"SSS",
+							'S', ItemCraftingManager.titanium_plate,
+							'G', IC2Items.getItem("te","kinetic_generator"),
+							'M', ItemManager.titaniumIronAlloyRotor,
+							'X', ItemCraftingManager.super_circuit
+					});
+			
+			ItemStack superKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.super_kinetic_generator);
+			Recipes.advRecipes.addRecipe(superKineticGenerator, 
+					new Object[] {
+							"SES",
+							"GMG",
+							"SES",
+							'S', IC2Items.getItem("crafting", "iridium"),
+							'G', advancedKineticGenerator,
+							'M', ItemManager.superIridiumRotor,
+							'E', ReactorItemManager.advOCHeatVent
+					});			
+		}
+
 		ItemStack advancedBlastFurnace = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_blast_furnace);
 		Recipes.advRecipes.addRecipe(advancedBlastFurnace, 
 				new Object[] {

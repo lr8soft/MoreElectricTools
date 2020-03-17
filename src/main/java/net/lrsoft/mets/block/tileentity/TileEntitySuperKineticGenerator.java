@@ -8,7 +8,7 @@ import ic2.core.util.ConfigUtil;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntitySuperKineticGenerator extends TileEntityKineticGenerator {
-	private final double euPerKu = 1.6D * ConfigUtil.getFloat(MainConfig.get(), "balance/energy/generator/Kinetic");
+	private final double euPerKu = 1.0D * ConfigUtil.getFloat(MainConfig.get(), "balance/energy/generator/Kinetic");
 	private double effectivePercent = 1.0d;
 	@Override
 	protected double getMultiplier() 

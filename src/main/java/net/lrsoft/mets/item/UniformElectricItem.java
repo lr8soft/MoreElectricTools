@@ -7,14 +7,18 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IBoxable;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
+import ic2.core.item.ElectricItemManager;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.block.tileentity.IMets;
 import net.lrsoft.mets.enchantment.EfficientEnergyCost;
 import net.lrsoft.mets.manager.EnchantmentManager;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -108,6 +112,14 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (!isInCreativeTab(tab)) {
+			return;
+		}
+		ElectricItemManager.addChargeVariants((Item)this, (List)items);
 	}
 
 }

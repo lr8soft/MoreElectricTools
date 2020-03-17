@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ThoriumBattery extends Item implements IElectricItem, IItemHudInfo{
-	private final static double transferSpeed = 9D, maxStorageEU = Integer.MAX_VALUE;
+	private final static double transferSpeed = 2D, maxStorageEU = Integer.MAX_VALUE;
 	public ThoriumBattery()
 	{
 		setUnlocalizedName("mets.thorium_battery");
