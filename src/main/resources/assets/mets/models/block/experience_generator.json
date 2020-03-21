@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/experience_generator/topbottom",
+    "down": "mets:blocks/experience_generator/topbottom",
+    "up": "mets:blocks/experience_generator/topbottom",
+    "north": "mets:blocks/experience_generator/normal",
+    "south": "mets:blocks/experience_generator/normal",
+    "west": "mets:blocks/experience_generator/normal",
+    "east": "mets:blocks/experience_generator/normal"
+  }
+}

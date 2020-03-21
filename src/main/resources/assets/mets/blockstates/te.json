@@ -35,7 +35,10 @@
 
       "cutting_machine": { "model": "mets:simple_machine/cutting_machine" },
       "cutting_machine_active": { "model": "mets:simple_machine/cutting_machine_active" },
-      "titanium_storage_box": { "model": "mets:simple_machine/titanium_storage_box" }
+      "titanium_storage_box": { "model": "mets:simple_machine/titanium_storage_box" },
+
+      "experience_generator": { "model": "mets:experience_generator" },
+      "experience_generator_active": { "model": "mets:experience_generator_active" }
     },
     "facing": {
       "down": { "x": 90 },
