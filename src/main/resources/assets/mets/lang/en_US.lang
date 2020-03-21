@@ -76,6 +76,7 @@ mets.te.extruding_machine=Advanced Metal Extruder
 mets.te.bending_machine=Advanced Metal Rolling Machine
 mets.te.cutting_machine=Advanced Metal Shearing Machine
 mets.te.titanium_storage_box=Titanium Storage Box
+mets.te.experience_generator=Experience Orb Generator
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor
@@ -88,4 +89,4 @@ mets.info.rotor=Suitable for wind and hydraulic~!
 mets.info.th_battery=May cause cancer -> §2 Harmless in Minecraft~
 mets.info.extralife=§6Extra life！
 
-enchantment.efficient_energy_cost=Efficient EU
+enchantment.efficient_energy_cost=Energy Saving

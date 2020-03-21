@@ -248,7 +248,7 @@ public class ItemCraftingManager {
 						'X', niobium_titanium_plate
 				});
 		
-		Recipes.advRecipes.addRecipe(new ItemStack(super_circuit),
+		Recipes.advRecipes.addRecipe(new ItemStack(super_circuit, 2),
 				new Object[] {
 						"XXX",
 						"STS",

@@ -111,30 +111,33 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit
 				});
 		
-		ItemStack advancedKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_kinetic_generator);
-		Recipes.advRecipes.addRecipe(advancedKineticGenerator, 
-				new Object[] {
-						"SSS",
-						"GMX",
-						"SSS",
-						'S', ItemCraftingManager.titanium_plate,
-						'G', IC2Items.getItem("te","kinetic_generator"),
-						'M', ItemManager.titaniumIronAlloyRotor,
-						'X', ItemCraftingManager.super_circuit
-				});
-		
-		ItemStack superKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.super_kinetic_generator);
-		Recipes.advRecipes.addRecipe(superKineticGenerator, 
-				new Object[] {
-						"SES",
-						"GMG",
-						"SES",
-						'S', IC2Items.getItem("crafting", "iridium"),
-						'G', advancedKineticGenerator,
-						'M', ItemManager.superIridiumRotor,
-						'E', ReactorItemManager.advOCHeatVent
-				});
-		
+		if(ConfigManager.EnableMoreKineticGenerator)
+		{
+			ItemStack advancedKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_kinetic_generator);
+			Recipes.advRecipes.addRecipe(advancedKineticGenerator, 
+					new Object[] {
+							"SSS",
+							"GMX",
+							"SSS",
+							'S', ItemCraftingManager.titanium_plate,
+							'G', IC2Items.getItem("te","kinetic_generator"),
+							'M', ItemManager.titaniumIronAlloyRotor,
+							'X', ItemCraftingManager.super_circuit
+					});
+			
+			ItemStack superKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.super_kinetic_generator);
+			Recipes.advRecipes.addRecipe(superKineticGenerator, 
+					new Object[] {
+							"SES",
+							"GMG",
+							"SES",
+							'S', IC2Items.getItem("crafting", "iridium"),
+							'G', advancedKineticGenerator,
+							'M', ItemManager.superIridiumRotor,
+							'E', ReactorItemManager.advOCHeatVent
+					});			
+		}
+
 		ItemStack advancedBlastFurnace = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_blast_furnace);
 		Recipes.advRecipes.addRecipe(advancedBlastFurnace, 
 				new Object[] {
@@ -194,16 +197,19 @@ public class BlockManager {
 						'C', IC2Items.getItem("crafting", "circuit")
 				});
 		
-		ItemStack advanced_stirling_generator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_stirling_generator);
-		Recipes.advRecipes.addRecipe(advanced_stirling_generator, 
-				new Object[] {
-						"SPS",
-						"SMS",
-						"SSS",
-						'S', ItemCraftingManager.titanium_casing,
-						'P', IC2Items.getItem("advanced_heat_exchanger"),
-						'M', IC2Items.getItem("te", "stirling_generator")
-				});
+		if(ConfigManager.EnableMoreStirlingGenerator)
+		{
+			ItemStack advanced_stirling_generator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_stirling_generator);
+			Recipes.advRecipes.addRecipe(advanced_stirling_generator, 
+					new Object[] {
+							"SPS",
+							"SMS",
+							"SSS",
+							'S', ItemCraftingManager.titanium_casing,
+							'P', IC2Items.getItem("advanced_heat_exchanger"),
+							'M', IC2Items.getItem("te", "stirling_generator")
+					});			
+		}
 		
 		ItemStack advanced_semifluid_generator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_semifluid_generator);
 		Recipes.advRecipes.addRecipe(advanced_semifluid_generator, 
@@ -268,6 +274,19 @@ public class BlockManager {
 						"PSP",
 						'S', ItemCraftingManager.titanium_casing,
 						'P', ItemCraftingManager.titanium_plate
+				});
+		
+		
+		ItemStack experience_generator = teBlock.getItemStack(MetsBlockWithTileEntity.experience_generator);
+		Recipes.advRecipes.addRecipe(experience_generator, 
+				new Object[] {
+						"SMS",
+						"BCB",
+						"SMS",
+						'S', ItemCraftingManager.titanium_casing,
+						'M', lootGenerator,
+						'C', ItemCraftingManager.super_circuit,
+						'B', getAllTypeStack(IC2Items.getItem("energy_crystal"))
 				});
 	}
 	

@@ -79,6 +79,7 @@ mets.te.extruding_machine=进阶金属挤压机
 mets.te.bending_machine=进阶金属辊压机
 mets.te.cutting_machine=进阶金属剪切机
 mets.te.titanium_storage_box=钛制储物箱
+mets.te.experience_generator=经验球发电机
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
@@ -88,4 +89,4 @@ mets.info.rotor=适用于风力水力~！
 mets.info.th_battery=§9无限电力，但可能致癌~
 mets.info.extralife=§6额外的生命！
 
-enchantment.efficient_energy_cost=高效EU
+enchantment.efficient_energy_cost=节能

@@ -13,6 +13,11 @@ public class ConfigManager {
 	 public static boolean EnableElectricNutritionSupplyCost = true;
 	 @Config.RequiresMcRestart
 	 public static boolean EnableOreGenerate = true;
+	 @Config.RequiresMcRestart
+	 public static boolean EnableMoreKineticGenerator = false;
+	 @Config.RequiresMcRestart
+	 public static boolean EnableMoreStirlingGenerator = false;
+	 
 	
 	 @Config.RequiresWorldRestart
 	 public static double AdvancedIridiumSwordBaseCost = 800d;
