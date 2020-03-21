@@ -19,13 +19,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
-public class EnergyCrystalBelt extends UniformElectricItem implements IBauble {
+public class LapotronCrystalBelt extends UniformElectricItem implements IBauble {
 
-	private final static double transferSpeed = 512d, storageEnergy = 2000000;
-	private final static int tier = 3;
-	public EnergyCrystalBelt()
+	private final static double transferSpeed = 2048d, storageEnergy = 20000000;
+	private final static int tier = 4;
+	public LapotronCrystalBelt()
 	{
-		super("energy_crystal_belt", storageEnergy, transferSpeed, tier);
+		super("lapotron_crystal_belt", storageEnergy, transferSpeed, tier);
 	}
 	
 	@Override

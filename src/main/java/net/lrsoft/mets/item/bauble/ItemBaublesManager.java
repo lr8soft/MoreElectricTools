@@ -19,11 +19,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class ItemBaublesManager {
 	public static ElectricFireProofNecklace electricFireProofNecklace = new ElectricFireProofNecklace();
 	public static EnergyCrystalBelt energyCrystalBelt = new EnergyCrystalBelt();
+	public static LapotronCrystalBelt lapotronCrystalBelt = new LapotronCrystalBelt();
 	@SubscribeEvent
 	public static void onBaublesInit(RegistryEvent.Register<Item> event) 
 	{
 		event.getRegistry().register(electricFireProofNecklace);
 		event.getRegistry().register(energyCrystalBelt);
+		event.getRegistry().register(lapotronCrystalBelt);
 		onRecipeInit();
 	}
 	
@@ -46,10 +48,21 @@ public class ItemBaublesManager {
 						"PSP",
 						"BCB",
 						"PSP",
-						'P', ItemCraftingManager.titanium_casing,
+						'P', IC2Items.getItem("crafting", "carbon_plate"),
 						'S', IC2Items.getItem("crafting", "advanced_circuit"),
 						'C', ItemCraftingManager.titanium_plate,
 						'B', ItemStackUtils.getAllTypeStack(IC2Items.getItem("energy_crystal"))
+				});	
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(lapotronCrystalBelt), 
+				new Object[] {
+						"PSP",
+						"BTB",
+						"PSP",
+						'P', ItemCraftingManager.niobium_titanium_plate,
+						'S', ItemCraftingManager.super_circuit,
+						'T', ItemStackUtils.getAllTypeStack(energyCrystalBelt),
+						'B', ItemStackUtils.getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
 				});	
 	}
 	
@@ -59,6 +72,8 @@ public class ItemBaublesManager {
 				new ModelResourceLocation(electricFireProofNecklace.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(energyCrystalBelt, 0,
 				new ModelResourceLocation(energyCrystalBelt.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(lapotronCrystalBelt, 0,
+				new ModelResourceLocation(lapotronCrystalBelt.getRegistryName(), "inventory"));
 	}
 	
 	
