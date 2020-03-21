@@ -60,6 +60,9 @@ item.mets.advanced_jetpack.name=Advanced Electric Overclocking Jet Backpack
 item.mets.advanced_oc_heat_vent.name=§bIridium Overclocking Heat Vent
 item.mets.advanced_heat_vent.name=§bIridium Heat Vent
 
+item.mets.electric_fire_proof_necklace.name=Electric Fireproof Necklace
+item.mets.energy_crystal_belt.name=Energy Crystal Belt
+
 mets.te.lesu=LESU
 mets.te.eesu=§9EESU
 mets.te.drop_generator=Loot Generator
