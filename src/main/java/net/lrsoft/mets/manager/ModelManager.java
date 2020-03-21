@@ -1,5 +1,6 @@
 package net.lrsoft.mets.manager;
 
+import baubles.common.Baubles;
 import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.entity.EntityGunBullet;
@@ -20,6 +21,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -86,7 +88,10 @@ public class ModelManager {
 		
 		ItemCraftingManager.onCraftingItemModelInit();
 		ReactorItemManager.onItemModelInit();
-		ItemBaublesManager.onBaublesModelInit();
+		
+		if (Loader.isModLoaded(Baubles.MODID)) {
+			ItemBaublesManager.onBaublesModelInit();
+		}
 	}	
 	
 	@SubscribeEvent

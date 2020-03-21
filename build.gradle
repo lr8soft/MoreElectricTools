@@ -19,6 +19,11 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
     }
+	
+    maven {
+        name = "azanor"
+        url = "http://maven.thiakil.com"
+    }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -26,8 +31,8 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 version = "1.0"
-group = "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+group = "net.lrsoft.mets" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "mets"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -50,7 +55,7 @@ minecraft {
 dependencies {
     deobfCompile "mezz.jei:jei_1.12.2:4.13.1.220"
     compile files ("libs/industrialcraft-2-2.8.188-ex112-dev.jar")
-    compile files ("libs/Baubles-1.12-1.5.2-api.jar")
+    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 }
 
 processResources {
