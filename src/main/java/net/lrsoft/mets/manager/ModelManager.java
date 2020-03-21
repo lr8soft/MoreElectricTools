@@ -5,6 +5,7 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.entity.EntityRocket;
+import net.lrsoft.mets.item.bauble.ItemBaublesManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.renderer.BulletRenderer;
@@ -85,6 +86,7 @@ public class ModelManager {
 		
 		ItemCraftingManager.onCraftingItemModelInit();
 		ReactorItemManager.onItemModelInit();
+		ItemBaublesManager.onBaublesModelInit();
 	}	
 	
 	@SubscribeEvent
