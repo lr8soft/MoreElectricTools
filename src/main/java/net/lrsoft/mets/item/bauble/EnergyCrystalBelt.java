@@ -63,11 +63,6 @@ public class EnergyCrystalBelt extends UniformElectricItem implements IBauble {
 	}
 	
 	@Override
-	public boolean hasEffect(ItemStack par1ItemStack) {
-		return true;
-	}
-	
-	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		if(!world.isRemote) { 
 			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);

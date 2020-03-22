@@ -37,11 +37,10 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 		setUnlocalizedName("mets." + itemName);
 		setRegistryName(MoreElectricTools.MODID, itemName);
 		setCreativeTab(MoreElectricTools.CREATIVE_TAB);
-		setMaxDamage(35);
+		setMaxDamage(54321);
 		setMaxStackSize(1);
 		setNoRepair();
 	}
-
 	
 	@Override
 	public List<String> getHudInfo(ItemStack stack, boolean advanced)

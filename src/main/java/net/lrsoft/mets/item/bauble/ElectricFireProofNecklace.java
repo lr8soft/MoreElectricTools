@@ -56,10 +56,6 @@ public class ElectricFireProofNecklace extends UniformElectricItem implements IB
 		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON, .75F, 2f);
 	}
 	
-	@Override
-	public boolean hasEffect(ItemStack par1ItemStack) {
-		return true;
-	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {

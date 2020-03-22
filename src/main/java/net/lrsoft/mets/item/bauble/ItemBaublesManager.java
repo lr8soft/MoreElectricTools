@@ -22,16 +22,19 @@ public class ItemBaublesManager {
 	public static Item electricFireProofNecklace;
 	public static Item energyCrystalBelt ;
 	public static Item lapotronCrystalBelt;
+	public static Item electricLifeSupportRing;
 
 	public static void onBaublesInit(RegistryEvent.Register<Item> event) 
 	{
 		electricFireProofNecklace = new ElectricFireProofNecklace();
 		energyCrystalBelt = new EnergyCrystalBelt();
 		lapotronCrystalBelt = new LapotronCrystalBelt();
+		electricLifeSupportRing = new ElectricLifeSupportRing();
 		
 		event.getRegistry().register(electricFireProofNecklace);
 		event.getRegistry().register(energyCrystalBelt);
 		event.getRegistry().register(lapotronCrystalBelt);
+		event.getRegistry().register(electricLifeSupportRing);
 		onRecipeInit();
 	}
 	
@@ -70,6 +73,19 @@ public class ItemBaublesManager {
 						'T', ItemStackUtils.getAllTypeStack(energyCrystalBelt),
 						'B', ItemStackUtils.getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
 				});	
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricLifeSupportRing), 
+				new Object[] {
+						"PAP",
+						"LSN",
+						"PBP",
+						'P', ItemCraftingManager.super_iridium_compress_plate,
+						'A', ItemStackUtils.getAllTypeStack(ItemManager.electricForceFieldGenerator),
+						'L', ItemStackUtils.getAllTypeStack(ItemManager.electricFirstAidLifeSupport),
+						'S', ItemStackUtils.getAllTypeStack(lapotronCrystalBelt),
+						'N', ItemStackUtils.getAllTypeStack(ItemManager.electricNutritionSupply),
+						'B', ItemStackUtils.getAllTypeStack(ItemManager.superLapotronCrystal)
+				});	
 	}
 	
 	public static void onBaublesModelInit()
@@ -81,6 +97,8 @@ public class ItemBaublesManager {
 				new ModelResourceLocation(energyCrystalBelt.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(lapotronCrystalBelt, 0,
 				new ModelResourceLocation(lapotronCrystalBelt.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(electricLifeSupportRing, 0,
+				new ModelResourceLocation(electricLifeSupportRing.getRegistryName(), "inventory"));
 
 	}
 	

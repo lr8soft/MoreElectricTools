@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityExperienceGenerator extends TileEntityBaseGenerator {
 	public TileEntityExperienceGenerator() {
-		super(256.0D, 3, 1000000);
+		super(160.0D, 3, 1000000);
 	}
 	
 	@Override
