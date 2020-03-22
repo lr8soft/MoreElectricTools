@@ -1,0 +1,24 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/baubles/electric_life_support_ring"
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:ring_energy_value": 0.25 },
+      "model": "mets:item/electric_life_support_ring/electric_life_support_ring_1"
+    },
+    {
+      "predicate": { "mets:ring_energy_value": 0.5 },
+      "model": "mets:item/electric_life_support_ring/electric_life_support_ring_2"
+    },
+    {
+      "predicate": { "mets:ring_energy_value": 0.75 },
+      "model": "mets:item/electric_life_support_ring/electric_life_support_ring_3"
+    },
+    {
+      "predicate": { "mets:ring_energy_value": 1.0 },
+      "model": "mets:item/electric_life_support_ring/electric_life_support_ring_4"
+    }
+  ]
+}

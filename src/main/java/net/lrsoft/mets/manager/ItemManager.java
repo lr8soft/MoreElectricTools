@@ -1,5 +1,6 @@
 package net.lrsoft.mets.manager;
 
+import baubles.common.Baubles;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
 import ic2.core.item.armor.jetpack.JetpackAttachmentRecipe;
@@ -17,6 +18,7 @@ import net.lrsoft.mets.item.battery.ChargingSuperLapotronCrystal;
 import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
 import net.lrsoft.mets.item.battery.ThoriumBattery;
+import net.lrsoft.mets.item.bauble.ItemBaublesManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
@@ -39,6 +41,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -146,6 +149,11 @@ public class ItemManager {
 		onRecipeInit();
 		ItemCraftingManager.onCraftingItemRecipeInit();
 		ReactorItemManager.onItemRecipeInit();
+		
+		if (Loader.isModLoaded(Baubles.MODID)) 
+		{
+			ItemBaublesManager.onBaublesInit(event);
+		}
 	}
 	// new ItemStack(IC2Items.getItem("lapotron_crystal").getItem(), 1, OreDictionary.WILDCARD_VALUE),//IC2Items.getItem("energy_crystal"),
 	private static void onRecipeInit() 

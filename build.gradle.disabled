@@ -29,6 +29,7 @@ repositories {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
+
 version = "1.0"
 group = "net.lrsoft.mets" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mets"
@@ -42,22 +43,19 @@ minecraft {
     version = "1.12.2-14.23.5.2768"
     runDir = "run"
     
+    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not always work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = "snapshot_20171003"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-
 }
-
-/*configurations
-{
-    shade
-    compile.extendsFrom shade
-}*/
 
 dependencies {
     deobfCompile "mezz.jei:jei_1.12.2:4.13.1.220"
     compile files ("libs/industrialcraft-2-2.8.188-ex112-dev.jar")
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
-    //shade "com.azanor.baubles:Baubles:1.12-1.5.2"
 }
 
 processResources {

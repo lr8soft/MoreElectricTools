@@ -63,6 +63,11 @@ item.mets.super_iridium_rotor.name=§b超级铱合金转子
 item.mets.advanced_oc_heat_vent.name=§b铱金超频散热器
 item.mets.advanced_heat_vent.name=§b铱金散热器
 
+item.mets.electric_fire_proof_necklace.name=电力防火项链
+item.mets.energy_crystal_belt.name=能量水晶电池腰带
+item.mets.lapotron_crystal_belt.name=§e兰波顿电池腰带
+item.mets.electric_life_support_ring.name=§b终极维生指环
+
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱
 mets.te.drop_generator=掉落物发电机

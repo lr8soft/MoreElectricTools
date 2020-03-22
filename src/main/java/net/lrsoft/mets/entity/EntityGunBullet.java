@@ -44,7 +44,8 @@ public class EntityGunBullet extends Entity {
 		this.ticksInAir = 0;
 		this.shooter = owner;
 		setSize(0.39F, 0.39F);
-		setPosition(owner.posX, owner.posY + 1.4d, owner.posZ);
+	
+		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
 		this.power = power;
 		this.maxExistTicks = maxTick;
 	}
@@ -131,31 +132,29 @@ public class EntityGunBullet extends Entity {
 	
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
     {
-        Entity entity = null;
-        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), GUN_TARGETS);
-        double d0 = 0.0D;
+		Entity entity = null;
+		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
+				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), GUN_TARGETS);
+		double d0 = 0.0D;
 
-        for (int i = 0; i < list.size(); ++i)
-        {
-            Entity entity1 = list.get(i);
+		for (int i = 0; i < list.size(); ++i) {
+			Entity entity1 = list.get(i);
 
-            if (this.ticksInAir >= (5 / velocity))
-            {
-                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
-                RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
+			if (shooter != null && shooter == entity1) {
+				continue;
+			}
+			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
+			RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
 
-                if (raytraceresult != null)
-                {
-                    double d1 = start.squareDistanceTo(raytraceresult.hitVec);
+			if (raytraceresult != null) {
+				double d1 = start.squareDistanceTo(raytraceresult.hitVec);
 
-                    if (d1 < d0 || d0 == 0.0D)
-                    {
-                        entity = entity1;
-                        d0 = d1;
-                    }
-                }
-            }
-        }
+				if (d1 < d0 || d0 == 0.0D) {
+					entity = entity1;
+					d0 = d1;
+				}
+			}
+		}
 
         return entity;
     }
@@ -166,11 +165,13 @@ public class EntityGunBullet extends Entity {
         float f1 = -MathHelper.sin(pitch * 0.017453292F);
         float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
         this.shoot((double)f, (double)f1, (double)f2, velocity);
+        
         this.motionX += shooter.motionX;
         this.motionY += shooter.motionY;
         this.motionZ += shooter.motionZ;
         this.velocity = velocity;
 	}
+
 	
     protected void shoot(double x, double y, double z, float velocity)
     {
