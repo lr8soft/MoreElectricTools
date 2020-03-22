@@ -11,11 +11,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class ElectricFireProofNecklace extends UniformElectricItem implements IBauble{
 	private final static double transferSpeed = 128D, storageEnergy = 100000;
@@ -42,6 +44,7 @@ public class ElectricFireProofNecklace extends UniformElectricItem implements IB
 			}
 		}
 	}
+	
 	
 	@Override
 	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {

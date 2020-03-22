@@ -150,7 +150,8 @@ public class ItemManager {
 		ItemCraftingManager.onCraftingItemRecipeInit();
 		ReactorItemManager.onItemRecipeInit();
 		
-		if (Loader.isModLoaded(Baubles.MODID)) {
+		if (Loader.isModLoaded(Baubles.MODID)) 
+		{
 			ItemBaublesManager.onBaublesInit(event);
 		}
 	}

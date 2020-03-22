@@ -34,32 +34,31 @@ public class EntityHyperGunBullet extends EntityGunBullet {
 	@Override
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
     {
-        Entity entity = null;
-        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, 
-        		this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), EntityGunBullet.GUN_TARGETS);
-        double d0 = 0.0D;
+		Entity entity = null;
+		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
+				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D),
+				EntityGunBullet.GUN_TARGETS);
+		double d0 = 0.0D;
 
-        for (int i = 0; i < list.size(); ++i)
-        {
-            Entity entity1 = list.get(i);
+		for (int i = 0; i < list.size(); ++i) {
+			Entity entity1 = list.get(i);
 
-            if (this.ticksInAir >= (6 / velocity))
-            {
-                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
-                RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
+			if (shooter != null && shooter == entity1) {
+				continue;
+			}
 
-                if (raytraceresult != null)
-                {
-                    double d1 = start.squareDistanceTo(raytraceresult.hitVec);
+			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
+			RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
 
-                    if (d1 < d0 || d0 == 0.0D)
-                    {
-                        entity = entity1;
-                        d0 = d1;
-                    }
-                }
-            }
-        }
+			if (raytraceresult != null) {
+				double d1 = start.squareDistanceTo(raytraceresult.hitVec);
+
+				if (d1 < d0 || d0 == 0.0D) {
+					entity = entity1;
+					d0 = d1;
+				}
+			}
+		}
 
         return entity;
     }

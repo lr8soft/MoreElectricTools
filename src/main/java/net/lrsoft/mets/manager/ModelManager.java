@@ -89,7 +89,8 @@ public class ModelManager {
 		ItemCraftingManager.onCraftingItemModelInit();
 		ReactorItemManager.onItemModelInit();
 		
-		if (Loader.isModLoaded(Baubles.MODID)) {
+		if (Loader.isModLoaded(Baubles.MODID))
+		{
 			ItemBaublesManager.onBaublesModelInit();
 		}
 	}	
