@@ -15,7 +15,7 @@ public class ReactorItemManager {
 	static 
 	{
 		advOCHeatVent = new ReactorHeatVent("advanced_oc_heat_vent", 72, 56, 4000);
-		advHeatVent = new ReactorHeatVent("advanced_heat_vent", 36, 36, 4000);
+		advHeatVent = new ReactorHeatVent("advanced_heat_vent", 0, 36, 4000);
 	}
 	
 	public static void onItemInit(Register<Item> event)
