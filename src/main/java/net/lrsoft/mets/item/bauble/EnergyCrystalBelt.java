@@ -35,7 +35,7 @@ public class EnergyCrystalBelt extends UniformElectricItem implements IBauble {
 	
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase entity) {
-		if(entity instanceof EntityPlayer &&  entity.world.getTotalWorldTime() % 10L < getTier(itemstack))
+		if(entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
 			NonNullList<ItemStack> nonNullList = player.inventory.mainInventory;

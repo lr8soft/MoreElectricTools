@@ -23,6 +23,7 @@ public class ItemBaublesManager {
 	public static Item energyCrystalBelt ;
 	public static Item lapotronCrystalBelt;
 	public static Item electricLifeSupportRing;
+	public static Item electricFlightRing;
 
 	public static void onBaublesInit(RegistryEvent.Register<Item> event) 
 	{
@@ -30,11 +31,13 @@ public class ItemBaublesManager {
 		energyCrystalBelt = new EnergyCrystalBelt();
 		lapotronCrystalBelt = new LapotronCrystalBelt();
 		electricLifeSupportRing = new ElectricLifeSupportRing();
+		electricFlightRing = new ElectricFlightRing();
 		
 		event.getRegistry().register(electricFireProofNecklace);
 		event.getRegistry().register(energyCrystalBelt);
 		event.getRegistry().register(lapotronCrystalBelt);
 		event.getRegistry().register(electricLifeSupportRing);
+		event.getRegistry().register(electricFlightRing);
 		onRecipeInit();
 	}
 	
@@ -86,6 +89,18 @@ public class ItemBaublesManager {
 						'N', ItemStackUtils.getAllTypeStack(ItemManager.electricNutritionSupply),
 						'B', ItemStackUtils.getAllTypeStack(ItemManager.superLapotronCrystal)
 				});	
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricFlightRing), 
+				new Object[] {
+						"SCS",
+						"SBS",
+						"DJD",
+						'S', ItemCraftingManager.niobium_titanium_plate,
+						'C', ItemCraftingManager.super_circuit,
+						'B', ItemStackUtils.getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
+						'D', IC2Items.getItem("dust", "energium"),
+						'J', ItemStackUtils.getAllTypeStack(ItemManager.advancedJetPack)
+				});	
 	}
 	
 	public static void onBaublesModelInit()
@@ -99,6 +114,8 @@ public class ItemBaublesManager {
 				new ModelResourceLocation(lapotronCrystalBelt.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(electricLifeSupportRing, 0,
 				new ModelResourceLocation(electricLifeSupportRing.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(electricFlightRing, 0,
+				new ModelResourceLocation(electricFlightRing.getRegistryName(), "inventory"));
 
 	}
 	
