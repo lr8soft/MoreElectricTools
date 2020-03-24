@@ -52,6 +52,10 @@ public class ItemCraftingManager {
 	public static Item super_iridium_alloy;
 	public static Item super_iridium_blade;
 	public static Item super_iridium_compress_plate;
+	
+	public static Item copper_nugget;
+	public static Item tin_nugget;
+	public static Item titanium_nugget;
 	static 
 	{
 		niobium_crushed = new UniformCraftingItem("niobium_crushed", 64);
@@ -87,6 +91,10 @@ public class ItemCraftingManager {
 		titanium_iron_rotor_blade = new UniformCraftingItem("titanium_iron_rotor_blade", 64);
 		super_iridium_blade = new UniformCraftingItem("super_iridium_blade", 64);
 		super_iridium_compress_plate = new UniformCraftingItem("super_iridium_compress_plate", 64);
+		
+		copper_nugget = new UniformCraftingItem("copper_nugget", 64);
+		tin_nugget = new UniformCraftingItem("tin_nugget", 64);
+		titanium_nugget = new UniformCraftingItem("titanium_nugget", 64);
 	}
 	
 	public static void onCraftingItemInit(RegistryEvent.Register<Item> event)
@@ -118,6 +126,10 @@ public class ItemCraftingManager {
 		event.getRegistry().register(titanium_iron_rotor_blade);
 		event.getRegistry().register(super_iridium_blade);
 		event.getRegistry().register(super_iridium_compress_plate);
+		
+		event.getRegistry().register(copper_nugget);
+		event.getRegistry().register(tin_nugget);
+		event.getRegistry().register(titanium_nugget);
 	}
 	
 	public static void onCraftingItemModelInit()
@@ -172,6 +184,13 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(super_iridium_blade.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(super_iridium_compress_plate, 0,
 				new ModelResourceLocation(super_iridium_compress_plate.getRegistryName(), "inventory"));
+		
+		ModelLoader.setCustomModelResourceLocation(copper_nugget, 0,
+				new ModelResourceLocation(copper_nugget.getRegistryName(), "inventory"));		
+		ModelLoader.setCustomModelResourceLocation(tin_nugget, 0,
+				new ModelResourceLocation(tin_nugget.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(titanium_nugget, 0,
+				new ModelResourceLocation(titanium_nugget.getRegistryName(), "inventory"));
 	}
 	
 	public static void onCraftingItemOreDictInit()
@@ -195,6 +214,10 @@ public class ItemCraftingManager {
 		
 		OreDictionary.registerOre("cableSuperconducting", superconducting_cable);
 		OreDictionary.registerOre("superCircuit", super_circuit);
+		
+		OreDictionary.registerOre("nuggetCopper", copper_nugget);
+		OreDictionary.registerOre("nuggetTin", tin_nugget);
+		OreDictionary.registerOre("nuggetTitanium", titanium_nugget);
 	}
 	
 	public static void onCraftingItemRecipeInit()
@@ -217,6 +240,9 @@ public class ItemCraftingManager {
 				null, false, new ItemStack(titanium_plate));
 		Recipes.blastfurnace.addRecipe(Recipes.inputFactory.forOreDict("dustTitanium"), tiblastfurnace, false, 
 				new ItemStack[] {new ItemStack(titanium_ingot),IC2Items.getItem("misc_resource", "slag")});
+		Recipes.blastfurnace.addRecipe(Recipes.inputFactory.forOreDict("nuggetTitanium", 9), tiblastfurnace, false, 
+				new ItemStack[] {new ItemStack(titanium_ingot),IC2Items.getItem("misc_resource", "slag")});
+		
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(titanium_dust));
 		
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("plateTitanium"),
@@ -314,6 +340,10 @@ public class ItemCraftingManager {
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(super_iridium_alloy, 3)),
 				null, false, new ItemStack(super_iridium_compress_plate));
 		
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(copper_nugget, 9)),
+				null, false, IC2Items.getItem("ingot", "copper"));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(tin_nugget, 9)),
+				null, false, IC2Items.getItem("ingot", "tin"));
 		
 		//Th
 		Recipes.advRecipes.addShapelessRecipe(new ItemStack(thorium_dust),

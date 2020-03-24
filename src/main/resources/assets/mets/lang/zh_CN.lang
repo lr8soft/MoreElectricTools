@@ -18,6 +18,10 @@ item.mets.crafting.titanium_shaft.name=钛柄
 item.mets.crafting.thorium_pile.name=一小堆钍
 item.mets.crafting.thorium_dust.name=钍粉
 
+item.mets.crafting.copper_nugget.name=铜粒
+item.mets.crafting.tin_nugget.name=锡粒
+item.mets.crafting.titanium_nugget.name=钛粒
+
 item.mets.crafting.titanium_iron_rotor_blade.name=钛铁合金扇叶
 item.mets.crafting.super_iridium_alloy.name=§b超级铱合金锭
 item.mets.crafting.super_iridium_blade.name=§b超级铱合金扇叶
@@ -68,6 +72,11 @@ item.mets.energy_crystal_belt.name=能量水晶电池腰带
 item.mets.lapotron_crystal_belt.name=§e兰波顿电池腰带
 item.mets.electric_life_support_ring.name=§b终极维生指环
 item.mets.electric_flight_ring.name=§b电力飞行指环
+
+item.mets.iron_rich_seed.name=富铁种子
+item.mets.copper_rich_seed.name=富铜种子
+item.mets.tin_rich_seed.name=富锡种子
+item.mets.titanium_rich_seed.name=富钛种子
 
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱

@@ -22,7 +22,6 @@ import net.minecraft.world.World;
 public abstract class UniformCropTemplate extends BlockBush implements IGrowable {
     private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
     
-    
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
@@ -162,14 +161,12 @@ public abstract class UniformCropTemplate extends BlockBush implements IGrowable
     @Override
     public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        super.getDrops(drops, world, pos, state, 0);
+        super.getDrops(drops, world, pos, state, 1);
         int age = getAge(state);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
 
         if (age >= getMaxAge())
         {
-            int k = 3 + fortune;
-
             for (int i = 0; i < 3 + fortune; ++i)
             {
                 if (rand.nextInt(2 * getMaxAge()) <= age)
@@ -220,9 +217,7 @@ public abstract class UniformCropTemplate extends BlockBush implements IGrowable
         return this.withAge(meta);
     }
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
+
     public int getMetaFromState(IBlockState state)
     {
         return this.getAge(state);
