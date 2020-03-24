@@ -8,6 +8,7 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.armor.AdvancedJetPack;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
+import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricForceFieldGenerator;
@@ -145,6 +146,7 @@ public class ItemManager {
 		
 		ItemCraftingManager.onCraftingItemInit(event);
 		ReactorItemManager.onItemInit(event);
+		CropManager.onItemInit(event);
 		
 		onRecipeInit();
 		ItemCraftingManager.onCraftingItemRecipeInit();
