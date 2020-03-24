@@ -90,7 +90,7 @@ public abstract class UniformCropTemplate extends BlockBush implements IGrowable
 
     protected int getBonemealAgeIncrease(World worldIn)
     {
-        return 1;//0;
+        return MathHelper.getInt(worldIn.rand, 1, 5);
     }
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)

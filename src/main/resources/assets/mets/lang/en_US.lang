@@ -74,6 +74,7 @@ item.mets.iron_rich_seed.name=Seed of Iron Rich Crop
 item.mets.copper_rich_seed.name=Seed of Copper Rich Crop
 item.mets.tin_rich_seed.name=Seed of Tin Rich Crop
 item.mets.titanium_rich_seed.name=Seed of Titanium Rich Crop
+item.mets.uranium_rich_seed.name=Seed of Uranium Rich Crop
 
 mets.te.lesu=LESU
 mets.te.eesu=§9EESU

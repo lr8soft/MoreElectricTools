@@ -77,6 +77,7 @@ item.mets.iron_rich_seed.name=富铁种子
 item.mets.copper_rich_seed.name=富铜种子
 item.mets.tin_rich_seed.name=富锡种子
 item.mets.titanium_rich_seed.name=富钛种子
+item.mets.uranium_rich_seed.name=富铀种子
 
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱
