@@ -21,6 +21,7 @@ item.mets.crafting.thorium_dust.name=钍粉
 item.mets.crafting.copper_nugget.name=铜粒
 item.mets.crafting.tin_nugget.name=锡粒
 item.mets.crafting.titanium_nugget.name=钛粒
+item.mets.crafting.lead_nugget.name=铅粒
 
 item.mets.crafting.titanium_iron_rotor_blade.name=钛铁合金扇叶
 item.mets.crafting.super_iridium_alloy.name=§b超级铱合金锭
@@ -36,6 +37,7 @@ item.mets.crafting.super_circuit.name=§b超级电路板
 item.mets.crafting.lens.name=玻璃透镜
 item.mets.crafting.diamond_lens.name=§b钻石透镜
 item.mets.crafting.rocket.name=火箭弹
+item.mets.crafting.plant_extract.name=植物精华
 
 item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.charging_super_lapotron_crystal.name=§b超级兰波顿充电电池
@@ -78,6 +80,7 @@ item.mets.copper_rich_seed.name=富铜种子
 item.mets.tin_rich_seed.name=富锡种子
 item.mets.titanium_rich_seed.name=富钛种子
 item.mets.uranium_rich_seed.name=富铀种子
+item.mets.lead_rich_seed.name=富铅种子
 
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱
@@ -104,5 +107,6 @@ mets.info.crafting_only=仅用于合成
 mets.info.rotor=适用于风力水力~！
 mets.info.th_battery=§9无限电力，但可能致癌~
 mets.info.extralife=§6额外的生命！
+mets.info.radiation=小心辐射！
 
 enchantment.efficient_energy_cost=节能

@@ -1,8 +1,11 @@
 package net.lrsoft.mets.crop;
 
+import java.util.List;
 import java.util.Random;
 
 import ic2.api.item.IC2Items;
+import ic2.core.IC2Potion;
+import ic2.core.item.armor.ItemArmorHazmat;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.minecraft.block.Block;
@@ -13,13 +16,17 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
@@ -84,6 +91,24 @@ public class UraniumRichCrop extends BlockBush implements IGrowable{
 				}
 			}
 		}
+		int x = rand.nextInt(99);
+        if(x > 0 && x < 30)
+        {
+        	Vec3i offset = new Vec3i(2, 2, 2);
+    		BlockPos minPos = pos.subtract(offset);
+    		BlockPos maxPos = pos.add(offset);
+    		AxisAlignedBB bb = new AxisAlignedBB(minPos, maxPos);//new AxisAlignedBB(this.pos);
+    		List<Entity> list = worldIn.getEntitiesWithinAABB(EntityLivingBase.class, bb);
+    		for (Entity curEntity : list) {
+    			if(curEntity instanceof EntityLivingBase)
+    			{
+    				EntityLivingBase entityLiving = (EntityLivingBase) curEntity;
+    				if (!ItemArmorHazmat.hasCompleteHazmat(entityLiving))
+						IC2Potion.radiation.applyTo(entityLiving, 200, 100);					
+    			}
+    		}
+        }
+		
 	}
 
 	public void grow(World worldIn, BlockPos pos, IBlockState state) {
@@ -165,12 +190,22 @@ public class UraniumRichCrop extends BlockBush implements IGrowable{
 			BlockPos pos, IBlockState state, int fortune) {
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
 
-        int count = 1;
+        int count = 2;
         for (int i = 0; i < count; i++)
         {
             if (this.isMaxAge(state))
             {
-                drops.add(IC2Items.getItem("crushed", "uranium"));
+                drops.add(IC2Items.getItem("nuclear", "small_uranium_238"));
+                int x = rand.nextInt(99);
+                if(x > 0 && x < 40)
+                {
+                	drops.add(IC2Items.getItem("nuclear", "small_uranium_235"));
+                	x = rand.nextInt(99);
+                	if(x > 0 && x < 20) 
+                    {
+                    	drops.add(IC2Items.getItem("nuclear", "small_plutonium"));
+                    }
+                }
             }
         }
 		

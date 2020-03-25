@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -56,6 +57,9 @@ public class ItemCraftingManager {
 	public static Item copper_nugget;
 	public static Item tin_nugget;
 	public static Item titanium_nugget;
+	public static Item lead_nugget;
+	
+	public static Item plant_extract;
 	static 
 	{
 		niobium_crushed = new UniformCraftingItem("niobium_crushed", 64);
@@ -95,6 +99,9 @@ public class ItemCraftingManager {
 		copper_nugget = new UniformCraftingItem("copper_nugget", 64);
 		tin_nugget = new UniformCraftingItem("tin_nugget", 64);
 		titanium_nugget = new UniformCraftingItem("titanium_nugget", 64);
+		lead_nugget = new UniformCraftingItem("lead_nugget", 64);
+		
+		plant_extract = new UniformCraftingItem("plant_extract", 64);
 	}
 	
 	public static void onCraftingItemInit(RegistryEvent.Register<Item> event)
@@ -130,6 +137,9 @@ public class ItemCraftingManager {
 		event.getRegistry().register(copper_nugget);
 		event.getRegistry().register(tin_nugget);
 		event.getRegistry().register(titanium_nugget);
+		event.getRegistry().register(lead_nugget);
+		
+		event.getRegistry().register(plant_extract);
 	}
 	
 	public static void onCraftingItemModelInit()
@@ -191,6 +201,10 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(tin_nugget.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(titanium_nugget, 0,
 				new ModelResourceLocation(titanium_nugget.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(lead_nugget, 0,
+				new ModelResourceLocation(lead_nugget.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(plant_extract, 0,
+				new ModelResourceLocation(plant_extract.getRegistryName(), "inventory"));
 	}
 	
 	public static void onCraftingItemOreDictInit()
@@ -218,6 +232,7 @@ public class ItemCraftingManager {
 		OreDictionary.registerOre("nuggetCopper", copper_nugget);
 		OreDictionary.registerOre("nuggetTin", tin_nugget);
 		OreDictionary.registerOre("nuggetTitanium", titanium_nugget);
+		OreDictionary.registerOre("nuggetLead", lead_nugget);
 	}
 	
 	public static void onCraftingItemRecipeInit()
@@ -344,10 +359,24 @@ public class ItemCraftingManager {
 				null, false, IC2Items.getItem("ingot", "copper"));
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(tin_nugget, 9)),
 				null, false, IC2Items.getItem("ingot", "tin"));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(lead_nugget, 9)),
+				null, false, IC2Items.getItem("ingot", "lead"));
+		
 		
 		//Th
 		Recipes.advRecipes.addShapelessRecipe(new ItemStack(thorium_dust),
 				thorium_pile, thorium_pile, thorium_pile, thorium_pile);
+		
+		//Other
+		Recipes.advRecipes.addRecipe(new ItemStack(plant_extract),
+				new Object[] {
+						"TRT",
+						"RER", 
+						"TRT", 
+						'T', OreDictionary.getOres("treeSapling"), //treeSapling
+						'R', IC2Items.getItem("crafting", "scrap_box"),
+						'E', IC2Items.getItem("dust", "energium")
+				});
 		
 	}
 }
