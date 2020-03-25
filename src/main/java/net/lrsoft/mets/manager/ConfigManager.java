@@ -14,7 +14,7 @@ public class ConfigManager {
 	 @Config.RequiresMcRestart
 	 public static boolean EnableOreGenerate = true;
 	 @Config.RequiresMcRestart
-	 public static boolean EnableMoreKineticGenerator = false;
+	 public static boolean EnableMoreKineticGenerator = true;
 	 @Config.RequiresMcRestart
 	 public static boolean EnableMoreStirlingGenerator = false;
 	 

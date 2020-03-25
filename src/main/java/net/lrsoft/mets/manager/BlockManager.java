@@ -19,6 +19,7 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.MetsBlockWithTileEntity;
 import net.lrsoft.mets.block.UniformResourceBlock;
 import net.lrsoft.mets.block.tileentity.IMets;
+import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.minecraft.block.Block;
@@ -295,6 +296,7 @@ public class BlockManager {
 	    event.getRegistry().register(niobiumOre);
 	    event.getRegistry().register(titaniumOre);
 	    event.getRegistry().register(titaniumBlock);
+	    CropManager.onBlockInit(event);
 	    //
 	    //onCommonBlockItemInit();
 	    //

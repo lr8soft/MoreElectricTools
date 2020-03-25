@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "age=0": { "model": "mets:crop/uranium/stage0" },
+    "age=1": { "model": "mets:crop/uranium/stage1" },
+    "age=2": { "model": "mets:crop/uranium/stage2" },
+    "age=3": { "model": "mets:crop/uranium/stage3" },
+    "age=4": { "model": "mets:crop/uranium/stage4" },
+    "age=5": { "model": "mets:crop/uranium/stage5" },
+    "age=6": { "model": "mets:crop/uranium/stage6" },
+    "age=7": { "model": "mets:crop/uranium/stage7" }
+  }
+}

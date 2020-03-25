@@ -15,11 +15,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ReactorHeatVent extends Item implements IReactorComponent {
 	private int reactorVent = 36, selfVent = 20, maxHeat = 1000;
-	public ReactorHeatVent(String itemName, int reactorVent, int selfVent, int maxHeat)
+	public ReactorHeatVent(String itemName, int newReactorVent, int newSelfVent, int newMaxHeat)
 	{
-		this.reactorVent = reactorVent;
-		this.selfVent = selfVent; 
-		this.maxHeat = maxHeat;
+		this.reactorVent = newReactorVent;
+		this.selfVent = newSelfVent; 
+		this.maxHeat = newMaxHeat;
 		
 		setMaxStackSize(64);
 		setMaxDamage(maxHeat);

@@ -18,6 +18,11 @@ item.mets.crafting.titanium_shaft.name=Titanium Shaft
 item.mets.crafting.thorium_pile.name=A Tiny Pile of Thorium
 item.mets.crafting.thorium_dust.name=Thorium Dust
 
+item.mets.crafting.copper_nugget.name=Copper Nugget
+item.mets.crafting.tin_nugget.name=Tin Nugget
+item.mets.crafting.titanium_nugget.name=Titanium Nugget
+item.mets.crafting.lead_nugget.name=Lead Nugget
+
 item.mets.crafting.titanium_iron_rotor_blade.name=Titanium Iron Alloy Rotor Blade
 item.mets.crafting.super_iridium_alloy.name=§bSuper Iridium Alloy
 item.mets.crafting.super_iridium_blade.name=§bSuper Iridium Plate
@@ -32,6 +37,7 @@ item.mets.crafting.super_circuit.name=§bSuper Circuit
 item.mets.crafting.lens.name=Lens
 item.mets.crafting.diamond_lens.name=§bDiamond Lens
 item.mets.crafting.rocket.name=Rocket Missile
+item.mets.crafting.plant_extract.name=Plant Essence
 
 item.mets.super_lapotron_crystal.name=§bSuper Lapotron Crystal
 item.mets.charging_super_lapotron_crystal.name=§bCharging Super Lapotron Crystal
@@ -64,6 +70,14 @@ item.mets.electric_fire_proof_necklace.name=Electric Fireproof Necklace
 item.mets.energy_crystal_belt.name=Energy Crystal Belt
 item.mets.lapotron_crystal_belt.name=§eLapotron Crystal Belt
 item.mets.electric_life_support_ring.name=§bUltimate Life Support Ring
+item.mets.electric_flight_ring.name=§bElectric Flight Ring
+
+item.mets.iron_rich_seed.name=Seed of Iron Rich Crop
+item.mets.copper_rich_seed.name=Seed of Copper Rich Crop
+item.mets.tin_rich_seed.name=Seed of Tin Rich Crop
+item.mets.titanium_rich_seed.name=Seed of Titanium Rich Crop
+item.mets.uranium_rich_seed.name=Seed of Uranium Rich Crop
+item.mets.lead_rich_seed.name=Seed of Lead Rich Crop
 
 mets.te.lesu=LESU
 mets.te.eesu=§9EESU
@@ -93,5 +107,6 @@ mets.info.crafting_only=For crafting only
 mets.info.rotor=Suitable for wind and hydraulic~!
 mets.info.th_battery=May cause cancer -> §2 Harmless in Minecraft~
 mets.info.extralife=§6Extra life！
+mets.info.radiation=RADIATION WARNING!
 
 enchantment.efficient_energy_cost=Energy Saving

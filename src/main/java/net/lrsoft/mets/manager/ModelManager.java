@@ -3,6 +3,7 @@ package net.lrsoft.mets.manager;
 import baubles.common.Baubles;
 import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.entity.EntityRocket;
@@ -88,6 +89,7 @@ public class ModelManager {
 		
 		ItemCraftingManager.onCraftingItemModelInit();
 		ReactorItemManager.onItemModelInit();
+		CropManager.onModelInit();
 		
 		if (Loader.isModLoaded(Baubles.MODID))
 		{

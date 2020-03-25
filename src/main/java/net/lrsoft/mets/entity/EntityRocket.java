@@ -13,6 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -23,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -229,17 +231,18 @@ public class EntityRocket extends Entity {
     }
     
     private void rangeAttack()
-    {
-		for (int dist = 0; dist < power; dist++) {
-			AxisAlignedBB bb = this.getEntityBoundingBox();
-			bb = bb.grow(2.0f, 2.0f, 2.0f);
-			List<Entity> list = world.getEntitiesInAABBexcluding(this, bb, ROCKET_TARGETS);
-			for (Entity curEntity : list) {
-				if(curEntity instanceof EntityLivingBase)
-				{
-					EntityLivingBase livingBase = (EntityLivingBase) curEntity;
-					livingBase.attackEntityFrom(DamageSource.GENERIC, power * 2);					
-				}
+    {	
+    	Vec3i offset = new Vec3i(power, power, power);
+    	BlockPos currentPos  = new BlockPos(this.posX, this.posY, this.posZ);
+		BlockPos minPos = currentPos.subtract(offset);
+		BlockPos maxPos = currentPos.add(offset);
+		AxisAlignedBB bb = new AxisAlignedBB(minPos, maxPos);//new AxisAlignedBB(this.pos);
+		List<Entity> list = world.getEntitiesInAABBexcluding(this, bb, ROCKET_TARGETS);
+		for (Entity curEntity : list) {
+			if(curEntity instanceof EntityLivingBase)
+			{
+				EntityLivingBase livingBase = (EntityLivingBase) curEntity;
+				livingBase.attackEntityFrom(DamageSource.GENERIC, power * 2);					
 			}
 		}
     }
