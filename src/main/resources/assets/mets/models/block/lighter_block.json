@@ -1,0 +1,6 @@
+{
+    "parent": "block/torch",
+  "textures": {
+    "torch": "mets:blocks/lighter_block"
+  }
+}

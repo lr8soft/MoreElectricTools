@@ -16,6 +16,7 @@ import ic2.core.block.TeBlockRegistry;
 import ic2.core.ref.TeBlock;
 import ic2.core.util.StackUtil;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.block.LighterBlock;
 import net.lrsoft.mets.block.MetsBlockWithTileEntity;
 import net.lrsoft.mets.block.UniformResourceBlock;
 import net.lrsoft.mets.block.tileentity.IMets;
@@ -45,11 +46,13 @@ public class BlockManager {
 	public static Block niobiumOre;
 	public static Block titaniumOre;
 	public static Block titaniumBlock;
+	public static Block lighterBlock;
 	static 
 	{
 		niobiumOre = new UniformResourceBlock("niobium_ore", 2.5f, 2);
 		titaniumOre = new UniformResourceBlock("titanium_ore", 2.5f, 2);
 		titaniumBlock = new UniformResourceBlock("titanium_block", Material.IRON, 5.0f, 1);
+		lighterBlock = new LighterBlock();
 	}
 	
 	@SubscribeEvent
@@ -296,6 +299,7 @@ public class BlockManager {
 	    event.getRegistry().register(niobiumOre);
 	    event.getRegistry().register(titaniumOre);
 	    event.getRegistry().register(titaniumBlock);
+	    event.getRegistry().register(lighterBlock);
 	    CropManager.onBlockInit(event);
 	    //
 	    //onCommonBlockItemInit();

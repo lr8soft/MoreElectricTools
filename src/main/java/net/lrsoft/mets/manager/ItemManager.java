@@ -63,7 +63,7 @@ public class ItemManager {
 	public static ElectricFishingRod electricFishingRod;
 	public static ElectricShield electricShield;
 	public static ElectricForceFieldGenerator electricForceFieldGenerator;
-	//public static ElectricLighter electricLighter;
+	public static ElectricLighter electricLighter;
 	
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
@@ -96,7 +96,7 @@ public class ItemManager {
 		electricForceFieldGenerator = new ElectricForceFieldGenerator();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
-		//electricLighter = new ElectricLighter();
+		electricLighter = new ElectricLighter();
 		
 		electricSubmachineGun = new ElectricSubmachineGun();
 		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
@@ -131,7 +131,7 @@ public class ItemManager {
 		event.getRegistry().register(tacticalLaserSubmachineGun);
 		event.getRegistry().register(electricRocketLauncher);
 		event.getRegistry().register(electricForceFieldGenerator);
-		//event.getRegistry().register(electricLighter);
+		event.getRegistry().register(electricLighter);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);

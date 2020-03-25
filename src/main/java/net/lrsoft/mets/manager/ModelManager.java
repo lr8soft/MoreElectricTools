@@ -57,8 +57,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.electricShield.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricForceFieldGenerator, 0,
 				new ModelResourceLocation(ItemManager.electricForceFieldGenerator.getRegistryName(), "inventory"));
-		//ModelLoader.setCustomModelResourceLocation(ItemManager.electricLighter, 0,
-		//		new ModelResourceLocation(ItemManager.electricLighter.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricLighter, 0,
+				new ModelResourceLocation(ItemManager.electricLighter.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.nanoBow, 0,
 				new ModelResourceLocation(ItemManager.nanoBow.getRegistryName(), "inventory"));
@@ -128,5 +128,6 @@ public class ModelManager {
 						new ResourceLocation("mets", "textures/entity/rocket.png"));
 			}
 		});
+		
 	}
 }

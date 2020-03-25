@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "facing=up": { "model": "mets:lighter_block" },
+    "facing=east": { "model": "mets:lighter_block" },
+    "facing=south": {
+      "model": "mets:lighter_block",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "mets:lighter_block",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "mets:lighter_block",
+      "y": 270
+    }
+  }
+}
