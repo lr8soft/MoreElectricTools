@@ -55,6 +55,7 @@ item.mets.electric_first_aid_life_support.name=电力生命维护仪
 item.mets.electric_nutrition_supply.name=电力营养供应器
 item.mets.electric_force_field_generator.name=电力伤害吸收仪
 item.mets.electric_fishing_rod.name=电动鱼竿
+item.mets.electric_lighter.name=电力光源产生器
 
 mets.electric_shield.name=钢制防爆盾
 item.mets.nano_bow.name=§e纳米复合弓

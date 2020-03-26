@@ -63,7 +63,7 @@ public class ItemManager {
 	public static ElectricFishingRod electricFishingRod;
 	public static ElectricShield electricShield;
 	public static ElectricForceFieldGenerator electricForceFieldGenerator;
-	//public static ElectricLighter electricLighter;
+	public static ElectricLighter electricLighter;
 	
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
@@ -96,7 +96,7 @@ public class ItemManager {
 		electricForceFieldGenerator = new ElectricForceFieldGenerator();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
-		//electricLighter = new ElectricLighter();
+		electricLighter = new ElectricLighter();
 		
 		electricSubmachineGun = new ElectricSubmachineGun();
 		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
@@ -131,7 +131,7 @@ public class ItemManager {
 		event.getRegistry().register(tacticalLaserSubmachineGun);
 		event.getRegistry().register(electricRocketLauncher);
 		event.getRegistry().register(electricForceFieldGenerator);
-		//event.getRegistry().register(electricLighter);
+		event.getRegistry().register(electricLighter);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
@@ -425,6 +425,19 @@ public class ItemManager {
 				'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
 				'M', getAllTypeStack(electricNutritionSupply),
 				'C', IC2Items.getItem("crafting", "advanced_circuit")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricLighter), new Object[]
+			   {"NSB",
+				"LJC",
+				"NSD",
+				'S', IC2Items.getItem("plate", "iron"),
+				'B', getAllTypeStack(advancedLithiumBattery),
+				'L', ItemCraftingManager.lens,
+				'J', Items.GLOWSTONE_DUST,
+				'N', IC2Items.getItem("neutron_reflector"),
+				'C', IC2Items.getItem("crafting", "advanced_circuit"),
+				'D', IC2Items.getItem("crafting", "power_unit")
 				});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E

@@ -1,0 +1,6 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "mets:blocks/none"
+  }
+}

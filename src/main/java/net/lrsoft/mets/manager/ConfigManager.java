@@ -17,7 +17,10 @@ public class ConfigManager {
 	 public static boolean EnableMoreKineticGenerator = true;
 	 @Config.RequiresMcRestart
 	 public static boolean EnableMoreStirlingGenerator = false;
-	 
+	 @Config.RequiresMcRestart
+	 public static boolean EnableFastTESR = false;
+	 @Config.RequiresMcRestart
+	 public static boolean EnableLighterDynamicSource = true;
 	
 	 @Config.RequiresWorldRestart
 	 public static double AdvancedIridiumSwordBaseCost = 800d;
