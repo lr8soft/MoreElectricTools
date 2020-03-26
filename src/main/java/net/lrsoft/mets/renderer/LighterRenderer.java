@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.TileEntityLighterBlock;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -23,19 +24,20 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.animation.FastTESR;
 
-public class LighterRenderer extends FastTESR<TileEntityLighterBlock>{
+public class LighterRenderer extends TileEntitySpecialRenderer<TileEntityLighterBlock>{
 	private static final ResourceLocation texture_lighter =
 			new ResourceLocation(MoreElectricTools.MODID, "textures/entity/lighter.png");
-	/*@Override
+	private static float[] defaultColor = new float[] {1.0f, 1.0f, 1.0f};
+	@Override
 	public void render(TileEntityLighterBlock te, double x, double y, double z, float partialTicks, int destroyStage,
 			float alpha) {
-		onRender(te.getColor(), x, y, z, partialTicks);
-	}*/
+		onRender(ConfigManager.EnableLighterDynamicSource ? te.getColor() : defaultColor, x, y, z, partialTicks);
+	}
 
 	@Override
 	public void renderTileEntityFast(TileEntityLighterBlock te, double x, double y, double z, float partialTicks,
 			int destroyStage, float partial, BufferBuilder buffer) {
-		onRender(te.getColor(), x, y, z, partialTicks);
+		onRender(ConfigManager.EnableLighterDynamicSource ? te.getColor() : defaultColor, x, y, z, partialTicks);
 		
 	}
 	

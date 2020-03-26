@@ -1,5 +1,6 @@
 package net.lrsoft.mets.block.tileentity;
 
+import net.lrsoft.mets.manager.ConfigManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -56,6 +57,6 @@ public class TileEntityLighterBlock extends TileEntity implements ITickable{
 	
 	@Override
 	public boolean hasFastRenderer() {
-		return true;
+		return ConfigManager.EnableFastTESR;
 	}
 }
