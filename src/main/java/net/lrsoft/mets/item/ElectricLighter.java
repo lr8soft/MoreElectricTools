@@ -28,9 +28,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ElectricLighter extends UniformElectricItem {
-	private final static double storageEnergy = 10000, transferSpeed = 32;
+	private final static double storageEnergy = 200000, transferSpeed = 128;
 	public ElectricLighter() {
-		super("electric_lighter", storageEnergy, transferSpeed, 1);
+		super("electric_lighter", storageEnergy, transferSpeed, 2);
 	}
 	
 	
@@ -39,7 +39,7 @@ public class ElectricLighter extends UniformElectricItem {
 	{
 	        IBlockState iblockstate = worldIn.getBlockState(pos);
 	        Block block = iblockstate.getBlock();
-
+	        
 	        if (!block.isReplaceable(worldIn, pos))
 	        {
 	            pos = pos.offset(facing);
@@ -47,7 +47,10 @@ public class ElectricLighter extends UniformElectricItem {
 
 	        ItemStack itemstack = player.getHeldItem(hand);
 
-	        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(BlockManager.lighterBlock, pos, false, facing, (Entity)null))
+	        if (!itemstack.isEmpty() 
+	        		&& ElectricItem.manager.canUse(itemstack, 500)
+	        		&& player.canPlayerEdit(pos, facing, itemstack)
+	        		&&worldIn.mayPlace(BlockManager.lighterBlock, pos, false, facing, (Entity)null))
 	        {
 	            int i = this.getMetadata(itemstack.getMetadata());
 	            IBlockState iblockstate1 = BlockManager.lighterBlock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand);
@@ -55,8 +58,8 @@ public class ElectricLighter extends UniformElectricItem {
 	            if (placeBlockAt(itemstack, player, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
 	            {
 	                iblockstate1 = worldIn.getBlockState(pos);
-	                SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, player);
-	                worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+	                worldIn.playSound(player, pos, SoundManager.lighter_place, SoundCategory.BLOCKS, 1.0f, 0.5f);
+	                ElectricItem.manager.use(itemstack, 500, player);
 	            }
 
 	            return EnumActionResult.SUCCESS;

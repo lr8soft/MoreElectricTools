@@ -427,6 +427,19 @@ public class ItemManager {
 				'C', IC2Items.getItem("crafting", "advanced_circuit")
 				});
 		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricLighter), new Object[]
+			   {"NSB",
+				"LJC",
+				"NSD",
+				'S', IC2Items.getItem("plate", "iron"),
+				'B', getAllTypeStack(advancedLithiumBattery),
+				'L', ItemCraftingManager.lens,
+				'J', Items.GLOWSTONE_DUST,
+				'N', IC2Items.getItem("neutron_reflector"),
+				'C', IC2Items.getItem("crafting", "advanced_circuit"),
+				'D', IC2Items.getItem("crafting", "power_unit")
+				});
+		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
 		

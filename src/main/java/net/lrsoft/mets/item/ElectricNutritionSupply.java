@@ -36,16 +36,16 @@ public class ElectricNutritionSupply extends UniformElectricItem {
 					remainingEnergy = (float) (ElectricItem.manager.getCharge(stack) / ElectricItem.manager.getMaxCharge(stack));
 				}catch(Exception expt) {}
 
-				if(remainingEnergy < 0.25f) {
-					return 0.0f;
+				if(remainingEnergy >= 1.0f) {
+					return 1.0f;
 				}else if(remainingEnergy >= 0.25f && remainingEnergy < 0.5f) {
 					return 0.25f;
 				}else if(remainingEnergy >= 0.5f && remainingEnergy < 0.75f) {
 					return 0.5f;
 				}else if(remainingEnergy >= 0.75f && remainingEnergy < 1.0f) {
 					return 0.75f;
-				}else {
-					return 1.0f;
+				}else{
+					return 0.0f;
 				}
 			}
 		});

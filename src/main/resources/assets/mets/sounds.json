@@ -12,5 +12,12 @@
     "sounds": [
       "mets:laser_bullet_shoot"
     ]
+  },
+  "lighter_place": {
+    "category": "block",
+    "subtitle": "mets.sound.lighter_place",
+    "sounds": [
+      "mets:lighter_place"
+    ]
   }
 }
