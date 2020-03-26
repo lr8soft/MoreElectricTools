@@ -20,6 +20,7 @@ import net.lrsoft.mets.block.LighterBlock;
 import net.lrsoft.mets.block.MetsBlockWithTileEntity;
 import net.lrsoft.mets.block.UniformResourceBlock;
 import net.lrsoft.mets.block.tileentity.IMets;
+import net.lrsoft.mets.block.tileentity.TileEntityLighterBlock;
 import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
@@ -31,6 +32,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -39,6 +41,7 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import ic2.core.block.ITeBlock;
 @Mod.EventBusSubscriber(modid = MoreElectricTools.MODID)
@@ -299,7 +302,10 @@ public class BlockManager {
 	    event.getRegistry().register(niobiumOre);
 	    event.getRegistry().register(titaniumOre);
 	    event.getRegistry().register(titaniumBlock);
+	    
 	    event.getRegistry().register(lighterBlock);
+	    GameRegistry.registerTileEntity(TileEntityLighterBlock.class,
+	    		new ResourceLocation(MoreElectricTools.MODID, "lighter_block"));
 	    CropManager.onBlockInit(event);
 	    //
 	    //onCommonBlockItemInit();

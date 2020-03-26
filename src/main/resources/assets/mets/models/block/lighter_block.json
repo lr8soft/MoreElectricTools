@@ -1,6 +1,6 @@
 {
-    "parent": "block/torch",
+  "ambientocclusion": false,
   "textures": {
-    "torch": "mets:blocks/lighter_block"
+    "particle": "mets:blocks/none"
   }
 }
