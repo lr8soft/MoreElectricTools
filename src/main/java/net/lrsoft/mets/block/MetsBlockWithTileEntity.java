@@ -1,10 +1,12 @@
 package net.lrsoft.mets.block;
 
+import java.lang.instrument.ClassDefinition;
 import java.util.Set;
 
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.block.*;
+import ic2.core.block.invslot.InvSlotConsumableFuel;
 import ic2.core.item.block.ItemBlockTileEntity;
 import ic2.core.ref.TeBlock;
 import ic2.core.ref.TeBlock.*;
@@ -46,7 +48,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	
 	experience_generator((Class)TileEntityExperienceGenerator.class, 16, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
-	private final Class<? extends TileEntityBlock> teClass;
+	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;
 	private final boolean hasActive;
 	private final Set<EnumFacing> supportedFacings;
@@ -76,13 +78,22 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	private final float explosionResistance;private final EnumRarity rarity;private final Material material;private final boolean transparent;private TileEntityBlock dummyTe;private ITePlaceHandler placeHandler;
 
 	static {
+		try 
+		{
+			Class cIInventorySlotHolder = Class.forName("ic2.core.block.IInventorySlotHolder");
+			drop_generator.teClass = TileEntityDropGeneratorNew.class;
+			System.out.println("[INFO]METS now running under a new version of ic2.");
+		}catch(Exception expt) {
+			System.out.println("[INFO]METS now running under a old version of ic2.");
+		}
 		for (MetsBlockWithTileEntity block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}
+		
 	}
 
 	public static void buildDummies() {
- 		for (MetsBlockWithTileEntity block : values()) {
+ 		/*for (MetsBlockWithTileEntity block : values()) {
  			if (block.teClass != null) {
  				try {
  					block.dummyTe = block.teClass.newInstance();
@@ -90,7 +101,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
  					e.printStackTrace();
 				}
 			}
-		}
+		}*/
  	}
 	
 	@Override

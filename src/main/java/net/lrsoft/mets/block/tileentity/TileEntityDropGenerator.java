@@ -1,6 +1,7 @@
 package net.lrsoft.mets.block.tileentity;
 
 import java.util.Random;
+
 import ic2.core.block.TileEntityInventory;
 import ic2.core.block.generator.tileentity.TileEntityBaseGenerator;
 import ic2.core.block.invslot.InvSlotConsumableFuel;

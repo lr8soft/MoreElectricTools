@@ -50,6 +50,8 @@ public class TileEntityLighterBlock extends TileEntity implements ITickable{
 		}
 	}
 	
+
+	
 	public float[] getColor()
 	{
 		return new float[]{ red,green, blue };
