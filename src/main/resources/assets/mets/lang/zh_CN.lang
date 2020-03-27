@@ -100,6 +100,8 @@ mets.te.bending_machine=进阶金属辊压机
 mets.te.cutting_machine=进阶金属剪切机
 mets.te.titanium_storage_box=钛制储物箱
 mets.te.experience_generator=经验球发电机
+mets.te.advanced_solar_generator=进阶太阳能发电机
+mets.te.photon_resonance_solar_generator=§9光子振谐太阳能发电机
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用

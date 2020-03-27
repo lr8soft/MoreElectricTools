@@ -97,6 +97,8 @@ mets.te.bending_machine=Advanced Metal Rolling Machine
 mets.te.cutting_machine=Advanced Metal Shearing Machine
 mets.te.titanium_storage_box=Titanium Storage Box
 mets.te.experience_generator=Experience Orb Generator
+mets.te.advanced_solar_generator=Advanced Solar Generator
+mets.te.photon_resonance_solar_generator=§9Photon Resonance Solar Generator
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

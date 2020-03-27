@@ -46,7 +46,9 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	cutting_machine((Class)TileEntityCuttingMachine.class, 14, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	titanium_storage_box((Class)TileEntityTitaniumStorageBox.class, 15, false, Util.noFacings, false, HarvestTool.Wrench, DefaultDrop.Self, 3.0F, 100.0F, EnumRarity.EPIC, IC2Material.MACHINE, false),
 	
-	experience_generator((Class)TileEntityExperienceGenerator.class, 16, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	experience_generator((Class)TileEntityExperienceGenerator.class, 16, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	advanced_solar_generator((Class)TileEntityAdvancedSolarGenerator.class, 17, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	photon_resonance_solar_generator((Class)TileEntityVibrateSolarGenerator.class, 18, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;
