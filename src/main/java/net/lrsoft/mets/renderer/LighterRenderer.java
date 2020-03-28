@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.TileEntityLighterBlock;
 import net.lrsoft.mets.manager.ConfigManager;
+import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -44,7 +45,7 @@ public class LighterRenderer extends TileEntitySpecialRenderer<TileEntityLighter
 	private void onRender(float[] color, double x, double y, double z, float partialTicks)
 	{
 		EntityPlayerSP viewer = (Minecraft.getMinecraft()).player;
-		float[] info = getPlayerView(viewer, partialTicks);
+		float[] info = MathUtils.getPlayerView(viewer, partialTicks);
 		
 		int red = (int)color[0];
 		int blue = (int)color[2];
@@ -53,7 +54,7 @@ public class LighterRenderer extends TileEntitySpecialRenderer<TileEntityLighter
 		bindTexture(texture_lighter);
 		GlStateManager.pushMatrix();
         GlStateManager.translate((float)x + 0.5f, (float)y + 0.5f, (float)z + 0.5f);
-        bindTexture(texture_lighter);
+        //bindTexture(texture_lighter);
         RenderHelper.enableStandardItemLighting();
         GL11.glDepthMask(false);
        
@@ -77,38 +78,5 @@ public class LighterRenderer extends TileEntitySpecialRenderer<TileEntityLighter
         
         GL11.glDepthMask(true);
 	}
-	
-	private float[] getPlayerView(EntityPlayer player, float partialTicks)
-	{
-		float[] playerView = new float[2];
-		playerView[0] = playerView[1] = 0f;
-		World worldIn = player.world;
-		if (player.isPlayerSleeping())
-        {
-            IBlockState iblockstate = worldIn.getBlockState(new BlockPos(player));
-            Block block = iblockstate.getBlock();
-
-            if (block.isBed(iblockstate, worldIn, new BlockPos(player), player))
-            {
-                int i = block.getBedDirection(iblockstate, worldIn, new BlockPos(player)).getHorizontalIndex();
-                playerView[1] = (float)(i * 90 + 180);
-                playerView[0] = 0.0F;
-            }
-        }
-        else
-        {
-        	playerView[1] = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks;
-        	playerView[0] = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks;
-        }
-
-        if (Minecraft.getMinecraft().gameSettings.thirdPersonView == 2)
-        {
-        	playerView[1] += 180.0F;
-        }
-        return playerView;
-	}
-	
-
-
 	
 }

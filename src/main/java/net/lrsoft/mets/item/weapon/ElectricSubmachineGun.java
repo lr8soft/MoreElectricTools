@@ -2,6 +2,7 @@ package net.lrsoft.mets.item.weapon;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.entity.EntityGunBullet;
+import net.lrsoft.mets.entity.EntityParticleGroup;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
@@ -39,6 +40,10 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);
+				
+				EntityParticleGroup t = new EntityParticleGroup(worldIn, playerIn, 3f, 250);
+				t.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 1.0f);
+				worldIn.spawnEntity(t);	
 				setLastRightClick(currentGun, lastRightClick);
 			}
 			
