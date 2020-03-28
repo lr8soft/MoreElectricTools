@@ -10,6 +10,7 @@ import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
+import net.lrsoft.mets.util.ItemStackUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -26,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ElectricLifeSupportRing extends UniformElectricItem implements IBauble {
+public class ElectricLifeSupportRing extends UniformBaubleTemplate {
 	private final static double transferSpeed = 8192d, storageEnergy = 100000000;
 	public ElectricLifeSupportRing()
 	{
@@ -36,22 +37,7 @@ public class ElectricLifeSupportRing extends UniformElectricItem implements IBau
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) 
 			{
-				float remainingEnergy = 0.0f;
-				try {
-					remainingEnergy = (float) (ElectricItem.manager.getCharge(stack) / ElectricItem.manager.getMaxCharge(stack));
-				}catch(Exception expt) {remainingEnergy = 0.0f;}
-
-				if(remainingEnergy < 0.25f) {
-					return 0.0f;
-				}else if(remainingEnergy >= 0.25f && remainingEnergy < 0.5f) {
-					return 0.25f;
-				}else if(remainingEnergy >= 0.5f && remainingEnergy < 0.75f) {
-					return 0.5f;
-				}else if(remainingEnergy >= 0.75f && remainingEnergy < 1.0f) {
-					return 0.75f;
-				}else{
-					return 1.0f;
-				}
+				return ItemStackUtils.getCurrentTex(stack, 4) / 4.0f;
 			}
 		});
 	}
@@ -108,33 +94,4 @@ public class ElectricLifeSupportRing extends UniformElectricItem implements IBau
 			
 		}
 	}
-	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if(!world.isRemote) { 
-			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-			for(int i = 0; i < baubles.getSlots(); i++) 
-				if((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty()) && baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
-					baubles.setStackInSlot(i, player.getHeldItem(hand).copy());
-					if(!player.capabilities.isCreativeMode){
-						player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-					}
-					onEquipped(player.getHeldItem(hand), player);
-					break;
-				}
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-	}
-	
-	@Override
-	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 1.9f);
-	}
-
-	@Override
-	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, .75F, 2f);
-	}
-	
-
 }

@@ -20,7 +20,7 @@ public class TileEntityVibrateSolarGenerator extends TileEntityBaseGenerator {
 	public float skyLight;
 
 	public TileEntityVibrateSolarGenerator() {
-		super(512D, 3, 40000000);
+		super(2048D, 4, 40000000);
 		this.ticker = IC2.random.nextInt(128);
 	}
 	

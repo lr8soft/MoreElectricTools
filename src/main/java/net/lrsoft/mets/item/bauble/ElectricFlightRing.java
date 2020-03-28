@@ -22,7 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class ElectricFlightRing extends UniformElectricItem implements IBauble {
+public class ElectricFlightRing extends UniformBaubleTemplate {
 	private final static double transferSpeed = 2048, storageEnergy = 10000000;
 	public ElectricFlightRing()
 	{
@@ -106,44 +106,4 @@ public class ElectricFlightRing extends UniformElectricItem implements IBauble {
 		player.capabilities.isFlying = false;
 		player.sendPlayerAbilities();
 	}
-
-	
-	@Override
-	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON, .75F, 1.9f);
-	}
-
-	@Override
-	public void onUnequipped(ItemStack itemstack, EntityLivingBase entity) {
-		entity.playSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON, .75F, 2f);
-		if (entity instanceof EntityPlayer) 
-		{
-			EntityPlayer player = (EntityPlayer) entity;
-			if (!player.isSpectator() && !player.capabilities.isCreativeMode) 
-			{
-				disableFlyingAbility(player);
-			}
-		}
-	}
-	
-	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if(!world.isRemote) { 
-			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-			for(int i = 0; i < baubles.getSlots(); i++) 
-				if((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty()) && baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
-					baubles.setStackInSlot(i, player.getHeldItem(hand).copy());
-					if(!player.capabilities.isCreativeMode){
-						player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-					}
-					onEquipped(player.getHeldItem(hand), player);
-					break;
-				}
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-	}
-
-	@Override
-	public boolean isEnchantable(ItemStack stack) {return false;}
 }

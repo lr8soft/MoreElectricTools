@@ -7,7 +7,12 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IBoxable;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
+import ic2.core.IC2;
+import ic2.core.init.MainConfig;
 import ic2.core.item.ElectricItemManager;
+import ic2.core.item.IPseudoDamageItem;
+import ic2.core.util.ConfigUtil;
+import ic2.core.util.LogCategory;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.IMets;
 import net.lrsoft.mets.enchantment.EfficientEnergyCost;
@@ -23,7 +28,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class UniformElectricItem extends Item implements IElectricItem, IItemHudInfo, IBoxable
+public class UniformElectricItem extends Item implements IElectricItem, IItemHudInfo, IBoxable, IPseudoDamageItem
 {
 	private double maxStorageEU = 0, transferSpeed = 0;
 	private int powerLevel = 0;
@@ -37,7 +42,7 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 		setUnlocalizedName("mets." + itemName);
 		setRegistryName(MoreElectricTools.MODID, itemName);
 		setCreativeTab(MoreElectricTools.CREATIVE_TAB);
-		setMaxDamage(54321);
+		setMaxDamage(12345);
 		setMaxStackSize(1);
 		setNoRepair();
 	}
@@ -53,28 +58,24 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 	@Override
 	public boolean canProvideEnergy(ItemStack stack)
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public double getMaxCharge(ItemStack stack) 
 	{
-		// TODO Auto-generated method stub
 		return maxStorageEU;
 	}
 
 	@Override
 	public int getTier(ItemStack stack)
 	{
-		// TODO Auto-generated method stub
 		return powerLevel;
 	}
 
 	@Override
 	public double getTransferLimit(ItemStack stack)
 	{
-		// TODO Auto-generated method stub
 		return transferSpeed;
 	}
 	
@@ -121,4 +122,12 @@ public class UniformElectricItem extends Item implements IElectricItem, IItemHud
 		ElectricItemManager.addChargeVariants((Item)this, (List)items);
 	}
 
+	@Override
+	public void setStackDamage(ItemStack stack, int damage) {
+		super.setDamage(stack, damage);
+		
+	}
+	
+	public void setDamage(ItemStack stack, int damage) {}
+	
 }

@@ -9,6 +9,7 @@ import ic2.core.block.machine.tileentity.TileEntityIronFurnace;
 import ic2.core.gui.dynamic.IGuiValueProvider;
 import ic2.core.network.GuiSynced;
 import net.lrsoft.mets.gui.DropGeneratorSlot;
+import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,7 +33,7 @@ public class TileEntityDropGenerator extends TileEntityBaseGenerator implements 
 		if (getActive()) 
 		{
 			Random random = new Random();
-			int pX = getRandomFromRange(2, -2), pY = getRandomFromRange(2, -2), pZ =  getRandomFromRange(2, -2);
+			int pX = MathUtils.getRandomFromRange(2, -2), pY = MathUtils.getRandomFromRange(2, -2), pZ =  MathUtils.getRandomFromRange(2, -2);
 			getWorld().spawnParticle(EnumParticleTypes.PORTAL,
 					this.pos.getX() + 0.5f, this.pos.getY() + 0.5f, this.pos.getZ() + 0.5f,
 					random.nextDouble() * pX, random.nextDouble()* pY, random.nextDouble()* pZ, 0);
@@ -79,11 +80,6 @@ public class TileEntityDropGenerator extends TileEntityBaseGenerator implements 
 		super.writeToNBT(nbt);
 		nbt.setInteger("totalFuel", this.totalFuel);
 		return nbt;
-	}
-	
-	private int getRandomFromRange(int max, int min)
-	{
-		return new Random().nextInt(max-min)+min;
 	}
 
 }

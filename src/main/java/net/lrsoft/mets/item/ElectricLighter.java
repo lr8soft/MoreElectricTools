@@ -1,5 +1,7 @@
 package net.lrsoft.mets.item;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import ic2.api.item.ElectricItem;
@@ -7,6 +9,7 @@ import net.lrsoft.mets.block.LighterBlock;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -23,6 +26,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -32,7 +36,6 @@ public class ElectricLighter extends UniformElectricItem {
 	public ElectricLighter() {
 		super("electric_lighter", storageEnergy, transferSpeed, 2);
 	}
-	
 	
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
@@ -86,6 +89,4 @@ public class ElectricLighter extends UniformElectricItem {
 
         return true;
     }
-    
-
 }

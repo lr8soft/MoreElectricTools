@@ -26,6 +26,7 @@ import ic2.core.util.Util;
 import ic2.core.profile.Version;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.*;
+import net.lrsoft.mets.util.VersionHelper;
 
 public enum MetsBlockWithTileEntity implements ITeBlock {
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
@@ -80,13 +81,9 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	private final float explosionResistance;private final EnumRarity rarity;private final Material material;private final boolean transparent;private TileEntityBlock dummyTe;private ITePlaceHandler placeHandler;
 
 	static {
-		try 
+		if(VersionHelper.getShouldUseIInventorySlotHolder())
 		{
-			Class cIInventorySlotHolder = Class.forName("ic2.core.block.IInventorySlotHolder");
 			drop_generator.teClass = TileEntityDropGeneratorNew.class;
-			System.out.println("[INFO]METS now running under a new version of ic2.");
-		}catch(Exception expt) {
-			System.out.println("[INFO]METS now running under a old version of ic2.");
 		}
 		for (MetsBlockWithTileEntity block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
@@ -95,7 +92,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	}
 
 	public static void buildDummies() {
- 		/*for (MetsBlockWithTileEntity block : values()) {
+ 		for (MetsBlockWithTileEntity block : values()) {
  			if (block.teClass != null) {
  				try {
  					block.dummyTe = block.teClass.newInstance();
@@ -103,7 +100,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
  					e.printStackTrace();
 				}
 			}
-		}*/
+		}
  	}
 	
 	@Override
