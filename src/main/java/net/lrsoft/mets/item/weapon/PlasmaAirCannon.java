@@ -14,6 +14,7 @@ import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -115,8 +116,8 @@ public class PlasmaAirCannon extends UniformElectricItem {
 
 				for(int p = 0; p < 15; p++)
 				{
-					float newYaw = yaw + getRandomFromRange(8, -8);
-					float newPitch = pitch + getRandomFromRange(8, -8);
+					float newYaw = yaw + MathUtils.getRandomFromRange(8, -8);
+					float newPitch = pitch + MathUtils.getRandomFromRange(8, -8);
 					Vec3d shootPosition = new Vec3d(-MathHelper.sin(newYaw * 0.0174F) * MathHelper.cos(newPitch * 0.0174F),
 							-MathHelper.sin(newPitch * 0.0174F), MathHelper.cos(newYaw * 0.0174F) * MathHelper.cos(newPitch * 0.0174F));
 					worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE,
@@ -125,13 +126,6 @@ public class PlasmaAirCannon extends UniformElectricItem {
 			}
 		}
 	}
-	
-	private int getRandomFromRange(int max, int min)
-	{
-		return new Random().nextInt(max-min)+min;
-	}
-	
-
 
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) 

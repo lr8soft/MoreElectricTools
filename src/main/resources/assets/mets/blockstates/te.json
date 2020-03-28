@@ -38,7 +38,12 @@
       "titanium_storage_box": { "model": "mets:simple_machine/titanium_storage_box" },
 
       "experience_generator": { "model": "mets:experience_generator" },
-      "experience_generator_active": { "model": "mets:experience_generator_active" }
+      "experience_generator_active": { "model": "mets:experience_generator_active" },
+
+      "advanced_solar_generator": { "model": "mets:advanced_solar_generator" },
+      "advanced_solar_generator_active": { "model": "mets:advanced_solar_generator" },
+      "photon_resonance_solar_generator": { "model": "mets:photon_resonance_solar_generator" },
+      "photon_resonance_solar_generator_active": { "model": "mets:photon_resonance_solar_generator" }
     },
     "facing": {
       "down": { "x": 90 },

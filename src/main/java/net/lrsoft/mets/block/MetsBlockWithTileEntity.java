@@ -1,10 +1,12 @@
 package net.lrsoft.mets.block;
 
+import java.lang.instrument.ClassDefinition;
 import java.util.Set;
 
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.block.*;
+import ic2.core.block.invslot.InvSlotConsumableFuel;
 import ic2.core.item.block.ItemBlockTileEntity;
 import ic2.core.ref.TeBlock;
 import ic2.core.ref.TeBlock.*;
@@ -24,6 +26,7 @@ import ic2.core.util.Util;
 import ic2.core.profile.Version;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.*;
+import net.lrsoft.mets.util.VersionHelper;
 
 public enum MetsBlockWithTileEntity implements ITeBlock {
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
@@ -44,9 +47,11 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	cutting_machine((Class)TileEntityCuttingMachine.class, 14, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	titanium_storage_box((Class)TileEntityTitaniumStorageBox.class, 15, false, Util.noFacings, false, HarvestTool.Wrench, DefaultDrop.Self, 3.0F, 100.0F, EnumRarity.EPIC, IC2Material.MACHINE, false),
 	
-	experience_generator((Class)TileEntityExperienceGenerator.class, 16, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	experience_generator((Class)TileEntityExperienceGenerator.class, 16, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	advanced_solar_generator((Class)TileEntityAdvancedSolarGenerator.class, 17, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	photon_resonance_solar_generator((Class)TileEntityVibrateSolarGenerator.class, 18, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
-	private final Class<? extends TileEntityBlock> teClass;
+	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;
 	private final boolean hasActive;
 	private final Set<EnumFacing> supportedFacings;
@@ -76,9 +81,14 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	private final float explosionResistance;private final EnumRarity rarity;private final Material material;private final boolean transparent;private TileEntityBlock dummyTe;private ITePlaceHandler placeHandler;
 
 	static {
+		if(VersionHelper.getShouldUseIInventorySlotHolder())
+		{
+			drop_generator.teClass = TileEntityDropGeneratorNew.class;
+		}
 		for (MetsBlockWithTileEntity block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}
+		
 	}
 
 	public static void buildDummies() {

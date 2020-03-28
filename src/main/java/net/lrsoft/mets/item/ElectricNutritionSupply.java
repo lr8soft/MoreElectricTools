@@ -6,6 +6,7 @@ import ic2.api.item.ElectricItem;
 import ic2.core.init.Localization;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.manager.ConfigManager;
+import net.lrsoft.mets.util.ItemStackUtils;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,22 +32,7 @@ public class ElectricNutritionSupply extends UniformElectricItem {
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) 
 			{
-				float remainingEnergy = 0.0f;
-				try {
-					remainingEnergy = (float) (ElectricItem.manager.getCharge(stack) / ElectricItem.manager.getMaxCharge(stack));
-				}catch(Exception expt) {}
-
-				if(remainingEnergy >= 1.0f) {
-					return 1.0f;
-				}else if(remainingEnergy >= 0.25f && remainingEnergy < 0.5f) {
-					return 0.25f;
-				}else if(remainingEnergy >= 0.5f && remainingEnergy < 0.75f) {
-					return 0.5f;
-				}else if(remainingEnergy >= 0.75f && remainingEnergy < 1.0f) {
-					return 0.75f;
-				}else{
-					return 0.0f;
-				}
+				return ItemStackUtils.getCurrentTex(stack, 4) / 4.0f;
 			}
 		});
 	}

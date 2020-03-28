@@ -22,7 +22,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class EnergyCrystalBelt extends UniformElectricItem implements IBauble {
+public class EnergyCrystalBelt extends UniformBaubleTemplate {
 
 	private final static double transferSpeed = 512d, storageEnergy = 2000000;
 	private final static int tier = 3;
@@ -54,38 +54,6 @@ public class EnergyCrystalBelt extends UniformElectricItem implements IBauble {
 			}		
 		}
 	}
-	
-	@Override
-	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON, .75F, 1.9f);
-	}
-
-	@Override
-	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-		player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_IRON, .75F, 2f);
-	}
-	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-		if (!world.isRemote) {
-			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
-			for (int i = 0; i < baubles.getSlots(); i++)
-				if ((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty())
-						&& baubles.isItemValidForSlot(i, player.getHeldItem(hand), player)) {
-					baubles.setStackInSlot(i, player.getHeldItem(hand).copy());
-					if (!player.capabilities.isCreativeMode) {
-						player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-					}
-					onEquipped(player.getHeldItem(hand), player);
-					break;
-				}
-
-		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-	}
-	
-	@Override
-	public boolean isEnchantable(ItemStack stack) {return false;}
 	
 	@Override
 	public boolean canProvideEnergy(ItemStack stack){return true;}

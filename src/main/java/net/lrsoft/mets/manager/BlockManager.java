@@ -295,6 +295,30 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit,
 						'B', getAllTypeStack(IC2Items.getItem("energy_crystal"))
 				});
+		
+		ItemStack advanced_solar_generator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_solar_generator);
+		Recipes.advRecipes.addRecipe(advanced_solar_generator, 
+				new Object[] {
+						"PPP",
+						"GGG",
+						"CBC",
+						'P', IC2Items.getItem("crafting", "carbon_plate"),
+						'G', IC2Items.getItem("te", "solar_generator"),
+						'C', ItemCraftingManager.super_circuit,
+						'B', getAllTypeStack(ItemManager.advancedLithiumBattery)
+				});
+		
+		ItemStack photon_resonance_solar_generator = teBlock.getItemStack(MetsBlockWithTileEntity.photon_resonance_solar_generator);
+		Recipes.advRecipes.addRecipe(photon_resonance_solar_generator, 
+				new Object[] {
+						"GGG",
+						"PBP",
+						"PCP",
+						'P', ItemCraftingManager.super_iridium_compress_plate,
+						'G', advanced_solar_generator,
+						'C', ItemCraftingManager.super_circuit,
+						'B', getAllTypeStack(ItemManager.superLapotronCrystal)
+				});
 	}
 	
 	@SubscribeEvent
