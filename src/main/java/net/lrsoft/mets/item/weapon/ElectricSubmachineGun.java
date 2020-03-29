@@ -40,10 +40,7 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);
-				
-				EntityParticleGroup t = new EntityParticleGroup(worldIn, playerIn, 3f, 250);
-				t.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 1.0f);
-				worldIn.spawnEntity(t);	
+
 				setLastRightClick(currentGun, lastRightClick);
 			}
 			

@@ -27,10 +27,12 @@ public class EntityParticleGroup extends Entity {
 	protected EntityPlayer shooter;
 	protected int ticksInAir;
 	protected int maxExistTicks;
-	protected float count;
+	protected int spawnParticles;
+	protected int spawnParticlesPerTick;
+	protected int count;
 	protected float velocity;
 	
-	public EntityParticleGroup(World world, EntityPlayer owner, float count, int maxTick) {
+	public EntityParticleGroup(World world, EntityPlayer owner, int count, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
@@ -39,7 +41,20 @@ public class EntityParticleGroup extends Entity {
 		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
 		this.count = count;
 		this.maxExistTicks = maxTick;
+		this.spawnParticles = spawnParticles;
+		this.spawnParticlesPerTick = spawnParticlesPerTick;
 	}
+	
+	public EntityParticleGroup(World world,  int count, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
+		super(world);
+		this.ticksInAir = 0;
+		setSize(0.39F, 0.39F);
+		this.count = count;
+		this.maxExistTicks = maxTick;
+		this.spawnParticles = spawnParticles;
+		this.spawnParticlesPerTick = spawnParticlesPerTick;
+	}
+	
 	
 	@Override
 	public void onUpdate() 
@@ -63,11 +78,11 @@ public class EntityParticleGroup extends Entity {
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
-                setDead();
-                return;
+            //    setDead();
+            //    return;
             }
         }
-        
+
         ++this.ticksInAir;
  
         if(this.ticksInAir > maxExistTicks)
@@ -96,6 +111,34 @@ public class EntityParticleGroup extends Entity {
         this.motionY += shooter.motionY;
         this.motionZ += shooter.motionZ;
         this.velocity = velocity;
+
+	}
+	
+	public void shoot(Vec3d nowPosition, Vec3d targetPosition)
+	{
+		setPosition(nowPosition.x, nowPosition.y, nowPosition.z);
+		
+		/* double d1 = (targetPosition.x - nowPosition.x) /8.0d;
+         double d2 = (targetPosition.y - nowPosition.y)/8.0d ;
+         double d3 = (targetPosition.z - nowPosition.z)/8.0d;
+         double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
+         double d5 = 1.0D - d4;
+
+		d5 = d5 * d5;
+		this.motionX = d1 / d4 * d5 * 0.05D;
+		this.motionY = d2 / d4 * d5 * 0.05D;
+		this.motionZ = d3 / d4 * d5 * 0.05D;
+
+		double v = Math.pow(motionX * motionX + motionY * motionY + motionZ * motionZ, 0.5d);
+		double s = Math.pow(d1 * d1 + d2 * d2 + d3 * d3, 0.5d);
+		this.maxExistTicks = (int) (s / v) * 20;
+             
+		this.rotationYaw = 0.0f;
+        this.rotationPitch = 0.0f;
+        this.prevRotationYaw = 0.0f;
+        this.prevRotationPitch = 0.0f;   */
+		
+		shoot(targetPosition.x, targetPosition.y, targetPosition.z, 0.5f);
 	}
 
 	
@@ -120,15 +163,16 @@ public class EntityParticleGroup extends Entity {
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
     }
+  
     
     public int getParticleSpawnCount()
     {
-    	return 1;
+    	return spawnParticles;
     }
     
     public int getParticleSpawnPerTick()
     {
-    	return 2;
+    	return spawnParticlesPerTick;
     }
    
 	@Override
@@ -138,7 +182,7 @@ public class EntityParticleGroup extends Entity {
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.ticksInAir =  compound.getInteger("ticksInAir");
-		this.count = compound.getFloat("count");
+		this.count = compound.getInteger("count");
 		this.velocity = compound.getFloat("velocity");
 		this.maxExistTicks = compound.getInteger("maxExistTicks");
 	}
@@ -147,7 +191,7 @@ public class EntityParticleGroup extends Entity {
 	protected void writeEntityToNBT(NBTTagCompound compound) 
 	{
         compound.setInteger("ticksInAir", this.ticksInAir);
-        compound.setFloat("count", this.count);
+        compound.setInteger("count", this.count);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
 	}

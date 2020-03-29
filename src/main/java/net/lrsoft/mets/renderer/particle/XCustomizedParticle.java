@@ -36,13 +36,14 @@ public class XCustomizedParticle {
 		currentTicks = 0;
 	}
 	
-	public void onRender(float partialTicks, float alpha)
+	public void onRender(float partialTicks)
 	{
 		if(currentTicks < maxTicks)
 		{
 			Minecraft minecraft = Minecraft.getMinecraft();
 			EntityPlayerSP viewer = minecraft.player;
 			float[] info = MathUtils.getPlayerView(viewer, partialTicks);
+			float alpha = (1.0f -(float)currentTicks /  (float)maxTicks) ;
 			
 			int red = (int)color.x;
 			int blue = (int)color.y;

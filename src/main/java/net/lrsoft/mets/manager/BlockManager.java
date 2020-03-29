@@ -319,6 +319,8 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit,
 						'B', getAllTypeStack(ItemManager.superLapotronCrystal)
 				});
+		
+		
 	}
 	
 	@SubscribeEvent
