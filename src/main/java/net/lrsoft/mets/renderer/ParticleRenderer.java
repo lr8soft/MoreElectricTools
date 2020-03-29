@@ -39,7 +39,7 @@ public class ParticleRenderer  extends Render<EntityParticleGroup>{
 						new Vec3d(0.1f, 0.1f, 0.1f), new Vec3d(0.0f, 0.0f, 1.0f), 0.0f, MathUtils.getRandomFromRange(20, 5));
 				particleVector.add(particle);
 			}
-		System.out.println("r");
+
 	}
 
 	@Override

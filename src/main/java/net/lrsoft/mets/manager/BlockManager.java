@@ -320,7 +320,17 @@ public class BlockManager {
 						'B', getAllTypeStack(ItemManager.superLapotronCrystal)
 				});
 		
-		
+		ItemStack wireless_power_transmission_node = teBlock.getItemStack(MetsBlockWithTileEntity.wireless_power_transmission_node);
+		Recipes.advRecipes.addRecipe(wireless_power_transmission_node, 
+				new Object[] {
+						"PCP",
+						"CTC",
+						"SCS",
+						'P', ItemCraftingManager.niobium_titanium_plate,
+						'T', IC2Items.getItem("te", "hv_transformer"),
+						'C', IC2Items.getItem("te", "tesla_coil"),
+						'S', ItemCraftingManager.super_circuit
+				});
 	}
 	
 	@SubscribeEvent

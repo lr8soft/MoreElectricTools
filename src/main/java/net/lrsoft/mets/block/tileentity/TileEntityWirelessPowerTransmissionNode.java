@@ -1,6 +1,7 @@
 package net.lrsoft.mets.block.tileentity;
 
 import java.lang.reflect.Field;
+import java.util.Vector;
 
 import ic2.api.energy.tile.IEnergyConductor;
 import ic2.api.network.INetworkTileEntityEventListener;
@@ -9,16 +10,29 @@ import ic2.core.block.comp.Energy;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.wiring.TileEntityElectricBlock;
 import net.lrsoft.mets.entity.EntityParticleGroup;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.MinecraftForge;
 
 public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricMachine {
-	private Vec3d targetPosition = new Vec3d(0, 10, 0);
+	private Vec3d targetPosition = null;
+	private Vector<EntityParticleGroup> globalParticleVector = new Vector();
 	public TileEntityWirelessPowerTransmissionNode() {
 		super(8192, 4);
+
+	}
+	
+	@Override
+	protected void updateEntityClient() {
+		// TODO Auto-generated method stub
+		super.updateEntityClient();
 	}
 	
 	@Override
@@ -60,6 +74,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 								}
 								energy.useEnergy(useage);
 								targetEnergy.readFromNbt(compound);
+								spawnEnergyParticle();
 							}
 						}catch(Exception expt){
 							System.out.println(expt.getMessage());
@@ -84,12 +99,18 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 							}
 							energy.useEnergy(useage);
 							electricBlock.energy.readFromNbt(compound);
+							spawnEnergyParticle();
 						}
 					}
 				}
 			}
 			
 		}
+	}
+	
+	private void spawnEnergyParticle()
+	{
+		
 	}
 	
 	public Vec3d getTargetPosition()

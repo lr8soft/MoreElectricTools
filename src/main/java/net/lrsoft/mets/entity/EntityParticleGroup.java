@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
 import net.lrsoft.mets.renderer.particle.XCustomizedParticle;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,13 +15,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class EntityParticleGroup extends Entity {
 
@@ -45,10 +48,11 @@ public class EntityParticleGroup extends Entity {
 		this.spawnParticlesPerTick = spawnParticlesPerTick;
 	}
 	
-	public EntityParticleGroup(World world,  int count, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
+	public EntityParticleGroup(World world,  Vec3d postion,int count, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
 		super(world);
 		this.ticksInAir = 0;
 		setSize(0.39F, 0.39F);
+		setPosition(postion.x, postion.y, postion.z);
 		this.count = count;
 		this.maxExistTicks = maxTick;
 		this.spawnParticles = spawnParticles;
@@ -71,15 +75,15 @@ public class EntityParticleGroup extends Entity {
         BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
         IBlockState iblockstate = this.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
-        
-        if (iblockstate.getMaterial() != Material.AIR)
+        TileEntity te = world.getTileEntity(blockpos);
+        if (iblockstate.getMaterial() != Material.AIR && !(te instanceof TileEntityWirelessPowerTransmissionNode))
         {
             AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
-            //    setDead();
-            //    return;
+                setDead();
+                return;
             }
         }
 
@@ -114,35 +118,17 @@ public class EntityParticleGroup extends Entity {
 
 	}
 	
-	public void shoot(Vec3d nowPosition, Vec3d targetPosition)
+	public void shoot(Vec3d pos,Vec3d target)
 	{
-		setPosition(nowPosition.x, nowPosition.y, nowPosition.z);
+		double d1 = (target.x - pos.x)/8f ;
+		double d2 = (target.y - pos.y)/8f ;
+		double d3 = (target.z - pos.z) /8f;
+		double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
+		shoot(d1, d2 + d4, d3, 1.0f);
 		
-		/* double d1 = (targetPosition.x - nowPosition.x) /8.0d;
-         double d2 = (targetPosition.y - nowPosition.y)/8.0d ;
-         double d3 = (targetPosition.z - nowPosition.z)/8.0d;
-         double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
-         double d5 = 1.0D - d4;
-
-		d5 = d5 * d5;
-		this.motionX = d1 / d4 * d5 * 0.05D;
-		this.motionY = d2 / d4 * d5 * 0.05D;
-		this.motionZ = d3 / d4 * d5 * 0.05D;
-
-		double v = Math.pow(motionX * motionX + motionY * motionY + motionZ * motionZ, 0.5d);
-		double s = Math.pow(d1 * d1 + d2 * d2 + d3 * d3, 0.5d);
-		this.maxExistTicks = (int) (s / v) * 20;
-             
-		this.rotationYaw = 0.0f;
-        this.rotationPitch = 0.0f;
-        this.prevRotationYaw = 0.0f;
-        this.prevRotationPitch = 0.0f;   */
-		
-		shoot(targetPosition.x, targetPosition.y, targetPosition.z, 0.5f);
 	}
-
 	
-    protected void shoot(double x, double y, double z, float velocity)
+    public void shoot(double x, double y, double z, float velocity)
     {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / (double)f;

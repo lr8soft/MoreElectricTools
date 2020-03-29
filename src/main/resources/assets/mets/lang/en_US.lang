@@ -55,6 +55,7 @@ item.mets.electric_nutrition_supply.name=Electric Nutrition Supply
 item.mets.electric_force_field_generator.name=Electrical Injury Absorber
 item.mets.electric_fishing_rod.name=Electric Fishing Rod
 item.mets.electric_lighter.name=Electric Light Source Generator
+item.mets.electric_wirless_manager.name=Electric Wirless Manager
 
 mets.electric_shield.name=Steel Explosion-proof Shield
 item.mets.nano_bow.name=§eNano Composite Bow
@@ -99,6 +100,7 @@ mets.te.titanium_storage_box=Titanium Storage Box
 mets.te.experience_generator=Experience Orb Generator
 mets.te.advanced_solar_generator=Advanced Solar Generator
 mets.te.photon_resonance_solar_generator=§9Photon Resonance Solar Generator
+mets.te.wireless_power_transmission_node=Wireless Power Transmission Node
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor
@@ -111,5 +113,8 @@ mets.info.rotor=Suitable for wind and hydraulic~!
 mets.info.th_battery=May cause cancer -> §2 Harmless in Minecraft~
 mets.info.extralife=§6Extra life！
 mets.info.radiation=RADIATION WARNING!
+
+mets.info.wirless.settarget=Transfer destination set!
+mets.info.wirless.selecttarget=Select the current coordinate as the transfer destination.
 
 enchantment.efficient_energy_cost=Energy Saving

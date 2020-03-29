@@ -56,6 +56,7 @@ item.mets.electric_nutrition_supply.name=电力营养供应器
 item.mets.electric_force_field_generator.name=电力伤害吸收仪
 item.mets.electric_fishing_rod.name=电动鱼竿
 item.mets.electric_lighter.name=电力光源产生器
+item.mets.electric_wirless_manager.name=无线管理器
 
 mets.electric_shield.name=钢制防爆盾
 item.mets.nano_bow.name=§e纳米复合弓
@@ -102,6 +103,7 @@ mets.te.titanium_storage_box=钛制储物箱
 mets.te.experience_generator=经验球发电机
 mets.te.advanced_solar_generator=进阶太阳能发电机
 mets.te.photon_resonance_solar_generator=§9光子振谐太阳能发电机
+mets.te.wireless_power_transmission_node=无线能源传输器 
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
@@ -111,5 +113,8 @@ mets.info.rotor=适用于风力水力~！
 mets.info.th_battery=§9无限电力，但可能致癌~
 mets.info.extralife=§6额外的生命！
 mets.info.radiation=小心辐射！
+
+mets.info.wirless.settarget=已设置传输目标！
+mets.info.wirless.selecttarget=选择当前坐标为传输目标
 
 enchantment.efficient_energy_cost=节能

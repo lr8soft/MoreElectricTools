@@ -14,6 +14,7 @@ import net.lrsoft.mets.item.ElectricFishingRod;
 import net.lrsoft.mets.item.ElectricForceFieldGenerator;
 import net.lrsoft.mets.item.ElectricLighter;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
+import net.lrsoft.mets.item.ElectricWirlessManager;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.ChargingSuperLapotronCrystal;
 import net.lrsoft.mets.item.battery.LithiumBattery;
@@ -65,6 +66,8 @@ public class ItemManager {
 	public static ElectricForceFieldGenerator electricForceFieldGenerator;
 	public static ElectricLighter electricLighter;
 	
+	public static ElectricWirlessManager electricWirlessManager;
+	
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
 	public static ElectricSubmachineGun electricSubmachineGun;
@@ -94,6 +97,7 @@ public class ItemManager {
 		electricFishingRod = new ElectricFishingRod();
 		electricShield = new ElectricShield();
 		electricForceFieldGenerator = new ElectricForceFieldGenerator();
+		electricWirlessManager = new ElectricWirlessManager();
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		electricLighter = new ElectricLighter();
@@ -132,6 +136,7 @@ public class ItemManager {
 		event.getRegistry().register(electricRocketLauncher);
 		event.getRegistry().register(electricForceFieldGenerator);
 		event.getRegistry().register(electricLighter);
+		event.getRegistry().register(electricWirlessManager);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
@@ -439,6 +444,16 @@ public class ItemManager {
 				'C', IC2Items.getItem("crafting", "advanced_circuit"),
 				'D', IC2Items.getItem("crafting", "power_unit")
 				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricWirlessManager), new Object[]
+				   {"SCS",
+					"CTC",
+					"SBS",
+					'S', ItemCraftingManager.titanium_plate,
+					'B', getAllTypeStack(lithiumBattery),
+					'T', IC2Items.getItem("frequency_transmitter"),
+					'C', IC2Items.getItem("crafting", "advanced_circuit"),
+					});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
