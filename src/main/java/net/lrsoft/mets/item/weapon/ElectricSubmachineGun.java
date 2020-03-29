@@ -36,7 +36,7 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 			{
 				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 6f, 250);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
-				worldIn.spawnEntity(entity);				
+				worldIn.spawnEntity(entity);	
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);

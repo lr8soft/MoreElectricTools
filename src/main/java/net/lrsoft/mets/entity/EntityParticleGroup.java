@@ -32,28 +32,25 @@ public class EntityParticleGroup extends Entity {
 	protected int maxExistTicks;
 	protected int spawnParticles;
 	protected int spawnParticlesPerTick;
-	protected int count;
 	protected float velocity;
 	
-	public EntityParticleGroup(World world, EntityPlayer owner, int count, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
+	public EntityParticleGroup(World world, EntityPlayer owner,  int maxTick, int spawnParticles,int spawnParticlesPerTick) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
 		setSize(0.39F, 0.39F);
 	
 		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
-		this.count = count;
 		this.maxExistTicks = maxTick;
 		this.spawnParticles = spawnParticles;
 		this.spawnParticlesPerTick = spawnParticlesPerTick;
 	}
 	
-	public EntityParticleGroup(World world,  Vec3d postion,int count, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
+	public EntityParticleGroup(World world,  Vec3d postion, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
 		super(world);
 		this.ticksInAir = 0;
 		setSize(0.39F, 0.39F);
 		setPosition(postion.x, postion.y, postion.z);
-		this.count = count;
 		this.maxExistTicks = maxTick;
 		this.spawnParticles = spawnParticles;
 		this.spawnParticlesPerTick = spawnParticlesPerTick;
@@ -134,9 +131,9 @@ public class EntityParticleGroup extends Entity {
         x = x / (double)f;
         y = y / (double)f;
         z = z / (double)f;
-        x = x + this.rand.nextGaussian() * 0.007;
-        y = y + this.rand.nextGaussian() * 0.007;
-        z = z + this.rand.nextGaussian() * 0.007;
+        x = x + this.rand.nextGaussian() * 0.1;
+        y = y + this.rand.nextGaussian() * 0.1;
+        z = z + this.rand.nextGaussian() * 0.1;
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
@@ -168,16 +165,18 @@ public class EntityParticleGroup extends Entity {
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.ticksInAir =  compound.getInteger("ticksInAir");
-		this.count = compound.getInteger("count");
+		this.spawnParticles = compound.getInteger("spawnParticles");
 		this.velocity = compound.getFloat("velocity");
 		this.maxExistTicks = compound.getInteger("maxExistTicks");
+		this.spawnParticlesPerTick = compound.getInteger("spawnParticlesPerTick");
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound) 
 	{
         compound.setInteger("ticksInAir", this.ticksInAir);
-        compound.setInteger("count", this.count);
+        compound.setInteger("spawnParticles", this.spawnParticles);
+        compound.setInteger("spawnParticlesPerTick", this.spawnParticlesPerTick);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
 	}
