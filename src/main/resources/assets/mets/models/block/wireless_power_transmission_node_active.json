@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/wireless_power_transmission_node_active/active",
+    "down": "mets:blocks/wireless_power_transmission_node_active/active",
+    "up": "mets:blocks/wireless_power_transmission_node_active/active",
+    "north": "mets:blocks/wireless_power_transmission_node_active/active",
+    "south": "mets:blocks/wireless_power_transmission_node_active/active",
+    "west": "mets:blocks/wireless_power_transmission_node_active/active",
+    "east": "mets:blocks/wireless_power_transmission_node_active/active"
+  }
+}

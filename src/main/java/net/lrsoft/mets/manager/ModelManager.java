@@ -4,16 +4,20 @@ import baubles.common.Baubles;
 import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.TileEntityLighterBlock;
+import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
 import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
+import net.lrsoft.mets.entity.EntityParticleGroup;
 import net.lrsoft.mets.entity.EntityRocket;
 import net.lrsoft.mets.item.bauble.ItemBaublesManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.renderer.BulletRenderer;
 import net.lrsoft.mets.renderer.LighterRenderer;
+import net.lrsoft.mets.renderer.ParticleRenderer;
 import net.lrsoft.mets.renderer.RocketRender;
+import net.lrsoft.mets.renderer.TransmissionNodeRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.Render;
@@ -62,6 +66,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.electricForceFieldGenerator.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricLighter, 0,
 				new ModelResourceLocation(ItemManager.electricLighter.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricWirlessManager, 0,
+				new ModelResourceLocation(ItemManager.electricWirlessManager.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.nanoBow, 0,
 				new ModelResourceLocation(ItemManager.nanoBow.getRegistryName(), "inventory"));
@@ -108,6 +114,7 @@ public class ModelManager {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockManager.titaniumBlock), 0, new ModelResourceLocation(BlockManager.titaniumBlock.getRegistryName(),"normal"));
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLighterBlock.class, new LighterRenderer());
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWirelessPowerTransmissionNode.class, new TransmissionNodeRenderer());
 	}
 	
 	@SubscribeEvent
@@ -131,6 +138,12 @@ public class ModelManager {
 			public Render<EntityRocket> createRenderFor(RenderManager manager) {
 				return (Render<EntityRocket>) new RocketRender(manager,
 						new ResourceLocation("mets", "textures/entity/rocket.png"));
+			}
+		});
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityParticleGroup.class, new IRenderFactory<EntityParticleGroup>() {
+			public Render<EntityParticleGroup> createRenderFor(RenderManager manager) {
+				return (Render<EntityParticleGroup>) new ParticleRenderer(manager);
 			}
 		});
 		
