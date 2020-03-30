@@ -36,8 +36,7 @@ public class InstantParticleRender extends Render<EntityParticleSpray>{
 						new Vec3d((entity.motionX + (MathUtils.getRandomFromRange(1, -1)+ Math.random())) / 15.0f,
 								  (entity.motionY + (MathUtils.getRandomFromRange(1, -1)+ Math.random())) / 15.0f,
 								  (entity.motionZ + (MathUtils.getRandomFromRange(1, -1)+ Math.random())) / 15.0f),
-						entity.getScaleSize(), new Vec3d(0.0f, 0.0f, 1.0f), 0.0f,
-						MathUtils.getRandomFromRange(entity.maxExistTicks, entity.maxExistTicks / 2));
+						entity.getScaleSize(), new Vec3d(0.0f, 0.0f, 1.0f), 0.0f, entity.maxExistTicks);
 				particleVector.add(particle);
 			}
 			entity.setIsInit(true);

@@ -55,15 +55,13 @@ public class XCustomizedParticle {
 		int red = (int) color.x;
 		int blue = (int) color.y;
 		int green = (int) color.z;
-
-		minecraft.getTextureManager().bindTexture(resourceLocation);
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
 		GlStateManager.translate(x, y, z);
 		RenderHelper.enableStandardItemLighting();
 		GL11.glDepthMask(false);
-
+		minecraft.getTextureManager().bindTexture(resourceLocation);
 		GlStateManager.translate(0.0f, 0.0f, 0.0f);
 		GlStateManager.rotate(angle, (float) rotate.x, (float) rotate.y, (float) rotate.z);
 		GlStateManager.rotate(180.0F - info[1], 0.0F, 1.0F, 0.0F);
@@ -85,7 +83,6 @@ public class XCustomizedParticle {
 		GlStateManager.disableBlend();
 		GlStateManager.disableRescaleNormal();
 		GlStateManager.popMatrix();
-
 		GL11.glDepthMask(true);
 	}
 	

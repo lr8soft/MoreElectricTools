@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
 public class BulletRenderer<T extends EntityGunBullet> extends Render<T>{
-	private static String info = "Code From Minecraft";
 	private final ResourceLocation texture;
 	public BulletRenderer(RenderManager manager, ResourceLocation texture)
 	{

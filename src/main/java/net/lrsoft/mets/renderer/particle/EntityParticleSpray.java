@@ -73,6 +73,11 @@ public class EntityParticleSpray extends Entity {
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
+        
+        if (!this.hasNoGravity())
+        {
+            this.motionY -= 0.08d;
+        }
 
         this.setPosition(this.posX, this.posY, this.posZ);
 
@@ -145,6 +150,7 @@ public class EntityParticleSpray extends Entity {
     {
     	return color;
     }
+    
     
     public void setScaleSize(Vec3d size)
     {
