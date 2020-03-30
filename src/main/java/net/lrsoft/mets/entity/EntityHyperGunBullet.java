@@ -8,6 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import ic2.core.util.Vector3;
+import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -29,6 +30,7 @@ public class EntityHyperGunBullet extends EntityGunBullet {
 	
 	public EntityHyperGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
 		super(world,owner, power, maxTick);
+		
 	}
 	
 	@Override

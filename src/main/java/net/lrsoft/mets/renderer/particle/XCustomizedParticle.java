@@ -55,15 +55,23 @@ public class XCustomizedParticle {
 		int red = (int) color.x;
 		int blue = (int) color.y;
 		int green = (int) color.z;
-
-		minecraft.getTextureManager().bindTexture(resourceLocation);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();
+		
 		GlStateManager.enableBlend();
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+	    GlStateManager.disableAlpha();
+	    GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+	    GlStateManager.disableLighting();
+	    GlStateManager.depthMask(false);
+	    GlStateManager.enableLighting();
 		GlStateManager.translate(x, y, z);
-		RenderHelper.enableStandardItemLighting();
-		GL11.glDepthMask(false);
+		//GlStateManager.enableBlend();
 
+		//GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+		
+		
+		//GlStateManager.depthMask(false);
+		minecraft.getTextureManager().bindTexture(resourceLocation);
 		GlStateManager.translate(0.0f, 0.0f, 0.0f);
 		GlStateManager.rotate(angle, (float) rotate.x, (float) rotate.y, (float) rotate.z);
 		GlStateManager.rotate(180.0F - info[1], 0.0F, 1.0F, 0.0F);
@@ -72,21 +80,27 @@ public class XCustomizedParticle {
 		GlStateManager.scale(scale.x, scale.y, scale.z);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
-		bufferbuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
-		bufferbuilder.pos(-0.5D, -0.25D, 0.0D).tex(0.0d, 0.0d).color(red, green, blue, alpha).normal(0.0F, 1.0F, 0.0F)
+		bufferbuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+		bufferbuilder.pos(-0.5D, -0.25D, 0.0D).tex(0.0d, 0.0d).color(red, green, blue, alpha)
 				.endVertex();
-		bufferbuilder.pos(0.5D, -0.25D, 0.0D).tex(1.0d, 0.0d).color(red, green, blue, alpha).normal(0.0F, 1.0F, 0.0F)
+		bufferbuilder.pos(0.5D, -0.25D, 0.0D).tex(1.0d, 0.0d).color(red, green, blue, alpha)
 				.endVertex();
-		bufferbuilder.pos(0.5D, 0.75D, 0.0D).tex(1.0d, 1.0d).color(red, green, blue, alpha).normal(0.0F, 1.0F, 0.0F)
+		bufferbuilder.pos(0.5D, 0.75D, 0.0D).tex(1.0d, 1.0d).color(red, green, blue, alpha)
 				.endVertex();
-		bufferbuilder.pos(-0.5D, 0.75D, 0.0D).tex(0.0d, 1.0d).color(red, green, blue, alpha).normal(0.0F, 1.0F, 0.0F)
+		bufferbuilder.pos(-0.5D, 0.75D, 0.0D).tex(0.0d, 1.0d).color(red, green, blue, alpha)
 				.endVertex();
 		tessellator.draw();
-		GlStateManager.disableBlend();
-		GlStateManager.disableRescaleNormal();
+		
+		//GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		//GlStateManager.enableLighting();
+		//GlStateManager.disableBlend();
+		//GlStateManager.disableRescaleNormal();
 		GlStateManager.popMatrix();
-
-		GL11.glDepthMask(true);
+		//GlStateManager.depthMask(true);
+		
+        GlStateManager.depthMask(true);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
 	}
 	
 	public boolean getIsFinish()

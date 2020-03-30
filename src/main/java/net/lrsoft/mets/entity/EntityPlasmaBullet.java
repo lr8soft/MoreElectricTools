@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
-import ic2.core.util.Vector3;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -23,9 +24,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-public class EntityGunBullet extends Entity {
+public class EntityPlasmaBullet extends Entity {
 	public static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
     {
         public boolean apply(@Nullable Entity entity)
@@ -33,22 +36,23 @@ public class EntityGunBullet extends Entity {
             return entity.canBeCollidedWith();
         }
     });
-	
+
 	protected EntityPlayer shooter;
 	protected int ticksInAir;
 	protected int maxExistTicks;
+
 	protected float power;
 	protected float velocity;
-	
-	public EntityGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
+	protected Vec3d scaleSize = new Vec3d(0.1d, 0.1d, 0.1d);
+	public EntityPlasmaBullet(World world, EntityPlayer owner, float power) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
+		this.maxExistTicks = 500;
 		setSize(0.39F, 0.39F);
 	
 		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
 		this.power = power;
-		this.maxExistTicks = maxTick;
 	}
 	
 	@Override
@@ -66,69 +70,93 @@ public class EntityGunBullet extends Entity {
         BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
         IBlockState iblockstate = this.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
-        
+        TileEntity te = world.getTileEntity(blockpos);
         if (iblockstate.getMaterial() != Material.AIR)
         {
             AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
+            	causeRangeDamage();
+            	sprayEffect();
                 setDead();
                 return;
             }
         }
-        
-        ++this.ticksInAir;
-        Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
-        Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
-        vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
-        vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        
-        if (raytraceresult != null)
-        {
-            vec3d = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
-        }
-        
-        Entity entity = this.findEntityOnPath(vec3d1, vec3d);
+        ++ticksInAir;
+		Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+		Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+		RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
+		vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+		vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
-        if (entity != null)
-        {
-            raytraceresult = new RayTraceResult(entity);
-        }
-        
-        if (raytraceresult != null && !isDead)
-        {
-            Entity target = raytraceresult.entityHit;
-            if (target != null)
-            {
-            	target.hurtResistantTime = 0;
-            	
-            	if(shooter != null)
-            	{
-            		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);
-            	}else {
-            		target.attackEntityFrom(DamageSource.GENERIC, power);
-            	}
-            	setDead();
-            	return;
-            }
-        }
-        
-        if(this.ticksInAir > maxExistTicks)
-        {
-        	setDead();
-        	return;
-        }
+		if (raytraceresult != null) {
+			vec3d = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
+		}
 
-        //from arrow
-        this.posX += this.motionX;
-        this.posY += this.motionY;
-        this.posZ += this.motionZ;
+		Entity entity = this.findEntityOnPath(vec3d1, vec3d);
 
-        this.setPosition(this.posX, this.posY, this.posZ);
+		if (entity != null) {
+			raytraceresult = new RayTraceResult(entity);
+		}
 
-        this.doBlockCollisions();
+		if (raytraceresult != null && !isDead) {
+			Entity target = raytraceresult.entityHit;
+			if (target != null) {
+				causeRangeDamage();
+				sprayEffect();
+				setDead();
+				return;
+			}
+		}
+
+		this.posX += this.motionX;
+		this.posY += this.motionY;
+		this.posZ += this.motionZ;
+
+		if (!this.hasNoGravity()) {
+			this.motionY -= 0.05d;
+		}
+
+		this.setPosition(this.posX, this.posY, this.posZ);
+
+		this.doBlockCollisions();  	
+
+	}
+	
+	private void sprayEffect()
+	{
+		EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 9, true);
+		particleSpray.shoot(this.rotationYaw, this.rotationPitch, 3.0f);
+		particleSpray.setScaleSize(new Vec3d(0.1d, 0.1d, 0.1d));
+		world.spawnEntity(particleSpray);
+	}
+	
+	protected void causeRangeDamage()
+	{
+		Vec3i offset = new Vec3i(5, 5, 5);
+    	BlockPos currentPos  = new BlockPos(this.posX, this.posY, this.posZ);
+		BlockPos minPos = currentPos.subtract(offset);
+		BlockPos maxPos = currentPos.add(offset);
+		AxisAlignedBB bb = new AxisAlignedBB(minPos, maxPos);
+		List<Entity> list = world.getEntitiesInAABBexcluding(this, bb, GUN_TARGETS);
+		for (Entity curEntity : list) {
+			if(curEntity instanceof EntityLivingBase)
+			{
+				EntityLivingBase livingBase = (EntityLivingBase) curEntity;
+				if(shooter != null) 
+				{
+					livingBase.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);	
+					Explosion exp =  new Explosion(world, this,  this.posX, this.posY, this.posZ, 1.0f, false, false);
+					exp.doExplosionA();
+					exp.doExplosionB(true);
+				}else 
+				{
+					livingBase.attackEntityFrom(DamageSource.GENERIC, power);
+				}
+			}
+		}
+		
 	}
 	
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
@@ -171,18 +199,25 @@ public class EntityGunBullet extends Entity {
         this.motionY += shooter.motionY;
         this.motionZ += shooter.motionZ;
         this.velocity = velocity;
-	}
 
+	}
 	
-    protected void shoot(double x, double y, double z, float velocity)
+	public void shoot(Vec3d pos,Vec3d target)
+	{
+		double d1 = (target.x - pos.x)/8f ;
+		double d2 = (target.y - pos.y)/8f ;
+		double d3 = (target.z - pos.z) /8f;
+		double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
+		shoot(d1, d2 + d4, d3, 1.0f);
+		
+	}
+	
+    public void shoot(double x, double y, double z, float velocity)
     {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / (double)f;
         y = y / (double)f;
         z = z / (double)f;
-        x = x + this.rand.nextGaussian() * 0.007;
-        y = y + this.rand.nextGaussian() * 0.007;
-        z = z + this.rand.nextGaussian() * 0.007;
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
@@ -196,6 +231,11 @@ public class EntityGunBullet extends Entity {
         this.prevRotationPitch = this.rotationPitch;
     }
 
+    public float getBulletPower()
+    {
+    	return power;//this.pow
+    }
+   
 	@Override
 	protected void entityInit(){}
 
@@ -203,17 +243,18 @@ public class EntityGunBullet extends Entity {
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.ticksInAir =  compound.getInteger("ticksInAir");
-		this.power = compound.getFloat("power");
 		this.velocity = compound.getFloat("velocity");
 		this.maxExistTicks = compound.getInteger("maxExistTicks");
+		this.power = compound.getFloat("power");
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound) 
 	{
         compound.setInteger("ticksInAir", this.ticksInAir);
-        compound.setFloat("power", this.power);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
+        compound.setFloat("compound", this.power);
 	}
 }
+

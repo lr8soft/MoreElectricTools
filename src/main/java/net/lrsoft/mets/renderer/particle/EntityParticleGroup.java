@@ -1,4 +1,4 @@
-package net.lrsoft.mets.entity;
+package net.lrsoft.mets.renderer.particle;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
-import net.lrsoft.mets.renderer.particle.XCustomizedParticle;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

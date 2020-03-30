@@ -8,16 +8,20 @@ import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
 import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
-import net.lrsoft.mets.entity.EntityParticleGroup;
+import net.lrsoft.mets.entity.EntityPlasmaBullet;
 import net.lrsoft.mets.entity.EntityRocket;
 import net.lrsoft.mets.item.bauble.ItemBaublesManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.renderer.BulletRenderer;
 import net.lrsoft.mets.renderer.LighterRenderer;
-import net.lrsoft.mets.renderer.ParticleRenderer;
+import net.lrsoft.mets.renderer.PlasmaBulletRenderer;
 import net.lrsoft.mets.renderer.RocketRender;
 import net.lrsoft.mets.renderer.TransmissionNodeRenderer;
+import net.lrsoft.mets.renderer.particle.EntityParticleGroup;
+import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
+import net.lrsoft.mets.renderer.particle.InstantParticleRender;
+import net.lrsoft.mets.renderer.particle.ParticleRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.Render;
@@ -79,6 +83,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.advancedElectricSubmachineGun.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricRocketLauncher, 0,
 				new ModelResourceLocation(ItemManager.electricRocketLauncher.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.electricPlasmaGun, 0,
+				new ModelResourceLocation(ItemManager.electricPlasmaGun.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
 				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
@@ -144,6 +150,18 @@ public class ModelManager {
 		RenderingRegistry.registerEntityRenderingHandler(EntityParticleGroup.class, new IRenderFactory<EntityParticleGroup>() {
 			public Render<EntityParticleGroup> createRenderFor(RenderManager manager) {
 				return (Render<EntityParticleGroup>) new ParticleRenderer(manager);
+			}
+		});
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityParticleSpray.class, new IRenderFactory<EntityParticleSpray>() {
+			public Render<EntityParticleSpray> createRenderFor(RenderManager manager) {
+				return (Render<EntityParticleSpray>) new InstantParticleRender(manager);
+			}
+		});
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityPlasmaBullet.class, new IRenderFactory<EntityPlasmaBullet>() {
+			public Render<EntityPlasmaBullet> createRenderFor(RenderManager manager) {
+				return (Render<EntityPlasmaBullet>) new PlasmaBulletRenderer(manager);
 			}
 		});
 		

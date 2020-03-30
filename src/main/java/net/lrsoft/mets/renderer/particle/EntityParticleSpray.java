@@ -1,54 +1,46 @@
-package net.lrsoft.mets.entity;
+package net.lrsoft.mets.renderer.particle;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
-import ic2.core.util.Vector3;
-import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntitySelectors;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class EntityGunBullet extends Entity {
-	public static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
-    {
-        public boolean apply(@Nullable Entity entity)
-        {
-            return entity.canBeCollidedWith();
-        }
-    });
-	
-	protected EntityPlayer shooter;
+public class EntityParticleSpray extends Entity {
+
+	protected Entity shooter;
 	protected int ticksInAir;
 	protected int maxExistTicks;
-	protected float power;
+	protected int spawnParticles;
 	protected float velocity;
-	
-	public EntityGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
+	protected boolean haveInit = false;
+	protected Vec3d color;
+	protected Vec3d scaleSize = new Vec3d(0.1d, 0.1d, 0.1d);
+	public EntityParticleSpray(World world, Entity owner, Vec3d color, int maxTick, int spawnParticles, boolean useLastPos) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
 		setSize(0.39F, 0.39F);
 	
-		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
-		this.power = power;
+		if(!useLastPos)
+			setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
+		else
+			setPosition(owner.lastTickPosX, owner.lastTickPosY + (double)shooter.getEyeHeight() - 0.1, owner.lastTickPosZ);
 		this.maxExistTicks = maxTick;
+		this.spawnParticles = spawnParticles;
+		this.color = color;
+	}
+	
+	public EntityParticleSpray(World world, Entity owner, Vec3d color, int maxTick, int spawnParticles) 
+	{
+		this(world, owner, color, maxTick, spawnParticles, false);
 	}
 	
 	@Override
@@ -66,7 +58,7 @@ public class EntityGunBullet extends Entity {
         BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
         IBlockState iblockstate = this.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
-        
+        TileEntity te = world.getTileEntity(blockpos);
         if (iblockstate.getMaterial() != Material.AIR)
         {
             AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
@@ -77,88 +69,28 @@ public class EntityGunBullet extends Entity {
                 return;
             }
         }
-        
-        ++this.ticksInAir;
-        Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
-        Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
-        vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
-        vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        
-        if (raytraceresult != null)
-        {
-            vec3d = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
-        }
-        
-        Entity entity = this.findEntityOnPath(vec3d1, vec3d);
 
-        if (entity != null)
-        {
-            raytraceresult = new RayTraceResult(entity);
-        }
-        
-        if (raytraceresult != null && !isDead)
-        {
-            Entity target = raytraceresult.entityHit;
-            if (target != null)
-            {
-            	target.hurtResistantTime = 0;
-            	
-            	if(shooter != null)
-            	{
-            		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);
-            	}else {
-            		target.attackEntityFrom(DamageSource.GENERIC, power);
-            	}
-            	setDead();
-            	return;
-            }
-        }
-        
+        ++this.ticksInAir;
+ 
         if(this.ticksInAir > maxExistTicks)
         {
         	setDead();
         	return;
         }
 
-        //from arrow
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
+        
+        if (!this.hasNoGravity())
+        {
+            this.motionY -= 0.08d;
+        }
 
         this.setPosition(this.posX, this.posY, this.posZ);
 
         this.doBlockCollisions();
 	}
-	
-	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
-    {
-		Entity entity = null;
-		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
-				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), GUN_TARGETS);
-		double d0 = 0.0D;
-
-		for (int i = 0; i < list.size(); ++i) {
-			Entity entity1 = list.get(i);
-
-			if (shooter != null && shooter == entity1) {
-				continue;
-			}
-			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
-			RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
-
-			if (raytraceresult != null) {
-				double d1 = start.squareDistanceTo(raytraceresult.hitVec);
-
-				if (d1 < d0 || d0 == 0.0D) {
-					entity = entity1;
-					d0 = d1;
-				}
-			}
-		}
-
-        return entity;
-    }
 	
 	public void shoot(float yaw, float pitch, float velocity)
 	{
@@ -171,18 +103,28 @@ public class EntityGunBullet extends Entity {
         this.motionY += shooter.motionY;
         this.motionZ += shooter.motionZ;
         this.velocity = velocity;
-	}
 
+	}
 	
-    protected void shoot(double x, double y, double z, float velocity)
+	public void shoot(Vec3d pos,Vec3d target)
+	{
+		double d1 = (target.x - pos.x)/8f ;
+		double d2 = (target.y - pos.y)/8f ;
+		double d3 = (target.z - pos.z) /8f;
+		double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
+		shoot(d1, d2 + d4, d3, 1.0f);
+		
+	}
+	
+    public void shoot(double x, double y, double z, float velocity)
     {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / (double)f;
         y = y / (double)f;
         z = z / (double)f;
-        x = x + this.rand.nextGaussian() * 0.007;
-        y = y + this.rand.nextGaussian() * 0.007;
-        z = z + this.rand.nextGaussian() * 0.007;
+        x = x + this.rand.nextGaussian() * 0.1;
+        y = y + this.rand.nextGaussian() * 0.1;
+        z = z + this.rand.nextGaussian() * 0.1;
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
@@ -195,7 +137,40 @@ public class EntityGunBullet extends Entity {
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
     }
-
+  
+    
+    public int getParticleSpawnCount()
+    {
+    	return spawnParticles;
+    }
+    
+    public boolean getIsInit()
+    {
+    	return haveInit;
+    }
+    
+    public void setIsInit(boolean value)
+    {
+    	haveInit = value;
+    }
+    
+    public Vec3d getColor()
+    {
+    	return color;
+    }
+    
+    
+    public void setScaleSize(Vec3d size)
+    {
+    	this.scaleSize = size;
+    }
+    
+    public Vec3d getScaleSize()
+    {
+    	return scaleSize;
+    }
+    
+   
 	@Override
 	protected void entityInit(){}
 
@@ -203,7 +178,7 @@ public class EntityGunBullet extends Entity {
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.ticksInAir =  compound.getInteger("ticksInAir");
-		this.power = compound.getFloat("power");
+		this.spawnParticles = compound.getInteger("spawnParticles");
 		this.velocity = compound.getFloat("velocity");
 		this.maxExistTicks = compound.getInteger("maxExistTicks");
 	}
@@ -212,8 +187,10 @@ public class EntityGunBullet extends Entity {
 	protected void writeEntityToNBT(NBTTagCompound compound) 
 	{
         compound.setInteger("ticksInAir", this.ticksInAir);
-        compound.setFloat("power", this.power);
+        compound.setInteger("spawnParticles", this.spawnParticles);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
 	}
 }
+
+

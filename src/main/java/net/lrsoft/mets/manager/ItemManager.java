@@ -27,6 +27,7 @@ import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
 import net.lrsoft.mets.item.rotor.TitaniumIronAlloyRotor;
 import net.lrsoft.mets.item.weapon.AdvancedElectricSubmachineGun;
 import net.lrsoft.mets.item.weapon.AdvancedIridiumSword;
+import net.lrsoft.mets.item.weapon.ElectricPlasmaGun;
 import net.lrsoft.mets.item.weapon.ElectricRocketLauncher;
 import net.lrsoft.mets.item.weapon.ElectricShield;
 import net.lrsoft.mets.item.weapon.ElectricSubmachineGun;
@@ -74,6 +75,7 @@ public class ItemManager {
 	public static AdvancedElectricSubmachineGun advancedElectricSubmachineGun;
 	public static TacticalLaserSubmachineGun tacticalLaserSubmachineGun;
 	public static ElectricRocketLauncher electricRocketLauncher;
+	public static ElectricPlasmaGun electricPlasmaGun;
 	
 	public static DivingMask divingMask;
 	public static AdvancedQuantumSuit advancedQuantumChest;
@@ -106,6 +108,7 @@ public class ItemManager {
 		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
 		tacticalLaserSubmachineGun = new TacticalLaserSubmachineGun();
 		electricRocketLauncher = new ElectricRocketLauncher();
+		electricPlasmaGun = new ElectricPlasmaGun();
 		
 		divingMask = new DivingMask();	
 		advancedQuantumChest = new AdvancedQuantumSuit("advanced_quantum_chest", EntityEquipmentSlot.CHEST);
@@ -136,6 +139,7 @@ public class ItemManager {
 		event.getRegistry().register(electricRocketLauncher);
 		event.getRegistry().register(electricForceFieldGenerator);
 		event.getRegistry().register(electricLighter);
+		event.getRegistry().register(electricPlasmaGun);
 		event.getRegistry().register(electricWirlessManager);
 		
 		event.getRegistry().register(divingMask);
@@ -453,6 +457,20 @@ public class ItemManager {
 					'B', getAllTypeStack(lithiumBattery),
 					'T', IC2Items.getItem("frequency_transmitter"),
 					'C', IC2Items.getItem("crafting", "advanced_circuit"),
+					});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricPlasmaGun), new Object[]
+				{
+					"TSB",
+					"OOC",
+					"TSD",
+					'S', ItemCraftingManager.niobium_titanium_plate,
+					'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
+					'O', IC2Items.getItem("crafting", "coil"),
+					'J', IC2Items.getItem("iridium_reflector"),
+					'T', IC2Items.getItem("upgrade", "ejector"),
+					'C', ItemCraftingManager.super_circuit,
+					'D', getAllTypeStack(electricSubmachineGun)
 					});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
