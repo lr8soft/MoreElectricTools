@@ -15,6 +15,11 @@ public class MathUtils{
 		return new Random().nextInt(max-min)+min;
 	}
 	
+	public static double getRandomFromRange(double max, double min)
+	{
+		return (Math.random() * (max - min) + min);
+	}
+	
 	public static float[] getPlayerView(EntityPlayer player, float partialTicks)
 	{
 		float[] playerView = new float[2];

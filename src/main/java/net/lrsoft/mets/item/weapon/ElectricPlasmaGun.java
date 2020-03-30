@@ -39,7 +39,7 @@ public class ElectricPlasmaGun extends UniformElectricItem {
 				worldIn.spawnEntity(entity);	
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
-						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);
+						SoundManager.plasma_launch, playerIn.getSoundCategory(), 0.5f, 0.8F);
 
 				setLastRightClick(currentGun, lastRightClick);
 			}

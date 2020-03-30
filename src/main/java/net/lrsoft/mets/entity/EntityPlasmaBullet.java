@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,6 +25,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class EntityPlasmaBullet extends Entity {
@@ -124,7 +126,7 @@ public class EntityPlasmaBullet extends Entity {
 	
 	private void sprayEffect()
 	{
-		EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 9);
+		EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 9, true);
 		particleSpray.shoot(this.rotationYaw, this.rotationPitch, 3.0f);
 		particleSpray.setScaleSize(new Vec3d(0.1d, 0.1d, 0.1d));
 		world.spawnEntity(particleSpray);
@@ -145,12 +147,16 @@ public class EntityPlasmaBullet extends Entity {
 				if(shooter != null) 
 				{
 					livingBase.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);	
+					Explosion exp =  new Explosion(world, this,  this.posX, this.posY, this.posZ, 1.0f, false, false);
+					exp.doExplosionA();
+					exp.doExplosionB(true);
 				}else 
 				{
 					livingBase.attackEntityFrom(DamageSource.GENERIC, power);
 				}
 			}
 		}
+		
 	}
 	
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)

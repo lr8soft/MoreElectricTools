@@ -23,16 +23,24 @@ public class EntityParticleSpray extends Entity {
 	protected boolean haveInit = false;
 	protected Vec3d color;
 	protected Vec3d scaleSize = new Vec3d(0.1d, 0.1d, 0.1d);
-	public EntityParticleSpray(World world, Entity owner, Vec3d color, int maxTick, int spawnParticles) {
+	public EntityParticleSpray(World world, Entity owner, Vec3d color, int maxTick, int spawnParticles, boolean useLastPos) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
 		setSize(0.39F, 0.39F);
 	
-		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
+		if(!useLastPos)
+			setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
+		else
+			setPosition(owner.lastTickPosX, owner.lastTickPosY + (double)shooter.getEyeHeight() - 0.1, owner.lastTickPosZ);
 		this.maxExistTicks = maxTick;
 		this.spawnParticles = spawnParticles;
 		this.color = color;
+	}
+	
+	public EntityParticleSpray(World world, Entity owner, Vec3d color, int maxTick, int spawnParticles) 
+	{
+		this(world, owner, color, maxTick, spawnParticles, false);
 	}
 	
 	@Override

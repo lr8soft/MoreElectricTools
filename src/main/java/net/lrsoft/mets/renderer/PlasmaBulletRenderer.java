@@ -1,5 +1,6 @@
 package net.lrsoft.mets.renderer;
 
+import java.util.Random;
 import java.util.Vector;
 
 import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
@@ -45,15 +46,31 @@ public class PlasmaBulletRenderer extends Render<EntityPlasmaBullet>{
 			}
 		}
 
+		
 		for (int count = 0; count < 9; count++) {
 			XCustomizedParticle particle = new XCustomizedParticle(new Vec3d(0.8f, 1.0f, 1.0f), new Vec3d(x, y, z),
-					new Vec3d(entity.motionX * MathUtils.getRandomFromRange(1, -1) * Math.random() / 10.0f,
-							entity.motionY * MathUtils.getRandomFromRange(1, -1) * Math.random() / 10.0f,
-							entity.motionZ * MathUtils.getRandomFromRange(1, -1) * Math.random() / 10.0f),
+					new Vec3d(getNewMotion(entity.motionX),
+							getNewMotion(entity.motionY),
+							getNewMotion(entity.motionZ)),
 					new Vec3d(0.1f, 0.1f, 0.1f), new Vec3d(0.0f, 0.0f, 1.0f), 0.0f,
 					MathUtils.getRandomFromRange(20, 5));
 			particleVector.add(particle);
 		}
+	}
+	
+	private double getNewMotion(double motion)
+	{
+		double value = motion;
+		if(new Random().nextInt() % 2 == 0)
+		{
+			value *= MathUtils.getRandomFromRange(0.1, 0.01);
+			value /= 12.0f;
+		}else 
+		{
+			value *= MathUtils.getRandomFromRange(-0.01, -0.1);
+			value /= 12.0f;
+		}
+		return value;
 	}
 	
 	@Override

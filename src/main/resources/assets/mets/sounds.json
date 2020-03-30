@@ -19,5 +19,12 @@
     "sounds": [
       "mets:lighter_place"
     ]
+  },
+  "plasma_launch": {
+    "category": "block",
+    "subtitle": "mets.sound.plasma_launch",
+    "sounds": [
+      "mets:plasma_launch"
+    ]
   }
 }

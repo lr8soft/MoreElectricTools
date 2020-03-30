@@ -459,6 +459,20 @@ public class ItemManager {
 					'C', IC2Items.getItem("crafting", "advanced_circuit"),
 					});
 		
+		Recipes.advRecipes.addRecipe(new ItemStack(electricPlasmaGun), new Object[]
+				{
+					"TSB",
+					"OOC",
+					"TSD",
+					'S', ItemCraftingManager.niobium_titanium_plate,
+					'B', getAllTypeStack(IC2Items.getItem("energy_crystal")),
+					'O', IC2Items.getItem("crafting", "coil"),
+					'J', IC2Items.getItem("iridium_reflector"),
+					'T', IC2Items.getItem("upgrade", "ejector"),
+					'C', ItemCraftingManager.super_circuit,
+					'D', getAllTypeStack(electricSubmachineGun)
+					});
+		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
 		
