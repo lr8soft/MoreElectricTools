@@ -8,6 +8,7 @@ import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.EnchantmentManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,6 +20,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class TacticalLaserSubmachineGun extends UniformElectricItem {
@@ -40,7 +42,12 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
 			{
 				EntityHyperGunBullet entity = new EntityHyperGunBullet(worldIn, playerIn, 50f, 360);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
-				worldIn.spawnEntity(entity);				
+				worldIn.spawnEntity(entity);		
+				
+				EntityParticleSpray particleSpray = new EntityParticleSpray(worldIn, playerIn, new Vec3d(1.0f, 0.6f, 0.6f), 200, 4);
+				particleSpray.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 2.5f);
+				particleSpray.setScaleSize(new Vec3d(0.06d, 0.06d, 0.06d));
+				worldIn.spawnEntity(particleSpray);
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.2f, 1.0F);

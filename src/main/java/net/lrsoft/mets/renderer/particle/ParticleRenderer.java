@@ -1,8 +1,6 @@
-package net.lrsoft.mets.renderer;
+package net.lrsoft.mets.renderer.particle;
 import java.util.Vector;
 
-import net.lrsoft.mets.entity.EntityParticleGroup;
-import net.lrsoft.mets.renderer.particle.XCustomizedParticle;
 import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

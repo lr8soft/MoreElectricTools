@@ -2,10 +2,11 @@ package net.lrsoft.mets.item.weapon;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.entity.EntityGunBullet;
-import net.lrsoft.mets.entity.EntityParticleGroup;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.lrsoft.mets.renderer.particle.EntityParticleGroup;
+import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +16,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ElectricSubmachineGun extends UniformElectricItem {
@@ -37,6 +39,11 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 				EntityGunBullet entity = new EntityGunBullet(worldIn, playerIn, 6f, 250);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
 				worldIn.spawnEntity(entity);	
+				
+				EntityParticleSpray particleSpray = new EntityParticleSpray(worldIn, playerIn, new Vec3d(0.8f, 1.0f, 1.0f), 200, 2);
+				particleSpray.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 2.5f);
+				particleSpray.setScaleSize(new Vec3d(0.06d, 0.06d, 0.06d));
+				worldIn.spawnEntity(particleSpray);
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);

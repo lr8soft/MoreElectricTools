@@ -9,7 +9,7 @@ import ic2.core.block.TileEntityBlock;
 import ic2.core.block.comp.Energy;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.wiring.TileEntityElectricBlock;
-import net.lrsoft.mets.entity.EntityParticleGroup;
+import net.lrsoft.mets.renderer.particle.EntityParticleGroup;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.nbt.NBTTagCompound;

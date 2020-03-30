@@ -1,14 +1,5 @@
-package net.lrsoft.mets.entity;
+package net.lrsoft.mets.renderer.particle;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
-import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
-import net.lrsoft.mets.renderer.particle.XCustomizedParticle;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,25 +7,23 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 
-public class EntityParticleGroup extends Entity {
+public class EntityParticleSpray extends Entity {
 
-	protected EntityPlayer shooter;
+	protected Entity shooter;
 	protected int ticksInAir;
 	protected int maxExistTicks;
 	protected int spawnParticles;
-	protected int spawnParticlesPerTick;
 	protected float velocity;
-	
-	public EntityParticleGroup(World world, EntityPlayer owner,  int maxTick, int spawnParticles,int spawnParticlesPerTick) {
+	protected boolean haveInit = false;
+	protected Vec3d color;
+	protected Vec3d scaleSize = new Vec3d(0.1d, 0.1d, 0.1d);
+	public EntityParticleSpray(World world, Entity owner, Vec3d color, int maxTick, int spawnParticles) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
@@ -43,19 +32,8 @@ public class EntityParticleGroup extends Entity {
 		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
 		this.maxExistTicks = maxTick;
 		this.spawnParticles = spawnParticles;
-		this.spawnParticlesPerTick = spawnParticlesPerTick;
+		this.color = color;
 	}
-	
-	public EntityParticleGroup(World world,  Vec3d postion, int maxTick, int spawnParticles,int spawnParticlesPerTick) {
-		super(world);
-		this.ticksInAir = 0;
-		setSize(0.39F, 0.39F);
-		setPosition(postion.x, postion.y, postion.z);
-		this.maxExistTicks = maxTick;
-		this.spawnParticles = spawnParticles;
-		this.spawnParticlesPerTick = spawnParticlesPerTick;
-	}
-	
 	
 	@Override
 	public void onUpdate() 
@@ -73,7 +51,7 @@ public class EntityParticleGroup extends Entity {
         IBlockState iblockstate = this.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
         TileEntity te = world.getTileEntity(blockpos);
-        if (iblockstate.getMaterial() != Material.AIR && !(te instanceof TileEntityWirelessPowerTransmissionNode))
+        if (iblockstate.getMaterial() != Material.AIR)
         {
             AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
@@ -153,10 +131,31 @@ public class EntityParticleGroup extends Entity {
     	return spawnParticles;
     }
     
-    public int getParticleSpawnPerTick()
+    public boolean getIsInit()
     {
-    	return spawnParticlesPerTick;
+    	return haveInit;
     }
+    
+    public void setIsInit(boolean value)
+    {
+    	haveInit = value;
+    }
+    
+    public Vec3d getColor()
+    {
+    	return color;
+    }
+    
+    public void setScaleSize(Vec3d size)
+    {
+    	this.scaleSize = size;
+    }
+    
+    public Vec3d getScaleSize()
+    {
+    	return scaleSize;
+    }
+    
    
 	@Override
 	protected void entityInit(){}
@@ -168,7 +167,6 @@ public class EntityParticleGroup extends Entity {
 		this.spawnParticles = compound.getInteger("spawnParticles");
 		this.velocity = compound.getFloat("velocity");
 		this.maxExistTicks = compound.getInteger("maxExistTicks");
-		this.spawnParticlesPerTick = compound.getInteger("spawnParticlesPerTick");
 	}
 
 	@Override
@@ -176,9 +174,9 @@ public class EntityParticleGroup extends Entity {
 	{
         compound.setInteger("ticksInAir", this.ticksInAir);
         compound.setInteger("spawnParticles", this.spawnParticles);
-        compound.setInteger("spawnParticlesPerTick", this.spawnParticlesPerTick);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
 	}
 }
+
 
