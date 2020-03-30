@@ -60,6 +60,7 @@ public class XCustomizedParticle {
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
 		GlStateManager.translate(x, y, z);
 		RenderHelper.enableStandardItemLighting();
+		
 		GL11.glDepthMask(false);
 		minecraft.getTextureManager().bindTexture(resourceLocation);
 		GlStateManager.translate(0.0f, 0.0f, 0.0f);
