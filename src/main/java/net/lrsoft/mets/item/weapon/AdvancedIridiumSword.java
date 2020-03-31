@@ -14,6 +14,7 @@ import ic2.api.item.IItemHudInfo;
 import ic2.core.IC2;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.enchantment.EfficientEnergyCost;
+import net.lrsoft.mets.entity.EntityPlasmaBullet;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.EnchantmentManager;
@@ -39,6 +40,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -120,6 +122,19 @@ public class AdvancedIridiumSword  extends UniformElectricItem{
 			target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), attackDamage);	
 		}
 		return true;
+	}
+	
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+		
+		
+		return super.onLeftClickEntity(stack, player, entity);
+	}
+	
+	@Override
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+		
+		return super.onItemUseFinish(stack, worldIn, entityLiving);	
 	}
 	
 	

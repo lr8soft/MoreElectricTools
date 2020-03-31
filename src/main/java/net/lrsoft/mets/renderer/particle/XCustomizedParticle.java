@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class XCustomizedParticle {
+public class XCustomizedParticle implements IXCustomizedEffect{
 	private static ResourceLocation resourceLocation = new ResourceLocation(MoreElectricTools.MODID, "textures/particles/particle.png");
 
 	public XCustomizedParticle(Vec3d color, Vec3d worldLocation, Vec3d motion, Vec3d scale, Vec3d rotate, float angle, int maxTicks)
@@ -55,22 +55,14 @@ public class XCustomizedParticle {
 		int red = (int) color.x;
 		int blue = (int) color.y;
 		int green = (int) color.z;
-		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		GlStateManager.pushMatrix();
-		
 		GlStateManager.enableBlend();
-	    GlStateManager.disableAlpha();
-	    GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
-	    GlStateManager.disableLighting();
-	    GlStateManager.depthMask(false);
-	    GlStateManager.enableLighting();
-		GlStateManager.translate(x, y, z);
-		//GlStateManager.enableBlend();
 
-		//GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
-		
-		
-		//GlStateManager.depthMask(false);
+	    GlStateManager.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
+	    GlStateManager.depthMask(true);
+	    RenderHelper.enableStandardItemLighting();
+	    
+	    GlStateManager.pushMatrix();
+		GlStateManager.translate(x, y, z);
 		minecraft.getTextureManager().bindTexture(resourceLocation);
 		GlStateManager.translate(0.0f, 0.0f, 0.0f);
 		GlStateManager.rotate(angle, (float) rotate.x, (float) rotate.y, (float) rotate.z);
@@ -90,17 +82,11 @@ public class XCustomizedParticle {
 		bufferbuilder.pos(-0.5D, 0.75D, 0.0D).tex(0.0d, 1.0d).color(red, green, blue, alpha)
 				.endVertex();
 		tessellator.draw();
-		
-		//GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-		//GlStateManager.enableLighting();
-		//GlStateManager.disableBlend();
-		//GlStateManager.disableRescaleNormal();
 		GlStateManager.popMatrix();
-		//GlStateManager.depthMask(true);
 		
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
-        GlStateManager.enableAlpha();
+
 	}
 	
 	public boolean getIsFinish()

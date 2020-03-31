@@ -49,4 +49,33 @@ public class MathUtils{
         }
         return playerView;
 	}
+	
+	//PythonSTG NOW!
+	public static float[] getRenderXYUV(int column, int row,  float imageX, float imageY, float xcoord, float ycoord)
+	{
+		float x = imageX; float y = imageY;
+		float icol = (float)column, irow = (float)row;
+		float returnArray[] = new float[16];
+		returnArray[0] = xcoord;
+		returnArray[1] = ycoord;
+		returnArray[2] =  x / icol;
+		returnArray[3] = y / irow ;
+
+		returnArray[4] = xcoord;
+		returnArray[5] = -ycoord;
+		returnArray[6] = x / icol;
+		returnArray[7] = (y - 1) / irow;
+
+		returnArray[8] = -xcoord;
+		returnArray[9] = -ycoord;
+		returnArray[10] = (x - 1) / icol;
+		returnArray[11] = (y - 1) / irow;
+
+
+		returnArray[12] = -xcoord;
+		returnArray[13] = ycoord;
+		returnArray[14] = (x - 1) / icol;
+		returnArray[15] = y / irow;
+		return returnArray;
+	}
 }

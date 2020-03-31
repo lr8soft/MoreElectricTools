@@ -9,6 +9,7 @@ import com.google.common.base.Predicates;
 
 import ic2.core.util.Vector3;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
+import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -64,6 +65,21 @@ public class EntityHyperGunBullet extends EntityGunBullet {
 
         return entity;
     }
+	
+	@Override
+	protected void sprayEffect() {
+		float initYaw =  this.rotationYaw;
+		float initPitch = this.rotationPitch;
+		for(int i=0; i < 3; i++)
+		{
+			initYaw += MathUtils.getRandomFromRange(360, 0);
+			initPitch += MathUtils.getRandomFromRange(360, 0);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(1.0f, 0.6f, 0.6f), 500, 6, true);
+			particleSpray.shoot(initYaw, initPitch, 0.8f);
+			particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
+			world.spawnEntity(particleSpray);			
+		}
+	}
 	
 	@Override
 	protected void shoot(double x, double y, double z, float velocity)

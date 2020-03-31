@@ -25,14 +25,8 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 	private Vec3d targetPosition = null;
 	private Vector<EntityParticleGroup> globalParticleVector = new Vector();
 	public TileEntityWirelessPowerTransmissionNode() {
-		super(8192, 4);
+		super(8192, 5);
 
-	}
-	
-	@Override
-	protected void updateEntityClient() {
-		// TODO Auto-generated method stub
-		super.updateEntityClient();
 	}
 	
 	@Override
@@ -45,7 +39,6 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 	{
 		if (this.energy.canUseEnergy(8192)) 
 		{
-			setActive(true);
 			if(targetPosition != null)
 			{
 				TileEntity targetTE = getWorld().getTileEntity(new BlockPos(targetPosition));
@@ -75,6 +68,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 								energy.useEnergy(useage);
 								targetEnergy.readFromNbt(compound);
 								spawnEnergyParticle();
+								setActive(true);
 							}
 						}catch(Exception expt){
 							System.out.println(expt.getMessage());
@@ -100,6 +94,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 							energy.useEnergy(useage);
 							electricBlock.energy.readFromNbt(compound);
 							spawnEnergyParticle();
+							setActive(true);
 						}
 					}
 				}

@@ -9,6 +9,7 @@ import com.google.common.base.Predicates;
 
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
+import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +38,7 @@ public class EntityPlasmaBullet extends Entity {
         }
     });
 
-	protected EntityPlayer shooter;
+	protected EntityPlayer shooter = null;
 	protected int ticksInAir;
 	protected int maxExistTicks;
 
@@ -77,6 +78,7 @@ public class EntityPlasmaBullet extends Entity {
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
+            	this.setPosition(this.prevPosX, this.prevPosY, this.prevPosZ);
             	causeRangeDamage();
             	sprayEffect();
                 setDead();
@@ -126,10 +128,17 @@ public class EntityPlasmaBullet extends Entity {
 	
 	private void sprayEffect()
 	{
-		EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 9, true);
-		particleSpray.shoot(this.rotationYaw, this.rotationPitch, 3.0f);
-		particleSpray.setScaleSize(new Vec3d(0.1d, 0.1d, 0.1d));
-		world.spawnEntity(particleSpray);
+		float initYaw =  this.rotationYaw;
+		float initPitch = this.rotationPitch;
+		for(int i=0; i < 3; i++)
+		{
+			initYaw += MathUtils.getRandomFromRange(360, 0);
+			initPitch += MathUtils.getRandomFromRange(360, 0);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 6, true);
+			particleSpray.shoot(initYaw, initPitch, 1.5f);
+			particleSpray.setScaleSize(new Vec3d(0.1d, 0.1d, 0.1d));
+			world.spawnEntity(particleSpray);			
+		}
 	}
 	
 	protected void causeRangeDamage()
@@ -147,9 +156,9 @@ public class EntityPlasmaBullet extends Entity {
 				if(shooter != null) 
 				{
 					livingBase.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);	
-					Explosion exp =  new Explosion(world, this,  this.posX, this.posY, this.posZ, 1.0f, false, false);
+					Explosion exp = new Explosion(world, shooter, this.posX, this.posY, this.posZ, 1.0f, false, false);
 					exp.doExplosionA();
-					exp.doExplosionB(true);
+					exp.doExplosionB(true);			
 				}else 
 				{
 					livingBase.attackEntityFrom(DamageSource.GENERIC, power);
