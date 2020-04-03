@@ -10,6 +10,7 @@ import ic2.core.block.comp.Energy;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.wiring.TileEntityElectricBlock;
 import net.lrsoft.mets.renderer.particle.EntityParticleGroup;
+import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,14 +26,8 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 	private Vec3d targetPosition = null;
 	private Vector<EntityParticleGroup> globalParticleVector = new Vector();
 	public TileEntityWirelessPowerTransmissionNode() {
-		super(8192, 4);
+		super(8192, 5);
 
-	}
-	
-	@Override
-	protected void updateEntityClient() {
-		// TODO Auto-generated method stub
-		super.updateEntityClient();
 	}
 	
 	@Override
@@ -45,7 +40,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 	{
 		if (this.energy.canUseEnergy(8192)) 
 		{
-			setActive(true);
+			boolean shouldActive = false;
 			if(targetPosition != null)
 			{
 				TileEntity targetTE = getWorld().getTileEntity(new BlockPos(targetPosition));
@@ -75,6 +70,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 								energy.useEnergy(useage);
 								targetEnergy.readFromNbt(compound);
 								spawnEnergyParticle();
+								shouldActive = true;
 							}
 						}catch(Exception expt){
 							System.out.println(expt.getMessage());
@@ -100,11 +96,12 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 							energy.useEnergy(useage);
 							electricBlock.energy.readFromNbt(compound);
 							spawnEnergyParticle();
+							shouldActive = true;
 						}
 					}
 				}
 			}
-			
+			setActive(shouldActive);
 		}
 	}
 	

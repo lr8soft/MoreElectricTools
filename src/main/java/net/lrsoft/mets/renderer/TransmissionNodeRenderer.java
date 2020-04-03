@@ -2,6 +2,8 @@ package net.lrsoft.mets.renderer;
 
 import java.util.Vector;
 
+import org.lwjgl.opengl.GL11;
+
 import net.lrsoft.mets.block.tileentity.TileEntityLighterBlock;
 import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
 import net.lrsoft.mets.manager.ConfigManager;
@@ -38,22 +40,23 @@ public class TransmissionNodeRenderer extends TileEntitySpecialRenderer<TileEnti
 		for(int i=0; i < particleVector.size(); i++)
 		{
 			XCustomizedParticle particle = particleVector.get(i);
-			particle.onRender(partialTicks);
+			particle.onSpecialRender(x, y, z, partialTicks);
 			if(particle.getIsFinish())
 			{
 				particleVector.remove(i);
 			}
 		}
-
-		if(System.currentTimeMillis() % 2 == 0)
+		Vec3d target = te.getTargetPosition();
+		Vec3d currentPos = new Vec3d(te.getPos());
+		if(target != null)
 		{
-			Vec3d motionNow = getMotion(te.getTargetPosition().subtract(0.5d, 0.5d, 0.5d), 
-					new Vec3d(x, y, z).addVector(0.5d, 0.5d, 0.5d), 1.0f);
 			
-			for(int count = 0; count < 2; count++)
+			Vec3d motionNow = getMotion(target.subtract(x, y, z), currentPos.addVector(0.5d, 0.5d, 0.5d), 0.05f);
+			
+			for(int count = 0; count < 6; count++)
 			{
 				XCustomizedParticle particle = new XCustomizedParticle(new Vec3d(0.8f, 1.0f, 1.0f),
-						new Vec3d(x + 0.5f, y + 0.5f, z + 0.5f), 
+						currentPos.addVector(0.5d, 0.5d, 0.5d), 
 						new Vec3d(motionNow.x/ 15.0f,motionNow.y / 15.0f, motionNow.z / 15.0f),
 						new Vec3d(0.1f, 0.1f, 0.1f), new Vec3d(0.0f, 0.0f, 1.0f), 0.0f, MathUtils.getRandomFromRange(60, 20));
 				particleVector.add(particle);
@@ -61,23 +64,9 @@ public class TransmissionNodeRenderer extends TileEntitySpecialRenderer<TileEnti
 		}
 	}
 	
-	// this.render(tileentityIn, (double)blockpos.getX() - staticPlayerX, (double)blockpos.getY() - staticPlayerY, (double)blockpos.getZ() - staticPlayerZ, partialTicks, destroyStage, 1.0F);
 	private Vec3d getMotion(Vec3d target, Vec3d pos, double velocity)
 	{
-		Vec3d newTarget = target.addVector(TileEntityRendererDispatcher.staticPlayerX, TileEntityRendererDispatcher.staticPlayerY, TileEntityRendererDispatcher.staticPlayerZ);
-		double d1 = (newTarget.x - pos.x);
-		double d2 = (newTarget.y - pos.y);
-		double d3 = (newTarget.z - pos.z);
-		double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
-		Vec3d temp = new Vec3d(d1, d2 + d4 * 0.2D, d3);
-		float f = MathHelper.sqrt(temp.x * temp.x + temp.y * temp.y + temp.z * temp.z);
-		double x = temp.x / (double)f;
-		double y = temp.y / (double)f;
-		double z = temp.z / (double)f;
-		x = temp.x * velocity;
-		y = temp.y * velocity;
-		z = temp.z * velocity;
-		
-        return new Vec3d(x, y, z);
+		Vec3d newTarget = pos.scale(velocity);
+        return pos.subtract(newTarget);
 	}
 }

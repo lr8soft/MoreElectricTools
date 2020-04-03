@@ -12,6 +12,7 @@ import ic2.api.recipe.MachineRecipe;
 import ic2.api.recipe.MachineRecipeResult;
 import ic2.api.recipe.Recipes;
 import ic2.api.upgrade.UpgradableProperty;
+import ic2.core.block.TileEntityInventory;
 import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import ic2.core.block.machine.tileentity.TileEntityPump;

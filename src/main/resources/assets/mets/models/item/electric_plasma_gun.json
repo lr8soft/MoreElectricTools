@@ -2,5 +2,23 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "mets:items/gun/electric_plasma_gun"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": { "mets:energy_value": 0.25 },
+      "model": "mets:item/electric_plasma_gun/electric_plasma_gun_1"
+    },
+    {
+      "predicate": { "mets:energy_value": 0.5 },
+      "model": "mets:item/electric_plasma_gun/electric_plasma_gun_2"
+    },
+    {
+      "predicate": { "mets:energy_value": 0.75 },
+      "model": "mets:item/electric_plasma_gun/electric_plasma_gun_3"
+    },
+    {
+      "predicate": { "mets:energy_value": 1.0 },
+      "model": "mets:item/electric_plasma_gun/electric_plasma_gun_4"
+    }
+  ]
 }

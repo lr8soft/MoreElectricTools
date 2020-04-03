@@ -9,6 +9,7 @@ import com.google.common.base.Predicates;
 
 import ic2.core.util.Vector3;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
+import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -73,6 +74,7 @@ public class EntityGunBullet extends Entity {
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
+            	sprayEffect();
                 setDead();
                 return;
             }
@@ -110,6 +112,7 @@ public class EntityGunBullet extends Entity {
             	}else {
             		target.attackEntityFrom(DamageSource.GENERIC, power);
             	}
+            	sprayEffect();
             	setDead();
             	return;
             }
@@ -159,6 +162,21 @@ public class EntityGunBullet extends Entity {
 
         return entity;
     }
+	
+	protected void sprayEffect()
+	{
+		float initYaw =  this.rotationYaw;
+		float initPitch = this.rotationPitch;
+		for(int i=0; i < 2; i++)
+		{
+			initYaw += MathUtils.getRandomFromRange(360, 0);
+			initPitch += MathUtils.getRandomFromRange(360, 0);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 6, true);
+			particleSpray.shoot(initYaw, initPitch, 0.8f);
+			particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
+			world.spawnEntity(particleSpray);			
+		}
+	}
 	
 	public void shoot(float yaw, float pitch, float velocity)
 	{

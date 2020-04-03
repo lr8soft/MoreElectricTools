@@ -5,7 +5,6 @@ import java.util.Random;
 
 import ic2.core.block.generator.tileentity.TileEntityBaseGenerator;
 import ic2.core.network.GuiSynced;
-import net.lrsoft.mets.gui.DropGeneratorSlot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.item.EntityXPOrb;

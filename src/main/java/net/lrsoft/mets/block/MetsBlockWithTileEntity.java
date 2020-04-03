@@ -6,9 +6,7 @@ import java.util.Set;
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.block.*;
-import ic2.core.block.invslot.InvSlotConsumableFuel;
 import ic2.core.item.block.ItemBlockTileEntity;
-import ic2.core.ref.TeBlock;
 import ic2.core.ref.TeBlock.*;
 import ic2.core.ref.TeBlock.DefaultDrop;
 import ic2.core.ref.TeBlock.HarvestTool;
@@ -26,7 +24,6 @@ import ic2.core.util.Util;
 import ic2.core.profile.Version;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.*;
-import net.lrsoft.mets.util.VersionHelper;
 
 public enum MetsBlockWithTileEntity implements ITeBlock {
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
@@ -82,10 +79,6 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	private final float explosionResistance;private final EnumRarity rarity;private final Material material;private final boolean transparent;private TileEntityBlock dummyTe;private ITePlaceHandler placeHandler;
 
 	static {
-		if(VersionHelper.getShouldUseIInventorySlotHolder())
-		{
-			drop_generator.teClass = TileEntityDropGeneratorNew.class;
-		}
 		for (MetsBlockWithTileEntity block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}

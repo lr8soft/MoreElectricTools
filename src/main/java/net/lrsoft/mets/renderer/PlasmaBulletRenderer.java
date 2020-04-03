@@ -47,7 +47,7 @@ public class PlasmaBulletRenderer extends Render<EntityPlasmaBullet>{
 		}
 
 		
-		for (int count = 0; count < 9; count++) {
+		for (int count = 0; count < 24; count++) {
 			XCustomizedParticle particle = new XCustomizedParticle(new Vec3d(0.8f, 1.0f, 1.0f), new Vec3d(x, y, z),
 					new Vec3d(getNewMotion(entity.motionX),
 							getNewMotion(entity.motionY),

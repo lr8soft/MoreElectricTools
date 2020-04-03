@@ -10,6 +10,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.Recipes;
 import ic2.api.upgrade.UpgradableProperty;
 import ic2.core.ContainerBase;
+import ic2.core.block.TileEntityInventory;
 import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;

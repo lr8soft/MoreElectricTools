@@ -44,11 +44,6 @@ public class TacticalLaserSubmachineGun extends UniformElectricItem {
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
 				worldIn.spawnEntity(entity);		
 				
-				EntityParticleSpray particleSpray = new EntityParticleSpray(worldIn, playerIn, new Vec3d(1.0f, 0.6f, 0.6f), 360, 2);
-				particleSpray.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
-				particleSpray.setScaleSize(new Vec3d(0.03d, 0.03d, 0.03d));
-				worldIn.spawnEntity(particleSpray);
-				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.2f, 1.0F);
 				setLastRightClick(currentGun, currentTime);

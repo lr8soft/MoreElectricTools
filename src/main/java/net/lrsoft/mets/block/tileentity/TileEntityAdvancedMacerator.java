@@ -9,6 +9,7 @@ import ic2.api.recipe.IMachineRecipeManager;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.Recipes;
 import ic2.api.upgrade.UpgradableProperty;
+import ic2.core.block.TileEntityInventory;
 import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;
@@ -20,10 +21,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityAdvancedMacerator extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
-	 public TileEntityAdvancedMacerator() 
-	 {
+	public TileEntityAdvancedMacerator() 
+	{
 		 super(5, 150, 1, 2); 
-		 this.inputSlot = (InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>)new InvSlotProcessableGeneric(this, "input", 1, (IMachineRecipeManager)Recipes.macerator);
+		 this.inputSlot = (InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>)
+				 new InvSlotProcessableGeneric(this, "input", 1, (IMachineRecipeManager)Recipes.macerator);
 	}
 	 
 	@SideOnly(Side.CLIENT)

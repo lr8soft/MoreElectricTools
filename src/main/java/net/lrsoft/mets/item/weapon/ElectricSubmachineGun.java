@@ -40,11 +40,6 @@ public class ElectricSubmachineGun extends UniformElectricItem {
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
 				worldIn.spawnEntity(entity);	
 				
-				EntityParticleSpray particleSpray = new EntityParticleSpray(worldIn, playerIn, new Vec3d(0.8f, 1.0f, 1.0f), 300, 1);
-				particleSpray.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
-				particleSpray.setScaleSize(new Vec3d(0.03d, 0.03d, 0.03d));
-				worldIn.spawnEntity(particleSpray);
-				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
 						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.1f, 0.55F);
 
