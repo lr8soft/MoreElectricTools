@@ -24,8 +24,8 @@ public class TileEntityAdvancedMacerator extends TileEntityStandardMachine<IReci
 	public TileEntityAdvancedMacerator() 
 	{
 		 super(5, 150, 1, 2); 
-		 this.inputSlot = (InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>)
-				 new InvSlotProcessableGeneric(this, "input", 1, (IMachineRecipeManager)Recipes.macerator);
+		 this.inputSlot = (InvSlotProcessable)new InvSlotProcessableGeneric(
+				 (TileEntityInventory)this, "input", 1, (IMachineRecipeManager)Recipes.macerator);
 	}
 	 
 	@SideOnly(Side.CLIENT)

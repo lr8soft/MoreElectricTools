@@ -4,6 +4,7 @@ import ic2.api.recipe.ILiquidAcceptManager;
 import ic2.api.recipe.ISemiFluidFuelManager;
 import ic2.api.recipe.Recipes;
 import ic2.core.block.TileEntityBlock;
+import ic2.core.block.TileEntityInventory;
 import ic2.core.block.comp.Fluids;
 import ic2.core.block.comp.TileEntityComponent;
 import ic2.core.block.generator.tileentity.TileEntityBaseGenerator;
@@ -27,9 +28,9 @@ public class TileEntityAdvancedSemifluidGenerator extends TileEntityBaseGenerato
 		this.fluids = (Fluids) addComponent((TileEntityComponent) new Fluids((TileEntityBlock) this));
 		this.fluidTank = (FluidTank) this.fluids.addTankInsert("fluid", 30000,
 				Fluids.fluidPredicate((ILiquidAcceptManager) Recipes.semiFluidGenerator));
-		this.fluidSlot = (InvSlotConsumableLiquid) new InvSlotConsumableLiquidByManager(this, "fluidSlot", 1,
+		this.fluidSlot = (InvSlotConsumableLiquid) new InvSlotConsumableLiquidByManager((TileEntityInventory)this, "fluidSlot", 1,
 				(ILiquidAcceptManager) Recipes.semiFluidGenerator);
-		this.outputSlot = new InvSlotOutput(this, "output", 1);
+		this.outputSlot = new InvSlotOutput((TileEntityInventory)this, "output", 1);
 	}
 
 	public void updateEntityServer() {
