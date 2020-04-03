@@ -43,6 +43,17 @@ public class EntityParticleSpray extends Entity {
 		this(world, owner, color, maxTick, spawnParticles, false);
 	}
 	
+	public EntityParticleSpray(World world,  Vec3d postion, Vec3d color, int maxTick, int spawnParticles) 
+	{
+		super(world);
+		this.ticksInAir = 0;
+		setSize(0.39F, 0.39F);
+		setPosition(postion.x, postion.y, postion.z);
+		this.maxExistTicks = maxTick;
+		this.spawnParticles = spawnParticles;
+		this.color = color;
+	}
+	
 	@Override
 	public void onUpdate() 
 	{
@@ -99,9 +110,13 @@ public class EntityParticleSpray extends Entity {
         float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
         this.shoot((double)f, (double)f1, (double)f2, velocity);
         
-        this.motionX += shooter.motionX;
-        this.motionY += shooter.motionY;
-        this.motionZ += shooter.motionZ;
+        if(shooter != null)
+        {
+	        this.motionX += shooter.motionX;
+	        this.motionY += shooter.motionY;
+	        this.motionZ += shooter.motionZ;        	
+        }
+
         this.velocity = velocity;
 
 	}
