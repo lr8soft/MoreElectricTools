@@ -27,7 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-//Code from ic2
+
 public class TileEntityAdvancedCompressor extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
 	protected boolean usingPumpRecipe;
 	protected final Set<TileEntityPump> pumps;
@@ -36,7 +36,7 @@ public class TileEntityAdvancedCompressor extends TileEntityStandardMachine<IRec
 		super(5, 150, 1, 2);
 		this.pumps = new HashSet<>(12, 0.5F);
 		this.inputSlot = (InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>) new InvSlotProcessableGeneric(
-				this, "input", 1, (IMachineRecipeManager) Recipes.compressor);
+				(TileEntityInventory)this, "input", 1, (IMachineRecipeManager) Recipes.compressor);
 	}
    
 	protected void onLoaded() {

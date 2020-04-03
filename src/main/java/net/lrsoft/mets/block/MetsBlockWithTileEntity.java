@@ -1,6 +1,7 @@
 package net.lrsoft.mets.block;
 
 import java.lang.instrument.ClassDefinition;
+import java.lang.reflect.Constructor;
 import java.util.Set;
 
 import ic2.api.tile.IEnergyStorage;
@@ -19,6 +20,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 import ic2.core.util.StackUtil;
 import ic2.core.util.Util;
 import ic2.core.profile.Version;
@@ -47,7 +50,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	experience_generator((Class)TileEntityExperienceGenerator.class, 16, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	advanced_solar_generator((Class)TileEntityAdvancedSolarGenerator.class, 17, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	photon_resonance_solar_generator((Class)TileEntityVibrateSolarGenerator.class, 18, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	wireless_power_transmission_node(TileEntityWirelessPowerTransmissionNode.class, 19, true, Util.noFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	wireless_power_transmission_node((Class)TileEntityWirelessPowerTransmissionNode.class, 19, true, Util.noFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;
@@ -57,6 +60,8 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	private final HarvestTool harvestTool;
 	private final DefaultDrop defaultDrop;
 	private final float hardness;
+	
+	private static final MetsBlockWithTileEntity[] VALUES;
 
 	MetsBlockWithTileEntity(Class<? extends TileEntityBlock> teClass, int itemMeta, boolean hasActive,
 			Set<EnumFacing> supportedFacings, boolean allowWrenchRotating, HarvestTool harvestTool,
@@ -82,20 +87,30 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 		for (MetsBlockWithTileEntity block : values()) {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}
-		
+		VALUES = values();
 	}
 
 	public static void buildDummies() {
- 		for (MetsBlockWithTileEntity block : values()) {
- 			if (block.teClass != null) {
- 				try {
- 					block.dummyTe = block.teClass.newInstance();
- 				} catch (Exception e) {
- 					e.printStackTrace();
-				}
-			}
-		}
- 	}
+	      ModContainer mc = Loader.instance().activeModContainer();
+	      if (mc != null && MoreElectricTools.MODID.equals(mc.getModId())) {
+	    	  MetsBlockWithTileEntity[] tileEntities = VALUES;
+
+	         for(MetsBlockWithTileEntity block : tileEntities) {
+	            if (block.teClass != null) {
+	               try {
+	            	  Constructor<? extends TileEntityBlock> constructor = block.teClass.getConstructor();
+	                  block.dummyTe = constructor.newInstance();
+	               } catch (Exception expt) {
+	                  if (Util.inDev()) {
+	                	  expt.printStackTrace();
+	                  }
+	               }
+	            }
+	         }
+	      } else {
+	         throw new IllegalAccessError("Don't mess with this please.");
+	      }
+	}
 	
 	@Override
 	public int getId() {
