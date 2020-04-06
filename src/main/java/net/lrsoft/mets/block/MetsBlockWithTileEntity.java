@@ -98,12 +98,16 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	         for(MetsBlockWithTileEntity block : tileEntities) {
 	            if (block.teClass != null) {
 	               try {
-	            	  Constructor<? extends TileEntityBlock> constructor = block.teClass.getConstructor();
-	                  block.dummyTe = constructor.newInstance();
+	            	  Constructor constructor = block.teClass.getConstructor();
+	            	  Object instance = constructor.newInstance();
+	            	  if(instance instanceof TileEntityBlock) 
+	            	  {
+	            		   block.dummyTe = (TileEntityBlock)instance;
+	            	  }
+	                 
 	               } catch (Exception expt) {
-	                  if (Util.inDev()) {
-	                	  expt.printStackTrace();
-	                  }
+	            	  System.out.println("[METS]:Failed to init a tile entity.");
+	            	  expt.printStackTrace();
 	               }
 	            }
 	         }

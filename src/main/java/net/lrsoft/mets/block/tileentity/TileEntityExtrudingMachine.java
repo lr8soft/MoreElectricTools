@@ -22,7 +22,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-@NotClassic
+
 public class TileEntityExtrudingMachine extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack> {
 	public TileEntityExtrudingMachine() {
 		super(50, 20, 1, 2);

@@ -19,7 +19,8 @@ public class TileEntityAdvancedSolarGenerator extends TileEntityBaseGenerator {
 	@GuiSynced
 	public float skyLight;
 
-	public TileEntityAdvancedSolarGenerator() {
+	public TileEntityAdvancedSolarGenerator()
+	{
 		super(64D, 2, 200000);
 		this.ticker = IC2.random.nextInt(128);
 	}
