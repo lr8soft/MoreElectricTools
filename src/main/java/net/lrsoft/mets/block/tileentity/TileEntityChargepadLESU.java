@@ -4,7 +4,7 @@ import ic2.core.block.wiring.TileEntityChargepadBlock;
 import ic2.core.profile.NotClassic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-@NotClassic
+
 public class TileEntityChargepadLESU extends TileEntityChargepadBlock implements IMets{
 	public final static int maxStorageEnergy = 1000000; 
 	public TileEntityChargepadLESU() 

@@ -32,7 +32,8 @@ public class TileEntityAdvancedCompressor extends TileEntityStandardMachine<IRec
 	protected boolean usingPumpRecipe;
 	protected final Set<TileEntityPump> pumps;
 	
-	public TileEntityAdvancedCompressor() {
+	public TileEntityAdvancedCompressor() 
+	{
 		super(5, 150, 1, 2);
 		this.pumps = new HashSet<>(12, 0.5F);
 		this.inputSlot = (InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>) new InvSlotProcessableGeneric(
