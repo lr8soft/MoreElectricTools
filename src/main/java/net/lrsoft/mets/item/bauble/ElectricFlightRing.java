@@ -106,14 +106,4 @@ public class ElectricFlightRing extends UniformBaubleTemplate {
 		player.capabilities.isFlying = false;
 		player.sendPlayerAbilities();
 	}
-	
-	@Override
-	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-		// TODO Auto-generated method stub
-		super.onUnequipped(itemstack, player);
-		if(player instanceof EntityPlayer)
-		{
-			disableFlyingAbility((EntityPlayer)player);
-		}
-	}
 }
