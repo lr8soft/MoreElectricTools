@@ -88,6 +88,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}
 		VALUES = values();
+		
 	}
 
 	public static void buildDummies() {
@@ -98,13 +99,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	         for(MetsBlockWithTileEntity block : tileEntities) {
 	            if (block.teClass != null) {
 	               try {
-	            	  Constructor constructor = block.teClass.getConstructor();
-	            	  Object instance = constructor.newInstance();
-	            	  if(instance instanceof TileEntityBlock) 
-	            	  {
-	            		   block.dummyTe = (TileEntityBlock)instance;
-	            	  }
-	                 
+	            	  block.dummyTe = block.teClass.newInstance();
 	               } catch (Exception expt) {
 	            	  System.out.println("[METS]:Failed to init a tile entity.");
 	            	  expt.printStackTrace();

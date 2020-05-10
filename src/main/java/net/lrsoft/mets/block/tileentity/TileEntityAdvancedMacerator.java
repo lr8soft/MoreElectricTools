@@ -1,5 +1,6 @@
 package net.lrsoft.mets.block.tileentity;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;
@@ -9,11 +10,11 @@ import ic2.api.recipe.IMachineRecipeManager;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.Recipes;
 import ic2.api.upgrade.UpgradableProperty;
-import ic2.core.block.TileEntityInventory;
 import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;
 import ic2.core.recipe.BasicMachineRecipeManager;
+import net.lrsoft.mets.util.VersionHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -24,8 +25,16 @@ public class TileEntityAdvancedMacerator extends TileEntityStandardMachine<IReci
 	public TileEntityAdvancedMacerator() 
 	{
 		 super(5, 150, 1, 2); 
-		 this.inputSlot = (InvSlotProcessable)new InvSlotProcessableGeneric(
-				 (TileEntityInventory)this, "input", 1, (IMachineRecipeManager)Recipes.macerator);
+		 
+		 Class<?> slotClass = VersionHelper.getTargetSlotClass();
+		 try {
+			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
+					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
+					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)Recipes.macerator);
+			this.inputSlot = newInputSlot;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	 
 	@SideOnly(Side.CLIENT)

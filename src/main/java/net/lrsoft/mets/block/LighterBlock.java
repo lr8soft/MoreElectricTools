@@ -32,6 +32,7 @@ public class LighterBlock extends Block implements ITileEntityProvider{
 		setHardness(0.0f);
 		this.setCreativeTab(null);
 		
+		
 	}
 	
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

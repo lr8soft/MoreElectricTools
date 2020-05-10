@@ -97,7 +97,7 @@ public class EntityParticleGroup extends Entity {
 
         this.setPosition(this.posX, this.posY, this.posZ);
 
-        this.doBlockCollisions();
+        //this.doBlockCollisions();
 	}
 	
 	public void shoot(float yaw, float pitch, float velocity)
