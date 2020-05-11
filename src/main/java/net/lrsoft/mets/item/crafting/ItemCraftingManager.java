@@ -5,6 +5,7 @@ import java.util.List;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
 import ic2.core.init.Localization;
+import ic2.core.uu.UuIndex;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
@@ -267,6 +268,7 @@ public class ItemCraftingManager {
 		//Nb_Ti
 		Recipes.advRecipes.addShapelessRecipe(new ItemStack(niobium_titanium_dust, 2),
 				niobium_dust, titanium_dust, titanium_dust, titanium_dust);
+		UuIndex.instance.add(new ItemStack(niobium_titanium_ingot), 6e3);
 		
 		NBTTagCompound metablastfurnace = new NBTTagCompound();
 		metablastfurnace.setInteger("fluid", 4);
