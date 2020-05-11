@@ -265,7 +265,7 @@ public class ItemCraftingManager {
 		Recipes.metalformerExtruding.addRecipe(Recipes.inputFactory.forOreDict("blockTitanium"),
 				null, false, new ItemStack(titanium_shaft));
 		//Nb_Ti
-		Recipes.advRecipes.addShapelessRecipe(new ItemStack(niobium_titanium_dust),
+		Recipes.advRecipes.addShapelessRecipe(new ItemStack(niobium_titanium_dust, 2),
 				niobium_dust, titanium_dust, titanium_dust, titanium_dust);
 		
 		NBTTagCompound metablastfurnace = new NBTTagCompound();

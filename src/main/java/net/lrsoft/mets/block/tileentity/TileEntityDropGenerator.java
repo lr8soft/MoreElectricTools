@@ -56,9 +56,9 @@ public class TileEntityDropGenerator extends TileEntityBaseGenerator implements 
 					switch(itemRarity) 
 					{
 					case COMMON:
-						itemValue = 400; break;
+						itemValue = 20; break;
 					case UNCOMMON:
-						itemValue = 800; break;
+						itemValue = 400; break;
 					case EPIC:
 						itemValue = 5000; break;
 					case RARE:

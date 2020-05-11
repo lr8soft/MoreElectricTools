@@ -331,6 +331,17 @@ public class BlockManager {
 						'B', getAllTypeStack(ItemManager.superLapotronCrystal),
 						'S', ItemCraftingManager.super_circuit
 				});
+		
+		ItemStack ultimate_solar_generator = teBlock.getItemStack(MetsBlockWithTileEntity.ultimate_photon_resonance_solar_generator);
+		Recipes.advRecipes.addRecipe(ultimate_solar_generator, 
+				new Object[] {
+						"PGP",
+						"GBG",
+						"PGP",
+						'P', ItemCraftingManager.super_iridium_compress_plate,
+						'G', photon_resonance_solar_generator,
+						'B', getAllTypeStack(ItemManager.chargingSuperLapotronCrystal)
+				});
 	}
 	
 	@SubscribeEvent

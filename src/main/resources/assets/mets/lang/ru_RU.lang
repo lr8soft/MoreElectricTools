@@ -102,6 +102,7 @@ mets.te.experience_generator=Генератор шаров опыта
 mets.te.advanced_solar_generator=Продвинутый солнечный генератор
 mets.te.photon_resonance_solar_generator=§9Фотонно-резонансный солнечный генератор
 mets.te.wireless_power_transmission_node=§9Узел беспроводной передачи энергии
+mets.te.ultimate_photon_resonance_solar_generator=§9Ультимативный фотонно-резонансный солнечный генератор
 
 item.mets.titanium_iron_alloy_rotor.name=Ротор из титанового сплава железа
 item.mets.super_iridium_rotor.name=§bСупериридиевый ротор
