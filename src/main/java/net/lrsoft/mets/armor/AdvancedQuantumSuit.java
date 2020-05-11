@@ -67,6 +67,7 @@ public class AdvancedQuantumSuit extends ItemArmor
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
     	switch(currentType)
     	{
+    	
     	case CHEST:
         	IC2.platform.profilerStartSection("QuantumBodyarmor");
         	player.extinguish();

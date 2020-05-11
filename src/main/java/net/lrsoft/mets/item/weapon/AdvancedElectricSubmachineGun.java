@@ -22,6 +22,7 @@ public class AdvancedElectricSubmachineGun extends UniformElectricItem {
 	public AdvancedElectricSubmachineGun()
 	{
 		super("advanced_electric_submachine_gun", storageEnergy, transferSpeed, 4);
+		
 	}
 	
 	@Override

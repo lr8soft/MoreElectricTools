@@ -12,12 +12,12 @@ import ic2.api.recipe.MachineRecipe;
 import ic2.api.recipe.MachineRecipeResult;
 import ic2.api.recipe.Recipes;
 import ic2.api.upgrade.UpgradableProperty;
-import ic2.core.block.TileEntityInventory;
 import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import ic2.core.block.machine.tileentity.TileEntityPump;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;
 import ic2.core.util.LiquidUtil;
+import net.lrsoft.mets.util.VersionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -36,8 +36,19 @@ public class TileEntityAdvancedCompressor extends TileEntityStandardMachine<IRec
 	{
 		super(5, 150, 1, 2);
 		this.pumps = new HashSet<>(12, 0.5F);
-		this.inputSlot = (InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>) new InvSlotProcessableGeneric(
-				(TileEntityInventory)this, "input", 1, (IMachineRecipeManager) Recipes.compressor);
+		//this.inputSlot = (InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>) new InvSlotProcessableGeneric(
+		//		(TileEntityInventory)this, "input", 1, (IMachineRecipeManager) Recipes.compressor);
+		
+		
+		Class<?> slotClass = VersionHelper.getTargetSlotClass();
+		try {
+			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
+					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
+					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)Recipes.compressor);
+			this.inputSlot = newInputSlot;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
    
 	protected void onLoaded() {

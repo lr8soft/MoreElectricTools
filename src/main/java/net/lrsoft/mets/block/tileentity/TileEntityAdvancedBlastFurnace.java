@@ -17,6 +17,7 @@ public class TileEntityAdvancedBlastFurnace extends TileEntityBlastFurnace {
 		boolean needsInvUpdate = false;
 		heatup();
 		MachineRecipeResult<IRecipeInput, Collection<ItemStack>, ItemStack> result = getOutput();
+	
 		if (result != null && isHot()) {
 			setActive(true);
 

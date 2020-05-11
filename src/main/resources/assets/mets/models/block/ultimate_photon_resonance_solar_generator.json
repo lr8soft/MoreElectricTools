@@ -1,0 +1,8 @@
+{
+	"parent": "block/cube_bottom_top",
+  "textures": {
+    "side": "mets:blocks/solar/photon_resonance_solar_generator_sides",
+    "bottom": "mets:blocks/solar/photon_resonance_solar_generator_bottom",
+    "top": "mets:blocks/solar/ultimate_photon_resonance_solar_generator_top"
+  }
+}

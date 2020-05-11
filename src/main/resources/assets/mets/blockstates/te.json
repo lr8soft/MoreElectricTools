@@ -44,6 +44,8 @@
       "advanced_solar_generator_active": { "model": "mets:advanced_solar_generator" },
       "photon_resonance_solar_generator": { "model": "mets:photon_resonance_solar_generator" },
       "photon_resonance_solar_generator_active": { "model": "mets:photon_resonance_solar_generator" },
+      "ultimate_photon_resonance_solar_generator": { "model": "mets:ultimate_photon_resonance_solar_generator" },
+      "ultimate_photon_resonance_solar_generator_active": { "model": "mets:ultimate_photon_resonance_solar_generator" },
 
       "wireless_power_transmission_node": { "model": "mets:wireless_power_transmission_node" },
       "wireless_power_transmission_node_active": { "model": "mets:wireless_power_transmission_node_active" }

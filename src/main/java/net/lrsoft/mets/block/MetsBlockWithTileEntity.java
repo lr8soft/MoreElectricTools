@@ -50,7 +50,8 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	experience_generator((Class)TileEntityExperienceGenerator.class, 16, true, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	advanced_solar_generator((Class)TileEntityAdvancedSolarGenerator.class, 17, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	photon_resonance_solar_generator((Class)TileEntityVibrateSolarGenerator.class, 18, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	wireless_power_transmission_node((Class)TileEntityWirelessPowerTransmissionNode.class, 19, true, Util.noFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	wireless_power_transmission_node((Class)TileEntityWirelessPowerTransmissionNode.class, 19, true, Util.noFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	ultimate_photon_resonance_solar_generator((Class)TileEntityUltimateSolarGenerator.class, 20, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;
@@ -88,6 +89,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 			TileEntity.register(loc.getResourceDomain() + ':' + block.getName(), block.getTeClass());
 		}
 		VALUES = values();
+		
 	}
 
 	public static void buildDummies() {
@@ -98,13 +100,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	         for(MetsBlockWithTileEntity block : tileEntities) {
 	            if (block.teClass != null) {
 	               try {
-	            	  Constructor constructor = block.teClass.getConstructor();
-	            	  Object instance = constructor.newInstance();
-	            	  if(instance instanceof TileEntityBlock) 
-	            	  {
-	            		   block.dummyTe = (TileEntityBlock)instance;
-	            	  }
-	                 
+	            	  block.dummyTe = block.teClass.newInstance();
 	               } catch (Exception expt) {
 	            	  System.out.println("[METS]:Failed to init a tile entity.");
 	            	  expt.printStackTrace();

@@ -4,6 +4,7 @@ import ic2.core.block.TeBlockRegistry;
 import net.lrsoft.mets.block.MetsBlockWithTileEntity;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.proxy.CommonProxy;
+import net.lrsoft.mets.util.VersionHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -19,7 +20,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod(modid = MoreElectricTools.MODID, name=MoreElectricTools.NAME,  version = MoreElectricTools.VERSION, dependencies = "required-after:ic2")
 public class MoreElectricTools
 {
-    public static final String MODID = "mets", NAME = "More electric tools", VERSION = "1.531";
+    public static final String MODID = "mets", NAME = "More electric tools", VERSION = "1.54";
 
 	@SidedProxy(clientSide="net.lrsoft.mets.proxy.ClientProxy",
 			serverSide="net.lrsoft.mets.proxy.CommonProxy")
@@ -37,12 +38,14 @@ public class MoreElectricTools
    @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+	   	VersionHelper.checkVersion();
         proxy.preInit(event);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+    	
         proxy.init(event);
     }
 
