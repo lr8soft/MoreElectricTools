@@ -44,6 +44,7 @@ item.mets.charging_super_lapotron_crystal.name=§bЗаряжающий супе�
 item.mets.advanced_iridium_sword.name=§bКвантовый меч
 item.mets.advanced_lithium_battery.name=Продвинутый литиевый аккумулятор
 item.mets.lithium_battery.name=Литиевый аккумулятор
+item.mets.thorium_battery.name=Ториевый аккумулятор
 
 item.mets.electric_submachine_gun.name=Электрический пистолет-пулемет
 item.mets.advanced_electric_submachine_gun.name=§bПродвинутый электрический пистолет-пулемет
@@ -63,7 +64,7 @@ item.mets.nano_bow.name=§eНанокомпозитный лук
 
 item.mets.plasma_air_cannon.name=§eПлазменная воздушная пушка
 item.mets.diving_mask.name=Водолазная маска
-item.mets.advanced_quantum_chest.name=§bПродвинутый квантовый сундук
+item.mets.advanced_quantum_chest.name=§bПродвинутый квантовый нагрудник
 item.mets.advanced_jetpack.name=Продвинутый электрический разогнанный реактивный ранец
 
 item.mets.advanced_oc_heat_vent.name=§bИридиевый разогнанный теплоотвод
@@ -102,7 +103,7 @@ mets.te.experience_generator=Генератор шаров опыта
 mets.te.advanced_solar_generator=Продвинутый солнечный генератор
 mets.te.photon_resonance_solar_generator=§9Фотонно-резонансный солнечный генератор
 mets.te.wireless_power_transmission_node=§9Узел беспроводной передачи энергии
-mets.te.ultimate_photon_resonance_solar_generator=§9Ультимативный фотонно-резонансный солнечный генератор
+mets.te.ultimate_photon_resonance_solar_generator=§9Максимальный фотонно-резонансный солнечный генератор
 
 item.mets.titanium_iron_alloy_rotor.name=Ротор из титанового сплава железа
 item.mets.super_iridium_rotor.name=§bСупериридиевый ротор
