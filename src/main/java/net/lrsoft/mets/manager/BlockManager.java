@@ -43,6 +43,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import scala.reflect.api.Trees.NewApi;
 import ic2.core.block.ITeBlock;
 @Mod.EventBusSubscriber(modid = MoreElectricTools.MODID)
 public class BlockManager {
@@ -50,12 +51,18 @@ public class BlockManager {
 	public static Block titaniumOre;
 	public static Block titaniumBlock;
 	public static Block lighterBlock;
+	
+	public static Block geomagneticPedestal;
+	public static Block geomagneticAntenna;
 	static 
 	{
 		niobiumOre = new UniformResourceBlock("niobium_ore", 2.5f, 2);
 		titaniumOre = new UniformResourceBlock("titanium_ore", 2.5f, 2);
 		titaniumBlock = new UniformResourceBlock("titanium_block", Material.IRON, 5.0f, 1);
 		lighterBlock = new LighterBlock();
+		
+		geomagneticPedestal = new UniformResourceBlock("geomagnetic_pedestal", 2.5f, -1);
+		geomagneticAntenna = new UniformResourceBlock("geomagnetic_antenna", 2.5f, -1);
 	}
 	
 	@SubscribeEvent
@@ -118,8 +125,8 @@ public class BlockManager {
 						'C', ItemCraftingManager.super_circuit
 				});
 		
-		if(ConfigManager.EnableMoreKineticGenerator)
-		{
+		//if(ConfigManager.EnableMoreKineticGenerator)
+		//{
 			ItemStack advancedKineticGenerator = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_kinetic_generator);
 			Recipes.advRecipes.addRecipe(advancedKineticGenerator, 
 					new Object[] {
@@ -143,7 +150,7 @@ public class BlockManager {
 							'M', ItemManager.superIridiumRotor,
 							'E', ReactorItemManager.advOCHeatVent
 					});			
-		}
+		//}
 
 		ItemStack advancedBlastFurnace = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_blast_furnace);
 		Recipes.advRecipes.addRecipe(advancedBlastFurnace, 
@@ -342,6 +349,44 @@ public class BlockManager {
 						'G', photon_resonance_solar_generator,
 						'B', getAllTypeStack(ItemManager.chargingSuperLapotronCrystal)
 				});
+		
+		
+		
+		//
+		ItemStack geomagnetic_antenna = new ItemStack(Item.getItemFromBlock(geomagneticAntenna));
+		Recipes.advRecipes.addRecipe(geomagnetic_antenna, 
+				new Object[] {
+						"SMS",
+						"SCS",
+						"SMS",
+						'S', ItemCraftingManager.superconducting_cable,
+						'M', ItemCraftingManager.nano_living_metal,
+						'C', IC2Items.getItem("te", "tesla_coil")
+				});
+		
+		ItemStack geomagnetic_pedestal = new ItemStack(Item.getItemFromBlock(geomagneticPedestal));
+		Recipes.advRecipes.addRecipe(geomagnetic_pedestal, 
+				new Object[] {
+						"TTT",
+						"SCS",
+						"TTT",
+						'T', titaniumBlock,
+						'S', IC2Items.getItem("te", "geo_generator"),
+						'C', ItemCraftingManager.living_circuit
+				});
+		
+		ItemStack geomagnetic_generator = teBlock.getItemStack(MetsBlockWithTileEntity.geomagnetic_generator);
+		Recipes.advRecipes.addRecipe(geomagnetic_generator, 
+				new Object[] {
+						"ABA",
+						"SGS",
+						"ACA",
+						'A', ItemCraftingManager.nano_living_metal,
+						'S', ItemCraftingManager.living_circuit,
+						'G', superKineticGenerator,
+						'B', eesuStorage,
+						'C', geomagnetic_antenna
+				});
 	}
 	
 	@SubscribeEvent
@@ -351,6 +396,9 @@ public class BlockManager {
 	    event.getRegistry().register(titaniumBlock);
 	    
 	    event.getRegistry().register(lighterBlock);
+	    
+	    event.getRegistry().register(geomagneticPedestal);
+	    event.getRegistry().register(geomagneticAntenna);
 	    GameRegistry.registerTileEntity(TileEntityLighterBlock.class,
 	    		new ResourceLocation(MoreElectricTools.MODID, "lighter_block"));
 	    CropManager.onBlockInit(event);
@@ -364,6 +412,9 @@ public class BlockManager {
 		event.getRegistry().register(new ItemBlock(niobiumOre).setRegistryName(niobiumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumOre).setRegistryName(titaniumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumBlock).setRegistryName(titaniumBlock.getRegistryName()));
+		
+		event.getRegistry().register(new ItemBlock(geomagneticPedestal).setRegistryName(geomagneticPedestal.getRegistryName()));
+		event.getRegistry().register(new ItemBlock(geomagneticAntenna).setRegistryName(geomagneticAntenna.getRegistryName()));
 	}
 	
 	private static ItemStack getAllTypeStack(ItemStack itemstack)

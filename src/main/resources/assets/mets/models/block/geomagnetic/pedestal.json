@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/geomagnetic/pedestal_uniform",
+    "down": "mets:blocks/geomagnetic/pedestal",
+    "up": "mets:blocks/geomagnetic/pedestal",
+    "north": "mets:blocks/geomagnetic/pedestal_uniform",
+    "south": "mets:blocks/geomagnetic/pedestal_uniform",
+    "west": "mets:blocks/geomagnetic/pedestal_uniform",
+    "east": "mets:blocks/geomagnetic/pedestal_uniform"
+  }
+}

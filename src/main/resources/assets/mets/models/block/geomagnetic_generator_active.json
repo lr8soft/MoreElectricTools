@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/geomagnetic_generator/uniform",
+    "down": "mets:blocks/geomagnetic_generator/uniform",
+    "up": "mets:blocks/geomagnetic_generator/uniform",
+    "north": "mets:blocks/geomagnetic_generator/front_active",
+    "south": "mets:blocks/geomagnetic_generator/uniform",
+    "west": "mets:blocks/geomagnetic_generator/uniform",
+    "east": "mets:blocks/geomagnetic_generator/uniform"
+  }
+}

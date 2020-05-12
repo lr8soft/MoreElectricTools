@@ -5,6 +5,9 @@ tile.mets.niobium_ore.name=铌矿石
 tile.mets.titanium_ore.name=钛矿石
 tile.mets.titanium_block.name=钛块
 
+tile.mets.geomagnetic_pedestal.name=地磁发电机基座
+tile.mets.geomagnetic_antenna.name=地磁发电机天线
+
 item.mets.crafting.niobium_crushed.name=粉碎铌矿石
 item.mets.crafting.titanium_crushed.name=粉碎钛矿石
 
@@ -38,6 +41,9 @@ item.mets.crafting.lens.name=玻璃透镜
 item.mets.crafting.diamond_lens.name=§b钻石透镜
 item.mets.crafting.rocket.name=火箭弹
 item.mets.crafting.plant_extract.name=植物精华
+
+item.mets.crafting.nano_living_metal.name=§d纳米活体金属
+item.mets.crafting.living_circuit.name=§d活体电路板
 
 item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.charging_super_lapotron_crystal.name=§b超级兰波顿充电电池
@@ -106,6 +112,7 @@ mets.te.advanced_solar_generator=进阶太阳能发电机
 mets.te.photon_resonance_solar_generator=§9光子振谐太阳能发电机
 mets.te.wireless_power_transmission_node=§9无线能源传输器 
 mets.te.ultimate_photon_resonance_solar_generator=§9终极光子振谐太阳能发电机
+mets.te.geomagnetic_generator=§5地磁发电机
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
@@ -118,5 +125,7 @@ mets.info.radiation=小心辐射！
 
 mets.info.wirless.settarget=已设置传输目标！
 mets.info.wirless.selecttarget=选择当前坐标为传输目标
+
+mets.info.nano_tip=§5由大量未知技术制作的纳米机器人聚集而成
 
 enchantment.efficient_energy_cost=节能

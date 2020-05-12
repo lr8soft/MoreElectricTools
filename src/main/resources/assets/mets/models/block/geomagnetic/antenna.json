@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/geomagnetic/antenna",
+    "down": "mets:blocks/geomagnetic/antenna_bottomtop",
+    "up": "mets:blocks/geomagnetic/antenna_bottomtop",
+    "north": "mets:blocks/geomagnetic/antenna",
+    "south": "mets:blocks/geomagnetic/antenna",
+    "west": "mets:blocks/geomagnetic/antenna",
+    "east": "mets:blocks/geomagnetic/antenna"
+  }
+}
