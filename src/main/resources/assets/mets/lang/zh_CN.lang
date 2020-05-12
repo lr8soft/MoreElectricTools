@@ -39,6 +39,9 @@ item.mets.crafting.diamond_lens.name=§b钻石透镜
 item.mets.crafting.rocket.name=火箭弹
 item.mets.crafting.plant_extract.name=植物精华
 
+item.mets.crafting.nano_living_metal.name=§d纳米活体金属
+item.mets.crafting.living_circuit.name=§d活体电路板
+
 item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.charging_super_lapotron_crystal.name=§b超级兰波顿充电电池
 item.mets.advanced_iridium_sword.name=§b量子剑
@@ -118,5 +121,7 @@ mets.info.radiation=小心辐射！
 
 mets.info.wirless.settarget=已设置传输目标！
 mets.info.wirless.selecttarget=选择当前坐标为传输目标
+
+mets.info.nano_tip=§5由大量未知技术制作的纳米机器人聚集而成
 
 enchantment.efficient_energy_cost=节能

@@ -62,7 +62,8 @@ public class ItemCraftingManager {
 	
 	public static Item plant_extract;
 	
-	public static Item nano_robot_ingot;
+	public static Item nano_living_metal;
+	public static Item living_circuit;
 	static 
 	{
 		niobium_crushed = new UniformCraftingItem("niobium_crushed", 64);
@@ -105,7 +106,21 @@ public class ItemCraftingManager {
 		lead_nugget = new UniformCraftingItem("lead_nugget", 64);
 		
 		plant_extract = new UniformCraftingItem("plant_extract", 64);
-		nano_robot_ingot = new UniformCraftingItem("nano_robot_ingot", 64);
+		nano_living_metal = new UniformCraftingItem("nano_living_metal", 64) {
+			@Override
+			public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+				String info = Localization.translate("mets.info.nano_tip");
+				tooltip.add(info);
+			}
+		};
+		
+		living_circuit  = new UniformCraftingItem("living_circuit", 64) {
+			@Override
+			public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+				String info = Localization.translate("mets.info.nano_tip");
+				tooltip.add(info);
+			}
+		};
 	}
 	
 	public static void onCraftingItemInit(RegistryEvent.Register<Item> event)
@@ -144,7 +159,8 @@ public class ItemCraftingManager {
 		event.getRegistry().register(lead_nugget);
 		
 		event.getRegistry().register(plant_extract);
-		event.getRegistry().register(nano_robot_ingot);
+		event.getRegistry().register(nano_living_metal);
+		event.getRegistry().register(living_circuit);
 	}
 	
 	public static void onCraftingItemModelInit()
@@ -211,8 +227,10 @@ public class ItemCraftingManager {
 		ModelLoader.setCustomModelResourceLocation(plant_extract, 0,
 				new ModelResourceLocation(plant_extract.getRegistryName(), "inventory"));
 		
-		ModelLoader.setCustomModelResourceLocation(nano_robot_ingot, 0,
-				new ModelResourceLocation(nano_robot_ingot.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(nano_living_metal, 0,
+				new ModelResourceLocation(nano_living_metal.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(living_circuit, 0,
+				new ModelResourceLocation(living_circuit.getRegistryName(), "inventory"));
 	}
 	
 	public static void onCraftingItemOreDictInit()
@@ -289,7 +307,7 @@ public class ItemCraftingManager {
 				null, false, new ItemStack(niobium_titanium_plate));
 		
 		//Nano robot
-		UuIndex.instance.add(new ItemStack(nano_robot_ingot), 30e3);
+		UuIndex.instance.add(new ItemStack(nano_living_metal), 30e3);
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(superconducting_cable, 2),
 				new Object[] {
@@ -389,6 +407,17 @@ public class ItemCraftingManager {
 						'T', OreDictionary.getOres("treeSapling"), //treeSapling
 						'R', IC2Items.getItem("crafting", "scrap_box"),
 						'E', IC2Items.getItem("dust", "energium")
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(living_circuit),
+				new Object[] {
+						"XTX",
+						"LSL",
+						"XTX",
+						'S', super_circuit,
+						'T', super_iridium_compress_plate,
+						'L', nano_living_metal,
+						'X', superconducting_cable
 				});
 		
 	}
