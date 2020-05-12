@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import ic2.core.ref.TeBlock.HarvestTool;
 import net.lrsoft.mets.MoreElectricTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
@@ -14,9 +15,8 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
 
 public class UniformResourceBlock extends Block{
-	
 	public UniformResourceBlock(String blockName,float hardness, int harvestLevel) {
-		this( blockName,Material.ROCK, hardness, harvestLevel);
+		this( blockName, Material.ROCK, hardness, harvestLevel);
 	}
 	
 	public UniformResourceBlock(String blockName, Material type, float hardness, int harvestLevel) {
@@ -24,7 +24,10 @@ public class UniformResourceBlock extends Block{
 		setUnlocalizedName("mets." + blockName);
 		setRegistryName(MoreElectricTools.MODID, blockName);
 		setHardness(hardness);
-		setHarvestLevel("pickaxe", harvestLevel);
+		if(harvestLevel >= 0)
+		{
+			setHarvestLevel("pickaxe", harvestLevel);
+		}
 		setCreativeTab(MoreElectricTools.CREATIVE_TAB);
 	}
 	

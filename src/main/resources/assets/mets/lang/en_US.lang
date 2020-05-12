@@ -5,6 +5,9 @@ tile.mets.niobium_ore.name=Niobium Ore
 tile.mets.titanium_ore.name=Titanium Ore
 tile.mets.titanium_block.name=Titanium Block
 
+tile.mets.geomagnetic_pedestal.name=Geomagnetic Generator Base
+tile.mets.geomagnetic_antenna.name=Geomagnetic Generator Antenna
+
 item.mets.crafting.niobium_crushed.name=Crushed Niobium Ore
 item.mets.crafting.titanium_crushed.name=Crushed Titanium Ore
 
@@ -106,6 +109,7 @@ mets.te.advanced_solar_generator=Advanced Solar Generator
 mets.te.photon_resonance_solar_generator=§9Photon Resonance Solar Generator
 mets.te.wireless_power_transmission_node=§9Wireless Power Transmission Node
 mets.te.ultimate_photon_resonance_solar_generator=§9Ultimate Photon Resonance Solar Generator
+mets.te.geomagnetic_generator=§5Geomagnetic Generator
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

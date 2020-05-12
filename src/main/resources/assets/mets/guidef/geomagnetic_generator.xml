@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui width="176" height="166">
+    <text y="6" align="center">%name%</text>
+    <slot name="charge" x="56" y="26"/>
+    <energygauge x="90" y="30" style="bar"/>
+    <playerInventory x="7" y="83"/>
+</gui>
