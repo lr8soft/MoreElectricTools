@@ -61,6 +61,8 @@ public class ItemCraftingManager {
 	public static Item lead_nugget;
 	
 	public static Item plant_extract;
+	
+	public static Item nano_robot_ingot;
 	static 
 	{
 		niobium_crushed = new UniformCraftingItem("niobium_crushed", 64);
@@ -103,6 +105,7 @@ public class ItemCraftingManager {
 		lead_nugget = new UniformCraftingItem("lead_nugget", 64);
 		
 		plant_extract = new UniformCraftingItem("plant_extract", 64);
+		nano_robot_ingot = new UniformCraftingItem("nano_robot_ingot", 64);
 	}
 	
 	public static void onCraftingItemInit(RegistryEvent.Register<Item> event)
@@ -141,6 +144,7 @@ public class ItemCraftingManager {
 		event.getRegistry().register(lead_nugget);
 		
 		event.getRegistry().register(plant_extract);
+		event.getRegistry().register(nano_robot_ingot);
 	}
 	
 	public static void onCraftingItemModelInit()
@@ -206,6 +210,9 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(lead_nugget.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(plant_extract, 0,
 				new ModelResourceLocation(plant_extract.getRegistryName(), "inventory"));
+		
+		ModelLoader.setCustomModelResourceLocation(nano_robot_ingot, 0,
+				new ModelResourceLocation(nano_robot_ingot.getRegistryName(), "inventory"));
 	}
 	
 	public static void onCraftingItemOreDictInit()
@@ -268,7 +275,8 @@ public class ItemCraftingManager {
 		//Nb_Ti
 		Recipes.advRecipes.addShapelessRecipe(new ItemStack(niobium_titanium_dust, 2),
 				niobium_dust, titanium_dust, titanium_dust, titanium_dust);
-		UuIndex.instance.add(new ItemStack(niobium_titanium_ingot), 6e3);
+		UuIndex.instance.add(new ItemStack(niobium_titanium_ingot), 1e2);
+		UuIndex.instance.add(new ItemStack(niobium_titanium_plate), 1e2);
 		
 		NBTTagCompound metablastfurnace = new NBTTagCompound();
 		metablastfurnace.setInteger("fluid", 4);
@@ -280,6 +288,8 @@ public class ItemCraftingManager {
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("ingotNiobiumTitanium"),
 				null, false, new ItemStack(niobium_titanium_plate));
 		
+		//Nano robot
+		UuIndex.instance.add(new ItemStack(nano_robot_ingot), 30e3);
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(superconducting_cable, 2),
 				new Object[] {
@@ -300,6 +310,7 @@ public class ItemCraftingManager {
 						'T', niobium_titanium_plate,
 						'X', superconducting_cable
 				});
+		UuIndex.instance.add(new ItemStack(super_circuit), 14e2);
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(titanium_iron_rotor_blade), 
 				new Object[] {
