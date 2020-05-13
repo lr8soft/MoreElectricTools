@@ -51,7 +51,10 @@
       "wireless_power_transmission_node_active": { "model": "mets:wireless_power_transmission_node_active" },
 
       "geomagnetic_generator": { "model": "mets:geomagnetic_generator" },
-      "geomagnetic_generator_active": { "model": "mets:geomagnetic_generator_active" }
+      "geomagnetic_generator_active": { "model": "mets:geomagnetic_generator_active" },
+
+      "neutron_polymerizer": { "model": "mets:neutron_polymerizer" },
+      "neutron_polymerizer_active": { "model": "mets:neutron_polymerizer_active" }
     },
     "facing": {
       "down": { "x": 90 },

@@ -367,12 +367,13 @@ public class BlockManager {
 		ItemStack geomagnetic_pedestal = new ItemStack(Item.getItemFromBlock(geomagneticPedestal));
 		Recipes.advRecipes.addRecipe(geomagnetic_pedestal, 
 				new Object[] {
-						"TTT",
+						"GGG",
 						"SCS",
 						"TTT",
 						'T', titaniumBlock,
 						'S', IC2Items.getItem("te", "geo_generator"),
-						'C', ItemCraftingManager.living_circuit
+						'C', ItemCraftingManager.living_circuit,
+						'G', ItemCraftingManager.field_generator
 				});
 		
 		ItemStack geomagnetic_generator = teBlock.getItemStack(MetsBlockWithTileEntity.geomagnetic_generator);
@@ -386,6 +387,19 @@ public class BlockManager {
 						'G', superKineticGenerator,
 						'B', eesuStorage,
 						'C', geomagnetic_antenna
+				});
+		
+		ItemStack neutron_polymerizer = teBlock.getItemStack(MetsBlockWithTileEntity.neutron_polymerizer);
+		Recipes.advRecipes.addRecipe(neutron_polymerizer, 
+				new Object[] {
+						"FSF",
+						"RBM",
+						"FSF",
+						'F', ItemCraftingManager.field_generator,
+						'S', ItemCraftingManager.living_circuit,
+						'R', IC2Items.getItem("te", "replicator"),
+						'M', IC2Items.getItem("te", "matter_generator"),
+						'B', eesuStorage
 				});
 	}
 	

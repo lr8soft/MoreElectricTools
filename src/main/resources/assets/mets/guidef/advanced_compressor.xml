@@ -9,6 +9,6 @@
         <button type="recipe" x="80" y="35" width="22" height="15" event="compressor"></button>
     </environment>
     <energygauge x="59" y="37"/>
-    <gauge name="progress" x="80" y="35" style="progresstriangle"/>
+    <gauge name="progress" x="80" y="35" style="progressarrow"/>
     <playerInventory x="7" y="83"/>
 </gui>

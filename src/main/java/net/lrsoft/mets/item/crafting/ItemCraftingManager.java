@@ -64,6 +64,8 @@ public class ItemCraftingManager {
 	
 	public static Item nano_living_metal;
 	public static Item living_circuit;
+	public static Item field_generator;
+	public static Item neutron_plate;
 	static 
 	{
 		niobium_crushed = new UniformCraftingItem("niobium_crushed", 64);
@@ -121,6 +123,9 @@ public class ItemCraftingManager {
 				tooltip.add(info);
 			}
 		};
+		
+		field_generator = new UniformCraftingItem("field_generator", 64);
+		neutron_plate = new UniformCraftingItem("neutron_plate", 64);
 	}
 	
 	public static void onCraftingItemInit(RegistryEvent.Register<Item> event)
@@ -161,6 +166,8 @@ public class ItemCraftingManager {
 		event.getRegistry().register(plant_extract);
 		event.getRegistry().register(nano_living_metal);
 		event.getRegistry().register(living_circuit);
+		event.getRegistry().register(field_generator);
+		event.getRegistry().register(neutron_plate);
 	}
 	
 	public static void onCraftingItemModelInit()
@@ -231,6 +238,10 @@ public class ItemCraftingManager {
 				new ModelResourceLocation(nano_living_metal.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(living_circuit, 0,
 				new ModelResourceLocation(living_circuit.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(field_generator, 0,
+				new ModelResourceLocation(field_generator.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(neutron_plate, 0,
+				new ModelResourceLocation(neutron_plate.getRegistryName(), "inventory"));
 	}
 	
 	public static void onCraftingItemOreDictInit()
@@ -259,6 +270,8 @@ public class ItemCraftingManager {
 		OreDictionary.registerOre("nuggetTin", tin_nugget);
 		OreDictionary.registerOre("nuggetTitanium", titanium_nugget);
 		OreDictionary.registerOre("nuggetLead", lead_nugget);
+		
+		OreDictionary.registerOre("plateNeutron", neutron_plate);
 	}
 	
 	public static void onCraftingItemRecipeInit()
@@ -418,6 +431,16 @@ public class ItemCraftingManager {
 						'T', super_iridium_compress_plate,
 						'L', nano_living_metal,
 						'X', superconducting_cable
+				});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(field_generator),
+				new Object[] {
+						"TLT",
+						"LSL",
+						"TLT",
+						'S', Items.ENDER_EYE,
+						'L', living_circuit,
+						'T', superconducting_cable
 				});
 		
 	}

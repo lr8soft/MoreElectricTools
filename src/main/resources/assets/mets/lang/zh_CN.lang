@@ -44,6 +44,8 @@ item.mets.crafting.plant_extract.name=植物精华
 
 item.mets.crafting.nano_living_metal.name=§d纳米活体金属
 item.mets.crafting.living_circuit.name=§d活体电路板
+item.mets.crafting.field_generator.name=§d力场发生器
+item.mets.crafting.neutron_plate.name=§d简并态中子板
 
 item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.charging_super_lapotron_crystal.name=§b超级兰波顿充电电池
@@ -113,6 +115,7 @@ mets.te.photon_resonance_solar_generator=§9光子振谐太阳能发电机
 mets.te.wireless_power_transmission_node=§9无线能源传输器 
 mets.te.ultimate_photon_resonance_solar_generator=§9终极光子振谐太阳能发电机
 mets.te.geomagnetic_generator=§5地磁发电机
+mets.te.neutron_polymerizer=§5粒子聚合发生器
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
