@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod(modid = MoreElectricTools.MODID, name=MoreElectricTools.NAME,  version = MoreElectricTools.VERSION, dependencies = "required-after:ic2")
 public class MoreElectricTools
 {
-    public static final String MODID = "mets", NAME = "More electric tools", VERSION = "1.55";
+    public static final String MODID = "mets", NAME = "More electric tools", VERSION = "1.551";
 
 	@SidedProxy(clientSide="net.lrsoft.mets.proxy.ClientProxy",
 			serverSide="net.lrsoft.mets.proxy.CommonProxy")

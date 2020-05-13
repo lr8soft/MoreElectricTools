@@ -13,6 +13,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -51,8 +52,9 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 			float ratio = getMagneticSource();
 			if(biome instanceof BiomeHell || biome instanceof BiomeHills)
 			{
-				ratio *= 2.0f;
+				ratio *= 1.5f;
 			}	
+			
 	
 			int newFuel = (int)ratio * 6;
 			if(fuel + newFuel <= Integer.MAX_VALUE)
@@ -86,7 +88,7 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 			source = (float)this.pos.getY() / (float)this.world.getSeaLevel();
 		}
 		
-		int baseDelta = (this.pos.getY() >= 15) ? 15 : this.pos.getY() - 0;
+		int baseDelta = (this.pos.getY() >= 20) ? 20 : this.pos.getY() - 0;
 		int airBlockCount = 0;
 		for(int i=0; i< baseDelta; i++)
 		{
@@ -96,7 +98,7 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 				airBlockCount++;
 			}
 		}
-		source *= (baseDelta- airBlockCount) / baseDelta;
+		source *= (baseDelta - airBlockCount) / baseDelta;
 		lastSourceValue = source;
 		return source;
 	}

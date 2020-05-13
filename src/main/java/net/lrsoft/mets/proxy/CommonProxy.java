@@ -9,7 +9,6 @@ import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.manager.OreDictManager;
 import net.lrsoft.mets.manager.WorldGenManager;
-import net.lrsoft.mets.util.DynamicEnumUtils;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -21,9 +20,7 @@ public class CommonProxy
 {
 	public void preInit(FMLPreInitializationEvent event) 
 	{
-		/*DynamicEnumUtils.addEnum(CableType.class, "superconducting",
-				new Class<?>[] { int.class, int.class, float.class, double.class, int.class },
-				new Object[] { 0, 0, 0.25F, 0.0D, 16384});*/
+
 	}
 
 	public void init(FMLInitializationEvent event) 

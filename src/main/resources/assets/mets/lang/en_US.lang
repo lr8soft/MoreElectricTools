@@ -44,6 +44,8 @@ item.mets.crafting.plant_extract.name=Plant Essence
 
 item.mets.crafting.nano_living_metal.name=§dNano Living Metal
 item.mets.crafting.living_circuit.name=§dLiving Circuit
+item.mets.crafting.field_generator.name=§dField Generator
+item.mets.crafting.neutron_plate.name=§dDegenerate Neutron Plate
 
 item.mets.super_lapotron_crystal.name=§bSuper Lapotron Crystal
 item.mets.charging_super_lapotron_crystal.name=§bCharging Super Lapotron Crystal
@@ -110,6 +112,7 @@ mets.te.photon_resonance_solar_generator=§9Photon Resonance Solar Generator
 mets.te.wireless_power_transmission_node=§9Wireless Power Transmission Node
 mets.te.ultimate_photon_resonance_solar_generator=§9Ultimate Photon Resonance Solar Generator
 mets.te.geomagnetic_generator=§5Geomagnetic Generator
+mets.te.neutron_polymerizer=§5Particle Aggregator
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

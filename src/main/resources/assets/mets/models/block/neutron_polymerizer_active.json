@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/neutron_polymerizer/uniform_active",
+    "down": "mets:blocks/neutron_polymerizer/uniform_active",
+    "up": "mets:blocks/neutron_polymerizer/uniform_active",
+    "north": "mets:blocks/neutron_polymerizer/front_active",
+    "south": "mets:blocks/neutron_polymerizer/uniform_active",
+    "west": "mets:blocks/neutron_polymerizer/uniform_active",
+    "east": "mets:blocks/neutron_polymerizer/uniform_active"
+  }
+}
