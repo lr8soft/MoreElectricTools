@@ -146,7 +146,7 @@ public class EntityTachyonBullet extends Entity {
 
         this.setPosition(this.posX, this.posY, this.posZ);
 
-        this.doBlockCollisions();
+       // this.doBlockCollisions();
 	}
 	
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
@@ -186,7 +186,7 @@ public class EntityTachyonBullet extends Entity {
 		{
 			initYaw += MathUtils.getRandomFromRange(360, 0);
 			initPitch += MathUtils.getRandomFromRange(360, 0);
-			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.5f, 0.0f, 1.0f), 1000, 18, true);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(1.0f, 1.0f, 1.0f), 1000, 18, true);
 			particleSpray.shoot(initYaw, initPitch, 0.8f);
 			particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
 			world.spawnEntity(particleSpray);			
@@ -213,9 +213,6 @@ public class EntityTachyonBullet extends Entity {
         x = x / (double)f;
         y = y / (double)f;
         z = z / (double)f;
-        x = x + this.rand.nextGaussian() * 0.007;
-        y = y + this.rand.nextGaussian() * 0.007;
-        z = z + this.rand.nextGaussian() * 0.007;
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
@@ -231,31 +228,7 @@ public class EntityTachyonBullet extends Entity {
     
     private void bulletRotate()
     {
-        float f4 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
-
-        for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
-        {
-            ;
-        }
-
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
-        {
-            this.prevRotationPitch += 360.0F;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F)
-        {
-            this.prevRotationYaw -= 360.0F;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
-        {
-            this.prevRotationYaw += 360.0F;
-        }
-
-        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+ 
     }
 
 	@Override

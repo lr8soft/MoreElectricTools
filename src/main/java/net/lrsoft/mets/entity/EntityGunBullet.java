@@ -171,7 +171,7 @@ public class EntityGunBullet extends Entity {
 		{
 			initYaw += MathUtils.getRandomFromRange(360, 0);
 			initPitch += MathUtils.getRandomFromRange(360, 0);
-			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 6, true);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 800, 6, true);
 			particleSpray.shoot(initYaw, initPitch, 0.8f);
 			particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
 			world.spawnEntity(particleSpray);			

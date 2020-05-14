@@ -477,6 +477,19 @@ public class ItemManager {
 					'D', getAllTypeStack(electricSubmachineGun)
 					});
 		
+		Recipes.advRecipes.addRecipe(new ItemStack(tachyonDisruptor), new Object[]
+				{
+					"OSB",
+					"TTC",
+					"OSD",
+					'S', ItemCraftingManager.nano_living_metal,
+					'B', getAllTypeStack(superLapotronCrystal),
+					'O', ItemCraftingManager.neutron_plate,
+					'T', ItemCraftingManager.field_generator,
+					'C', ItemCraftingManager.living_circuit,
+					'D', getAllTypeStack(tacticalLaserSubmachineGun)
+					});
+		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
 		

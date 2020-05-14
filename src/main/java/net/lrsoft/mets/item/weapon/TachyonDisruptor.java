@@ -1,11 +1,15 @@
 package net.lrsoft.mets.item.weapon;
 
+import javax.annotation.Nullable;
+
 import ic2.api.item.ElectricItem;
+import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.entity.EntityTachyonBullet;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
+import net.lrsoft.mets.util.ItemStackUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.PotionTypes;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
@@ -20,14 +25,25 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TachyonDisruptor extends UniformElectricItem {
 	private final static double storageEnergy = 400000000d, transferSpeed = 8192;
 	public TachyonDisruptor()
 	{
 		super("tachyon_disruptor", storageEnergy, transferSpeed, 5);
+		this.addPropertyOverride(new ResourceLocation(MoreElectricTools.MODID, "energy_value"), new IItemPropertyGetter() {
+			@Override
+			@SideOnly(Side.CLIENT)
+			public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) 
+			{
+				return ItemStackUtils.getCurrentTex(stack, 4) / 4.0f;
+			}
+		});
 	}
 	
 	@Override
@@ -41,11 +57,11 @@ public class TachyonDisruptor extends UniformElectricItem {
 			if(ElectricItem.manager.use(currentGun, ConfigManager.TachyonDisruptorCost * ratio, playerIn))
 			{
 				EntityTachyonBullet entity = new EntityTachyonBullet(worldIn, playerIn, 100f, 600);
-				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
+				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 4.0f);
 				worldIn.spawnEntity(entity);		
 				
 				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
-						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.2f, 1.5F);
+						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.2f, 0.4F);
 				setLastRightClick(currentGun, currentTime);
 			}
 		}
