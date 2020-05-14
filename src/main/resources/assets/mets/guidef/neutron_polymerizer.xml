@@ -6,9 +6,8 @@
     <slot name="discharge" x="56" y="52"/>
     <environment name="game">
         <slotgrid name="upgrade" x="151" y="7" cols="1"/>
-        <button type="recipe" x="52" y="38" width="22" height="15" event="neutron_polymerizer"></button>
     </environment>
     <energygauge x="20" y="37"/>
-    <gauge name="progress" x="52" y="38" style="progresstriangle"/>
+    <gauge name="progress" x="74" y="37" style="progresslongarrow"/>
     <playerInventory x="7" y="83"/>
 </gui>

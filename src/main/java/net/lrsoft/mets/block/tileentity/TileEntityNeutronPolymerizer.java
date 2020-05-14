@@ -13,6 +13,7 @@ import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;
+import ic2.core.gui.Gauge.GaugeStyle;
 import net.lrsoft.mets.gui.ContainerUniformSimpleMachine;
 import net.lrsoft.mets.gui.GuiUniformSimpleMachine;
 import net.lrsoft.mets.util.SpecialRecipesHelper;
@@ -25,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityNeutronPolymerizer  extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
 	public TileEntityNeutronPolymerizer() {
-		super(1536, 1000, 1, 5);
+		super(1536, 1500, 1, 5);
 
 		try {
 			Class<?> slotClass = VersionHelper.getTargetSlotClass();
@@ -39,7 +40,8 @@ public class TileEntityNeutronPolymerizer  extends TileEntityStandardMachine<IRe
 	}
 	
 	public ContainerBase<TileEntityNeutronPolymerizer> getGuiContainer(EntityPlayer player) {
-		return (ContainerBase<TileEntityNeutronPolymerizer>) new ContainerUniformSimpleMachine<TileEntityNeutronPolymerizer>(player, this);
+		return (ContainerBase<TileEntityNeutronPolymerizer>)
+				new ContainerUniformSimpleMachine<TileEntityNeutronPolymerizer>(player, this);
 	}
 	
 	@SideOnly(Side.CLIENT)
