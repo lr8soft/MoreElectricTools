@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
-import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
@@ -17,7 +16,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -25,11 +23,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-public class EntityPlasmaBullet extends Entity {
+public class EntityTachyonBullet extends Entity {
 	public static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
     {
         public boolean apply(@Nullable Entity entity)
@@ -37,23 +33,23 @@ public class EntityPlasmaBullet extends Entity {
             return entity.canBeCollidedWith();
         }
     });
-
-	protected EntityPlayer shooter = null;
+	
+	protected EntityPlayer shooter;
 	protected int ticksInAir;
 	protected int maxExistTicks;
-
 	protected float power;
 	protected float velocity;
-	protected Vec3d scaleSize = new Vec3d(0.1d, 0.1d, 0.1d);
-	public EntityPlasmaBullet(World world, EntityPlayer owner, float power) {
+	protected int canAttackTimes = 3;
+	
+	public EntityTachyonBullet(World world, EntityPlayer owner, float power, int maxTick) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
-		this.maxExistTicks = 500;
-		setSize(0.39F, 0.39F);
+		setSize(0.45F, 0.45F);
 	
 		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
 		this.power = power;
+		this.maxExistTicks = maxTick;
 	}
 	
 	@Override
@@ -71,101 +67,86 @@ public class EntityPlasmaBullet extends Entity {
         BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
         IBlockState iblockstate = this.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
-        TileEntity te = world.getTileEntity(blockpos);
+        
         if (iblockstate.getMaterial() != Material.AIR)
         {
             AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 
             if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
-            	this.setPosition(this.prevPosX, this.prevPosY, this.prevPosZ);
-            	causeRangeDamage();
             	sprayEffect();
                 setDead();
                 return;
             }
         }
-        ++ticksInAir;
-		Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
-		Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-		RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
-		vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
-		vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        
+        ++this.ticksInAir;
+        Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+        Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
+        vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
+        vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        
+        if (raytraceresult != null)
+        {
+            vec3d = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
+        }
+        
+        Entity entity = this.findEntityOnPath(vec3d1, vec3d);
 
-		if (raytraceresult != null) {
-			vec3d = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
-		}
+        if (entity != null)
+        {
+            raytraceresult = new RayTraceResult(entity);
+        }
+        
+        if (raytraceresult != null && !isDead && canAttackTimes - 1 >= 0)
+        {
+            Entity target = raytraceresult.entityHit;
+            if (target != null)
+            {
+            	target.hurtResistantTime = 0;
+            	
+            	float normalDamage = 0.333f * power;
+            	if(shooter != null)
+            	{
+            		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), normalDamage);
+            	}else {
+            		target.attackEntityFrom(DamageSource.GENERIC, normalDamage);
+            	}
+            	
+            	float directDamage = 0.667f * power;
+            	if(target instanceof EntityLivingBase)
+            	{
+            		EntityLivingBase enemyTarget  = (EntityLivingBase)target;
+            		enemyTarget.setHealth(enemyTarget.getHealth() - directDamage);
+            	}
+            	sprayEffect();
+            	canAttackTimes--;
 
-		Entity entity = this.findEntityOnPath(vec3d1, vec3d);
+            }
+        }
+        
+        if(canAttackTimes <= 0)
+        {
+        	setDead();
+        	return;
+        }
+        
+        if(this.ticksInAir > maxExistTicks)
+        {
+        	setDead();
+        	return;
+        }
 
-		if (entity != null) {
-			raytraceresult = new RayTraceResult(entity);
-		}
+        //from arrow
+        this.posX += this.motionX;
+        this.posY += this.motionY;
+        this.posZ += this.motionZ;
+        bulletRotate();
 
-		if (raytraceresult != null && !isDead) {
-			Entity target = raytraceresult.entityHit;
-			if (target != null) {
-				causeRangeDamage();
-				sprayEffect();
-				setDead();
-				return;
-			}
-		}
+        this.setPosition(this.posX, this.posY, this.posZ);
 
-		this.posX += this.motionX;
-		this.posY += this.motionY;
-		this.posZ += this.motionZ;
-
-		if (!this.hasNoGravity()) {
-			this.motionY -= 0.05d;
-		}
-
-		this.setPosition(this.posX, this.posY, this.posZ);
-
-		//this.doBlockCollisions();  	
-
-	}
-	
-	private void sprayEffect()
-	{
-		float initYaw =  this.rotationYaw;
-		float initPitch = this.rotationPitch;
-		for(int i=0; i < 3; i++)
-		{
-			initYaw += MathUtils.getRandomFromRange(360, 0);
-			initPitch += MathUtils.getRandomFromRange(360, 0);
-			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 6, true);
-			particleSpray.shoot(initYaw, initPitch, 1.5f);
-			particleSpray.setScaleSize(new Vec3d(0.1d, 0.1d, 0.1d));
-			world.spawnEntity(particleSpray);			
-		}
-	}
-	
-	protected void causeRangeDamage()
-	{
-		Vec3i offset = new Vec3i(5, 5, 5);
-    	BlockPos currentPos  = new BlockPos(this.posX, this.posY, this.posZ);
-		BlockPos minPos = currentPos.subtract(offset);
-		BlockPos maxPos = currentPos.add(offset);
-		AxisAlignedBB bb = new AxisAlignedBB(minPos, maxPos);
-		List<Entity> list = world.getEntitiesInAABBexcluding(this, bb, GUN_TARGETS);
-		for (Entity curEntity : list) {
-			if(curEntity instanceof EntityLivingBase)
-			{
-				EntityLivingBase livingBase = (EntityLivingBase) curEntity;
-				if(shooter != null) 
-				{
-					livingBase.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);	
-					Explosion exp = new Explosion(world, shooter, this.posX, this.posY, this.posZ, 1.0f, false, false);
-					exp.doExplosionA();
-					exp.doExplosionB(true);			
-				}else 
-				{
-					livingBase.attackEntityFrom(DamageSource.GENERIC, power);
-				}
-			}
-		}
-		
+        this.doBlockCollisions();
 	}
 	
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
@@ -181,7 +162,7 @@ public class EntityPlasmaBullet extends Entity {
 			if (shooter != null && shooter == entity1) {
 				continue;
 			}
-			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
+			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.5D);
 			RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
 
 			if (raytraceresult != null) {
@@ -197,6 +178,21 @@ public class EntityPlasmaBullet extends Entity {
         return entity;
     }
 	
+	protected void sprayEffect()
+	{
+		float initYaw =  this.rotationYaw;
+		float initPitch = this.rotationPitch;
+		for(int i=0; i < 3; i++)
+		{
+			initYaw += MathUtils.getRandomFromRange(360, 0);
+			initPitch += MathUtils.getRandomFromRange(360, 0);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.5f, 0.0f, 1.0f), 1000, 18, true);
+			particleSpray.shoot(initYaw, initPitch, 0.8f);
+			particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
+			world.spawnEntity(particleSpray);			
+		}
+	}
+	
 	public void shoot(float yaw, float pitch, float velocity)
 	{
         float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
@@ -208,25 +204,18 @@ public class EntityPlasmaBullet extends Entity {
         this.motionY += shooter.motionY;
         this.motionZ += shooter.motionZ;
         this.velocity = velocity;
+	}
 
-	}
 	
-	public void shoot(Vec3d pos,Vec3d target)
-	{
-		double d1 = (target.x - pos.x)/8f ;
-		double d2 = (target.y - pos.y)/8f ;
-		double d3 = (target.z - pos.z) /8f;
-		double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
-		shoot(d1, d2 + d4, d3, 1.0f);
-		
-	}
-	
-    public void shoot(double x, double y, double z, float velocity)
+    protected void shoot(double x, double y, double z, float velocity)
     {
         float f = MathHelper.sqrt(x * x + y * y + z * z);
         x = x / (double)f;
         y = y / (double)f;
         z = z / (double)f;
+        x = x + this.rand.nextGaussian() * 0.007;
+        y = y + this.rand.nextGaussian() * 0.007;
+        z = z + this.rand.nextGaussian() * 0.007;
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
@@ -239,12 +228,36 @@ public class EntityPlasmaBullet extends Entity {
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
     }
-
-    public float getBulletPower()
+    
+    private void bulletRotate()
     {
-    	return power;//this.pow
+        float f4 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
+
+        for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+        {
+            ;
+        }
+
+        while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
+        {
+            this.prevRotationPitch += 360.0F;
+        }
+
+        while (this.rotationYaw - this.prevRotationYaw < -180.0F)
+        {
+            this.prevRotationYaw -= 360.0F;
+        }
+
+        while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
+        {
+            this.prevRotationYaw += 360.0F;
+        }
+
+        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
     }
-   
+
 	@Override
 	protected void entityInit(){}
 
@@ -252,18 +265,25 @@ public class EntityPlasmaBullet extends Entity {
 	protected void readEntityFromNBT(NBTTagCompound compound)
 	{
 		this.ticksInAir =  compound.getInteger("ticksInAir");
+		this.power = compound.getFloat("power");
 		this.velocity = compound.getFloat("velocity");
 		this.maxExistTicks = compound.getInteger("maxExistTicks");
-		this.power = compound.getFloat("power");
+		this.canAttackTimes = compound.getInteger("canAttackTimes");
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound) 
 	{
         compound.setInteger("ticksInAir", this.ticksInAir);
+        compound.setFloat("power", this.power);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
-        compound.setFloat("compound", this.power);
+        compound.setInteger("canAttackTimes", this.canAttackTimes);
+	}
+	
+	public int getCanAttackTimes()
+	{
+		return this.canAttackTimes;
 	}
 }
 

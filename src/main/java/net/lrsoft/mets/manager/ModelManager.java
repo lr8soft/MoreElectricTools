@@ -10,6 +10,7 @@ import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
 import net.lrsoft.mets.entity.EntityPlasmaBullet;
 import net.lrsoft.mets.entity.EntityRocket;
+import net.lrsoft.mets.entity.EntityTachyonBullet;
 import net.lrsoft.mets.item.bauble.ItemBaublesManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
@@ -17,6 +18,7 @@ import net.lrsoft.mets.renderer.BulletRenderer;
 import net.lrsoft.mets.renderer.LighterRenderer;
 import net.lrsoft.mets.renderer.PlasmaBulletRenderer;
 import net.lrsoft.mets.renderer.RocketRender;
+import net.lrsoft.mets.renderer.TachyonRenderer;
 import net.lrsoft.mets.renderer.TransmissionNodeRenderer;
 import net.lrsoft.mets.renderer.particle.EntityParticleGroup;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
@@ -87,6 +89,9 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.electricRocketLauncher.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricPlasmaGun, 0,
 				new ModelResourceLocation(ItemManager.electricPlasmaGun.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.tachyonDisruptor, 0,
+				new ModelResourceLocation(ItemManager.tachyonDisruptor.getRegistryName(), "inventory"));
+		
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.divingMask, 0,
 				new ModelResourceLocation(ItemManager.divingMask.getRegistryName(), "inventory"));
@@ -167,6 +172,13 @@ public class ModelManager {
 		RenderingRegistry.registerEntityRenderingHandler(EntityPlasmaBullet.class, new IRenderFactory<EntityPlasmaBullet>() {
 			public Render<EntityPlasmaBullet> createRenderFor(RenderManager manager) {
 				return (Render<EntityPlasmaBullet>) new PlasmaBulletRenderer(manager);
+			}
+		});
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityTachyonBullet.class, new IRenderFactory<EntityTachyonBullet>() {
+			public Render<EntityTachyonBullet> createRenderFor(RenderManager manager) {
+				return (Render<EntityTachyonBullet>) new TachyonRenderer(manager,
+						new ResourceLocation("mets", "textures/entity/tachyon.png"));
 			}
 		});
 		

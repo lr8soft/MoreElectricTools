@@ -113,6 +113,7 @@ mets.te.wireless_power_transmission_node=§9Wireless Power Transmission Node
 mets.te.ultimate_photon_resonance_solar_generator=§9Ultimate Photon Resonance Solar Generator
 mets.te.geomagnetic_generator=§5Geomagnetic Generator
 mets.te.neutron_polymerizer=§5Particle Aggregator
+mets.te.electric_blast_furnace=§5Electric Nano Blast Furnace
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

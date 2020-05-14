@@ -54,7 +54,10 @@
       "geomagnetic_generator_active": { "model": "mets:geomagnetic_generator_active" },
 
       "neutron_polymerizer": { "model": "mets:neutron_polymerizer" },
-      "neutron_polymerizer_active": { "model": "mets:neutron_polymerizer_active" }
+      "neutron_polymerizer_active": { "model": "mets:neutron_polymerizer_active" },
+
+      "electric_blast_furnace": { "model": "mets:electric_blast_furnace" },
+      "electric_blast_furnace_active": { "model": "mets:electric_blast_furnace_active" }
     },
     "facing": {
       "down": { "x": 90 },

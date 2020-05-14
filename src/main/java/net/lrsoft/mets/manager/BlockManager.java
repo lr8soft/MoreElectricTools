@@ -401,6 +401,19 @@ public class BlockManager {
 						'M', IC2Items.getItem("te", "matter_generator"),
 						'B', eesuStorage
 				});
+		
+		ItemStack electric_blast_furnace = teBlock.getItemStack(MetsBlockWithTileEntity.electric_blast_furnace);
+		Recipes.advRecipes.addRecipe(electric_blast_furnace, 
+				new Object[] {
+						"CFC",
+						"SBR",
+						"CFC",
+						'F', ItemCraftingManager.field_generator,
+						'C', ItemCraftingManager.neutron_plate, 
+						'S', ItemCraftingManager.living_circuit,
+						'B', advancedBlastFurnace,
+						'R', IC2Items.getItem("te", "electric_heat_generator")
+				});
 	}
 	
 	@SubscribeEvent

@@ -2,6 +2,7 @@ package net.lrsoft.mets.item.weapon;
 
 import ic2.api.item.ElectricItem;
 import net.lrsoft.mets.entity.EntityHyperGunBullet;
+import net.lrsoft.mets.entity.EntityTachyonBullet;
 import net.lrsoft.mets.item.UniformElectricItem;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
@@ -10,7 +11,11 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.MobEffects;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionType;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
@@ -30,17 +35,17 @@ public class TachyonDisruptor extends UniformElectricItem {
 		ItemStack currentGun = playerIn.getHeldItem(handIn);
 		long lastRightClick = getLastRightClick(currentGun);
 		long currentTime = System.currentTimeMillis();
-		if(currentTime - lastRightClick > 150)
+		if(currentTime - lastRightClick > 300)
 		{
 			float ratio = getElectricItemAttenuationRatio(currentGun);
 			if(ElectricItem.manager.use(currentGun, ConfigManager.TachyonDisruptorCost * ratio, playerIn))
 			{
-				//EntityHyperGunBullet entity = new EntityHyperGunBullet(worldIn, playerIn, 50f, 360);
-				//entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
-				//worldIn.spawnEntity(entity);		
+				EntityTachyonBullet entity = new EntityTachyonBullet(worldIn, playerIn, 100f, 600);
+				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 3.0f);
+				worldIn.spawnEntity(entity);		
 				
-				//worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
-				//		SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.2f, 1.0F);
+				worldIn.playSound((EntityPlayer)null, playerIn.posX , playerIn.posY, playerIn.posZ, 
+						SoundManager.laser_bullet_shoot, playerIn.getSoundCategory(), 0.2f, 1.5F);
 				setLastRightClick(currentGun, currentTime);
 			}
 		}
@@ -56,9 +61,10 @@ public class TachyonDisruptor extends UniformElectricItem {
 			EntityLivingBase enemyEntity = (EntityLivingBase) targetEntity;
 			float ratio = getElectricItemAttenuationRatio(stack);
 			if (ElectricItem.manager.use(stack, ConfigManager.TachyonDisruptorCost * ratio, player)) {
+				enemyEntity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 30, 3));
 				enemyEntity.knockBack(attacker, 1.0f, (double) MathHelper.sin(player.rotationYaw * 0.017453292F),
 						(double) (-MathHelper.cos(player.rotationYaw * 0.017453292F)));
-				enemyEntity.attackEntityFrom(DamageSource.causePlayerDamage(player), getAttackDamage(20.0f, stack));
+				enemyEntity.attackEntityFrom(DamageSource.causePlayerDamage(player), getAttackDamage(30.0f, stack));	
 			}
          }
 		return true;
