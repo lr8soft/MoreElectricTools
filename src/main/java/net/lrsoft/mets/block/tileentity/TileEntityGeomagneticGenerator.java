@@ -29,7 +29,7 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 	private float lastSourceValue = 0.0f;
 	private boolean shouldMachineWork = false;
 	public TileEntityGeomagneticGenerator() {
-		super(8192D, 5, 400000000);
+		super(20480D, 5, 400000000);
 	}
 
 	@Override
@@ -52,10 +52,9 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 			float ratio = getMagneticSource();
 			if(biome instanceof BiomeHell || biome instanceof BiomeHills)
 			{
-				ratio *= 1.5f;
+				ratio *= 1.2f;
 			}	
 			
-	
 			int newFuel = (int)ratio * 6;
 			if(fuel + newFuel <= Integer.MAX_VALUE)
 				fuel += newFuel;

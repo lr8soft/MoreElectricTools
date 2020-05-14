@@ -25,8 +25,9 @@ import net.minecraftforge.common.MinecraftForge;
 public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricMachine {
 	private Vec3d targetPosition = null;
 	private Vector<EntityParticleGroup> globalParticleVector = new Vector();
+	private static int transferSpeed = 81920;
 	public TileEntityWirelessPowerTransmissionNode() {
-		super(8192, 5);
+		super(transferSpeed, 5);
 
 	}
 	
@@ -58,10 +59,10 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 							double maxEnergy = targetEnergy.getCapacity();
 							if(currentEnergy < maxEnergy)
 							{
-								double useage = 8192;
-								if(currentEnergy + 8192 <= maxEnergy)
+								double useage = transferSpeed;
+								if(currentEnergy + transferSpeed <= maxEnergy)
 								{
-									compound.setDouble("storage", currentEnergy + 8192);
+									compound.setDouble("storage", currentEnergy + transferSpeed);
 								}else 
 								{
 									compound.setDouble("storage", maxEnergy);
@@ -84,10 +85,10 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 						double maxEnergy = electricBlock.energy.getCapacity();
 						if(currentEnergy < maxEnergy)
 						{
-							double useage = 8192;
-							if(currentEnergy + 8192 <= maxEnergy)
+							double useage = transferSpeed;
+							if(currentEnergy + transferSpeed <= maxEnergy)
 							{
-								compound.setDouble("storage", currentEnergy + 8192);
+								compound.setDouble("storage", currentEnergy + transferSpeed);
 							}else 
 							{
 								compound.setDouble("storage", maxEnergy);
