@@ -33,6 +33,7 @@ import net.lrsoft.mets.item.weapon.ElectricShield;
 import net.lrsoft.mets.item.weapon.ElectricSubmachineGun;
 import net.lrsoft.mets.item.weapon.NanoBow;
 import net.lrsoft.mets.item.weapon.PlasmaAirCannon;
+import net.lrsoft.mets.item.weapon.TachyonDisruptor;
 import net.lrsoft.mets.item.weapon.TacticalLaserSubmachineGun;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
@@ -76,6 +77,7 @@ public class ItemManager {
 	public static TacticalLaserSubmachineGun tacticalLaserSubmachineGun;
 	public static ElectricRocketLauncher electricRocketLauncher;
 	public static ElectricPlasmaGun electricPlasmaGun;
+	public static TachyonDisruptor tachyonDisruptor;
 	
 	public static DivingMask divingMask;
 	public static AdvancedQuantumSuit advancedQuantumChest;
@@ -109,6 +111,7 @@ public class ItemManager {
 		tacticalLaserSubmachineGun = new TacticalLaserSubmachineGun();
 		electricRocketLauncher = new ElectricRocketLauncher();
 		electricPlasmaGun = new ElectricPlasmaGun();
+		tachyonDisruptor = new TachyonDisruptor();
 		
 		divingMask = new DivingMask();	
 		advancedQuantumChest = new AdvancedQuantumSuit("advanced_quantum_chest", EntityEquipmentSlot.CHEST);
@@ -141,6 +144,7 @@ public class ItemManager {
 		event.getRegistry().register(electricLighter);
 		event.getRegistry().register(electricPlasmaGun);
 		event.getRegistry().register(electricWirlessManager);
+		event.getRegistry().register(tachyonDisruptor);
 		
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
@@ -471,6 +475,19 @@ public class ItemManager {
 					'T', IC2Items.getItem("upgrade", "ejector"),
 					'C', ItemCraftingManager.super_circuit,
 					'D', getAllTypeStack(electricSubmachineGun)
+					});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(tachyonDisruptor), new Object[]
+				{
+					"OSB",
+					"TTC",
+					"OSD",
+					'S', ItemCraftingManager.nano_living_metal,
+					'B', getAllTypeStack(superLapotronCrystal),
+					'O', ItemCraftingManager.neutron_plate,
+					'T', ItemCraftingManager.field_generator,
+					'C', ItemCraftingManager.living_circuit,
+					'D', getAllTypeStack(tacticalLaserSubmachineGun)
 					});
 		
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedQuantumChest);// N O P E

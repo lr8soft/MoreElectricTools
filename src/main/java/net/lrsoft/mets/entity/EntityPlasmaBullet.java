@@ -122,7 +122,7 @@ public class EntityPlasmaBullet extends Entity {
 
 		this.setPosition(this.posX, this.posY, this.posZ);
 
-		this.doBlockCollisions();  	
+		//this.doBlockCollisions();  	
 
 	}
 	
@@ -134,7 +134,7 @@ public class EntityPlasmaBullet extends Entity {
 		{
 			initYaw += MathUtils.getRandomFromRange(360, 0);
 			initPitch += MathUtils.getRandomFromRange(360, 0);
-			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 500, 6, true);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 1200, 6, true);
 			particleSpray.shoot(initYaw, initPitch, 1.5f);
 			particleSpray.setScaleSize(new Vec3d(0.1d, 0.1d, 0.1d));
 			world.spawnEntity(particleSpray);			

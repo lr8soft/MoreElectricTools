@@ -58,6 +58,7 @@ item.mets.advanced_electric_submachine_gun.name=§bAdvanced Electric Submachine 
 item.mets.tactical_laser_submachine_gun.name=§bTactical Laser Submachine Gun with Iridium Bayonet
 item.mets.electric_rocket_launcher.name=Rocket Launcher
 item.mets.electric_plasma_gun.name=§eElectric Plasma Gun
+item.mets.tachyon_disruptor.name=§5Advanced Tachino Disruptor
 
 item.mets.electric_first_aid_life_support.name=Electric First Aid Life Support
 item.mets.electric_nutrition_supply.name=Electric Nutrition Supply
@@ -113,6 +114,7 @@ mets.te.wireless_power_transmission_node=§9Wireless Power Transmission Node
 mets.te.ultimate_photon_resonance_solar_generator=§9Ultimate Photon Resonance Solar Generator
 mets.te.geomagnetic_generator=§5Geomagnetic Generator
 mets.te.neutron_polymerizer=§5Particle Aggregator
+mets.te.electric_blast_furnace=§5Electric Nano Blast Furnace
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

@@ -59,6 +59,7 @@ item.mets.advanced_electric_submachine_gun.name=§b进阶电力激光镭射步�
 item.mets.tactical_laser_submachine_gun.name=§b铱制刺刀战术激光镭射步枪
 item.mets.electric_rocket_launcher.name=火箭筒
 item.mets.electric_plasma_gun.name=§e电力等离子电浆发射器
+item.mets.tachyon_disruptor.name=§5先进速子裂解枪
 
 item.mets.electric_first_aid_life_support.name=电力生命维护仪
 item.mets.electric_nutrition_supply.name=电力营养供应器
@@ -116,6 +117,7 @@ mets.te.wireless_power_transmission_node=§9无线能源传输器
 mets.te.ultimate_photon_resonance_solar_generator=§9终极光子振谐太阳能发电机
 mets.te.geomagnetic_generator=§5地磁发电机
 mets.te.neutron_polymerizer=§5粒子聚合发生器
+mets.te.electric_blast_furnace=§5电力纳米高炉
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用

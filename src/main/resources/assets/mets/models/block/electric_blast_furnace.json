@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/electric_blast_furnace/uniform",
+    "down": "mets:blocks/electric_blast_furnace/topbottom",
+    "up": "mets:blocks/electric_blast_furnace/topbottom",
+    "north": "mets:blocks/electric_blast_furnace/front",
+    "south": "mets:blocks/electric_blast_furnace/uniform",
+    "west": "mets:blocks/electric_blast_furnace/uniform",
+    "east": "mets:blocks/electric_blast_furnace/uniform"
+  }
+}

@@ -67,4 +67,7 @@ public class ConfigManager {
 	 
 	 @Config.RequiresWorldRestart
 	 public static double ForceFieldCost = 5000d;
+	 
+	 @Config.RequiresWorldRestart
+	 public static double TachyonDisruptorCost = 50000d;
 }

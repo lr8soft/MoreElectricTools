@@ -54,7 +54,8 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	ultimate_photon_resonance_solar_generator((Class)TileEntityUltimateSolarGenerator.class, 20, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	geomagnetic_generator((Class)TileEntityGeomagneticGenerator.class, 21, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Generator, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	
-	neutron_polymerizer((Class)TileEntityNeutronPolymerizer.class, 22, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	neutron_polymerizer((Class)TileEntityNeutronPolymerizer.class, 22, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	electric_blast_furnace((Class)TileEntityElectricBlastFurnace.class, 23, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;

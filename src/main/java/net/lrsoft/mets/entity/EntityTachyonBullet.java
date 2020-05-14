@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
-import ic2.core.util.Vector3;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
@@ -26,7 +25,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class EntityGunBullet extends Entity {
+public class EntityTachyonBullet extends Entity {
 	public static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
     {
         public boolean apply(@Nullable Entity entity)
@@ -40,12 +39,13 @@ public class EntityGunBullet extends Entity {
 	protected int maxExistTicks;
 	protected float power;
 	protected float velocity;
+	protected int canAttackTimes = 3;
 	
-	public EntityGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
+	public EntityTachyonBullet(World world, EntityPlayer owner, float power, int maxTick) {
 		super(world);
 		this.ticksInAir = 0;
 		this.shooter = owner;
-		setSize(0.39F, 0.39F);
+		setSize(0.45F, 0.45F);
 	
 		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
 		this.power = power;
@@ -99,23 +99,37 @@ public class EntityGunBullet extends Entity {
             raytraceresult = new RayTraceResult(entity);
         }
         
-        if (raytraceresult != null && !isDead)
+        if (raytraceresult != null && !isDead && canAttackTimes - 1 >= 0)
         {
             Entity target = raytraceresult.entityHit;
             if (target != null)
             {
             	target.hurtResistantTime = 0;
             	
+            	float normalDamage = 0.333f * power;
             	if(shooter != null)
             	{
-            		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);
+            		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), normalDamage);
             	}else {
-            		target.attackEntityFrom(DamageSource.GENERIC, power);
+            		target.attackEntityFrom(DamageSource.GENERIC, normalDamage);
+            	}
+            	
+            	float directDamage = 0.667f * power;
+            	if(target instanceof EntityLivingBase)
+            	{
+            		EntityLivingBase enemyTarget  = (EntityLivingBase)target;
+            		enemyTarget.setHealth(enemyTarget.getHealth() - directDamage);
             	}
             	sprayEffect();
-            	setDead();
-            	return;
+            	canAttackTimes--;
+
             }
+        }
+        
+        if(canAttackTimes <= 0)
+        {
+        	setDead();
+        	return;
         }
         
         if(this.ticksInAir > maxExistTicks)
@@ -128,10 +142,11 @@ public class EntityGunBullet extends Entity {
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
+        bulletRotate();
 
         this.setPosition(this.posX, this.posY, this.posZ);
 
-        this.doBlockCollisions();
+       // this.doBlockCollisions();
 	}
 	
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
@@ -147,7 +162,7 @@ public class EntityGunBullet extends Entity {
 			if (shooter != null && shooter == entity1) {
 				continue;
 			}
-			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3D);
+			AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.5D);
 			RayTraceResult raytraceresult = axisalignedbb.calculateIntercept(start, end);
 
 			if (raytraceresult != null) {
@@ -167,11 +182,11 @@ public class EntityGunBullet extends Entity {
 	{
 		float initYaw =  this.rotationYaw;
 		float initPitch = this.rotationPitch;
-		for(int i=0; i < 2; i++)
+		for(int i=0; i < 3; i++)
 		{
 			initYaw += MathUtils.getRandomFromRange(360, 0);
 			initPitch += MathUtils.getRandomFromRange(360, 0);
-			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(0.8f, 1.0f, 1.0f), 800, 6, true);
+			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(1.0f, 1.0f, 1.0f), 1000, 18, true);
 			particleSpray.shoot(initYaw, initPitch, 0.8f);
 			particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
 			world.spawnEntity(particleSpray);			
@@ -198,9 +213,6 @@ public class EntityGunBullet extends Entity {
         x = x / (double)f;
         y = y / (double)f;
         z = z / (double)f;
-        x = x + this.rand.nextGaussian() * 0.007;
-        y = y + this.rand.nextGaussian() * 0.007;
-        z = z + this.rand.nextGaussian() * 0.007;
         x = x * (double)velocity;
         y = y * (double)velocity;
         z = z * (double)velocity;
@@ -213,6 +225,11 @@ public class EntityGunBullet extends Entity {
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
     }
+    
+    private void bulletRotate()
+    {
+ 
+    }
 
 	@Override
 	protected void entityInit(){}
@@ -224,6 +241,7 @@ public class EntityGunBullet extends Entity {
 		this.power = compound.getFloat("power");
 		this.velocity = compound.getFloat("velocity");
 		this.maxExistTicks = compound.getInteger("maxExistTicks");
+		this.canAttackTimes = compound.getInteger("canAttackTimes");
 	}
 
 	@Override
@@ -233,5 +251,12 @@ public class EntityGunBullet extends Entity {
         compound.setFloat("power", this.power);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
+        compound.setInteger("canAttackTimes", this.canAttackTimes);
+	}
+	
+	public int getCanAttackTimes()
+	{
+		return this.canAttackTimes;
 	}
 }
+

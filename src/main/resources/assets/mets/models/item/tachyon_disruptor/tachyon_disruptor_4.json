@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "mets:items/tachyon_disruptor/tachyon_disruptor_4"
+  }
+}

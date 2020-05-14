@@ -14,19 +14,27 @@ import ic2.core.ref.ItemName;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import ic2.core.gui.Gauge;
+import ic2.core.gui.Gauge.GaugeStyle;
 import ic2.core.gui.VanillaButton;
 import net.lrsoft.mets.block.tileentity.TileEntityExtrudingMachine;
 public class GuiUniformSimpleMachine<T extends TileEntityStandardMachine<?, ?, ?>> extends GuiIC2<ContainerUniformSimpleMachine<T>>{
 	 public GuiUniformSimpleMachine(final ContainerUniformSimpleMachine container)
 	 {
+		this(container, Gauge.GaugeStyle.ProgressLongArrow);
+	 } 
+	
+	public GuiUniformSimpleMachine(final ContainerUniformSimpleMachine container, GaugeStyle style)
+	 {
 		super(container);
 		addElement((GuiElement) EnergyGauge.asBolt(this, 57, 37, (TileEntityBlock) container.base));
-		addElement((GuiElement) CustomGauge.create(this, 72, 38, new CustomGauge.IGaugeRatioProvider() {
+		addElement((GuiElement) CustomGauge.create(this, 74, 37, new CustomGauge.IGaugeRatioProvider() {
 			public double getRatio() {
 				return ((T) container.base).getProgress();
 			}
-		}, Gauge.GaugeStyle.ProgressLongArrow));
+		}, style));
 	 }
+	 
+	 
 	@Override
 	protected ResourceLocation getTexture()
 	{

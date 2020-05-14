@@ -11,9 +11,7 @@ import ic2.api.upgrade.UpgradableProperty;
 import ic2.core.ContainerBase;
 import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
-import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;
-import ic2.core.gui.Gauge.GaugeStyle;
 import net.lrsoft.mets.gui.ContainerUniformSimpleMachine;
 import net.lrsoft.mets.gui.GuiUniformSimpleMachine;
 import net.lrsoft.mets.util.SpecialRecipesHelper;
@@ -24,24 +22,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityNeutronPolymerizer  extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
-	public TileEntityNeutronPolymerizer() {
-		super(1536, 1500, 1, 5);
+public class TileEntityElectricBlastFurnace extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
+	public TileEntityElectricBlastFurnace() {
+		super(8000, 60, 2, 5);
 
 		try {
 			Class<?> slotClass = VersionHelper.getTargetSlotClass();
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
 					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
-					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)SpecialRecipesHelper.neutronPolymerizerRecipes);
+					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)Recipes.blastfurnace);
 			this.inputSlot = newInputSlot;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public ContainerBase<TileEntityNeutronPolymerizer> getGuiContainer(EntityPlayer player) {
-		return (ContainerBase<TileEntityNeutronPolymerizer>)
-				new ContainerUniformSimpleMachine<TileEntityNeutronPolymerizer>(player, this);
+	public ContainerBase<TileEntityElectricBlastFurnace> getGuiContainer(EntityPlayer player) {
+		return (ContainerBase<TileEntityElectricBlastFurnace>)
+				new ContainerUniformSimpleMachine<TileEntityElectricBlastFurnace>(player, this);
 	}
 	
 	@SideOnly(Side.CLIENT)
