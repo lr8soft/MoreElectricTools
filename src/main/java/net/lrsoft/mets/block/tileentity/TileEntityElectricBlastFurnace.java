@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityElectricBlastFurnace extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
 	public TileEntityElectricBlastFurnace() {
-		super(8192, 60, 2, 5);
+		super(8000, 60, 2, 5);
 
 		try {
 			Class<?> slotClass = VersionHelper.getTargetSlotClass();
