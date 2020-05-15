@@ -1,6 +1,7 @@
 package net.lrsoft.mets.block.tileentity;
 
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 
 import ic2.core.block.comp.Energy;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
@@ -66,16 +67,6 @@ public class TileEntityGESUInputPort extends TileEntityElectricMachine implement
 		return tag;
 	}
 	
-	public double getTotalEnergy() {
-		if (isStructureCompleted) {
-			TileEntity te = this.world.getTileEntity(new BlockPos(corePosition));
-			if (te instanceof TileEntityGESUCore) {
-				TileEntityGESUCore core = (TileEntityGESUCore) te;
-				return core.getFuel() * 81920.0d;
-			}
-		}
-		return 0.0d;
-	}
 
 	public double getEnergy()
 	{

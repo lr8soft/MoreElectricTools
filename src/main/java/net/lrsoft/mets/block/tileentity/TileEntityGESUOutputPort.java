@@ -52,10 +52,10 @@ public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements
 				if (te instanceof TileEntityGESUCore) {
 					TileEntityGESUCore core = (TileEntityGESUCore) te;
 					remainingEU = core.getGESUFuel() * 81920.0d;
+					NetworkHelper.updateTileEntityField(this, "remainingEU");
 				}
 			}
 			tick++;
-			NetworkHelper.updateTileEntityField(this, "remainingEU");
 			setActive(true);
 		}else {
 			setActive(false);
