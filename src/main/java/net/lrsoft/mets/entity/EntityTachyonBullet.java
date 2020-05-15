@@ -142,7 +142,6 @@ public class EntityTachyonBullet extends Entity {
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
-        bulletRotate();
 
         this.setPosition(this.posX, this.posY, this.posZ);
 
@@ -182,15 +181,30 @@ public class EntityTachyonBullet extends Entity {
 	{
 		float initYaw =  this.rotationYaw;
 		float initPitch = this.rotationPitch;
-		for(int i=0; i < 3; i++)
+		if(ticksInAir <= 3)
 		{
-			initYaw += MathUtils.getRandomFromRange(360, 0);
-			initPitch += MathUtils.getRandomFromRange(360, 0);
-			EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(1.0f, 1.0f, 1.0f), 1000, 18, true);
-			particleSpray.shoot(initYaw, initPitch, 0.8f);
-			particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
-			world.spawnEntity(particleSpray);			
+			for(int i=0; i < 2; i++)
+			{
+				initYaw += MathUtils.getRandomFromRange(360, 0);
+				initPitch += MathUtils.getRandomFromRange(360, 0);
+				EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(1.0f, 1.0f, 1.0f), 800, 6, true);
+				particleSpray.shoot(initYaw, initPitch, 0.8f);
+				particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
+				world.spawnEntity(particleSpray);			
+			}
+		}else 
+		{
+			for(int i=0; i < 3; i++)
+			{
+				initYaw += MathUtils.getRandomFromRange(360, 0);
+				initPitch += MathUtils.getRandomFromRange(360, 0);
+				EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(1.0f, 1.0f, 1.0f), 1000, 18, true);
+				particleSpray.shoot(initYaw, initPitch, 0.8f);
+				particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
+				world.spawnEntity(particleSpray);			
+			}
 		}
+
 	}
 	
 	public void shoot(float yaw, float pitch, float velocity)
@@ -224,11 +238,6 @@ public class EntityTachyonBullet extends Entity {
         this.rotationPitch = (float)(MathHelper.atan2(y, (double)f1) * (180D / Math.PI));
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
-    }
-    
-    private void bulletRotate()
-    {
- 
     }
 
 	@Override

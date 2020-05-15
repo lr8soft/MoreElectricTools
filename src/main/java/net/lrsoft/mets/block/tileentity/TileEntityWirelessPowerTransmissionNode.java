@@ -9,10 +9,6 @@ import ic2.core.block.TileEntityBlock;
 import ic2.core.block.comp.Energy;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.wiring.TileEntityElectricBlock;
-import net.lrsoft.mets.renderer.particle.EntityParticleGroup;
-import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
@@ -24,8 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricMachine {
 	private Vec3d targetPosition = null;
-	private Vector<EntityParticleGroup> globalParticleVector = new Vector();
-	private static int transferSpeed = 81920;
+	private static int transferSpeed = 8192;
 	public TileEntityWirelessPowerTransmissionNode() {
 		super(transferSpeed, 5);
 
@@ -39,7 +34,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 	
 	private void updateTileEntity()
 	{
-		if (this.energy.canUseEnergy(8192)) 
+		if (this.energy.canUseEnergy(transferSpeed)) 
 		{
 			boolean shouldActive = false;
 			if(targetPosition != null)

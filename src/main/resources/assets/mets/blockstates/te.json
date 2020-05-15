@@ -57,7 +57,13 @@
       "neutron_polymerizer_active": { "model": "mets:neutron_polymerizer_active" },
 
       "electric_blast_furnace": { "model": "mets:electric_blast_furnace" },
-      "electric_blast_furnace_active": { "model": "mets:electric_blast_furnace_active" }
+      "electric_blast_furnace_active": { "model": "mets:electric_blast_furnace_active" },
+
+      "gesu_core": { "model": "mets:gesu_core" },
+      "gesu_input": { "model": "mets:gesu_input" },
+      "gesu_input_active": { "model": "mets:gesu_input_active" },
+      "gesu_output": { "model": "mets:gesu_output" },
+      "gesu_output_active": { "model": "mets:gesu_output_active" }
     },
     "facing": {
       "down": { "x": 90 },

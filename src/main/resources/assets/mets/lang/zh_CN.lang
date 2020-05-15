@@ -119,6 +119,10 @@ mets.te.geomagnetic_generator=§5地磁发电机
 mets.te.neutron_polymerizer=§5粒子聚合发生器
 mets.te.electric_blast_furnace=§5电力纳米高炉
 
+mets.te.gesu_core=§5大型储电GESU核心
+mets.te.gesu_input=§5大型储电GESU输入模块
+mets.te.gesu_output=§5大型储电GESU输出模块
+
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
 mets.info.crafting_only=仅用于合成
