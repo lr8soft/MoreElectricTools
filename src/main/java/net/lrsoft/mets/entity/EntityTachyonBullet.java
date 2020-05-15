@@ -179,7 +179,7 @@ public class EntityTachyonBullet extends Entity {
 	
 	protected void sprayEffect()
 	{
-		if(ticksInAir > 3)
+		if(ticksInAir >= 3)
 		{
 			float initYaw =  this.rotationYaw;
 			float initPitch = this.rotationPitch;

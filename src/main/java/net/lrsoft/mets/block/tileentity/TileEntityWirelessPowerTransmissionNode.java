@@ -22,7 +22,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 	private Vec3d targetPosition = null;
 	private static int transferSpeed = 16384;
 	public TileEntityWirelessPowerTransmissionNode() {
-		super(transferSpeed, 5);
+		super(transferSpeed, Integer.MAX_VALUE);
 
 	}
 	
