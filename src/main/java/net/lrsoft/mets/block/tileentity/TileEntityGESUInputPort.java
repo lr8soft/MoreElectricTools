@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import ic2.core.block.comp.Energy;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.wiring.TileEntityElectricBlock;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -28,11 +29,10 @@ public class TileEntityGESUInputPort extends TileEntityElectricMachine implement
 	
 	private void updateTileEntity()
 	{
-		setActive(false);
 		if (isStructureCompleted && this.energy.canUseEnergy(transferSpeed)) 
 		{
 			TileEntity te = this.world.getTileEntity(new BlockPos(corePosition));
-			if(te instanceof TileEntityGESUCore)
+			if(te != null && te instanceof TileEntityGESUCore)
 			{
 				TileEntityGESUCore core = (TileEntityGESUCore)te;
 				if(core.addFuel(1.0))
@@ -40,31 +40,19 @@ public class TileEntityGESUInputPort extends TileEntityElectricMachine implement
 					this.energy.useEnergy(transferSpeed);
 					setActive(true);
 				}
+			}else {
+				resume();
 			}
-		}
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound tag) {
-		super.readFromNBT(tag);
-		double x = tag.getDouble("coreX");
-		double y = tag.getDouble("coreY");
-		double z = tag.getDouble("coreZ");
-		isStructureCompleted = tag.getBoolean("isStructureCompleted");
-		corePosition = new Vec3d(x, y, z);
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
-		if(corePosition != null) 
+		}else 
 		{
-			tag.setDouble("coreX", corePosition.x);
-			tag.setDouble("coreY", corePosition.y);
-			tag.setDouble("coreZ", corePosition.z);
-			tag.setBoolean("isStructureCompleted", isStructureCompleted);
+			setActive(false);
 		}
-		return tag;
+	}
+	
+	private void resume()
+	{
+		isStructureCompleted = false;
+		corePosition = null;
 	}
 	
 

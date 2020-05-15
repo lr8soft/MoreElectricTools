@@ -10,6 +10,7 @@ import ic2.core.block.generator.tileentity.TileEntityBaseGenerator;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.wiring.TileEntityElectricBlock;
 import ic2.core.network.NetworkManager;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -34,14 +35,6 @@ public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements
 		updateTileEntity();
 	}
 	
-	@Override
-	protected void updateEntityClient() {
-		// TODO Auto-generated method stub
-		super.updateEntityClient();
-	
-	}
-	
-	
 	private void updateTileEntity()
 	{
 		if(isStructureCompleted)
@@ -49,18 +42,30 @@ public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements
 			if(tick % 15 == 0)
 			{
 				TileEntity te = this.world.getTileEntity(new BlockPos(corePosition));
-				if (te instanceof TileEntityGESUCore) {
+				if (te != null && te instanceof TileEntityGESUCore) {
 					TileEntityGESUCore core = (TileEntityGESUCore) te;
 					remainingEU = core.getGESUFuel() * 81920.0d;
 					NetworkHelper.updateTileEntityField(this, "remainingEU");
+				}else 
+				{
+					resume();
 				}
 			}
 			tick++;
 			setActive(true);
 		}else {
+			remainingEU = 0.0d;
+			NetworkHelper.updateTileEntityField(this, "remainingEU");
 			setActive(false);
 		}
 	}
+	
+	private void resume()
+	{
+		isStructureCompleted = false;
+		corePosition = null;
+	}
+
 	
 	@Override
 	public synchronized void setCore(Vec3d coord)
@@ -71,29 +76,6 @@ public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements
 	public synchronized void setCoreComplete(boolean isComplete)
 	{
 		this.isStructureCompleted = isComplete;
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound tag) {
-		super.readFromNBT(tag);
-		double x = tag.getDouble("coreX");
-		double y = tag.getDouble("coreY");
-		double z = tag.getDouble("coreZ");
-		isStructureCompleted = tag.getBoolean("isStructureCompleted");
-		corePosition = new Vec3d(x, y, z);
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
-		if(corePosition != null) 
-		{
-			tag.setDouble("coreX", corePosition.x);
-			tag.setDouble("coreY", corePosition.y);
-			tag.setDouble("coreZ", corePosition.z);
-			tag.setBoolean("isStructureCompleted", isStructureCompleted);
-		}
-		return tag;
 	}
 	
 	private static  DecimalFormat energyFormat = new DecimalFormat("#.#");

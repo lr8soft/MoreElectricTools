@@ -3,6 +3,7 @@ package net.lrsoft.mets.block.tileentity;
 import java.util.List;
 import java.util.Random;
 
+import ic2.api.network.NetworkHelper;
 import ic2.core.block.generator.tileentity.TileEntityBaseGenerator;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.util.MathUtils;
@@ -30,6 +31,7 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 	private boolean shouldMachineWork = false;
 	public TileEntityGeomagneticGenerator() {
 		super(20480D, 5, 400000000);
+		this.energy.setPacketOutput(4);
 	}
 
 	@Override
@@ -38,15 +40,10 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 		updateEntity();
 	}
 	
-	@SideOnly(Side.CLIENT)
-	protected void updateEntityClient() {
-		super.updateEntityClient();
-		updateEntity();
-	}
-	
 	private void updateEntity()
 	{	
-		if(checkStructureCompleted())
+		shouldMachineWork = checkStructureCompleted();
+		if(shouldMachineWork)
 		{
 			Biome biome = this.world.getBiome(this.pos);
 			float ratio = getMagneticSource();
@@ -128,7 +125,7 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 	}
 	
 	public boolean isConverting() {
-		return (this.fuel > 0);
+		return (shouldMachineWork && this.fuel > 0);
 	}
 	
 	@Override
