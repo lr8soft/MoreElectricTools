@@ -9,10 +9,6 @@ import ic2.core.block.TileEntityBlock;
 import ic2.core.block.comp.Energy;
 import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
 import ic2.core.block.wiring.TileEntityElectricBlock;
-import net.lrsoft.mets.renderer.particle.EntityParticleGroup;
-import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
@@ -24,9 +20,9 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricMachine {
 	private Vec3d targetPosition = null;
-	private Vector<EntityParticleGroup> globalParticleVector = new Vector();
+	private static int transferSpeed = 16384;
 	public TileEntityWirelessPowerTransmissionNode() {
-		super(8192, 5);
+		super(transferSpeed, 5);
 
 	}
 	
@@ -38,7 +34,7 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 	
 	private void updateTileEntity()
 	{
-		if (this.energy.canUseEnergy(8192)) 
+		if (this.energy.canUseEnergy(transferSpeed)) 
 		{
 			boolean shouldActive = false;
 			if(targetPosition != null)
@@ -58,10 +54,10 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 							double maxEnergy = targetEnergy.getCapacity();
 							if(currentEnergy < maxEnergy)
 							{
-								double useage = 8192;
-								if(currentEnergy + 8192 <= maxEnergy)
+								double useage = transferSpeed;
+								if(currentEnergy + transferSpeed <= maxEnergy)
 								{
-									compound.setDouble("storage", currentEnergy + 8192);
+									compound.setDouble("storage", currentEnergy + transferSpeed);
 								}else 
 								{
 									compound.setDouble("storage", maxEnergy);
@@ -84,10 +80,10 @@ public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricM
 						double maxEnergy = electricBlock.energy.getCapacity();
 						if(currentEnergy < maxEnergy)
 						{
-							double useage = 8192;
-							if(currentEnergy + 8192 <= maxEnergy)
+							double useage = transferSpeed;
+							if(currentEnergy + transferSpeed <= maxEnergy)
 							{
-								compound.setDouble("storage", currentEnergy + 8192);
+								compound.setDouble("storage", currentEnergy + transferSpeed);
 							}else 
 							{
 								compound.setDouble("storage", maxEnergy);

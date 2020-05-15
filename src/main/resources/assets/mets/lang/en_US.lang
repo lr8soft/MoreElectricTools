@@ -116,6 +116,10 @@ mets.te.geomagnetic_generator=§5Geomagnetic Generator
 mets.te.neutron_polymerizer=§5Particle Aggregator
 mets.te.electric_blast_furnace=§5Electric Nano Blast Furnace
 
+mets.te.gesu_core=§5Large Power Storage GESU Core
+mets.te.gesu_input=§5Large Power Storage GESU Input Module
+mets.te.gesu_output=§5Large Power Storage GESU Output Module
+
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor
 
@@ -132,5 +136,9 @@ mets.info.wirless.settarget=Transfer destination set!
 mets.info.wirless.selecttarget=Select the current coordinate as the transfer destination.
 
 mets.info.nano_tip=§5Consists of a large number of nano-robots made by unknown technology
+
+mets.info.gesu_core=Place the input and output modules close to the six sides of it.
+mets.info.gesu_output=Buffer Energy
+mets.info.storage=GESU Energy %1$s EU
 
 enchantment.efficient_energy_cost=Energy Saving

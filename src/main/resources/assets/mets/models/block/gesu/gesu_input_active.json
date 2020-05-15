@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/gesu/input_active",
+    "down": "mets:blocks/gesu/input_active",
+    "up": "mets:blocks/gesu/input_active",
+    "north": "mets:blocks/gesu/input_active",
+    "south": "mets:blocks/gesu/input_active",
+    "west": "mets:blocks/gesu/input_active",
+    "east": "mets:blocks/gesu/input_active"
+  }
+}
