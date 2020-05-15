@@ -57,7 +57,7 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	neutron_polymerizer((Class)TileEntityNeutronPolymerizer.class, 22, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	electric_blast_furnace((Class)TileEntityElectricBlastFurnace.class, 23, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	
-	gesu_core((Class)TileEntityGESUCore.class, 24, true, Util.horizontalFacings, false, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	gesu_core((Class)TileEntityGESUCore.class, 24, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	gesu_input((Class)TileEntityGESUInputPort.class, 25, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	gesu_output((Class)TileEntityGESUOutputPort.class, 26, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");

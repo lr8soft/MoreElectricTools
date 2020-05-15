@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/gesu/uniform",
+    "down": "mets:blocks/gesu/uniform",
+    "up": "mets:blocks/gesu/uniform",
+    "north": "mets:blocks/gesu/uniform",
+    "south": "mets:blocks/gesu/uniform",
+    "west": "mets:blocks/gesu/uniform",
+    "east": "mets:blocks/gesu/uniform"
+  }
+}

@@ -136,5 +136,8 @@ mets.info.wirless.settarget=已设置传输目标！
 mets.info.wirless.selecttarget=选择当前坐标为传输目标
 
 mets.info.nano_tip=§5由大量未知技术制作的纳米机器人聚集而成
+mets.info.gesu_core=GESU储电装置的核心，将输入输出模块紧贴其六个面放置
+mets.info.gesu_output=缓冲能量
+mets.info.storage=GESU储存能量 %1$s EU
 
 enchantment.efficient_energy_cost=节能

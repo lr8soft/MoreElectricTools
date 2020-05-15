@@ -86,6 +86,11 @@ public class TileEntityGESUCore extends TileEntityBlock {
 		}
 	}
 	
+	public synchronized double getGESUFuel()
+	{
+		return gesuFuel;
+	}
+	
 	private boolean checkPortAndUpdate(TileEntity te)
 	{
 		if(te != null && te instanceof IGesuPart)

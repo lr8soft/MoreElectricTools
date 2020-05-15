@@ -27,6 +27,7 @@ public class TileEntityGESUInputPort extends TileEntityElectricMachine implement
 	
 	private void updateTileEntity()
 	{
+		setActive(false);
 		if (isStructureCompleted && this.energy.canUseEnergy(transferSpeed)) 
 		{
 			TileEntity te = this.world.getTileEntity(new BlockPos(corePosition));
@@ -36,6 +37,7 @@ public class TileEntityGESUInputPort extends TileEntityElectricMachine implement
 				if(core.addFuel(1.0))
 				{
 					this.energy.useEnergy(transferSpeed);
+					setActive(true);
 				}
 			}
 		}
@@ -62,6 +64,17 @@ public class TileEntityGESUInputPort extends TileEntityElectricMachine implement
 			tag.setBoolean("isStructureCompleted", isStructureCompleted);
 		}
 		return tag;
+	}
+	
+	public double getTotalEnergy() {
+		if (isStructureCompleted) {
+			TileEntity te = this.world.getTileEntity(new BlockPos(corePosition));
+			if (te instanceof TileEntityGESUCore) {
+				TileEntityGESUCore core = (TileEntityGESUCore) te;
+				return core.getFuel() * 81920.0d;
+			}
+		}
+		return 0.0d;
 	}
 
 	public double getEnergy()

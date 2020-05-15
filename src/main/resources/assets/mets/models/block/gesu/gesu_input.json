@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/gesu/input",
+    "down": "mets:blocks/gesu/input",
+    "up": "mets:blocks/gesu/input",
+    "north": "mets:blocks/gesu/input",
+    "south": "mets:blocks/gesu/input",
+    "west": "mets:blocks/gesu/input",
+    "east": "mets:blocks/gesu/input"
+  }
+}

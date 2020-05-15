@@ -414,6 +414,49 @@ public class BlockManager {
 						'B', advancedBlastFurnace,
 						'R', IC2Items.getItem("te", "electric_heat_generator")
 				});
+		
+		///gesu
+		ItemStack gesu_input = teBlock.getItemStack(MetsBlockWithTileEntity.gesu_input);
+		Recipes.advRecipes.addRecipe(gesu_input, 
+				new Object[] {
+						"CFC",
+						"SBS",
+						"PIP",
+						'C', ItemCraftingManager.field_generator,
+						'F', ItemCraftingManager.neutron_plate, 
+						'S', ItemCraftingManager.living_circuit,
+						'B', eesuStorage,
+						'P', ItemCraftingManager.super_iridium_compress_plate,
+						'I', IC2Items.getItem("te", "ev_transformer")
+				});
+		
+		ItemStack gesu_output = teBlock.getItemStack(MetsBlockWithTileEntity.gesu_output);
+		Recipes.advRecipes.addRecipe(gesu_output, 
+				new Object[] {
+						"PIP",
+						"SBS",
+						"CFC",
+						'C', ItemCraftingManager.field_generator,
+						'F', ItemCraftingManager.neutron_plate, 
+						'S', ItemCraftingManager.living_circuit,
+						'B', eesuStorage,
+						'P', ItemCraftingManager.super_iridium_compress_plate,
+						'I', IC2Items.getItem("te", "ev_transformer")
+				});
+		
+		ItemStack gesu_core = teBlock.getItemStack(MetsBlockWithTileEntity.gesu_core);
+		Recipes.advRecipes.addRecipe(gesu_core, 
+				new Object[] {
+						"CFC",
+						"IBO",
+						"CFC",
+						'F', ItemCraftingManager.field_generator,
+						'C', ItemCraftingManager.neutron_plate, 
+						'I', gesu_input,
+						'O', gesu_output,
+						'B', eesuStorage
+				});
+		
 	}
 	
 	@SubscribeEvent

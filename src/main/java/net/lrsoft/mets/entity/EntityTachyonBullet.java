@@ -179,21 +179,10 @@ public class EntityTachyonBullet extends Entity {
 	
 	protected void sprayEffect()
 	{
-		float initYaw =  this.rotationYaw;
-		float initPitch = this.rotationPitch;
-		if(ticksInAir <= 3)
+		if(ticksInAir > 3)
 		{
-			for(int i=0; i < 2; i++)
-			{
-				initYaw += MathUtils.getRandomFromRange(360, 0);
-				initPitch += MathUtils.getRandomFromRange(360, 0);
-				EntityParticleSpray particleSpray = new EntityParticleSpray(world, this, new Vec3d(1.0f, 1.0f, 1.0f), 800, 6, true);
-				particleSpray.shoot(initYaw, initPitch, 0.8f);
-				particleSpray.setScaleSize(new Vec3d(0.08d, 0.08d, 0.08d));
-				world.spawnEntity(particleSpray);			
-			}
-		}else 
-		{
+			float initYaw =  this.rotationYaw;
+			float initPitch = this.rotationPitch;
 			for(int i=0; i < 3; i++)
 			{
 				initYaw += MathUtils.getRandomFromRange(360, 0);

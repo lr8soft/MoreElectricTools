@@ -137,4 +137,8 @@ mets.info.wirless.selecttarget=Select the current coordinate as the transfer des
 
 mets.info.nano_tip=§5Consists of a large number of nano-robots made by unknown technology
 
+mets.info.gesu_core=Place the input and output modules close to the six sides of it.
+mets.info.gesu_output=Buffer Energy
+mets.info.storage=GESU Energy %1$s EU
+
 enchantment.efficient_energy_cost=Energy Saving
