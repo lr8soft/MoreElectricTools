@@ -80,6 +80,8 @@ public class AdvancedQuantumSuit extends ItemArmor
     		}
         	IC2.platform.profilerEndSection();
     		break;
+    	default:
+    		break;
     	}
 
     }

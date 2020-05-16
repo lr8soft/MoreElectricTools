@@ -99,6 +99,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.advancedQuantumChest.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.advancedJetPack, 0,
 				new ModelResourceLocation(ItemManager.advancedJetPack.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.heavyQuantumChest, 0,
+				new ModelResourceLocation(ItemManager.heavyQuantumChest.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.titaniumIronAlloyRotor, 0,
 				new ModelResourceLocation(ItemManager.titaniumIronAlloyRotor.getRegistryName(), "inventory"));

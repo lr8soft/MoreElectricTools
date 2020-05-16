@@ -44,6 +44,8 @@ public class ConfigManager {
 	 public static double PlasmaAirCannonBaseDamage = 10d;
 	 
 	 @Config.RequiresWorldRestart
+	 public static double HeavyQuantumSuitDamageEnergyCost = 10000d;
+	 @Config.RequiresWorldRestart
 	 public static double AdvancedQuantumSuitDamageEnergyCost = 10000d;
 	 @Config.RequiresWorldRestart
 	 public static double AdvancedQuantumSuitCureCost = 30000d;
