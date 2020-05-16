@@ -320,7 +320,7 @@ public class ItemCraftingManager {
 				null, false, new ItemStack(niobium_titanium_plate));
 		
 		//Nano robot
-		UuIndex.instance.add(new ItemStack(nano_living_metal), 30e3);
+		UuIndex.instance.add(new ItemStack(nano_living_metal), 20e3);
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(superconducting_cable, 2),
 				new Object[] {

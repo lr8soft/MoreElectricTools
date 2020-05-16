@@ -8,6 +8,7 @@ import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.armor.AdvancedJetPack;
 import net.lrsoft.mets.armor.AdvancedQuantumSuit;
 import net.lrsoft.mets.armor.DivingMask;
+import net.lrsoft.mets.armor.HeavyQuantumSuit;
 import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.item.ElectricFirstAidLifeSupport;
 import net.lrsoft.mets.item.ElectricFishingRod;
@@ -82,6 +83,7 @@ public class ItemManager {
 	public static DivingMask divingMask;
 	public static AdvancedQuantumSuit advancedQuantumChest;
 	public static AdvancedJetPack advancedJetPack;
+	public static HeavyQuantumSuit heavyQuantumChest;
 	
 	public static TitaniumIronAlloyRotor titaniumIronAlloyRotor;
 	public static SuperIridiumRotor superIridiumRotor;
@@ -116,6 +118,7 @@ public class ItemManager {
 		divingMask = new DivingMask();	
 		advancedQuantumChest = new AdvancedQuantumSuit("advanced_quantum_chest", EntityEquipmentSlot.CHEST);
 		advancedJetPack = new AdvancedJetPack();
+		heavyQuantumChest = new HeavyQuantumSuit("heavy_quantum_chest");
 		
 		titaniumIronAlloyRotor = new TitaniumIronAlloyRotor();
 		superIridiumRotor = new SuperIridiumRotor();
@@ -149,6 +152,7 @@ public class ItemManager {
 		event.getRegistry().register(divingMask);
 		event.getRegistry().register(advancedQuantumChest);
 		event.getRegistry().register(advancedJetPack);
+		event.getRegistry().register(heavyQuantumChest);
 		
 		event.getRegistry().register(titaniumIronAlloyRotor);
 		event.getRegistry().register(superIridiumRotor);
@@ -352,6 +356,29 @@ public class ItemManager {
 				'B', getAllTypeStack(superLapotronCrystal),
 				'R', getAllTypeStack(electricFirstAidLifeSupport),
 				'S', ItemCraftingManager.super_iridium_compress_plate,
+				'C', ItemCraftingManager.super_circuit
+		});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(advancedQuantumChest), new Object[] {
+				"SBS",
+				"RCD",
+				"SAS",
+				'A', getAllTypeStack(heavyQuantumChest),
+				'B', getAllTypeStack(superLapotronCrystal),
+				'R', getAllTypeStack(electricFirstAidLifeSupport),
+				'S', ItemCraftingManager.super_iridium_compress_plate,
+				'C', ItemCraftingManager.super_circuit,
+				'D', getAllTypeStack(IC2Items.getItem("jetpack_electric"))
+		});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(heavyQuantumChest), new Object[] {
+				"SAS",
+				"IBI",
+				"ICI",
+				'S', IC2Items.getItem("crafting", "alloy"),
+				'A', getAllTypeStack(IC2Items.getItem("nano_chestplate")),
+				'I', IC2Items.getItem("crafting", "iridium"),
+				'B', getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
 				'C', ItemCraftingManager.super_circuit
 		});
 
