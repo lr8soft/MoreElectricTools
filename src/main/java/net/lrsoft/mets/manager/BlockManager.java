@@ -472,6 +472,7 @@ public class BlockManager {
 	    GameRegistry.registerTileEntity(TileEntityLighterBlock.class,
 	    		new ResourceLocation(MoreElectricTools.MODID, "lighter_block"));
 	    CropManager.onBlockInit(event);
+	    FluidManager.onFluidBlockInit(event);
 	    //
 	    //onCommonBlockItemInit();
 	    //

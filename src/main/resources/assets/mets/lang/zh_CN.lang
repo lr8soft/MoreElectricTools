@@ -8,6 +8,8 @@ tile.mets.titanium_block.name=钛块
 tile.mets.geomagnetic_pedestal.name=地磁发电机基座
 tile.mets.geomagnetic_antenna.name=地磁发电机天线
 
+fluid.crude_oil=原油
+
 item.mets.crafting.niobium_crushed.name=粉碎铌矿石
 item.mets.crafting.titanium_crushed.name=粉碎钛矿石
 
@@ -46,6 +48,8 @@ item.mets.crafting.nano_living_metal.name=§d纳米活体金属
 item.mets.crafting.living_circuit.name=§d活体电路板
 item.mets.crafting.field_generator.name=§d力场发生器
 item.mets.crafting.neutron_plate.name=§d简并态中子板
+
+item.mets.crafting.thorium_scrap.name=§b钍废料盒
 
 item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.charging_super_lapotron_crystal.name=§b超级兰波顿充电电池

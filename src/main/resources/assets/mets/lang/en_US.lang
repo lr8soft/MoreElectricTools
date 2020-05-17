@@ -8,6 +8,8 @@ tile.mets.titanium_block.name=Titanium Block
 tile.mets.geomagnetic_pedestal.name=Geomagnetic Generator Base
 tile.mets.geomagnetic_antenna.name=Geomagnetic Generator Antenna
 
+fluid.crude_oil=Crude Oil
+
 item.mets.crafting.niobium_crushed.name=Crushed Niobium Ore
 item.mets.crafting.titanium_crushed.name=Crushed Titanium Ore
 
@@ -41,6 +43,8 @@ item.mets.crafting.lens.name=Lens
 item.mets.crafting.diamond_lens.name=§bDiamond Lens
 item.mets.crafting.rocket.name=Rocket Missile
 item.mets.crafting.plant_extract.name=Plant Essence
+
+item.mets.crafting.thorium_scrap.name=§bThorium Scrap Box
 
 item.mets.crafting.nano_living_metal.name=§dNano Living Metal
 item.mets.crafting.living_circuit.name=§dLiving Circuit

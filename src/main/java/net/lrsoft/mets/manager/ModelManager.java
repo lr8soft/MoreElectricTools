@@ -183,6 +183,11 @@ public class ModelManager {
 						new ResourceLocation("mets", "textures/entity/tachyon.png"));
 			}
 		});
-		
+	}
+	
+	@SubscribeEvent
+	public static void onFluidModelInit(ModelRegistryEvent event)
+	{
+		FluidManager.onModelInit();
 	}
 }

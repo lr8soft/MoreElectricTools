@@ -6,6 +6,7 @@ import net.lrsoft.mets.block.MetsBlockWithTileEntity;
 import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.manager.ConfigManager;
+import net.lrsoft.mets.manager.FluidManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.lrsoft.mets.manager.OreDictManager;
 import net.lrsoft.mets.manager.WorldGenManager;
@@ -20,7 +21,7 @@ public class CommonProxy
 {
 	public void preInit(FMLPreInitializationEvent event) 
 	{
-
+		FluidManager.onFluidInit();
 	}
 
 	public void init(FMLInitializationEvent event) 
