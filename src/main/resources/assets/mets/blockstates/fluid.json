@@ -6,7 +6,8 @@
 	},
 	"variants": {
     "type": {
-      "crude_oil": { "custom": { "fluid": "crude_oil" } }
+      "crude_oil": { "custom": { "fluid": "crude_oil" } },
+      "diesel_oil":{ "custom": { "fluid": "diesel_oil" } }
     }
 	}
 }

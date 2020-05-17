@@ -9,6 +9,7 @@ tile.mets.geomagnetic_pedestal.name=地磁发电机基座
 tile.mets.geomagnetic_antenna.name=地磁发电机天线
 
 fluid.crude_oil=原油
+fluid.diesel_oil=柴油
 
 item.mets.crafting.niobium_crushed.name=粉碎铌矿石
 item.mets.crafting.titanium_crushed.name=粉碎钛矿石

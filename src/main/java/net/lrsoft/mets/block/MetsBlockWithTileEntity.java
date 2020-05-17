@@ -27,6 +27,10 @@ import ic2.core.util.Util;
 import ic2.core.profile.Version;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.*;
+import net.lrsoft.mets.block.tileentity.GESU.TileEntityGESUCore;
+import net.lrsoft.mets.block.tileentity.GESU.TileEntityGESUInputPort;
+import net.lrsoft.mets.block.tileentity.GESU.TileEntityGESUOutputPort;
+import net.lrsoft.mets.block.tileentity.OilRig.*;
 
 public enum MetsBlockWithTileEntity implements ITeBlock {
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
@@ -59,7 +63,11 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	
 	gesu_core((Class)TileEntityGESUCore.class, 24, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	gesu_input((Class)TileEntityGESUInputPort.class, 25, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	gesu_output((Class)TileEntityGESUOutputPort.class, 26, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	gesu_output((Class)TileEntityGESUOutputPort.class, 26, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	
+	oil_rig_core((Class)TileEntityOilRigCore.class, 27, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	oil_rig_input((Class)TileEntityOilRigInput.class, 28, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	oil_rig_output((Class)TileEntityOilRigOuput.class, 29, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;

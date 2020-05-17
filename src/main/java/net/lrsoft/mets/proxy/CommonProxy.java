@@ -29,6 +29,7 @@ public class CommonProxy
 		//ItemManager.onRecipeInit();
 		MetsBlockWithTileEntity.buildDummies();
 		BlockManager.onBlockRecipeInit();
+		FluidManager.onRecipeInit();
 		CropManager.onRecipeInit();
 		OreDictManager.onOreDictInit();
 		if(ConfigManager.EnableOreGenerate)

@@ -9,6 +9,7 @@ tile.mets.geomagnetic_pedestal.name=Geomagnetic Generator Base
 tile.mets.geomagnetic_antenna.name=Geomagnetic Generator Antenna
 
 fluid.crude_oil=Crude Oil
+fluid.diesel_oil=Diesel Oil
 
 item.mets.crafting.niobium_crushed.name=Crushed Niobium Ore
 item.mets.crafting.titanium_crushed.name=Crushed Titanium Ore
