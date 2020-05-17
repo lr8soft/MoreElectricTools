@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/oil_rig/input",
+    "down": "mets:blocks/oil_rig/input",
+    "up": "mets:blocks/oil_rig/input",
+    "north": "mets:blocks/oil_rig/input",
+    "south": "mets:blocks/oil_rig/input",
+    "west": "mets:blocks/oil_rig/input",
+    "east": "mets:blocks/oil_rig/input"
+  }
+}

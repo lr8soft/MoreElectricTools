@@ -8,6 +8,7 @@ import ic2.core.ref.TeBlock.HarvestTool;
 import net.lrsoft.mets.MoreElectricTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -29,7 +30,15 @@ public class UniformResourceBlock extends Block{
 			setHarvestLevel("pickaxe", harvestLevel);
 		}
 		setCreativeTab(MoreElectricTools.CREATIVE_TAB);
+		
 	}
+	
+	
+	public UniformResourceBlock(String blockName, Material type, SoundType soundType,  float hardness, int harvestLevel) {
+		this(blockName, type, hardness, harvestLevel);
+		setSoundType(soundType);
+	}
+	
 	
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {

@@ -10,6 +10,9 @@ public class TileEntityOilRigInput extends TileEntityElectricMachine implements 
 		super(100000, 3);
 	}
 
+	public boolean canUseEnergy(double amount) {
+		return this.energy.canUseEnergy(amount);
+	}
 	
 	public boolean comsumeEnergy(double amount) {
 		return this.energy.useEnergy(amount);

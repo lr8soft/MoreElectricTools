@@ -8,6 +8,8 @@ tile.mets.titanium_block.name=钛块
 tile.mets.geomagnetic_pedestal.name=地磁发电机基座
 tile.mets.geomagnetic_antenna.name=地磁发电机天线
 
+tile.mets.titanium_scaffold.name=钛制钻机框架
+
 fluid.crude_oil=原油
 fluid.diesel_oil=柴油
 
@@ -128,6 +130,12 @@ mets.te.electric_blast_furnace=§5电力纳米高炉
 mets.te.gesu_core=§5大型储电GESU核心
 mets.te.gesu_input=§5大型储电GESU输入模块
 mets.te.gesu_output=§5大型储电GESU输出模块
+
+mets.te.oil_rig_core=§e石油钻机核心
+mets.te.oil_rig_input=§e石油钻机输入模块
+mets.te.oil_rig_output=§e石油钻机储油模块
+mets.te.oil_rig_base=§e石油钻机基础模块
+mets.te.oil_rig_panel=§e石油钻机面板
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用

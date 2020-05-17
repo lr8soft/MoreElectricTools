@@ -8,6 +8,8 @@ tile.mets.titanium_block.name=Titanium Block
 tile.mets.geomagnetic_pedestal.name=Geomagnetic Generator Base
 tile.mets.geomagnetic_antenna.name=Geomagnetic Generator Antenna
 
+tile.mets.titanium_scaffold.name=Titanium Rig Frame
+
 fluid.crude_oil=Crude Oil
 fluid.diesel_oil=Diesel Oil
 
@@ -126,6 +128,12 @@ mets.te.electric_blast_furnace=§5Electric Nano Blast Furnace
 mets.te.gesu_core=§5Large Power Storage GESU Core
 mets.te.gesu_input=§5Large Power Storage GESU Input Module
 mets.te.gesu_output=§5Large Power Storage GESU Output Module
+
+mets.te.oil_rig_core=§eOil Rig Core
+mets.te.oil_rig_input=§eOil Rig Input Module
+mets.te.oil_rig_output=§eOil Rig Oil Storage Module
+mets.te.oil_rig_base=§eOil Rig Base Module
+mets.te.oil_rig_panel=§eOil Rig Panel
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

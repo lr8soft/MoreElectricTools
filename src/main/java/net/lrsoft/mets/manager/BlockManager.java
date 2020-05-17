@@ -25,13 +25,16 @@ import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -54,6 +57,8 @@ public class BlockManager {
 	
 	public static Block geomagneticPedestal;
 	public static Block geomagneticAntenna;
+	
+	public static Block titaniumScaffold;
 	static 
 	{
 		niobiumOre = new UniformResourceBlock("niobium_ore", 2.5f, 2);
@@ -63,6 +68,25 @@ public class BlockManager {
 		
 		geomagneticPedestal = new UniformResourceBlock("geomagnetic_pedestal", 2.5f, -1);
 		geomagneticAntenna = new UniformResourceBlock("geomagnetic_antenna", 2.5f, -1);
+		
+		titaniumScaffold = new UniformResourceBlock("titanium_scaffold",  Material.GLASS, SoundType.METAL ,5.0f, 1) {
+			@Override
+			public boolean isOpaqueCube(IBlockState state) {
+				return false;
+			}
+			
+			@Override
+		    public BlockRenderLayer getBlockLayer()
+		    {
+		        return BlockRenderLayer.CUTOUT;
+		    }
+			
+			@Override
+		    public boolean isFullCube(IBlockState state)
+		    {
+		        return false;
+		    }
+		};
 	}
 	
 	@SubscribeEvent
@@ -457,6 +481,16 @@ public class BlockManager {
 						'B', eesuStorage
 				});
 		
+		//oil rig 
+		ItemStack titanium_scaffold = new ItemStack(titaniumScaffold, 3);
+		Recipes.advRecipes.addRecipe(titanium_scaffold, 
+				new Object[] {
+						"PPP",
+						"TTT",
+						"PPP",
+						'P', ItemCraftingManager.titanium_plate,
+						'T', titaniumBlock
+				});
 	}
 	
 	@SubscribeEvent
@@ -469,6 +503,8 @@ public class BlockManager {
 	    
 	    event.getRegistry().register(geomagneticPedestal);
 	    event.getRegistry().register(geomagneticAntenna);
+	    
+	    event.getRegistry().register(titaniumScaffold);
 	    GameRegistry.registerTileEntity(TileEntityLighterBlock.class,
 	    		new ResourceLocation(MoreElectricTools.MODID, "lighter_block"));
 	    CropManager.onBlockInit(event);
@@ -483,6 +519,7 @@ public class BlockManager {
 		event.getRegistry().register(new ItemBlock(niobiumOre).setRegistryName(niobiumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumOre).setRegistryName(titaniumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumBlock).setRegistryName(titaniumBlock.getRegistryName()));
+		event.getRegistry().register(new ItemBlock(titaniumScaffold).setRegistryName(titaniumScaffold.getRegistryName()));
 		
 		event.getRegistry().register(new ItemBlock(geomagneticPedestal).setRegistryName(geomagneticPedestal.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(geomagneticAntenna).setRegistryName(geomagneticAntenna.getRegistryName()));
