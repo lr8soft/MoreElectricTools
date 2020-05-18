@@ -5,22 +5,13 @@ import ic2.api.recipe.Recipes;
 import net.lrsoft.mets.MoreElectricTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistry;
 
 public class FluidManager {
 	public static Fluid crudeOil;
@@ -50,15 +41,9 @@ public class FluidManager {
 		event.getRegistry().register(dieselOilBlock);
 	}
 	
-	public static void onModelInit() {
-		registerFluidRender(crudeOilBlock, crudeOil);
-		registerFluidRender(dieselOilBlock, dieselOil);
-	}
-	
 	public static void onRecipeInit() {
-		Recipes.electrolyzer.addRecipe(crudeOil.getName(), 3000, 128, 500, 
-				new ElectrolyzerOutput(dieselOil.getName(), 2000, EnumFacing.NORTH));
-		
+		Recipes.electrolyzer.addRecipe(crudeOil.getName(), 300, 128, 50, 
+				new ElectrolyzerOutput(dieselOil.getName(), 200, EnumFacing.NORTH));
 	}
 	
 	private static Fluid registerFluid(Fluid fluid)
@@ -78,28 +63,5 @@ public class FluidManager {
 		blockFluidClassic.setCreativeTab(null);
 		return blockFluidClassic;
 	}
-
-	private static final ResourceLocation fluidLocation = new ResourceLocation(MoreElectricTools.MODID, "fluid");
-	
-    public static void registerFluidRender(BlockFluidBase blockFluid, Fluid fluid)
-    {
-        final Item itemFluid = Item.getItemFromBlock(blockFluid);
-        ModelLoader.setCustomMeshDefinition(itemFluid, new ItemMeshDefinition()
-        {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack)
-            {
-                return new ModelResourceLocation(fluidLocation, "type=" + fluid.getName());
-            }
-        });
-        ModelLoader.setCustomStateMapper(blockFluid, new StateMapperBase()
-        {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                return new ModelResourceLocation(fluidLocation, "type=" + fluid.getName());
-            }
-        });
-    }
 
 }

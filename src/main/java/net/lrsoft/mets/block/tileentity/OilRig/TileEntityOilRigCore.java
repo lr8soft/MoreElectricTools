@@ -3,11 +3,9 @@ package net.lrsoft.mets.block.tileentity.OilRig;
 import java.util.ArrayList;
 import java.util.List;
 
-import ic2.core.block.BlockScaffold;
 import ic2.core.block.TileEntityBlock;
 import ic2.core.init.Localization;
 import ic2.core.util.LiquidUtil;
-import net.lrsoft.mets.block.tileentity.GESU.IGESUPart;
 import net.lrsoft.mets.block.tileentity.OilRig.IOilRig.ModuleType;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.manager.FluidManager;
@@ -44,7 +42,7 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 			{
 				TileEntityOilRigInput input = (TileEntityOilRigInput)inputPart;
 				TileEntity output = (TileEntity)outputPart;
-				if(input.canUseEnergy(1000.0d))
+				if(input.canUseEnergy(200.0d))
 				{
 					try {
 						if(tryDrill())
@@ -52,11 +50,11 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 							int amount = LiquidUtil.fillTile(output, getFacing(), new FluidStack(FluidManager.crudeOil, 100), false);
 							if(amount > 0)
 							{
-								input.comsumeEnergy((amount / 100.0d) * 1000.0d);
+								input.comsumeEnergy((amount / 100.0d) * 200.0d);
 							}
 						}else 
 						{
-							input.comsumeEnergy(500.0d);
+							input.comsumeEnergy(50.0d);
 						}
 					} catch (Exception e) {
 						isRigFinish = true;

@@ -118,6 +118,7 @@ mets.te.cutting_machine=Advanced Metal Shearing Machine
 mets.te.titanium_storage_box=Titanium Storage Box
 mets.te.experience_generator=Experience Orb Generator
 mets.te.advanced_solar_generator=Advanced Solar Generator
+mets.te.diesel_generator=Diesel Generator
 mets.te.photon_resonance_solar_generator=§9Photon Resonance Solar Generator
 mets.te.wireless_power_transmission_node=§9Wireless Power Transmission Node
 mets.te.ultimate_photon_resonance_solar_generator=§9Ultimate Photon Resonance Solar Generator

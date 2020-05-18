@@ -16,7 +16,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import ic2.core.block.wiring.CableType;
 public class CommonProxy 
 {
 	public void preInit(FMLPreInitializationEvent event) 
@@ -26,7 +25,6 @@ public class CommonProxy
 
 	public void init(FMLInitializationEvent event) 
 	{
-		//ItemManager.onRecipeInit();
 		MetsBlockWithTileEntity.buildDummies();
 		BlockManager.onBlockRecipeInit();
 		FluidManager.onRecipeInit();

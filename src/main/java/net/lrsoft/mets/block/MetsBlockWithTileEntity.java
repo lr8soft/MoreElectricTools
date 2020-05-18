@@ -1,16 +1,16 @@
 package net.lrsoft.mets.block;
 
-import java.lang.instrument.ClassDefinition;
 import java.lang.reflect.Constructor;
 import java.util.Set;
 
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
-import ic2.core.block.*;
+import ic2.core.block.ITeBlock;
+import ic2.core.block.TileEntityBlock;
 import ic2.core.item.block.ItemBlockTileEntity;
-import ic2.core.ref.TeBlock.*;
 import ic2.core.ref.TeBlock.DefaultDrop;
 import ic2.core.ref.TeBlock.HarvestTool;
+import ic2.core.ref.TeBlock.ITePlaceHandler;
 import ic2.core.ref.IC2Material;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,7 +28,11 @@ import ic2.core.profile.Version;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.block.tileentity.*;
 import net.lrsoft.mets.block.tileentity.GESU.*;
-import net.lrsoft.mets.block.tileentity.OilRig.*;
+import net.lrsoft.mets.block.tileentity.OilRig.TileEntityOilRigOutput;
+import net.lrsoft.mets.block.tileentity.OilRig.TileEntityOilRigInput;
+import net.lrsoft.mets.block.tileentity.OilRig.TileEntityOilRigBase;
+import net.lrsoft.mets.block.tileentity.OilRig.TileEntityOilRigCore;
+import net.lrsoft.mets.block.tileentity.OilRig.TileEntityOilRigPanel;
 
 public enum MetsBlockWithTileEntity implements ITeBlock {
 	lesu((Class)TileEntityLESU.class, 0, false, Util.allFacings, true, HarvestTool.Wrench, DefaultDrop.Self, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
@@ -72,7 +76,9 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	gesu_output_luv((Class)TileEntityGESULuVOutputPort.class, 32, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	
 	transformer_iv((Class)TileEntityTransformerIV.class, 33, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
-	transformer_luv((Class)TileEntityTransformerLuV.class, 34, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	transformer_luv((Class)TileEntityTransformerLuV.class, 34, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+
+	diesel_generator((Class)TileEntityDieselGenerator.class, 35, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;

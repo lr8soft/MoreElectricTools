@@ -1,23 +1,15 @@
 package net.lrsoft.mets.block.tileentity.OilRig;
 
 import ic2.api.network.NetworkHelper;
-import ic2.core.ContainerBase;
-import ic2.core.IHasGui;
 import ic2.core.block.TileEntityBlock;
-import ic2.core.block.machine.tileentity.TileEntityElectricMachine;
-import ic2.core.gui.dynamic.DynamicContainer;
-import ic2.core.gui.dynamic.DynamicGui;
-import ic2.core.gui.dynamic.GuiParser;
 import ic2.core.init.Localization;
 import net.lrsoft.mets.block.tileentity.GESU.TileEntityGESUCore;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class TileEntityOilRigPanel extends TileEntityElectricMachine implements IOilRig, IHasGui {
+public class TileEntityOilRigPanel extends TileEntityGUIMachine implements IOilRig {
 	private BlockPos coreCoord = null;
 	private boolean isStructureCompleled = false, haveInfoUpdate = false;
 	private int tick = 0;
@@ -111,21 +103,4 @@ public class TileEntityOilRigPanel extends TileEntityElectricMachine implements 
 			return Localization.translate("mets.info.rig.structure_incompleted");
 		}
 	}
-	
-
-	@Override
-	public GuiScreen getGui(EntityPlayer player, boolean isAdmin) {
-		return (GuiScreen)DynamicGui.create((IInventory)this, player, GuiParser.parse(this.teBlock));
-	}
-
-	@Override
-	public ContainerBase<?> getGuiContainer(EntityPlayer player) {
-		  return (ContainerBase)DynamicContainer.create((IInventory)this, player, GuiParser.parse(this.teBlock));
-	}
-
-	@Override
-	public void onGuiClosed(EntityPlayer arg0) {
-		
-	}
-
 }

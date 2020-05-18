@@ -25,14 +25,20 @@ import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.lrsoft.mets.renderer.particle.InstantParticleRender;
 import net.lrsoft.mets.renderer.particle.ParticleRenderer;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -114,7 +120,7 @@ public class ModelManager {
 		ItemCraftingManager.onCraftingItemModelInit();
 		ReactorItemManager.onItemModelInit();
 		CropManager.onModelInit();
-		
+
 		if (Loader.isModLoaded(Baubles.MODID))
 		{
 			ItemBaublesManager.onBaublesModelInit();
@@ -134,6 +140,12 @@ public class ModelManager {
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLighterBlock.class, new LighterRenderer());
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWirelessPowerTransmissionNode.class, new TransmissionNodeRenderer());
+	}
+	@SubscribeEvent
+	public static void onFluidModelInit(ModelRegistryEvent event)
+	{
+		registerFluidRender(FluidManager.crudeOilBlock, FluidManager.crudeOil);
+		registerFluidRender(FluidManager.dieselOilBlock, FluidManager.dieselOil);
 	}
 	
 	@SubscribeEvent
@@ -186,9 +198,26 @@ public class ModelManager {
 		});
 	}
 	
-	@SubscribeEvent
-	public static void onFluidModelInit(ModelRegistryEvent event)
-	{
-		FluidManager.onModelInit();
-	}
+	private static final ResourceLocation fluidLocation = new ResourceLocation(MoreElectricTools.MODID, "fluid");
+	
+    public static void registerFluidRender(BlockFluidBase blockFluid, Fluid fluid)
+    {
+        final Item itemFluid = Item.getItemFromBlock(blockFluid);
+        ModelLoader.setCustomMeshDefinition(itemFluid, new ItemMeshDefinition()
+        {
+            @Override
+            public ModelResourceLocation getModelLocation(ItemStack stack)
+            {
+                return new ModelResourceLocation(fluidLocation, "type=" + fluid.getName());
+            }
+        });
+        ModelLoader.setCustomStateMapper(blockFluid, new StateMapperBase()
+        {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+            {
+                return new ModelResourceLocation(fluidLocation, "type=" + fluid.getName());
+            }
+        });
+    }
 }
