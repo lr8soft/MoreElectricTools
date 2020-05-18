@@ -2,6 +2,7 @@ package net.lrsoft.mets.block.tileentity.OilRig;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import ic2.core.block.TileEntityBlock;
 import ic2.core.init.Localization;
@@ -22,7 +23,8 @@ import net.minecraftforge.fluids.FluidStack;
 public class TileEntityOilRigCore extends TileEntityBlock{
 	private int currentTick = 0;
 	private boolean isStructureComplete = false;
-	private IOilRig inputPart = null, outputPart = null, panelPart = null;
+	private IOilRig inputPart = null, panelPart = null;
+	private Vector<IOilRig> outputPart = new Vector<>();
 	
 	private int offsetY = 0;
 	private int offsetFlag = 0;
@@ -36,24 +38,32 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 			checkStructureComplete();
 		}
 		
-		if(currentTick % 90 == 0 && isStructureComplete)
+		if(currentTick % 10 == 0 && isStructureComplete)
 		{
 			if(inputPart != null && outputPart != null)
 			{
 				TileEntityOilRigInput input = (TileEntityOilRigInput)inputPart;
-				TileEntity output = (TileEntity)outputPart;
+
 				if(input.canUseEnergy(200.0d))
 				{
 					try {
-						if(tryDrill())
-						{
-							int amount = LiquidUtil.fillTile(output, getFacing(), new FluidStack(FluidManager.crudeOil, 100), false);
-							if(amount > 0)
-							{
-								input.comsumeEnergy((amount / 100.0d) * 200.0d);
+						if (tryDrill()) {
+							boolean haveFillSuccess = false;
+							for (IOilRig outputSlot : outputPart) {
+								TileEntity output = (TileEntity) outputSlot;
+								int amount = LiquidUtil.fillTile(output, getFacing(),
+										new FluidStack(FluidManager.crudeOil, 100), false);
+								if (amount > 0) {
+									input.comsumeEnergy((amount / 100.0d) * 200.0d);
+									haveFillSuccess = true;
+									break;// 给一个加了就够了
+								}
 							}
-						}else 
-						{
+							if(!haveFillSuccess)
+							{
+								isRigFinish = true;
+							}
+						} else {
 							input.comsumeEnergy(50.0d);
 						}
 					} catch (Exception e) {
@@ -70,7 +80,7 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 		currentTick++;
 	}
 	
-	private boolean tryDrill() throws Exception
+	protected boolean tryDrill() throws Exception
 	{
 		Vec3d targetCoord;
 		if(offsetFlag < 9)
@@ -80,7 +90,11 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 		}else if(offsetFlag >=9 && offsetFlag < 18){
 			targetCoord = coordGroup[offsetFlag - 9].scale(2.0d);
 			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
-		}else {
+		}else if(offsetFlag >=18 && offsetFlag < 27) {
+			targetCoord = coordGroup[offsetFlag - 18].scale(3.0d);
+			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
+		}
+		else {
 			throw new Exception("OilRig Finish.");
 		}
 		
@@ -189,6 +203,7 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 		{
 			isStructureComplete = false;
 			updatePanelInfo(false);
+			outputPart.clear();
 		}
 	}
 	
@@ -248,7 +263,7 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 				inputPart = port;
 			}else if(port.getModuleType() == ModuleType.Output)
 			{
-				outputPart = port;
+				outputPart.add(port);
 			}else if(port.getModuleType() == ModuleType.Panel)
 			{
 				panelPart = port;
