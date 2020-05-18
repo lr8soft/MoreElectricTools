@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/ore/titanium_scaffold",
+    "down": "mets:blocks/ore/titanium_scaffold",
+    "up": "mets:blocks/ore/titanium_scaffold",
+    "north": "mets:blocks/ore/titanium_scaffold",
+    "south": "mets:blocks/ore/titanium_scaffold",
+    "west": "mets:blocks/ore/titanium_scaffold",
+    "east": "mets:blocks/ore/titanium_scaffold"
+  }
+}

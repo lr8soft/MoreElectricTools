@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/transformer/iv",
+    "down": "mets:blocks/transformer/iv",
+    "up": "mets:blocks/transformer/iv",
+    "north": "mets:blocks/transformer/iv_front",
+    "south": "mets:blocks/transformer/iv",
+    "west": "mets:blocks/transformer/iv",
+    "east": "mets:blocks/transformer/iv"
+  }
+}

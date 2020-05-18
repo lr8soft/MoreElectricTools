@@ -8,6 +8,11 @@ tile.mets.titanium_block.name=钛块
 tile.mets.geomagnetic_pedestal.name=地磁发电机基座
 tile.mets.geomagnetic_antenna.name=地磁发电机天线
 
+tile.mets.titanium_scaffold.name=钛制钻机框架
+
+fluid.crude_oil=原油
+fluid.diesel_oil=柴油
+
 item.mets.crafting.niobium_crushed.name=粉碎铌矿石
 item.mets.crafting.titanium_crushed.name=粉碎钛矿石
 
@@ -46,6 +51,8 @@ item.mets.crafting.nano_living_metal.name=§d纳米活体金属
 item.mets.crafting.living_circuit.name=§d活体电路板
 item.mets.crafting.field_generator.name=§d力场发生器
 item.mets.crafting.neutron_plate.name=§d简并态中子板
+
+item.mets.crafting.thorium_scrap.name=§b钍废料盒
 
 item.mets.super_lapotron_crystal.name=§b超级兰波顿水晶
 item.mets.charging_super_lapotron_crystal.name=§b超级兰波顿充电电池
@@ -113,6 +120,7 @@ mets.te.cutting_machine=进阶金属剪切机
 mets.te.titanium_storage_box=钛制储物箱
 mets.te.experience_generator=经验球发电机
 mets.te.advanced_solar_generator=进阶太阳能发电机
+mets.te.diesel_generator=柴油发电机
 mets.te.photon_resonance_solar_generator=§9光子振谐太阳能发电机
 mets.te.wireless_power_transmission_node=§9无线能源传输器 
 mets.te.ultimate_photon_resonance_solar_generator=§9终极光子振谐太阳能发电机
@@ -120,9 +128,19 @@ mets.te.geomagnetic_generator=§5地磁发电机
 mets.te.neutron_polymerizer=§5粒子聚合发生器
 mets.te.electric_blast_furnace=§5电力纳米高炉
 
+mets.te.transformer_iv=§9特高压变压器（IV）
+mets.te.transformer_luv=§5剧差压变压器（LuV）
+
 mets.te.gesu_core=§5大型储电GESU核心
 mets.te.gesu_input=§5大型储电GESU输入模块
-mets.te.gesu_output=§5大型储电GESU输出模块
+mets.te.gesu_output=§5大型储电GESU输出模块（IV）
+mets.te.gesu_output_luv=§5大型储电GESU输出模块（LuV）
+
+mets.te.oil_rig_core=§e石油钻机核心
+mets.te.oil_rig_input=§e石油钻机输入模块
+mets.te.oil_rig_output=§e石油钻机储油模块
+mets.te.oil_rig_base=§e石油钻机基础模块
+mets.te.oil_rig_panel=§e石油钻机面板
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
@@ -140,5 +158,11 @@ mets.info.nano_tip=§5由大量未知技术制作的纳米机器人聚集而成
 mets.info.gesu_core=GESU储电装置的核心，将输入输出模块紧贴其六个面放置
 mets.info.gesu_output=缓冲能量
 mets.info.storage=GESU储存能量 %1$s EU
+
+mets.info.rig.finish=已完成该区域挖掘
+mets.info.rig.working=正在挖掘中
+mets.info.rig.structure_incompleted=钻机结构不完整
+mets.info.rig.coordinate=当前坐标 %1$s
+mets.info.rig.state=钻机状态 %1$s
 
 enchantment.efficient_energy_cost=节能

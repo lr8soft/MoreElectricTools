@@ -30,8 +30,7 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 	private float lastSourceValue = 0.0f;
 	private boolean shouldMachineWork = false;
 	public TileEntityGeomagneticGenerator() {
-		super(20480D, 5, 400000000);
-		this.energy.setPacketOutput(4);
+		super(20480D, 6, 400000000);
 	}
 
 	@Override

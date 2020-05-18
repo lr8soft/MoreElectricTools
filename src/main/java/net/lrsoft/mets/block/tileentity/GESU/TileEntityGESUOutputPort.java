@@ -1,4 +1,4 @@
-package net.lrsoft.mets.block.tileentity;
+package net.lrsoft.mets.block.tileentity.GESU;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements IGesuPart{
+public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements IGESUPart{
 	private Vec3d corePosition = null;
 	private boolean isStructureCompleted = false;
 	private static int transferSpeed = 81920;
@@ -26,7 +26,11 @@ public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements
 	private int tick = 0;
 	public TileEntityGESUOutputPort() {
 		super(transferSpeed, 5, transferSpeed);
-
+	}
+	
+	protected TileEntityGESUOutputPort(int tier)
+	{
+		super(transferSpeed, tier, transferSpeed);
 	}
 	
 	@Override

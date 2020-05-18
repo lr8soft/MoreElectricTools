@@ -1,0 +1,13 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "forge:fluid",
+		"transform": "forge:default-item"
+	},
+	"variants": {
+    "type": {
+      "crude_oil": { "custom": { "fluid": "crude_oil" } },
+      "diesel_oil":{ "custom": { "fluid": "diesel_oil" } }
+    }
+	}
+}

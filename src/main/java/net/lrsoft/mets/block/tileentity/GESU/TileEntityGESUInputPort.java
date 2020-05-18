@@ -1,4 +1,4 @@
-package net.lrsoft.mets.block.tileentity;
+package net.lrsoft.mets.block.tileentity.GESU;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class TileEntityGESUInputPort extends TileEntityElectricMachine implements IGesuPart{
+public class TileEntityGESUInputPort extends TileEntityElectricMachine implements IGESUPart{
 	private Vec3d corePosition = null;
 	private boolean isStructureCompleted = false;
 	private static int transferSpeed = 81920;

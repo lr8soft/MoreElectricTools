@@ -1,11 +1,8 @@
-package net.lrsoft.mets.block.tileentity;
+package net.lrsoft.mets.block.tileentity.GESU;
 
-import org.apache.commons.logging.impl.Log4JLogger;
 
 import ic2.core.block.TileEntityBlock;
 import ic2.core.util.Log;
-import io.netty.util.internal.logging.Log4J2LoggerFactory;
-import io.netty.util.internal.logging.Log4JLoggerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,12 +54,12 @@ public class TileEntityGESUCore extends TileEntityBlock {
 				checkPortAndUpdate(northPart) && checkPortAndUpdate(southPart) && 
 				checkPortAndUpdate(westPart) && checkPortAndUpdate(eastPart))
 		{
-			((IGesuPart)upPart).setCoreComplete(true);
-			((IGesuPart)downPart).setCoreComplete(true);
-			((IGesuPart)northPart).setCoreComplete(true);
-			((IGesuPart)southPart).setCoreComplete(true);
-			((IGesuPart)westPart).setCoreComplete(true);
-			((IGesuPart)eastPart).setCoreComplete(true);
+			((IGESUPart)upPart).setCoreComplete(true);
+			((IGESUPart)downPart).setCoreComplete(true);
+			((IGESUPart)northPart).setCoreComplete(true);
+			((IGESUPart)southPart).setCoreComplete(true);
+			((IGESUPart)westPart).setCoreComplete(true);
+			((IGESUPart)eastPart).setCoreComplete(true);
 			isStructureComplete = true;
 		}else 
 		{
@@ -105,9 +102,9 @@ public class TileEntityGESUCore extends TileEntityBlock {
 	
 	private boolean checkPortAndUpdate(TileEntity te)
 	{
-		if(te != null && te instanceof IGesuPart)
+		if(te != null && te instanceof IGESUPart)
 		{
-			IGesuPart port = (IGesuPart)te;
+			IGESUPart port = (IGESUPart)te;
 			port.setCore(new Vec3d(this.pos));
 			port.setCoreComplete(false);
 			return true;

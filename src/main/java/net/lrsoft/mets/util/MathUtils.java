@@ -78,4 +78,14 @@ public class MathUtils{
 		returnArray[15] = y / irow;
 		return returnArray;
 	}
+	
+	public static boolean getChance(int percentage){
+		Random random = new Random();
+		int i = random.nextInt(99);
+		if(i >= 0 && i < percentage)
+			return true;
+		else
+			return false;
+	}
+
 }

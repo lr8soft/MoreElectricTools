@@ -25,13 +25,16 @@ import net.lrsoft.mets.crop.CropManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -54,6 +57,8 @@ public class BlockManager {
 	
 	public static Block geomagneticPedestal;
 	public static Block geomagneticAntenna;
+	
+	public static Block titaniumScaffold;
 	static 
 	{
 		niobiumOre = new UniformResourceBlock("niobium_ore", 2.5f, 2);
@@ -63,6 +68,25 @@ public class BlockManager {
 		
 		geomagneticPedestal = new UniformResourceBlock("geomagnetic_pedestal", 2.5f, -1);
 		geomagneticAntenna = new UniformResourceBlock("geomagnetic_antenna", 2.5f, -1);
+		
+		titaniumScaffold = new UniformResourceBlock("titanium_scaffold",  Material.GLASS, SoundType.METAL ,5.0f, 1) {
+			@Override
+			public boolean isOpaqueCube(IBlockState state) {
+				return false;
+			}
+			
+			@Override
+		    public BlockRenderLayer getBlockLayer()
+		    {
+		        return BlockRenderLayer.CUTOUT;
+		    }
+			
+			@Override
+		    public boolean isFullCube(IBlockState state)
+		    {
+		        return false;
+		    }
+		};
 	}
 	
 	@SubscribeEvent
@@ -315,6 +339,20 @@ public class BlockManager {
 						'B', getAllTypeStack(ItemManager.advancedLithiumBattery)
 				});
 		
+		ItemStack diesel_generator = teBlock.getItemStack(MetsBlockWithTileEntity.diesel_generator);
+		Recipes.advRecipes.addRecipe(diesel_generator, 
+				new Object[] {
+						"TCT",
+						"GSK",
+						"TBT",
+						'T', ItemCraftingManager.titanium_plate,
+						'S', ItemCraftingManager.titanium_shaft, 
+						'G', IC2Items.getItem("te", "semifluid_generator"),
+						'C', ItemCraftingManager.super_circuit,
+						'K', IC2Items.getItem("te", "kinetic_generator"),
+						'B', getAllTypeStack(IC2Items.getItem("energy_crystal"))
+				});
+		
 		ItemStack photon_resonance_solar_generator = teBlock.getItemStack(MetsBlockWithTileEntity.photon_resonance_solar_generator);
 		Recipes.advRecipes.addRecipe(photon_resonance_solar_generator, 
 				new Object[] {
@@ -444,6 +482,8 @@ public class BlockManager {
 						'I', IC2Items.getItem("te", "ev_transformer")
 				});
 		
+	
+		
 		ItemStack gesu_core = teBlock.getItemStack(MetsBlockWithTileEntity.gesu_core);
 		Recipes.advRecipes.addRecipe(gesu_core, 
 				new Object[] {
@@ -457,6 +497,114 @@ public class BlockManager {
 						'B', eesuStorage
 				});
 		
+		//transformer
+		ItemStack transformer_iv = teBlock.getItemStack(MetsBlockWithTileEntity.transformer_iv);
+		Recipes.advRecipes.addRecipe(transformer_iv, 
+				new Object[] {
+						" C ",
+						"STB",
+						" C ",
+						'C', IC2Items.getItem("cable", "type:glass,insulation:0"),
+						'S', ItemCraftingManager.super_circuit,
+						'T', IC2Items.getItem("te", "ev_transformer"),
+						'B', getAllTypeStack(ItemManager.superLapotronCrystal)
+				});
+		ItemStack transformer_luv = teBlock.getItemStack(MetsBlockWithTileEntity.transformer_luv);
+		Recipes.advRecipes.addRecipe(transformer_luv, 
+				new Object[] {
+						" C ",
+						"STB",
+						" C ",
+						'C', ItemCraftingManager.superconducting_cable,
+						'S', ItemCraftingManager.living_circuit,
+						'T', transformer_iv,
+						'B', eesuStorage
+				});
+		
+		ItemStack gesu_output_luv = teBlock.getItemStack(MetsBlockWithTileEntity.gesu_output_luv);
+		Recipes.advRecipes.addRecipe(gesu_output_luv, 
+				new Object[] {
+						" B ",
+						"IMT",
+						" B ",
+						'B', ItemManager.superLapotronCrystal,
+						'T', transformer_luv,
+						'M', gesu_output,
+						'I', ItemCraftingManager.living_circuit
+				});
+		
+		//oil rig 
+		ItemStack titanium_scaffold = new ItemStack(titaniumScaffold, 3);
+		Recipes.advRecipes.addRecipe(titanium_scaffold, 
+				new Object[] {
+						"PPP",
+						"TTT",
+						"PPP",
+						'P', ItemCraftingManager.titanium_plate,
+						'T', titaniumBlock
+				});
+		
+		ItemStack oil_rig_base = teBlock.getItemStack(MetsBlockWithTileEntity.oil_rig_base);
+		Recipes.advRecipes.addRecipe(oil_rig_base, 
+				new Object[] {
+						"DCD",
+						"SMS",
+						"DCD",
+						'D', titaniumScaffold,
+						'C', IC2Items.getItem("crafting", "advanced_circuit"),
+						'S', IC2Items.getItem("crafting", "alloy"),
+						'M', IC2Items.getItem("resource", "machine")
+				});
+		
+		ItemStack oil_rig_core = teBlock.getItemStack(MetsBlockWithTileEntity.oil_rig_core);
+		Recipes.advRecipes.addRecipe(oil_rig_core, 
+				new Object[] {
+						"NRN",
+						"CMC",
+						"NRN",
+						'N', ItemCraftingManager.niobium_titanium_plate,
+						'R', IC2Items.getItem("te", "miner"),
+						'C', IC2Items.getItem("crafting", "advanced_circuit"),
+						'S', IC2Items.getItem("crafting", "alloy"),
+						'M', oil_rig_base
+				});
+		
+		ItemStack oil_rig_input = teBlock.getItemStack(MetsBlockWithTileEntity.oil_rig_input);
+		Recipes.advRecipes.addRecipe(oil_rig_input, 
+				new Object[] {
+						"GCG",
+						"BMB",
+						"GCG",
+						'G', IC2Items.getItem("cable", "type:gold,insulation:2"),
+						'C', IC2Items.getItem("crafting", "advanced_circuit"),
+						'B', getAllTypeStack(ItemManager.advancedLithiumBattery),
+						'M', oil_rig_base
+				});
+		
+		ItemStack oil_rig_output = teBlock.getItemStack(MetsBlockWithTileEntity.oil_rig_output);
+		Recipes.advRecipes.addRecipe(oil_rig_output, 
+				new Object[] {
+						"GCG",
+						"TMT",
+						"GCG",
+						'G', ItemCraftingManager.titanium_plate,
+						'C', IC2Items.getItem("crafting", "advanced_circuit"),
+						'T', IC2Items.getItem("te", "tank"),
+						'M', oil_rig_base
+				});
+		
+		ItemStack oil_rig_panel = teBlock.getItemStack(MetsBlockWithTileEntity.oil_rig_panel);
+		Recipes.advRecipes.addRecipe(oil_rig_panel, 
+				new Object[] {
+						"NPN",
+						"MCM",
+						"NBN",
+						'N', ItemCraftingManager.niobium_titanium_plate,
+						'P', IC2Items.getItem("te", "luminator_flat"),
+						'C', ItemCraftingManager.super_circuit,
+						'M', oil_rig_base,
+						'B', getAllTypeStack(ItemManager.advancedLithiumBattery)
+				});
 	}
 	
 	@SubscribeEvent
@@ -469,9 +617,12 @@ public class BlockManager {
 	    
 	    event.getRegistry().register(geomagneticPedestal);
 	    event.getRegistry().register(geomagneticAntenna);
+	    
+	    event.getRegistry().register(titaniumScaffold);
 	    GameRegistry.registerTileEntity(TileEntityLighterBlock.class,
 	    		new ResourceLocation(MoreElectricTools.MODID, "lighter_block"));
 	    CropManager.onBlockInit(event);
+	    FluidManager.onFluidBlockInit(event);
 	    //
 	    //onCommonBlockItemInit();
 	    //
@@ -482,6 +633,7 @@ public class BlockManager {
 		event.getRegistry().register(new ItemBlock(niobiumOre).setRegistryName(niobiumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumOre).setRegistryName(titaniumOre.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(titaniumBlock).setRegistryName(titaniumBlock.getRegistryName()));
+		event.getRegistry().register(new ItemBlock(titaniumScaffold).setRegistryName(titaniumScaffold.getRegistryName()));
 		
 		event.getRegistry().register(new ItemBlock(geomagneticPedestal).setRegistryName(geomagneticPedestal.getRegistryName()));
 		event.getRegistry().register(new ItemBlock(geomagneticAntenna).setRegistryName(geomagneticAntenna.getRegistryName()));
