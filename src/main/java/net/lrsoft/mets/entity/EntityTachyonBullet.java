@@ -138,14 +138,11 @@ public class EntityTachyonBullet extends Entity {
         	return;
         }
 
-        //from arrow
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
 
         this.setPosition(this.posX, this.posY, this.posZ);
-
-       // this.doBlockCollisions();
 	}
 	
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)

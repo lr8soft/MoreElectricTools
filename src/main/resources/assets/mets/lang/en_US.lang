@@ -127,7 +127,8 @@ mets.te.electric_blast_furnace=§5Electric Nano Blast Furnace
 
 mets.te.gesu_core=§5Large Power Storage GESU Core
 mets.te.gesu_input=§5Large Power Storage GESU Input Module
-mets.te.gesu_output=§5Large Power Storage GESU Output Module
+mets.te.gesu_output=§5Large Power Storage GESU Output Module(IV)
+mets.te.gesu_output_luv=§5Large Power Storage GESU Output Module(LuV)
 
 mets.te.oil_rig_core=§eOil Rig Core
 mets.te.oil_rig_input=§eOil Rig Input Module
@@ -155,5 +156,11 @@ mets.info.nano_tip=§5Consists of a large number of nano-robots made by unknown 
 mets.info.gesu_core=Place the input and output modules close to the six sides of it.
 mets.info.gesu_output=Buffer Energy
 mets.info.storage=GESU Energy %1$s EU
+
+mets.info.rig.finish=The area has been mined.
+mets.info.rig.working=Now mining.
+mets.info.rig.structure_incompleted=The rig structure is incomplete.
+mets.info.rig.coordinate=Current coordinate %1$s
+mets.info.rig.state=Rig status %1$s
 
 enchantment.efficient_energy_cost=Energy Saving

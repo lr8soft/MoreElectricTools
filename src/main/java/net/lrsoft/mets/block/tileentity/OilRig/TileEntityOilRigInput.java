@@ -7,7 +7,7 @@ public class TileEntityOilRigInput extends TileEntityElectricMachine implements 
 	private BlockPos coreCoord = null;
 	private boolean isStructureCompleled = false;
 	public TileEntityOilRigInput() {
-		super(100000, 3);
+		super(50000, 3);
 	}
 
 	public boolean canUseEnergy(double amount) {

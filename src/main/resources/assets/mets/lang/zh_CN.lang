@@ -129,7 +129,8 @@ mets.te.electric_blast_furnace=§5电力纳米高炉
 
 mets.te.gesu_core=§5大型储电GESU核心
 mets.te.gesu_input=§5大型储电GESU输入模块
-mets.te.gesu_output=§5大型储电GESU输出模块
+mets.te.gesu_output=§5大型储电GESU输出模块（IV）
+mets.te.gesu_output_luv=§5大型储电GESU输出模块（LuV）
 
 mets.te.oil_rig_core=§e石油钻机核心
 mets.te.oil_rig_input=§e石油钻机输入模块
@@ -153,5 +154,11 @@ mets.info.nano_tip=§5由大量未知技术制作的纳米机器人聚集而成
 mets.info.gesu_core=GESU储电装置的核心，将输入输出模块紧贴其六个面放置
 mets.info.gesu_output=缓冲能量
 mets.info.storage=GESU储存能量 %1$s EU
+
+mets.info.rig.finish=已完成该区域挖掘
+mets.info.rig.working=正在挖掘中
+mets.info.rig.structure_incompleted=钻机结构不完整
+mets.info.rig.coordinate=当前坐标 %1$s
+mets.info.rig.state=钻机状态 %1$s
 
 enchantment.efficient_energy_cost=节能

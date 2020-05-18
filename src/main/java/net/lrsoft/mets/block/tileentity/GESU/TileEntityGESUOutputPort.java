@@ -26,7 +26,11 @@ public class TileEntityGESUOutputPort extends TileEntityBaseGenerator implements
 	private int tick = 0;
 	public TileEntityGESUOutputPort() {
 		super(transferSpeed, 5, transferSpeed);
-
+	}
+	
+	protected TileEntityGESUOutputPort(int tier)
+	{
+		super(transferSpeed, tier, transferSpeed);
 	}
 	
 	@Override

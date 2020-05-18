@@ -65,6 +65,8 @@
       "gesu_input_active": { "model": "mets:gesu/gesu_input_active" },
       "gesu_output": { "model": "mets:gesu/gesu_output" },
       "gesu_output_active": { "model": "mets:gesu/gesu_output_active" },
+      "gesu_output_luv": { "model": "mets:gesu/gesu_output" },
+      "gesu_output_luv_active": { "model": "mets:gesu/gesu_output_luv_active" },
 
       "oil_rig_core": { "model": "mets:oil_rig/core" },
       "oil_rig_input": { "model": "mets:oil_rig/input" },

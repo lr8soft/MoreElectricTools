@@ -51,12 +51,12 @@ public class TachyonDisruptor extends UniformElectricItem {
 		ItemStack currentGun = playerIn.getHeldItem(handIn);
 		long lastRightClick = getLastRightClick(currentGun);
 		long currentTime = System.currentTimeMillis();
-		if(currentTime - lastRightClick > 300)
+		if(currentTime - lastRightClick > 250)
 		{
 			float ratio = getElectricItemAttenuationRatio(currentGun);
 			if(ElectricItem.manager.use(currentGun, ConfigManager.TachyonDisruptorCost * ratio, playerIn))
 			{
-				EntityTachyonBullet entity = new EntityTachyonBullet(worldIn, playerIn, 100f, 600);
+				EntityTachyonBullet entity = new EntityTachyonBullet(worldIn, playerIn, 120f, 600);
 				entity.shoot(playerIn.rotationYaw, playerIn.rotationPitch, 4.0f);
 				worldIn.spawnEntity(entity);		
 				
