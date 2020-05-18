@@ -69,7 +69,10 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	oil_rig_base((Class)TileEntityOilRigBase.class, 30, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	oil_rig_panel((Class)TileEntityOilRigPanel.class, 31, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	
-	gesu_output_luv((Class)TileEntityGESULuVOutputPort.class, 32, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	gesu_output_luv((Class)TileEntityGESULuVOutputPort.class, 32, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	
+	transformer_iv((Class)TileEntityTransformerIV.class, 33, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	transformer_luv((Class)TileEntityTransformerLuV.class, 34, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;
 	private final int itemMeta;

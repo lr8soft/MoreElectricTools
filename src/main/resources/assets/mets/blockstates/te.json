@@ -74,7 +74,10 @@
       "oil_rig_output": { "model": "mets:oil_rig/output" },
       "oil_rig_base": { "model": "mets:oil_rig/base" },
       "oil_rig_panel": { "model": "mets:oil_rig/panel" },
-      "oil_rig_panel_active": { "model": "mets:oil_rig/panel_active" }
+      "oil_rig_panel_active": { "model": "mets:oil_rig/panel_active" },
+
+      "transformer_iv": { "model": "mets:transformer/iv" },
+      "transformer_luv": { "model": "mets:transformer/luv" }
     },
     "facing": {
       "down": { "x": 90 },

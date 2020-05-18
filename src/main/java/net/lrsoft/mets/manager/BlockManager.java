@@ -468,6 +468,8 @@ public class BlockManager {
 						'I', IC2Items.getItem("te", "ev_transformer")
 				});
 		
+	
+		
 		ItemStack gesu_core = teBlock.getItemStack(MetsBlockWithTileEntity.gesu_core);
 		Recipes.advRecipes.addRecipe(gesu_core, 
 				new Object[] {
@@ -479,6 +481,42 @@ public class BlockManager {
 						'I', gesu_input,
 						'O', gesu_output,
 						'B', eesuStorage
+				});
+		
+		//transformer
+		ItemStack transformer_iv = teBlock.getItemStack(MetsBlockWithTileEntity.transformer_iv);
+		Recipes.advRecipes.addRecipe(transformer_iv, 
+				new Object[] {
+						" C ",
+						"STB",
+						" C ",
+						'C', IC2Items.getItem("cable", "type:glass,insulation:0"),
+						'S', ItemCraftingManager.super_circuit,
+						'T', IC2Items.getItem("te", "ev_transformer"),
+						'B', getAllTypeStack(ItemManager.superLapotronCrystal)
+				});
+		ItemStack transformer_luv = teBlock.getItemStack(MetsBlockWithTileEntity.transformer_luv);
+		Recipes.advRecipes.addRecipe(transformer_luv, 
+				new Object[] {
+						" C ",
+						"STB",
+						" C ",
+						'C', ItemCraftingManager.superconducting_cable,
+						'S', ItemCraftingManager.living_circuit,
+						'T', transformer_iv,
+						'B', eesuStorage
+				});
+		
+		ItemStack gesu_output_luv = teBlock.getItemStack(MetsBlockWithTileEntity.gesu_output_luv);
+		Recipes.advRecipes.addRecipe(gesu_output_luv, 
+				new Object[] {
+						" B ",
+						"IMT",
+						" B ",
+						'B', eesuStorage,
+						'T', transformer_luv,
+						'M', gesu_output,
+						'I', ItemCraftingManager.living_circuit
 				});
 		
 		//oil rig 

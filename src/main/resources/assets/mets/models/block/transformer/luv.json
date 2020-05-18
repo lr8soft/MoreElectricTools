@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/transformer/luv",
+    "down": "mets:blocks/transformer/luv",
+    "up": "mets:blocks/transformer/luv",
+    "north": "mets:blocks/transformer/luv_front",
+    "south": "mets:blocks/transformer/luv",
+    "west": "mets:blocks/transformer/luv",
+    "east": "mets:blocks/transformer/luv"
+  }
+}

@@ -125,6 +125,9 @@ mets.te.geomagnetic_generator=§5Geomagnetic Generator
 mets.te.neutron_polymerizer=§5Particle Aggregator
 mets.te.electric_blast_furnace=§5Electric Nano Blast Furnace
 
+mets.te.transformer_iv=§9IV-Transformer
+mets.te.transformer_luv=§5LuV-Transformer
+
 mets.te.gesu_core=§5Large Power Storage GESU Core
 mets.te.gesu_input=§5Large Power Storage GESU Input Module
 mets.te.gesu_output=§5Large Power Storage GESU Output Module(IV)
