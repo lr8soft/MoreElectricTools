@@ -164,5 +164,6 @@ mets.info.rig.working=正在挖掘中
 mets.info.rig.structure_incompleted=钻机结构不完整
 mets.info.rig.coordinate=当前坐标 %1$s
 mets.info.rig.state=钻机状态 %1$s
+mets.info.rig.noenergy=无能量输入
 
 enchantment.efficient_energy_cost=节能

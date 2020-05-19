@@ -95,6 +95,8 @@ public class TileEntityOilRigPanel extends TileEntityGUIMachine implements IOilR
 	{
 		switch(tipState)
 		{
+		case -1:
+			return Localization.translate("mets.info.rig.noenergy");
 		case 2:
 			return Localization.translate("mets.info.rig.finish");
 		case 3:

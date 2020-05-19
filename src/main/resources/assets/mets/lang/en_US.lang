@@ -166,5 +166,6 @@ mets.info.rig.working=Now mining.
 mets.info.rig.structure_incompleted=The rig structure is incomplete.
 mets.info.rig.coordinate=Current coordinate %1$s
 mets.info.rig.state=Rig status %1$s
+mets.info.rig.noenergy=No energy input
 
 enchantment.efficient_energy_cost=Energy Saving

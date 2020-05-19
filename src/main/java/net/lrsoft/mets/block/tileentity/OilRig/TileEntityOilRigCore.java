@@ -28,7 +28,7 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 	
 	private int offsetY = 0;
 	private int offsetFlag = 0;
-	private boolean isRigFinish = false;
+	private boolean isRigFinish = false, isTankFull = false , haveEnergy = false;
 	private Vec3d tempCoord = new Vec3d(0, -2, 0);
 	@Override
 	protected void updateEntityServer() {
@@ -38,13 +38,13 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 			checkStructureComplete();
 		}
 		
-		if(currentTick % 10 == 0 && isStructureComplete)
+		if(currentTick % 45 == 0 && isStructureComplete)
 		{
 			if(inputPart != null && outputPart != null)
 			{
 				TileEntityOilRigInput input = (TileEntityOilRigInput)inputPart;
 
-				if(input.canUseEnergy(200.0d))
+				if(input.canUseEnergy(1000.0d))
 				{
 					try {
 						if (tryDrill()) {
@@ -54,22 +54,22 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 								int amount = LiquidUtil.fillTile(output, getFacing(),
 										new FluidStack(FluidManager.crudeOil, 100), false);
 								if (amount > 0) {
-									input.comsumeEnergy((amount / 100.0d) * 200.0d);
+									input.comsumeEnergy((amount / 100.0d) * 1000.0d);
 									haveFillSuccess = true;
 									break;// 给一个加了就够了
 								}
 							}
-							if(!haveFillSuccess)
-							{
-								isRigFinish = true;
-							}
 						} else {
-							input.comsumeEnergy(50.0d);
+							input.comsumeEnergy(500.0d);
 						}
 					} catch (Exception e) {
 						isRigFinish = true;
 					}
 					updatePanelInfo(true);
+					haveEnergy = true;
+				}else 
+				{
+					haveEnergy = false;
 				}
 			}else {
 				isStructureComplete = false;
@@ -86,12 +86,17 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 		if(offsetFlag < 9)
 		{
 			targetCoord = coordGroup[offsetFlag];
-			
 		}else if(offsetFlag >=9 && offsetFlag < 18){
 			targetCoord = coordGroup[offsetFlag - 9].scale(2.0d);
 			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
 		}else if(offsetFlag >=18 && offsetFlag < 27) {
 			targetCoord = coordGroup[offsetFlag - 18].scale(3.0d);
+			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
+		}else if(offsetFlag >=27 && offsetFlag < 36) {
+			targetCoord = coordGroup[offsetFlag - 27].scale(4.0d);
+			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
+		}else if(offsetFlag >=36 && offsetFlag < 45) {
+			targetCoord = coordGroup[offsetFlag - 36].scale(5.0d);
 			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
 		}
 		else {
@@ -156,6 +161,9 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 		if(!isStructureComplete)
 		{
 			return 1;
+		}
+		else if(!haveEnergy) {
+			return -1;
 		}
 		else if(isRigFinish)
 		{
