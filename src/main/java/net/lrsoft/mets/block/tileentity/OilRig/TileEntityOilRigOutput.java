@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class TileEntityOilRigOutput extends TileEntityTank implements IOilRig {
 	public TileEntityOilRigOutput() {
-		super(24);
+		super(48);
 	}
 
 	private BlockPos coreCoord = null;
