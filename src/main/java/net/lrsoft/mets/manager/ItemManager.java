@@ -16,6 +16,7 @@ import net.lrsoft.mets.item.ElectricForceFieldGenerator;
 import net.lrsoft.mets.item.ElectricLighter;
 import net.lrsoft.mets.item.ElectricNutritionSupply;
 import net.lrsoft.mets.item.ElectricWirlessManager;
+import net.lrsoft.mets.item.GeomagneticDetector;
 import net.lrsoft.mets.item.battery.AdvancedLithiumBattery;
 import net.lrsoft.mets.item.battery.ChargingSuperLapotronCrystal;
 import net.lrsoft.mets.item.battery.LithiumBattery;
@@ -70,6 +71,7 @@ public class ItemManager {
 	public static ElectricLighter electricLighter;
 	
 	public static ElectricWirlessManager electricWirlessManager;
+	public static GeomagneticDetector geomagneticDetector;
 	
 	public static NanoBow nanoBow;
 	public static PlasmaAirCannon plasmaAirCannon;
@@ -107,6 +109,7 @@ public class ItemManager {
 		nanoBow = new NanoBow();
 		plasmaAirCannon = new PlasmaAirCannon();	
 		electricLighter = new ElectricLighter();
+		geomagneticDetector = new GeomagneticDetector();
 		
 		electricSubmachineGun = new ElectricSubmachineGun();
 		advancedElectricSubmachineGun = new AdvancedElectricSubmachineGun();
@@ -145,6 +148,8 @@ public class ItemManager {
 		event.getRegistry().register(electricRocketLauncher);
 		event.getRegistry().register(electricForceFieldGenerator);
 		event.getRegistry().register(electricLighter);
+		event.getRegistry().register(geomagneticDetector);
+		
 		event.getRegistry().register(electricPlasmaGun);
 		event.getRegistry().register(electricWirlessManager);
 		event.getRegistry().register(tachyonDisruptor);
@@ -487,6 +492,16 @@ public class ItemManager {
 					'S', ItemCraftingManager.titanium_plate,
 					'B', getAllTypeStack(lithiumBattery),
 					'T', IC2Items.getItem("frequency_transmitter"),
+					'C', IC2Items.getItem("crafting", "advanced_circuit"),
+					});
+		
+		Recipes.advRecipes.addRecipe(new ItemStack(geomagneticDetector), new Object[]
+				   {"SCS",
+					"CTC",
+					"SBS",
+					'S', ItemCraftingManager.titanium_plate,
+					'B', getAllTypeStack(lithiumBattery),
+					'T', IC2Items.getItem("te", "tesla_coil"),
 					'C', IC2Items.getItem("crafting", "advanced_circuit"),
 					});
 		

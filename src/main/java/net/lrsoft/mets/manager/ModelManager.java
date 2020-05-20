@@ -82,6 +82,8 @@ public class ModelManager {
 				new ModelResourceLocation(ItemManager.electricLighter.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ItemManager.electricWirlessManager, 0,
 				new ModelResourceLocation(ItemManager.electricWirlessManager.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(ItemManager.geomagneticDetector, 0,
+				new ModelResourceLocation(ItemManager.geomagneticDetector.getRegistryName(), "inventory"));
 		
 		ModelLoader.setCustomModelResourceLocation(ItemManager.nanoBow, 0,
 				new ModelResourceLocation(ItemManager.nanoBow.getRegistryName(), "inventory"));

@@ -60,6 +60,7 @@ item.mets.advanced_iridium_sword.name=§bQuantum Sword
 item.mets.advanced_lithium_battery.name=Advanced Lithium Battery
 item.mets.lithium_battery.name=Lithium Battery
 item.mets.thorium_battery.name=Thorium battery
+item.mets.geomagnetic_detector.name=Geomagnetic Detector
 
 item.mets.electric_submachine_gun.name=Electric Submachine Gun
 item.mets.advanced_electric_submachine_gun.name=§bAdvanced Electric Submachine Gun
@@ -167,5 +168,7 @@ mets.info.rig.structure_incompleted=The rig structure is incomplete.
 mets.info.rig.coordinate=Current coordinate %1$s
 mets.info.rig.state=Rig status %1$s
 mets.info.rig.noenergy=No energy input
+
+mets.info.geomagnetic_detector=Current geomagnetic intensity: %d
 
 enchantment.efficient_energy_cost=Energy Saving
