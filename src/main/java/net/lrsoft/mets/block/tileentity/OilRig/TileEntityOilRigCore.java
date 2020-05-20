@@ -40,7 +40,7 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 		
 		if(currentTick % 45 == 0 && isStructureComplete)
 		{
-			if(inputPart != null && outputPart != null)
+			if(inputPart != null && outputPart.size() > 0)
 			{
 				TileEntityOilRigInput input = (TileEntityOilRigInput)inputPart;
 

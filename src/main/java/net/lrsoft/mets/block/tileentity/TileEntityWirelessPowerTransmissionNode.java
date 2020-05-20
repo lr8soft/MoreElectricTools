@@ -20,9 +20,9 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class TileEntityWirelessPowerTransmissionNode extends TileEntityElectricMachine {
 	private Vec3d targetPosition = null;
-	private static int transferSpeed = 16384;
+	private static int transferSpeed = 32768;
 	public TileEntityWirelessPowerTransmissionNode() {
-		super(transferSpeed, Integer.MAX_VALUE);
+		super(transferSpeed, 6);
 
 	}
 	

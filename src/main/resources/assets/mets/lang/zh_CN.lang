@@ -74,6 +74,7 @@ item.mets.electric_force_field_generator.name=电力伤害吸收仪
 item.mets.electric_fishing_rod.name=电动鱼竿
 item.mets.electric_lighter.name=电力光源产生器
 item.mets.electric_wirless_manager.name=无线管理器
+item.mets.geomagnetic_detector.name=地磁探测器
 
 mets.electric_shield.name=钢制防爆盾
 item.mets.nano_bow.name=§e纳米复合弓
@@ -165,5 +166,7 @@ mets.info.rig.structure_incompleted=钻机结构不完整
 mets.info.rig.coordinate=当前坐标 %1$s
 mets.info.rig.state=钻机状态 %1$s
 mets.info.rig.noenergy=无能量输入
+
+mets.info.geomagnetic_detector=当前地磁强度：%d
 
 enchantment.efficient_energy_cost=节能

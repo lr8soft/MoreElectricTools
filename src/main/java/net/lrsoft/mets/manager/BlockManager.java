@@ -589,7 +589,7 @@ public class BlockManager {
 						"GCG",
 						'G', ItemCraftingManager.titanium_plate,
 						'C', IC2Items.getItem("crafting", "advanced_circuit"),
-						'T', IC2Items.getItem("te", "tank"),
+						'T', Items.BUCKET,
 						'M', oil_rig_base
 				});
 		
