@@ -5,6 +5,14 @@ tile.mets.niobium_ore.name=Ниобиевая руда
 tile.mets.titanium_ore.name=Титановая руда
 tile.mets.titanium_block.name=Титановый блок
 
+tile.mets.geomagnetic_pedestal.name=Основа геомагнитного генератора
+tile.mets.geomagnetic_antenna.name=Антенна геомагнитного генератора
+
+tile.mets.titanium_scaffold.name=Титановая рама буровой установки
+
+fluid.crude_oil=Cырая нефть
+fluid.diesel_oil=Дизельное топливо
+
 item.mets.crafting.niobium_crushed.name=Измельченная ниобиевая руда
 item.mets.crafting.titanium_crushed.name=Измельченная титановая руда
 
@@ -39,18 +47,27 @@ item.mets.crafting.diamond_lens.name=§bАлмазная линза
 item.mets.crafting.rocket.name=Ракетный снаряд
 item.mets.crafting.plant_extract.name=Растительная эссенция
 
+item.mets.crafting.thorium_scrap.name=§bТориевый ящик для отходов
+
+item.mets.crafting.nano_living_metal.name=§dНано-живой металл
+item.mets.crafting.living_circuit.name=§dЖивая схема
+item.mets.crafting.field_generator.name=§dГенератор поля
+item.mets.crafting.neutron_plate.name=§dДегенеративная нейтронная пластина
+
 item.mets.super_lapotron_crystal.name=§bСуперлазуротроновый кристалл
 item.mets.charging_super_lapotron_crystal.name=§bЗаряжающий суперлазуротроновый кристалл
 item.mets.advanced_iridium_sword.name=§bКвантовый меч
 item.mets.advanced_lithium_battery.name=Продвинутый литиевый аккумулятор
 item.mets.lithium_battery.name=Литиевый аккумулятор
 item.mets.thorium_battery.name=Ториевый аккумулятор
+item.mets.geomagnetic_detector.name=Геомагнитный детектор
 
 item.mets.electric_submachine_gun.name=Электрический пистолет-пулемет
 item.mets.advanced_electric_submachine_gun.name=§bПродвинутый электрический пистолет-пулемет
 item.mets.tactical_laser_submachine_gun.name=§bТактический лазерный пистолет-пулемет с иридиевым штыком
 item.mets.electric_rocket_launcher.name=Ракетная пусковая установка
 item.mets.electric_plasma_gun.name=§eЭлектрический плазменный пистолет
+item.mets.tachyon_disruptor.name=§5Продвинутый Тачино разрушитель
 
 item.mets.electric_first_aid_life_support.name=Электрическая поддержка первой помощи
 item.mets.electric_nutrition_supply.name=Электрическое снабжение питания
@@ -66,6 +83,7 @@ item.mets.plasma_air_cannon.name=§eПлазменная воздушная пу
 item.mets.diving_mask.name=Водолазная маска
 item.mets.advanced_quantum_chest.name=§bПродвинутый квантовый нагрудник
 item.mets.advanced_jetpack.name=Продвинутый электрический разогнанный реактивный ранец
+item.mets.heavy_quantum_chest.name=§bТяжелый квантовый нагрудник
 
 item.mets.advanced_oc_heat_vent.name=§bИридиевый разогнанный теплоотвод
 item.mets.advanced_heat_vent.name=§bИридиевый теплоотвод
@@ -83,16 +101,16 @@ item.mets.titanium_rich_seed.name=Семя обогащенного титана
 item.mets.uranium_rich_seed.name=Семя обогащенного урана
 item.mets.lead_rich_seed.name=Семя обогащенного свинца
 
-mets.te.lesu=Литиевый энергохранитель (ЛЭХ)
-mets.te.eesu=§9Экстремальный энергохранитель (ЭЭХ)
+mets.te.lesu=LESU
+mets.te.eesu=§9EESU
 mets.te.drop_generator=Генератор добычи
 mets.te.advanced_kinetic_generator=Кинетический генератор с турбонаддувом
 mets.te.super_kinetic_generator=§9Кинетический генератор с двойным турбонаддувом
 mets.te.advanced_blast_furnace=Продвинутая доменная печь из титанового сплава
 mets.te.advanced_macerator=Продвинутая циклонная порошковая машина
 mets.te.advanced_compressor=Продвинутый компрессор высокого давления
-mets.te.chargepad_eesu=§9Заряжающая плита (ЭЭХ)
-mets.te.chargepad_lesu=Заряжающая плита (ЛЭХ)
+mets.te.chargepad_eesu=§9Заряжающая плита EESU
+mets.te.chargepad_lesu=Заряжающая плита LESU
 mets.te.advanced_stirling_generator=Продвинутый генератор Стирлинга
 mets.te.advanced_semifluid_generator=Продвинутый дизельный генератор
 mets.te.extruding_machine=Продвинутая металловыдавливательная машина
@@ -101,9 +119,27 @@ mets.te.cutting_machine=Продвинутая металлорезательн�
 mets.te.titanium_storage_box=Титановый ящик для хранения
 mets.te.experience_generator=Генератор шаров опыта
 mets.te.advanced_solar_generator=Продвинутый солнечный генератор
+mets.te.diesel_generator=Дизельный генератор
 mets.te.photon_resonance_solar_generator=§9Фотонно-резонансный солнечный генератор
 mets.te.wireless_power_transmission_node=§9Узел беспроводной передачи энергии
 mets.te.ultimate_photon_resonance_solar_generator=§9Максимальный фотонно-резонансный солнечный генератор
+mets.te.geomagnetic_generator=§5Геомагнитный генератор
+mets.te.neutron_polymerizer=§5Агрегатор частиц
+mets.te.electric_blast_furnace=§5Электрическая нано-доменная печь
+
+mets.te.transformer_iv=§9Трансформатор (IV)
+mets.te.transformer_luv=§5Трансформатор (LuV)
+
+mets.te.gesu_core=§5Ядро большого энергохранителя GESU
+mets.te.gesu_input=§5Модуль ввода большого энергохранителя GESU
+mets.te.gesu_output=§5Модуль вывода большого энергохранителя GESU
+mets.te.gesu_output_luv=§5Модуль вывода большого энергохранителя GESU (LuV)
+
+mets.te.oil_rig_core=§eЯдро буровой установки
+mets.te.oil_rig_input=§eМодуль ввода буровой установки
+mets.te.oil_rig_output=§eМодуль хранения нефти буровой установки
+mets.te.oil_rig_base=§eБазовый модуль буровой установки
+mets.te.oil_rig_panel=§eПанель буровой установки
 
 item.mets.titanium_iron_alloy_rotor.name=Ротор из титанового сплава железа
 item.mets.super_iridium_rotor.name=§bСупериридиевый ротор
@@ -119,5 +155,20 @@ mets.info.radiation=РАДИАЦИОННОЕ ПРЕДУПРЕЖДЕНИЕ!
 
 mets.info.wirless.settarget=Передача назначения установлена!
 mets.info.wirless.selecttarget=Выберите текущую координату в качестве пункта назначения передачи.
+
+mets.info.nano_tip=§5Состоит из большого количества нанороботов, изготовленных по неизвестной технологии
+
+mets.info.gesu_core=Разместите модули ввода и вывода рядом с шестью сторонами.
+mets.info.gesu_output=Буферная энергия
+mets.info.storage=GESU энергия %1$s EU
+
+mets.info.rig.finish=Эта область уже добывалась.
+mets.info.rig.working=Сейчас добывается.
+mets.info.rig.structure_incompleted=Структура неполная.
+mets.info.rig.coordinate=Текущая координата %1$s
+mets.info.rig.state=Состояние %1$s
+mets.info.rig.noenergy=Нет входной энергии
+
+mets.info.geomagnetic_detector=Текущая геомагнитная интенсивность: %d
 
 enchantment.efficient_energy_cost=Энергосбережение

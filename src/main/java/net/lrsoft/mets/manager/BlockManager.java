@@ -534,7 +534,7 @@ public class BlockManager {
 				});
 		
 		//oil rig 
-		ItemStack titanium_scaffold = new ItemStack(titaniumScaffold, 3);
+		ItemStack titanium_scaffold = new ItemStack(titaniumScaffold, 6);
 		Recipes.advRecipes.addRecipe(titanium_scaffold, 
 				new Object[] {
 						"PPP",
@@ -581,6 +581,17 @@ public class BlockManager {
 						'M', oil_rig_base
 				});
 		
+		ItemStack titanium_tank = teBlock.getItemStack(MetsBlockWithTileEntity.titanium_tank);
+		Recipes.advRecipes.addRecipe(titanium_tank, 
+				new Object[] {
+						"GGG",
+						"TMT",
+						"GGG",
+						'G', ItemCraftingManager.titanium_casing,
+						'T', Items.BUCKET,
+						'M',  IC2Items.getItem("resource", "machine")
+				});
+		
 		ItemStack oil_rig_output = teBlock.getItemStack(MetsBlockWithTileEntity.oil_rig_output);
 		Recipes.advRecipes.addRecipe(oil_rig_output, 
 				new Object[] {
@@ -590,6 +601,16 @@ public class BlockManager {
 						'G', ItemCraftingManager.titanium_plate,
 						'C', IC2Items.getItem("crafting", "advanced_circuit"),
 						'T', Items.BUCKET,
+						'M', oil_rig_base
+				});
+		Recipes.advRecipes.addRecipe(oil_rig_output, 
+				new Object[] {
+						"GCG",
+						"TMT",
+						"GCG",
+						'G', ItemCraftingManager.titanium_plate,
+						'C', IC2Items.getItem("crafting", "advanced_circuit"),
+						'T', titanium_tank,
 						'M', oil_rig_base
 				});
 		

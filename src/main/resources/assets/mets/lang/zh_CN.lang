@@ -142,6 +142,7 @@ mets.te.oil_rig_input=§e石油钻机输入模块
 mets.te.oil_rig_output=§e石油钻机储油模块
 mets.te.oil_rig_base=§e石油钻机基础模块
 mets.te.oil_rig_panel=§e石油钻机面板
+mets.te.titanium_tank=钛储罐
 
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
