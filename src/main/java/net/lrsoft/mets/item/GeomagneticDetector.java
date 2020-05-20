@@ -54,7 +54,7 @@ public class GeomagneticDetector extends UniformElectricItem {
 		int seaLevelDelta = pos.getY() - worldIn.getSeaLevel();
 		if(seaLevelDelta < 0)
 		{
-			source = (float)pos.getY() / (float)worldIn.getSeaLevel();
+			source = (float)pos.getY() / (float)(worldIn.getSeaLevel()+1);
 		}
 		
 		int baseDelta = (pos.getY() >= 20) ? 20 : pos.getY() - 0;
@@ -67,7 +67,11 @@ public class GeomagneticDetector extends UniformElectricItem {
 				airBlockCount++;
 			}
 		}
-		source *= (baseDelta - airBlockCount) / baseDelta;
+		if(baseDelta!=0)
+			source *= (baseDelta - airBlockCount) / baseDelta;
+		else {
+			source = 0;
+		}
 		return source;
 	}
 }

@@ -140,6 +140,7 @@ mets.te.oil_rig_input=§eOil Rig Input Module
 mets.te.oil_rig_output=§eOil Rig Oil Storage Module
 mets.te.oil_rig_base=§eOil Rig Base Module
 mets.te.oil_rig_panel=§eOil Rig Panel
+mets.te.titanium_tank=Titanium Tank
 
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor

@@ -80,7 +80,7 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 		int seaLevelDelta = this.pos.getY() - this.world.getSeaLevel();
 		if(seaLevelDelta < 0)
 		{
-			source = (float)this.pos.getY() / (float)this.world.getSeaLevel();
+			source = (float)this.pos.getY() / (float)(this.world.getSeaLevel()+1);
 		}
 		
 		int baseDelta = (this.pos.getY() >= 20) ? 20 : this.pos.getY() - 0;
@@ -93,7 +93,11 @@ public class TileEntityGeomagneticGenerator extends TileEntityBaseGenerator{
 				airBlockCount++;
 			}
 		}
-		source *= (baseDelta - airBlockCount) / baseDelta;
+		if(baseDelta!=0)
+			source *= (baseDelta - airBlockCount) / baseDelta;
+		else {
+			source = 0;
+		}
 		lastSourceValue = source;
 		return source;
 	}
