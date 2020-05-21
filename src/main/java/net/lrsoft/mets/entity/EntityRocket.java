@@ -43,6 +43,14 @@ public class EntityRocket extends Entity {
 	private float power;
 	private float velocity;
 	
+	public EntityRocket(World world)
+	{
+		super(world);
+		this.ticksInAir = 0;
+		setSize(0.4F, 0.4F);
+		this.power = 5.0f;
+	}
+	
 	public EntityRocket(World world, float power) {
 		super(world);
 		this.ticksInAir = 0;

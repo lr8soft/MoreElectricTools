@@ -41,6 +41,13 @@ public class EntityTachyonBullet extends Entity {
 	protected float velocity;
 	protected int canAttackTimes = 3;
 	
+	public EntityTachyonBullet(World world)
+	{
+		super(world);
+		setSize(0.45F, 0.45F);
+		this.power = 100.0f;
+	}
+	
 	public EntityTachyonBullet(World world, EntityPlayer owner, float power, int maxTick) {
 		super(world);
 		this.ticksInAir = 0;

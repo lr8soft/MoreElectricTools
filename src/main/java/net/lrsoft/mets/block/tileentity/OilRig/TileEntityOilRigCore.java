@@ -120,22 +120,22 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 					|| blockTemp ==  Blocks.LAVA || blockTemp == Blocks.FLOWING_LAVA)//矿物
 			{
 				this.world.setBlockState(new BlockPos(targetCoord), Blocks.AIR.getDefaultState(), 2);
-				return MathUtils.getChance(60);
+				return MathUtils.getChance(80);
 			}
 			else if(blockTemp == Blocks.OBSIDIAN)
 			{
 				this.world.setBlockState(new BlockPos(targetCoord), Blocks.AIR.getDefaultState(), 2);
-				return MathUtils.getChance(70);
+				return MathUtils.getChance(95);
 			}
 			else if(blockTemp == Blocks.GRAVEL || blockTemp == Blocks.SAND)
 			{
 				this.world.setBlockState(new BlockPos(targetCoord), Blocks.AIR.getDefaultState(), 2);
-				return MathUtils.getChance(5);
+				return MathUtils.getChance(10);
 			}
 			else 
 			{
 				this.world.setBlockState(new BlockPos(targetCoord), Blocks.AIR.getDefaultState(), 2);
-				return MathUtils.getChance(10);
+				return MathUtils.getChance(20);
 			}
 		}
 		offsetY++;

@@ -15,6 +15,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -26,7 +27,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class EntityGunBullet extends Entity {
+public class EntityGunBullet extends Entity implements IProjectile{
 	public static final Predicate<Entity> GUN_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
     {
         public boolean apply(@Nullable Entity entity)
@@ -51,8 +52,16 @@ public class EntityGunBullet extends Entity {
 		this.power = power;
 		this.maxExistTicks = maxTick;
 	}
+
+	public EntityGunBullet(World world)
+	{
+		super(world);
+		setSize(0.39F, 0.39F);
+		this.power = 5.0f;
+		this.maxExistTicks = 300;
+		this.ticksInAir = 0;
+	}
 	
-	@Override
 	public void onUpdate() 
 	{
 		super.onUpdate();
@@ -233,5 +242,10 @@ public class EntityGunBullet extends Entity {
         compound.setFloat("power", this.power);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
+	}
+	
+	@Override
+	public void shoot(double x, double y, double z, float velocity, float inaccuracy) {
+		shoot(x, y, z, velocity);
 	}
 }

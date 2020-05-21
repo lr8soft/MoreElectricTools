@@ -23,6 +23,17 @@ public class EntityParticleSpray extends Entity {
 	protected boolean haveInit = false;
 	protected Vec3d color;
 	protected Vec3d scaleSize = new Vec3d(0.1d, 0.1d, 0.1d);
+	
+	public EntityParticleSpray(World world)
+	{
+		super(world);
+		this.ticksInAir = 0;
+		setSize(0.39F, 0.39F);
+		this.maxExistTicks = 0;
+		this.spawnParticles = 0;
+		this.velocity = 0;
+	}
+	
 	public EntityParticleSpray(World world, Entity owner, Vec3d color, int maxTick, int spawnParticles, boolean useLastPos) {
 		super(world);
 		this.ticksInAir = 0;

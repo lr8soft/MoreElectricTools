@@ -45,6 +45,15 @@ public class EntityPlasmaBullet extends Entity {
 	protected float power;
 	protected float velocity;
 	protected Vec3d scaleSize = new Vec3d(0.1d, 0.1d, 0.1d);
+	public EntityPlasmaBullet(World world)
+	{
+		super(world);
+		this.ticksInAir = 0;
+		this.maxExistTicks = 500;
+		this.power = 20.0f;
+		setSize(0.39F, 0.39F);
+	}
+	
 	public EntityPlasmaBullet(World world, EntityPlayer owner, float power) {
 		super(world);
 		this.ticksInAir = 0;
@@ -122,7 +131,7 @@ public class EntityPlasmaBullet extends Entity {
 
 		this.setPosition(this.posX, this.posY, this.posZ);
 
-		//this.doBlockCollisions();  	
+		this.doBlockCollisions();  	
 
 	}
 	
