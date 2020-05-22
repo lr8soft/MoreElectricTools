@@ -33,6 +33,16 @@ public class EntityParticleGroup extends Entity {
 	protected int spawnParticlesPerTick;
 	protected float velocity;
 	
+	public EntityParticleGroup(World world)
+	{
+		super(world);
+		this.ticksInAir = 0;
+		setSize(0.39F, 0.39F);
+		this.maxExistTicks = 0;
+		this.spawnParticles = 0;
+		this.spawnParticlesPerTick = 0;
+	}
+	
 	public EntityParticleGroup(World world, EntityPlayer owner,  int maxTick, int spawnParticles,int spawnParticlesPerTick) {
 		super(world);
 		this.ticksInAir = 0;

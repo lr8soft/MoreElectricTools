@@ -18,7 +18,6 @@ public class TileEntityGUIMachine extends TileEntityElectricMachine implements I
 		super(maxEnergy, tier);
 	}
 
-
 	@SideOnly(Side.CLIENT)
 	public GuiScreen getGui(EntityPlayer player, boolean isAdmin) {
 		return (GuiScreen)DynamicGui.create((IInventory)this, player, GuiParser.parse(this.teBlock));

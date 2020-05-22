@@ -626,6 +626,56 @@ public class BlockManager {
 						'M', oil_rig_base,
 						'B', getAllTypeStack(ItemManager.advancedLithiumBattery)
 				});
+		
+		//large fabricator
+		ItemStack fabricator_core = teBlock.getItemStack(MetsBlockWithTileEntity.fabricator_core);
+		Recipes.advRecipes.addRecipe(fabricator_core, 
+				new Object[] {
+						"ISI",
+						"MCM",
+						"ISI",
+						'I', IC2Items.getItem("crafting", "iridium"),
+						'S', IC2Items.getItem("resource", "advanced_machine"),
+						'C', ItemCraftingManager.super_circuit,
+						'M', IC2Items.getItem("te", "matter_generator")
+				});
+		
+		ItemStack fabricator_input = teBlock.getItemStack(MetsBlockWithTileEntity.fabricator_input);
+		Recipes.advRecipes.addRecipe(fabricator_input, 
+				new Object[] {
+						"ISI",
+						"MBM",
+						"ISI",
+						'I', IC2Items.getItem("crafting", "iridium"),
+						'M', IC2Items.getItem("te", "ev_transformer"),
+						'C', IC2Items.getItem("resource", "advanced_machine"),
+						'S', ItemCraftingManager.super_circuit,
+						'B', getAllTypeStack(ItemManager.superLapotronCrystal)
+				});
+		
+		ItemStack fabricator_tank = teBlock.getItemStack(MetsBlockWithTileEntity.fabricator_tank);
+		Recipes.advRecipes.addRecipe(fabricator_tank, 
+				new Object[] {
+						"IMI",
+						"SCS",
+						"IMI",
+						'I', ItemCraftingManager.niobium_titanium_plate,
+						'M', titanium_tank,
+						'C', IC2Items.getItem("resource", "advanced_machine"),
+						'S', ItemCraftingManager.super_circuit
+				});
+		
+		ItemStack fabricator_scrap = teBlock.getItemStack(MetsBlockWithTileEntity.fabricator_scrap);
+		Recipes.advRecipes.addRecipe(fabricator_scrap, 
+				new Object[] {
+						"IMI",
+						"SCS",
+						"IMI",
+						'I', ItemCraftingManager.niobium_titanium_plate,
+						'M', IC2Items.getItem("te", "recycler"),
+						'C', IC2Items.getItem("resource", "advanced_machine"),
+						'S', ItemCraftingManager.super_circuit
+				});
 	}
 	
 	@SubscribeEvent

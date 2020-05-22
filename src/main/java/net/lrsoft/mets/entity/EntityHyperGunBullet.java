@@ -27,7 +27,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class EntityHyperGunBullet extends EntityGunBullet {
-
+	public EntityHyperGunBullet(World world)
+	{
+		super(world);
+		this.power = 20.0f;
+	}
 	
 	public EntityHyperGunBullet(World world, EntityPlayer owner, float power, int maxTick) {
 		super(world,owner, power, maxTick);
@@ -38,7 +42,7 @@ public class EntityHyperGunBullet extends EntityGunBullet {
 	protected Entity findEntityOnPath(Vec3d start, Vec3d end)
     {
 		Entity entity = null;
-		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
+		List<Entity> list = getEntityWorld().getEntitiesInAABBexcluding(this,
 				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D),
 				EntityGunBullet.GUN_TARGETS);
 		double d0 = 0.0D;
