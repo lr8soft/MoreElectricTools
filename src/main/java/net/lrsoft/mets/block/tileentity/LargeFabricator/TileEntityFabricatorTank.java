@@ -7,14 +7,8 @@ import ic2.api.recipe.IMachineRecipeManager;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.Recipes;
 import ic2.core.block.TileEntityBlock;
-import ic2.core.block.invslot.InvSlot;
-import ic2.core.block.invslot.InvSlotConsumableLiquid;
-import ic2.core.block.invslot.InvSlotOutput;
-import ic2.core.block.invslot.InvSlotProcessable;
-import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import ic2.core.block.storage.tank.TileEntityTank;
 import ic2.core.ref.FluidName;
-import ic2.core.ref.ItemName;
 import ic2.core.util.LiquidUtil;
 import net.lrsoft.mets.block.tileentity.OilRig.IOilRig.ModuleType;
 import net.lrsoft.mets.manager.FluidManager;
@@ -30,7 +24,7 @@ public class TileEntityFabricatorTank extends TileEntityTank implements IFabrica
 	private boolean isStructureCompleled = false;
 	
 	public TileEntityFabricatorTank() {
-		super(24);
+		super(48);
 	}
 	
 	public boolean addToOutputSlot(int amount)

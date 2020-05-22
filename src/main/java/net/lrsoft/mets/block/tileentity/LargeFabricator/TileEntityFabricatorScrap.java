@@ -6,7 +6,6 @@ import ic2.api.recipe.IMachineRecipeManager;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.MachineRecipeResult;
 import ic2.api.recipe.Recipes;
-import ic2.core.block.TileEntityBlock;
 import ic2.core.block.invslot.InvSlotProcessable;
 import ic2.core.block.invslot.InvSlotProcessableGeneric;
 import net.lrsoft.mets.block.tileentity.OilRig.TileEntityGUIMachine;
@@ -46,7 +45,6 @@ public class TileEntityFabricatorScrap extends TileEntityGUIMachine implements I
 				
 			}
 		}
-		System.out.println(scrapValue);
 	}
 	
 	

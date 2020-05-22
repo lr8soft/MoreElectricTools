@@ -9,7 +9,16 @@ public class TileEntityFabricatorInput extends TileEntityGUIMachine implements I
 	private Vec3d coreCoord = null;
 	private boolean isStructureCompleled = false;
 	public TileEntityFabricatorInput() {
-		super((int) (1000000 * ConfigUtil.getFloat(MainConfig.get(), "balance/uuEnergyFactor")), 5);
+		super((int) (800000 * ConfigUtil.getFloat(MainConfig.get(), "balance/uuEnergyFactor")), 5);
+	}
+	
+	@Override
+	protected void updateEntityServer() {
+		super.updateEntityServer();
+		if(!isStructureCompleled)
+		{
+			setActive(false);
+		}
 	}
 	
 	public boolean canConsume(double amount)
@@ -19,6 +28,7 @@ public class TileEntityFabricatorInput extends TileEntityGUIMachine implements I
 	
 	public void consumeEnergy(double amount)
 	{
+		setActive(true);
 		this.energy.useEnergy(amount);
 	}
 	

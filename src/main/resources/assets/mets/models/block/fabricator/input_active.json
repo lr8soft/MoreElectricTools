@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/fabricator/input_active",
+    "down": "mets:blocks/fabricator/input_active",
+    "up": "mets:blocks/fabricator/input_active",
+    "north": "mets:blocks/fabricator/input_active",
+    "south": "mets:blocks/fabricator/input_active",
+    "west": "mets:blocks/fabricator/input_active",
+    "east": "mets:blocks/fabricator/input_active"
+  }
+}

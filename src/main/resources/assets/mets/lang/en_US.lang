@@ -142,6 +142,11 @@ mets.te.oil_rig_base=§eOil Rig Base Module
 mets.te.oil_rig_panel=§eOil Rig Panel
 mets.te.titanium_tank=Titanium Tank
 
+mets.te.fabricator_core=§bLarge Mass Fabricator Core
+mets.te.fabricator_input=§bLarge Mass Fabricator Input Module(IV)
+mets.te.fabricator_tank=§bLarge Mass Fabricator Storage Module
+mets.te.fabricator_scrap=§bLarge Mass Fabricator Scrap Module
+
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor
 

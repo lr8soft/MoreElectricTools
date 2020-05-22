@@ -81,7 +81,13 @@
       "transformer_luv": { "model": "mets:transformer/luv" },
 
       "diesel_generator": { "model": "mets:diesel_generator" },
-      "diesel_generator_active": { "model": "mets:diesel_generator_active" }
+      "diesel_generator_active": { "model": "mets:diesel_generator_active" },
+
+      "fabricator_core": { "model": "mets:fabricator/core" },
+      "fabricator_input": { "model": "mets:fabricator/input" },
+      "fabricator_input_active": { "model": "mets:fabricator/input_active" },
+      "fabricator_tank": { "model": "mets:fabricator/tank" },
+      "fabricator_scrap": { "model": "mets:fabricator/scrap" }
     },
     "facing": {
       "down": { "x": 90 },

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/fabricator/tank",
+    "down": "mets:blocks/fabricator/tank",
+    "up": "mets:blocks/fabricator/tank",
+    "north": "mets:blocks/fabricator/tank",
+    "south": "mets:blocks/fabricator/tank",
+    "west": "mets:blocks/fabricator/tank",
+    "east": "mets:blocks/fabricator/tank"
+  }
+}

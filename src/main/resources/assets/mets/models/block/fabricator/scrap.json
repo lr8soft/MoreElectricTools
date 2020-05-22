@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "mets:blocks/fabricator/scrap",
+    "down": "mets:blocks/fabricator/scrap",
+    "up": "mets:blocks/fabricator/scrap",
+    "north": "mets:blocks/fabricator/scrap",
+    "south": "mets:blocks/fabricator/scrap",
+    "west": "mets:blocks/fabricator/scrap",
+    "east": "mets:blocks/fabricator/scrap"
+  }
+}
