@@ -56,7 +56,7 @@ public class TileEntityOilRigCore extends TileEntityBlock{
 								if (amount > 0) {
 									input.comsumeEnergy((amount / 100.0d) * 1000.0d);
 									haveFillSuccess = true;
-									break;// 给一个加了就够了
+									break;
 								}
 							}
 						} else {

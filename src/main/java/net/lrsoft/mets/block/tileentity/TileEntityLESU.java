@@ -9,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
-@NotClassic
 public class TileEntityLESU extends TileEntityElectricBlock implements IMets{
 	public final static int maxStorageEnergy = 1000000; 
 	public TileEntityLESU() 

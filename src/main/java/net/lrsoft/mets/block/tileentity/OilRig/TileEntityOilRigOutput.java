@@ -1,6 +1,5 @@
 package net.lrsoft.mets.block.tileentity.OilRig;
 
-import ic2.core.block.TileEntityBlock;
 import ic2.core.block.comp.Fluids.InternalFluidTank;
 import ic2.core.block.storage.tank.TileEntityTank;
 import net.lrsoft.mets.manager.FluidManager;
