@@ -110,7 +110,7 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 			offsetY++;
 			if(blockTemp == Blocks.BEDROCK)//到底了，重新初始化变量
 			{
-				//System.out.println("mode:" + offsetMode + " offsetValue:"+ offsetValue  +" twice:"+offsetUseTwice);
+				System.out.println("mode:" + offsetMode + " offsetValue:"+ offsetValue  +" twice:"+offsetUseTwice);
 				
 				if(!isFirstRun)
 				{
