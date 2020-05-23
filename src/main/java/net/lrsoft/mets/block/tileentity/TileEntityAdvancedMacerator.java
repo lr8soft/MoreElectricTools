@@ -1,6 +1,5 @@
 package net.lrsoft.mets.block.tileentity;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;

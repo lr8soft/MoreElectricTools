@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fluids.FluidStack;
 
-public class TileEntityDimensionOilRigCore extends TileEntityBlock{
+public class TileEntityDimensionOilRigCore extends TileEntityBlock implements IOilRigCore{
 	private int currentTick = 0;
 	private boolean isStructureComplete = false;
 	private IOilRig inputPart = null, panelPart = null;
@@ -32,12 +32,12 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 	@Override
 	protected void updateEntityServer() {
 		super.updateEntityServer();
-		if(currentTick % 25 == 0)
+		if(currentTick % 30 == 0)
 		{
 			checkStructureComplete();
 		}
 		
-		if(currentTick % 15 == 0 && isStructureComplete)
+		if(currentTick % 20 == 0 && isStructureComplete)
 		{
 			if(inputPart != null && outputPart.size() > 0)
 			{
@@ -45,25 +45,22 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 
 				if(input.canUseEnergy(2000.0d))
 				{
-					try {
-						if (tryDrill()) {
-							boolean haveFillSuccess = false;
-							for (IOilRig outputSlot : outputPart) {
-								TileEntity output = (TileEntity) outputSlot;
-								int amount = LiquidUtil.fillTile(output, getFacing(),
-										new FluidStack(FluidManager.crudeOil, 100), false);
-								if (amount > 0) {
-									input.comsumeEnergy((amount / 100.0d) * 2000.0d);
-									haveFillSuccess = true;
-									break;
-								}
+					if (tryDrill()) {
+						boolean haveFillSuccess = false;
+						for (IOilRig outputSlot : outputPart) {
+							TileEntity output = (TileEntity) outputSlot;
+							int amount = LiquidUtil.fillTile(output, getFacing(),
+									new FluidStack(FluidManager.crudeOil, 100), false);
+							if (amount > 0) {
+								input.comsumeEnergy((amount / 100.0d) * 2000.0d);
+								haveFillSuccess = true;
+								break;
 							}
-						} else {
-							input.comsumeEnergy(500.0d);
 						}
-					} catch (Exception e) {
-						isRigFinish = true;
+					} else {
+						input.comsumeEnergy(1000.0d);
 					}
+
 					updatePanelInfo(true);
 					haveEnergy = true;
 				}else 
@@ -110,8 +107,7 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 			offsetY++;
 			if(blockTemp == Blocks.BEDROCK)//到底了，重新初始化变量
 			{
-				System.out.println("mode:" + offsetMode + " offsetValue:"+ offsetValue  +" twice:"+offsetUseTwice);
-				
+				//System.out.println(isStructureComplete + " mode:" + offsetMode + " offsetValue:"+ offsetValue  +" twice:"+offsetUseTwice);
 				if(!isFirstRun)
 				{
 					if(offsetMoveTimes + 1 < offsetValue)
@@ -214,11 +210,40 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 		//顶上的
 		TileEntity centerTop = this.world.getTileEntity(pos.add(0, 1, 0));
 		TileEntity centerTopest = this.world.getTileEntity(pos.add(0, 2, 0));
+		
+		//侧翼
+		Vector<TileEntity> frontFlank = new Vector<>();
+		//前侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 0)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, -1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, -2)));
+		//后侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 0)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, -1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, -2)));
+		//左侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(1, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(0, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-1, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 2)));
+		//右侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(1, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(0, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-1, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, -2)));
+		
+	
 		if(checkPortAndUpdate(frontPart) && checkPortAndUpdate(backPart) &&
 			checkPortAndUpdate(leftPart) && checkPortAndUpdate(rightPart) && 
 			checkPortAndUpdate(frontLeftPart) && checkPortAndUpdate(frontRightPart) && 
 			checkPortAndUpdate(backLeftart) && checkPortAndUpdate(backRightPart) &&
-			checkPortAndUpdate(centerTop) && checkPortAndUpdate(centerTopest))
+			checkPortAndUpdate(centerTop) && checkPortAndUpdate(centerTopest) && checkPortAndUpdate(frontFlank) ) 
 		{
 			((IOilRig)frontPart).setStructureComplete(true);
 			((IOilRig)backPart).setStructureComplete(true);
@@ -232,6 +257,12 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 			
 			((IOilRig)centerTop).setStructureComplete(true);
 			((IOilRig)centerTopest).setStructureComplete(true);
+			
+			for(TileEntity flankTileEntity : frontFlank)
+			{
+				((IOilRig)flankTileEntity).setStructureComplete(true);
+			}
+			
 			isStructureComplete = checkExtraPart();
 		}else 
 		{
@@ -245,8 +276,25 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 	{
 		boolean result = true;
 		List<Block> scaffoldList = new ArrayList<Block>();
-		for(int offset = 0; offset < 3; offset++)//顶上的脚手架
+		for(int offset = 0; offset < 4; offset++)//顶上的脚手架
 			scaffoldList.add(this.world.getBlockState(this.pos.add(0, 3 + offset, 0)).getBlock());
+		//侧天线
+		scaffoldList.add(this.world.getBlockState(this.pos.add(1, 5, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(-1, 5, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 5, 1)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 5, -1)).getBlock());
+		
+		//四个支架
+		scaffoldList.add(this.world.getBlockState(this.pos.add(3, 0, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(-3, 0, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 0, 3)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 0, -3)).getBlock());
+		
+		scaffoldList.add(this.world.getBlockState(this.pos.add(2, 1, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(-2, 1, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 1, 2)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 1, -2)).getBlock());
+		
 		//接下来是侧边上空
 		for(int offset = 0; offset < 2; offset++)
 			scaffoldList.add(this.world.getBlockState(this.pos.add(1, 1 + offset, 0)).getBlock());
@@ -320,6 +368,19 @@ public class TileEntityDimensionOilRigCore extends TileEntityBlock{
 			return true;
 		}
 		return false;
+	}
+	
+	private boolean checkPortAndUpdate(Vector<TileEntity> te)
+	{
+		boolean result = true;
+		for(TileEntity tileEntity : te)
+		{
+			if(!checkPortAndUpdate(tileEntity))
+			{
+				result = false;
+			}
+		}
+		return result;
 	}
 
 }

@@ -47,10 +47,6 @@ public class TileEntityAdvancedSemifluidGenerator extends TileEntityBaseGenerato
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		//this.fluidSlot = (InvSlotConsumableLiquid) new InvSlotConsumableLiquidByManager((TileEntityInventory)this, "fluidSlot", 1,
-		//		(ILiquidAcceptManager) Recipes.semiFluidGenerator);
-		//this.outputSlot = new InvSlotOutput((TileEntityInventory)this, "output", 1);
 	}
 
 	public void updateEntityServer() {
@@ -87,7 +83,6 @@ public class TileEntityAdvancedSemifluidGenerator extends TileEntityBaseGenerato
 				dirty = (rate > 0 ) ? true : false;
 			}
 		}
-
 		return dirty;
 	}
 

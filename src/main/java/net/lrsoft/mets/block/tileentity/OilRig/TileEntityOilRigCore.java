@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fluids.FluidStack;
 
-public class TileEntityOilRigCore extends TileEntityBlock{
+public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore{
 	private int currentTick = 0;
 	private boolean isStructureComplete = false;
 	private IOilRig inputPart = null, panelPart = null;

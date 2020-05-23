@@ -142,6 +142,7 @@ mets.te.oil_rig_input=§e石油钻机输入模块
 mets.te.oil_rig_output=§e石油钻机储油模块
 mets.te.oil_rig_base=§e石油钻机基础模块
 mets.te.oil_rig_panel=§e石油钻机面板
+mets.te.dimension_oil_rig_core=§5维度石油钻机核心
 mets.te.titanium_tank=钛储罐
 
 mets.te.fabricator_core=§b大型物质生成机核心
