@@ -114,9 +114,16 @@ public class EntityPlasmaBullet extends Entity {
 		if (raytraceresult != null && !isDead) {
 			Entity target = raytraceresult.entityHit;
 			if (target != null) {
-				causeRangeDamage();
-				sprayEffect();
-				setDead();
+				if(shooter != null && shooter != target)
+				{
+					causeRangeDamage();
+					sprayEffect();
+					setDead();
+				}else if(shooter == null)
+				{
+					causeRangeDamage();
+					setDead();
+				}
 				return;
 			}
 		}
@@ -272,7 +279,7 @@ public class EntityPlasmaBullet extends Entity {
         compound.setInteger("ticksInAir", this.ticksInAir);
         compound.setFloat("velocity", this.velocity);
         compound.setInteger("maxExistTicks", this.maxExistTicks);
-        compound.setFloat("compound", this.power);
+        compound.setFloat("power", this.power);
 	}
 }
 
