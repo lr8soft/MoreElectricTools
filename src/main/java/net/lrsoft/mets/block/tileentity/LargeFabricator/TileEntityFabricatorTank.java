@@ -24,7 +24,7 @@ public class TileEntityFabricatorTank extends TileEntityTank implements IFabrica
 	private boolean isStructureCompleled = false;
 	
 	public TileEntityFabricatorTank() {
-		super(48);
+		super(128);
 	}
 	
 	public boolean addToOutputSlot(int amount)

@@ -569,6 +569,17 @@ public class BlockManager {
 						'M', oil_rig_base
 				});
 		
+		ItemStack dimension_oil_rig_core = teBlock.getItemStack(MetsBlockWithTileEntity.dimension_oil_rig_core);
+		Recipes.advRecipes.addRecipe(dimension_oil_rig_core, 
+				new Object[] {
+						"MCM",
+						"CSC",
+						"MCM",
+						'C', oil_rig_core,
+						'S', ItemCraftingManager.living_circuit,
+						'M', ItemCraftingManager.nano_living_metal
+				});
+		
 		ItemStack oil_rig_input = teBlock.getItemStack(MetsBlockWithTileEntity.oil_rig_input);
 		Recipes.advRecipes.addRecipe(oil_rig_input, 
 				new Object[] {

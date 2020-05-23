@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Vector;
 
 import ic2.core.block.TileEntityBlock;
-import ic2.core.init.Localization;
 import ic2.core.util.LiquidUtil;
 import net.lrsoft.mets.block.tileentity.OilRig.IOilRig.ModuleType;
 import net.lrsoft.mets.manager.BlockManager;
 import net.lrsoft.mets.manager.FluidManager;
 import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -20,51 +18,49 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fluids.FluidStack;
 
-public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore{
+public class TileEntityDimensionOilRigCore extends TileEntityBlock implements IOilRigCore{
 	private int currentTick = 0;
 	private boolean isStructureComplete = false;
 	private IOilRig inputPart = null, panelPart = null;
 	private Vector<IOilRig> outputPart = new Vector<>();
 	
-	private int offsetY = 0;
-	private int offsetFlag = 0;
-	private boolean isRigFinish = false, isTankFull = false , haveEnergy = false;
+	private int offsetX = 0, offsetY = 0, offsetZ = 0, offsetMode = 0, offsetValue = 1, offsetMoveTimes = 0;
+	private boolean offsetFlag = false, offsetUseTwice = false;
+	
+	private boolean isRigFinish = false, isTankFull = false , haveEnergy = false, isFirstRun = true;
 	private Vec3d tempCoord = new Vec3d(0, -2, 0);
 	@Override
 	protected void updateEntityServer() {
 		super.updateEntityServer();
-		if(currentTick % 25 == 0)
+		if(currentTick % 30 == 0)
 		{
 			checkStructureComplete();
 		}
 		
-		if(currentTick % 45 == 0 && isStructureComplete)
+		if(currentTick % 20 == 0 && isStructureComplete)
 		{
 			if(inputPart != null && outputPart.size() > 0)
 			{
 				TileEntityOilRigInput input = (TileEntityOilRigInput)inputPart;
 
-				if(input.canUseEnergy(1000.0d))
+				if(input.canUseEnergy(2000.0d))
 				{
-					try {
-						if (tryDrill()) {
-							boolean haveFillSuccess = false;
-							for (IOilRig outputSlot : outputPart) {
-								TileEntity output = (TileEntity) outputSlot;
-								int amount = LiquidUtil.fillTile(output, getFacing(),
-										new FluidStack(FluidManager.crudeOil, 100), false);
-								if (amount > 0) {
-									input.comsumeEnergy((amount / 100.0d) * 1000.0d);
-									haveFillSuccess = true;
-									break;
-								}
+					if (tryDrill()) {
+						boolean haveFillSuccess = false;
+						for (IOilRig outputSlot : outputPart) {
+							TileEntity output = (TileEntity) outputSlot;
+							int amount = LiquidUtil.fillTile(output, getFacing(),
+									new FluidStack(FluidManager.crudeOil, 100), false);
+							if (amount > 0) {
+								input.comsumeEnergy((amount / 100.0d) * 2000.0d);
+								haveFillSuccess = true;
+								break;
 							}
-						} else {
-							input.comsumeEnergy(500.0d);
 						}
-					} catch (Exception e) {
-						isRigFinish = true;
+					} else {
+						input.comsumeEnergy(1000.0d);
 					}
+
 					updatePanelInfo(true);
 					haveEnergy = true;
 				}else 
@@ -80,40 +76,66 @@ public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore
 		currentTick++;
 	}
 	
-	protected boolean tryDrill() throws Exception
+	protected boolean tryDrill()
 	{
-		Vec3d targetCoord;
-		if(offsetFlag < 9)
+		Vec3d targetCoord = new Vec3d(0, -2, 0);
+		if(offsetFlag)
 		{
-			targetCoord = coordGroup[offsetFlag];
-		}else if(offsetFlag >=9 && offsetFlag < 18){
-			targetCoord = coordGroup[offsetFlag - 9].scale(2.0d);
-			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
-		}else if(offsetFlag >=18 && offsetFlag < 27) {
-			targetCoord = coordGroup[offsetFlag - 18].scale(3.0d);
-			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
-		}else if(offsetFlag >=27 && offsetFlag < 36) {
-			targetCoord = coordGroup[offsetFlag - 27].scale(4.0d);
-			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
-		}else if(offsetFlag >=36 && offsetFlag < 45) {
-			targetCoord = coordGroup[offsetFlag - 36].scale(5.0d);
-			targetCoord = new Vec3d(targetCoord.x, -2, targetCoord.z);
+			offsetY = 0;//初始化y到两格以下
+	
+			switch(offsetMode)
+			{
+			case 0:
+				offsetZ-=1;break;
+			case 1:
+				offsetX-=1;break;
+			case 2:
+				offsetZ+=1;break;
+			case 3:
+				offsetX+=1;break;
+			default:
+				break;
+			}
+			offsetFlag = false;
 		}
-		else {
-			throw new Exception("OilRig Finish.");
-		}
-		
-		targetCoord = targetCoord.addVector(0.0d, -offsetY, 0.0d);
+		targetCoord = targetCoord.addVector(-offsetX, -offsetY, -offsetZ);
 		targetCoord = targetCoord.add(new Vec3d(this.pos));//转移到当前方块
 		tempCoord = new Vec3d(targetCoord.x, targetCoord.y, targetCoord.z);
 		Block blockTemp = this.world.getBlockState(new BlockPos(targetCoord)).getBlock();
 		if(blockTemp != Blocks.AIR)
 		{
 			offsetY++;
-			if(blockTemp == Blocks.BEDROCK)//到底了
+			if(blockTemp == Blocks.BEDROCK)//到底了，重新初始化变量
 			{
-				offsetY = 0;
-				offsetFlag++;
+				//System.out.println(isStructureComplete + " mode:" + offsetMode + " offsetValue:"+ offsetValue  +" twice:"+offsetUseTwice);
+				if(!isFirstRun)
+				{
+					if(offsetMoveTimes + 1 < offsetValue)
+					{
+						offsetMoveTimes++;
+					}else {
+						offsetMoveTimes = 0;
+						
+						if(offsetMode + 1 < 4)
+							offsetMode++;
+						else {
+							offsetMode = 0;
+						}
+						
+						if(offsetUseTwice)//每个偏移量最多使用两次
+						{
+							offsetValue++;//偏移量变大;
+							offsetUseTwice = false;
+						}else 
+						{
+							offsetUseTwice = true;
+						}
+					}
+				}else 
+				{
+					isFirstRun = false;
+				}
+				offsetFlag = true;
 				return false;
 			}
 			else if(blockTemp.getUnlocalizedName().contains("ore") || blockTemp.getUnlocalizedName().contains("Ore")
@@ -188,11 +210,40 @@ public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore
 		//顶上的
 		TileEntity centerTop = this.world.getTileEntity(pos.add(0, 1, 0));
 		TileEntity centerTopest = this.world.getTileEntity(pos.add(0, 2, 0));
+		
+		//侧翼
+		Vector<TileEntity> frontFlank = new Vector<>();
+		//前侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 0)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, -1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, -2)));
+		//后侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 0)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, -1)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, -2)));
+		//左侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(1, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(0, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-1, -1, 2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, 2)));
+		//右侧翼
+		frontFlank.add(this.world.getTileEntity(pos.add(2, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(1, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(0, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-1, -1, -2)));
+		frontFlank.add(this.world.getTileEntity(pos.add(-2, -1, -2)));
+		
+	
 		if(checkPortAndUpdate(frontPart) && checkPortAndUpdate(backPart) &&
 			checkPortAndUpdate(leftPart) && checkPortAndUpdate(rightPart) && 
 			checkPortAndUpdate(frontLeftPart) && checkPortAndUpdate(frontRightPart) && 
 			checkPortAndUpdate(backLeftart) && checkPortAndUpdate(backRightPart) &&
-			checkPortAndUpdate(centerTop) && checkPortAndUpdate(centerTopest))
+			checkPortAndUpdate(centerTop) && checkPortAndUpdate(centerTopest) && checkPortAndUpdate(frontFlank) ) 
 		{
 			((IOilRig)frontPart).setStructureComplete(true);
 			((IOilRig)backPart).setStructureComplete(true);
@@ -206,6 +257,12 @@ public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore
 			
 			((IOilRig)centerTop).setStructureComplete(true);
 			((IOilRig)centerTopest).setStructureComplete(true);
+			
+			for(TileEntity flankTileEntity : frontFlank)
+			{
+				((IOilRig)flankTileEntity).setStructureComplete(true);
+			}
+			
 			isStructureComplete = checkExtraPart();
 		}else 
 		{
@@ -219,8 +276,25 @@ public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore
 	{
 		boolean result = true;
 		List<Block> scaffoldList = new ArrayList<Block>();
-		for(int offset = 0; offset < 3; offset++)//顶上的脚手架
+		for(int offset = 0; offset < 4; offset++)//顶上的脚手架
 			scaffoldList.add(this.world.getBlockState(this.pos.add(0, 3 + offset, 0)).getBlock());
+		//侧天线
+		scaffoldList.add(this.world.getBlockState(this.pos.add(1, 5, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(-1, 5, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 5, 1)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 5, -1)).getBlock());
+		
+		//四个支架
+		scaffoldList.add(this.world.getBlockState(this.pos.add(3, 0, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(-3, 0, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 0, 3)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 0, -3)).getBlock());
+		
+		scaffoldList.add(this.world.getBlockState(this.pos.add(2, 1, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(-2, 1, 0)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 1, 2)).getBlock());
+		scaffoldList.add(this.world.getBlockState(this.pos.add(0, 1, -2)).getBlock());
+		
 		//接下来是侧边上空
 		for(int offset = 0; offset < 2; offset++)
 			scaffoldList.add(this.world.getBlockState(this.pos.add(1, 1 + offset, 0)).getBlock());
@@ -247,16 +321,30 @@ public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		NBTTagCompound nbtTagCompound = super.writeToNBT(compound);
+		nbtTagCompound.setInteger("offsetX", offsetX);
 		nbtTagCompound.setInteger("offsetY", offsetY);
-		nbtTagCompound.setInteger("offsetFlag", offsetFlag);
+		nbtTagCompound.setInteger("offsetZ", offsetZ);
+		nbtTagCompound.setInteger("offsetMode", offsetMode);
+		nbtTagCompound.setInteger("offsetValue", offsetValue);
+		nbtTagCompound.setBoolean("offsetUseTwice", offsetUseTwice);
+		nbtTagCompound.setBoolean("offsetFlag", offsetFlag);
+		nbtTagCompound.setInteger("offsetMoveTimes", offsetMoveTimes);
+		nbtTagCompound.setBoolean("isFirstRun", isFirstRun);
 		return nbtTagCompound;
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
+		offsetX = compound.getInteger("offsetX");
 		offsetY = compound.getInteger("offsetY");
-		offsetFlag = compound.getInteger("offsetFlag");
+		offsetZ = compound.getInteger("offsetZ");
+		offsetMode = compound.getInteger("offsetMode");
+		offsetValue = compound.getInteger("offsetValue");
+		offsetMoveTimes = compound.getInteger("offsetMoveTimes");
+		offsetUseTwice = compound.getBoolean("offsetUseTwice");
+		offsetFlag = compound.getBoolean("offsetFlag");
+		isFirstRun = compound.getBoolean("isFirstRun");
 	}
 	
 	private boolean checkPortAndUpdate(TileEntity te)
@@ -282,10 +370,18 @@ public class TileEntityOilRigCore extends TileEntityBlock implements IOilRigCore
 		return false;
 	}
 	
-	private final static Vec3d[] coordGroup = new Vec3d[] {
-			new Vec3d(0, -2, 0), new Vec3d(1, -2, 0), new Vec3d(-1, -2, 0),
-			new Vec3d(0, -2, 1), new Vec3d(0, -2, -1), new Vec3d(1, -2, 1), 
-			new Vec3d(1, -2, -1), new Vec3d(-1, -2, 1), new Vec3d(-1, -2, -1)
-	};
+	private boolean checkPortAndUpdate(Vector<TileEntity> te)
+	{
+		boolean result = true;
+		for(TileEntity tileEntity : te)
+		{
+			if(!checkPortAndUpdate(tileEntity))
+			{
+				result = false;
+			}
+		}
+		return result;
+	}
 
 }
+

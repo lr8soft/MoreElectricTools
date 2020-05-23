@@ -25,9 +25,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TileEntityBlendingMachine extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
 	public TileEntityBlendingMachine() {
 		super(50, 20, 1, 2);
-		//this.inputSlot = 
-		//		(InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack>)new InvSlotProcessableGeneric(
-		//				this, "input", 1, (IMachineRecipeManager)Recipes.metalformerRolling);
 		try {
 			Class<?> slotClass = VersionHelper.getTargetSlotClass();
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 

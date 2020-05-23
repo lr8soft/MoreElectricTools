@@ -33,8 +33,8 @@ public class TileEntityOilRigPanel extends TileEntityGUIMachine implements IOilR
 			if(tick % 15 == 0)
 			{
 				TileEntity te = this.world.getTileEntity(coreCoord);
-				if (te != null && te instanceof TileEntityOilRigCore) {
-					TileEntityOilRigCore core = (TileEntityOilRigCore) te;
+				if (te != null && te instanceof IOilRigCore) {
+					IOilRigCore core = (IOilRigCore) te;
 					Vec3d coord = core.getRigCoordinate();
 					digX = (int)coord.x;
 					digY = (int)coord.y;
