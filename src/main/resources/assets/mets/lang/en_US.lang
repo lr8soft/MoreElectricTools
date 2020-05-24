@@ -102,6 +102,7 @@ item.mets.uranium_rich_seed.name=Seed of Uranium Rich Crop
 item.mets.lead_rich_seed.name=Seed of Lead Rich Crop
 
 entity.Villager.smelter=Smelter
+entity.Villager.toolTrader=Industrial Tool Maker
 
 mets.te.lesu=LESU
 mets.te.eesu=§9EESU
