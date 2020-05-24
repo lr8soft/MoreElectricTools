@@ -21,6 +21,7 @@ public class JeiManager implements IModPlugin{
 		IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 		addMachineRecipes(registry, (IORecipeCategory)new DynamicCategory((ITeBlock)MetsBlockWithTileEntity.neutron_polymerizer, 
 				SpecialRecipesHelper.neutronPolymerizerRecipes, guiHelper), IRecipeWrapperGenerator.basicMachine);
+		
 	}
 	
 	private <T> void addMachineRecipes(IModRegistry registry, IORecipeCategory<T> category,

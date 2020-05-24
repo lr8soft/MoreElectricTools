@@ -103,6 +103,8 @@ item.mets.titanium_rich_seed.name=富钛种子
 item.mets.uranium_rich_seed.name=富铀种子
 item.mets.lead_rich_seed.name=富铅种子
 
+entity.Villager.smelter=冶炼学家
+
 mets.te.lesu=LESU储电箱
 mets.te.eesu=§9EESU储电箱
 mets.te.drop_generator=掉落物发电机

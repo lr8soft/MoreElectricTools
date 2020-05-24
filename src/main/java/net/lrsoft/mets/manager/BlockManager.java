@@ -113,7 +113,7 @@ public class BlockManager {
 	public static void onBlockRecipeInit()
 	{
 		BlockTileEntity teBlock = TeBlockRegistry.get(MetsBlockWithTileEntity.loc);
-		
+
 		ItemStack lesuStack = teBlock.getItemStack(MetsBlockWithTileEntity.lesu);
 		Recipes.advRecipes.addRecipe(lesuStack, 
 				new Object[] {
