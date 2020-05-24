@@ -173,6 +173,7 @@ public class ItemCraftingManager {
 		event.getRegistry().register(neutron_plate);
 	}
 	
+	
 	public static void onCraftingItemModelInit()
 	{
 		ModelLoader.setCustomModelResourceLocation(niobium_crushed, 0,
@@ -269,7 +270,8 @@ public class ItemCraftingManager {
 		OreDictionary.registerOre("plateNiobiumTitanium", niobium_titanium_plate);
 		
 		OreDictionary.registerOre("cableSuperconducting", superconducting_cable);
-		OreDictionary.registerOre("superCircuit", super_circuit);
+		OreDictionary.registerOre("circuitElite", super_circuit);
+		OreDictionary.registerOre("circuitUltimate", living_circuit);
 		
 		OreDictionary.registerOre("nuggetCopper", copper_nugget);
 		OreDictionary.registerOre("nuggetTin", tin_nugget);

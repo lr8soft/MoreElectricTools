@@ -109,25 +109,24 @@ public class EntityTachyonBullet extends Entity {
         if (raytraceresult != null && !isDead && canAttackTimes - 1 >= 0)
         {
             Entity target = raytraceresult.entityHit;
-            if (target != null)
+            if (target != null && shooter != target)
             {
             	target.hurtResistantTime = 0;
             	
-            	float normalDamage = 0.333f * power;
-            	if(shooter != null)
+            	
+            	if(shooter != null && shooter != target)
             	{
+            		float normalDamage = 0.333f * power;
+            		float directDamage = 0.667f * power;
             		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), normalDamage);
-            	}else {
-            		target.attackEntityFrom(DamageSource.GENERIC, normalDamage);
+                	if(target instanceof EntityLivingBase)
+                	{
+                		EntityLivingBase enemyTarget  = (EntityLivingBase)target;
+                		enemyTarget.setHealth(enemyTarget.getHealth() - directDamage);
+                	}
+                	sprayEffect();
             	}
             	
-            	float directDamage = 0.667f * power;
-            	if(target instanceof EntityLivingBase)
-            	{
-            		EntityLivingBase enemyTarget  = (EntityLivingBase)target;
-            		enemyTarget.setHealth(enemyTarget.getHealth() - directDamage);
-            	}
-            	sprayEffect();
             	canAttackTimes--;
 
             }

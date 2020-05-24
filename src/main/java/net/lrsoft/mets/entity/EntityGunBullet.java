@@ -115,13 +115,11 @@ public class EntityGunBullet extends Entity implements IProjectile{
             {
             	target.hurtResistantTime = 0;
             	
-            	if(shooter != null)
+            	if(shooter != null && target != shooter)
             	{
             		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);
-            	}else {
-            		target.attackEntityFrom(DamageSource.GENERIC, power);
+                	sprayEffect();
             	}
-            	sprayEffect();
             	setDead();
             	return;
             }

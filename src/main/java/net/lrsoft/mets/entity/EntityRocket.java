@@ -162,7 +162,7 @@ public class EntityRocket extends Entity {
         
         if (!this.hasNoGravity())
         {
-            this.motionY -= 0.06d;
+            this.motionY -= 0.03d;
         }
 
         this.setPosition(this.posX, this.posY, this.posZ);
