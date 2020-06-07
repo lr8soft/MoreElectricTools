@@ -1,5 +1,8 @@
 package net.lrsoft.mets.block.tileentity;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import ic2.api.recipe.ILiquidAcceptManager;
 import ic2.api.recipe.ISemiFluidFuelManager;
 import ic2.core.block.TileEntityBlock;
@@ -12,6 +15,7 @@ import ic2.core.block.invslot.InvSlotOutput;
 import ic2.core.network.GuiSynced;
 import net.lrsoft.mets.util.SpecialRecipesHelper;
 import net.lrsoft.mets.util.VersionHelper;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
@@ -30,7 +34,7 @@ public class TileEntityDieselGenerator extends TileEntityBaseGenerator {
 				Fluids.fluidPredicate((ILiquidAcceptManager)SpecialRecipesHelper.dieselGeneratorAcceptManager));
 		
 		try {
-			Class<?> slotClass = VersionHelper.getTargetSlotClass();
+			Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 			this.fluidSlot = 
 					InvSlotConsumableLiquidByManager.class.getConstructor(slotClass, String.class, int.class, ILiquidAcceptManager.class)
 					 .newInstance(slotClass.cast(this), "fluidSlot", 1, (ILiquidAcceptManager)SpecialRecipesHelper.dieselGeneratorAcceptManager);
@@ -56,29 +60,96 @@ public class TileEntityDieselGenerator extends TileEntityBaseGenerator {
 
 		FluidStack ret = this.fluidTank.drain(Integer.MAX_VALUE, false);
 		if (ret != null) {
-			ISemiFluidFuelManager.BurnProperty property = SpecialRecipesHelper.dieselGeneratorAcceptManager.getBurnProperty(ret.getFluid());
-			if (property != null) {
-				int rate = 0;
-				if(ret.amount >= property.amount * 3)
+			if(VersionHelper.getIsFiuldNewVersion())
+			{
+				try {
+					dirty = gainFuelNew(ret);
+				}catch(Exception expt)
 				{
-					rate = 3;
+					System.out.println("[METS]:Incompatible IC2 version.\n" );
+					expt.printStackTrace();
 				}
-				else if(ret.amount < property.amount * 3 && ret.amount >= property.amount * 2)
+			}
+			else {
+				try {
+					dirty = gainFuelOld(ret);
+				}catch(Exception expt)
 				{
-					rate = 2;
+					System.out.println("[METS]:Incompatible IC2 version.\n" );
+					expt.printStackTrace();
 				}
-				else if(ret.amount < property.amount * 2 && ret.amount>= property.amount)
-				{
-					rate = 1;
-				}
-				this.fluidTank.drainInternal(property.amount * rate, true);
-				this.production = property.power * 1.5d * rate;
-				this.fuel += property.amount * rate;
-				dirty = (rate > 0 ) ? true : false;
 			}
 		}
-
 		return dirty;
+	}
+	
+	private boolean gainFuelOld(FluidStack stack) throws Exception
+	{
+		//get Inner class
+		Class burnPropertyClass = Class.forName("ic2.api.recipe.ISemiFluidFuelManager$BurnProperty");
+		//get Method
+		Method getBurnPropertyMethod = ISemiFluidFuelManager.class.getMethod("getBurnProperty", FluidStack.class);
+		Object burnPropertyObject =  getBurnPropertyMethod.invoke( SpecialRecipesHelper.dieselGeneratorAcceptManager, stack);
+		if(burnPropertyObject != null)
+		{
+			Object castBurnPropertyObject = burnPropertyClass.cast(burnPropertyObject);
+			
+			Field amountField = burnPropertyClass.getDeclaredField("amount");
+			Field powerField = burnPropertyClass.getDeclaredField("power");		
+			
+			int amount = amountField.getInt(castBurnPropertyObject);
+			double power = powerField.getDouble(castBurnPropertyObject);
+			int rate = 0;
+			
+			if(stack.amount >= amount * 3)
+			{
+				rate = 3;
+			}
+			else if(stack.amount < amount * 3 && stack.amount >= amount * 2)
+			{
+				rate = 2;
+			}
+			else if(stack.amount < amount * 2 && stack.amount>= amount)
+			{
+				rate = 1;
+			}
+			this.fluidTank.drainInternal(amount * rate, true);
+			this.production = power * 1.5d * rate;
+			this.fuel += amount * rate;
+			return (rate > 0 ) ;
+		}
+		return false;
+	}
+	
+	private boolean gainFuelNew(FluidStack stack) throws Exception{
+		// get Inner class
+		Class fuelPropertyClass = Class.forName("ic2.api.recipe.ISemiFluidFuelManager$FuelProperty");
+		Method getFuelPropertyMethod = ISemiFluidFuelManager.class.getMethod("getFuelProperty", Fluid.class);
+		Object fuelPropertyObject = getFuelPropertyMethod.invoke(SpecialRecipesHelper.dieselGeneratorAcceptManager,
+				stack.getFluid());
+		if (fuelPropertyObject != null) {
+			Object castFuelPropertyObject = fuelPropertyClass.cast(fuelPropertyObject);
+			// ISemiFluidFuelManager.FuelProperty property =
+			// Recipes.semiFluidGenerator.getFuelProperty(stack.getFluid());
+
+			Field energyPerMbField = fuelPropertyClass.getDeclaredField("energyPerMb");
+			Field energyPerTickField = fuelPropertyClass.getDeclaredField("energyPerTick");
+
+			long energyPerMb = energyPerMbField.getLong(castFuelPropertyObject);
+			long energyPerTick = energyPerTickField.getLong(castFuelPropertyObject);
+
+			int toBeConsumed = (energyPerMb >= energyPerTick) ? 1 : (int) Math.ceil(energyPerTick / energyPerMb);
+			toBeConsumed = Math.min(toBeConsumed, stack.amount);
+
+			if (stack.amount >= toBeConsumed) {
+				this.fluidTank.drainInternal(toBeConsumed, true);
+
+				this.production = energyPerTick * 1.5;
+				this.fuel = (int) (this.fuel + toBeConsumed * energyPerMb);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getOperationSoundFile() {

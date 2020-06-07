@@ -43,6 +43,6 @@ public class SpecialRecipesHelper {
 		neutronPolymerizerRecipes.addRecipe(Recipes.inputFactory.forStack(new ItemStack(Items.COAL)),
 				null, false,new ItemStack[] {new ItemStack(Items.DIAMOND)});
 		
-		dieselGeneratorAcceptManager.addFluid(FluidManager.dieselOil.getName(), 5, 80.0d);
+		dieselGeneratorAcceptManager.addFluid(FluidManager.dieselOil.getName(), 5, 80);
 	}
 }

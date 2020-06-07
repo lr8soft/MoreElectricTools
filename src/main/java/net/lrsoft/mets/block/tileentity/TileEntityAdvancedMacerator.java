@@ -26,7 +26,7 @@ public class TileEntityAdvancedMacerator extends TileEntityStandardMachine<IReci
 		 super(5, 150, 1, 2); 
 
 		 try {
-			Class<?> slotClass = VersionHelper.getTargetSlotClass();
+			Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
 					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
 					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)Recipes.macerator);

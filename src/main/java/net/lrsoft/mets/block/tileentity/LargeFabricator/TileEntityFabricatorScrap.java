@@ -22,7 +22,7 @@ public class TileEntityFabricatorScrap extends TileEntityGUIMachine implements I
 	{
 		super(0, 14);
 		 try {
-			Class<?> slotClass = VersionHelper.getTargetSlotClass();
+			Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 			InvSlotProcessable<?, ?, ?> newInputSlot = 
 					InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class,IMachineRecipeManager.class)
 					.newInstance(slotClass.cast(this), "scrap", 1, (IMachineRecipeManager<?, ?, ?>)Recipes.matterAmplifier);

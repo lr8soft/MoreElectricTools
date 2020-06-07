@@ -536,7 +536,10 @@ public class ItemManager {
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
 		
 		//Other
-		Recipes.semiFluidGenerator.addFluid("ic2creosote", 10,  Math.round(8.0f));
+		try {
+			Recipes.semiFluidGenerator.addFluid("ic2creosote", 10, 8);
+		}catch(Exception expt)
+		{}
 	}	
 	
 	private static ItemStack getAllTypeStack(ItemStack itemstack) {

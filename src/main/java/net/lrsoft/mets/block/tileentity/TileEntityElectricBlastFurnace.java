@@ -27,7 +27,7 @@ public class TileEntityElectricBlastFurnace extends TileEntityStandardMachine<IR
 		super(8000, 60, 2, 5);
 
 		try {
-			Class<?> slotClass = VersionHelper.getTargetSlotClass();
+			Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
 					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
 					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)Recipes.blastfurnace);
