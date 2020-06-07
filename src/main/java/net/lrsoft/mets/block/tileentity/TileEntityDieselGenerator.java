@@ -88,8 +88,8 @@ public class TileEntityDieselGenerator extends TileEntityBaseGenerator {
 		//get Inner class
 		Class burnPropertyClass = Class.forName("ic2.api.recipe.ISemiFluidFuelManager$BurnProperty");
 		//get Method
-		Method getBurnPropertyMethod = ISemiFluidFuelManager.class.getMethod("getBurnProperty", FluidStack.class);
-		Object burnPropertyObject =  getBurnPropertyMethod.invoke( SpecialRecipesHelper.dieselGeneratorAcceptManager, stack);
+		Method getBurnPropertyMethod = ISemiFluidFuelManager.class.getMethod("getBurnProperty", Fluid.class);
+		Object burnPropertyObject =  getBurnPropertyMethod.invoke( SpecialRecipesHelper.dieselGeneratorAcceptManager, stack.getFluid());
 		if(burnPropertyObject != null)
 		{
 			Object castBurnPropertyObject = burnPropertyClass.cast(burnPropertyObject);

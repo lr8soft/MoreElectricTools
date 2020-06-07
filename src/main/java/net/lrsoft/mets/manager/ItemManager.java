@@ -37,6 +37,7 @@ import net.lrsoft.mets.item.weapon.NanoBow;
 import net.lrsoft.mets.item.weapon.PlasmaAirCannon;
 import net.lrsoft.mets.item.weapon.TachyonDisruptor;
 import net.lrsoft.mets.item.weapon.TacticalLaserSubmachineGun;
+import net.lrsoft.mets.util.SpecialRecipesHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -536,10 +537,15 @@ public class ItemManager {
 		JetpackAttachmentRecipe.blacklistedItems.add(advancedJetPack);
 		
 		//Other
-		try {
-			Recipes.semiFluidGenerator.addFluid("ic2creosote", 10, 8);
+		//Recipes.semiFluidGenerator.addFluid("ic2creosote", 10L, 8L);
+		try 
+		{
+			SpecialRecipesHelper.onInitLiquidRecipe();
 		}catch(Exception expt)
-		{}
+		{
+			System.out.println("[METS]:Fail to init liquid recipe.");
+			expt.printStackTrace();
+		}
 	}	
 	
 	private static ItemStack getAllTypeStack(ItemStack itemstack) {

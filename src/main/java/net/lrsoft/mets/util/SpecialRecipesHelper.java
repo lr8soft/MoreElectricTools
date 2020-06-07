@@ -1,5 +1,7 @@
 package net.lrsoft.mets.util;
 
+import java.lang.reflect.Method;
+
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.ILiquidAcceptManager;
@@ -43,6 +45,19 @@ public class SpecialRecipesHelper {
 		neutronPolymerizerRecipes.addRecipe(Recipes.inputFactory.forStack(new ItemStack(Items.COAL)),
 				null, false,new ItemStack[] {new ItemStack(Items.DIAMOND)});
 		
-		dieselGeneratorAcceptManager.addFluid(FluidManager.dieselOil.getName(), 5, 80);
+
+	}
+	
+	public static void onInitLiquidRecipe() throws Exception
+	{
+		if(VersionHelper.getIsFiuldNewVersion())
+		{
+			Method addFluid = ISemiFluidFuelManager.class.getMethod("addFluid", String.class, long.class, long.class);
+			addFluid.invoke(dieselGeneratorAcceptManager, FluidManager.dieselOil.getName(), 5L, 80L);
+		}else 
+		{
+			Method addFluid = ISemiFluidFuelManager.class.getMethod("addFluid", String.class, int.class, double.class);
+			addFluid.invoke(dieselGeneratorAcceptManager, FluidManager.dieselOil.getName(), 5, 80.0d);
+		}
 	}
 }
