@@ -29,7 +29,7 @@ public class TileEntityNeutronPolymerizer  extends TileEntityStandardMachine<IRe
 		super(1536, 1500, 1, 5);
 
 		try {
-			Class<?> slotClass = VersionHelper.getTargetSlotClass();
+			Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
 					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
 					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)SpecialRecipesHelper.neutronPolymerizerRecipes);

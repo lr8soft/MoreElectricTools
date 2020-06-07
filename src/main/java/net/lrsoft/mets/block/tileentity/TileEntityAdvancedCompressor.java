@@ -28,7 +28,7 @@ public class TileEntityAdvancedCompressor extends TileEntityStandardMachine<IRec
 	public TileEntityAdvancedCompressor() 
 	{
 		super(25, 70, 1, 2);
-		Class<?> slotClass = VersionHelper.getTargetSlotClass();
+		Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 		try {
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
 					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)

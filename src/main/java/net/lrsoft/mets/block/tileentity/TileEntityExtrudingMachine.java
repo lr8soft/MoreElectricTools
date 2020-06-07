@@ -27,7 +27,7 @@ public class TileEntityExtrudingMachine extends TileEntityStandardMachine<IRecip
 	public TileEntityExtrudingMachine() {
 		super(50, 20, 1, 2);
 		try {
-			Class<?> slotClass = VersionHelper.getTargetSlotClass();
+			Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
 					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
 					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)Recipes.metalformerExtruding);
