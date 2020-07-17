@@ -55,8 +55,9 @@ public class TileEntityFabricatorScrap extends TileEntityGUIMachine implements I
 			this.scrapValue-=value;
 			return value;
 		}else if(this.scrapValue > 0){
-			this.scrapValue = 0;
-			return scrapValue;
+			float returnValue = scrapValue;
+			scrapValue = 0;
+			return returnValue;
 		}
 		return 0;
 	}

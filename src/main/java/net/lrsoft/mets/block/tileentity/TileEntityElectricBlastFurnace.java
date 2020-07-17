@@ -24,13 +24,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityElectricBlastFurnace extends TileEntityStandardMachine<IRecipeInput, Collection<ItemStack>, ItemStack>{
 	public TileEntityElectricBlastFurnace() {
-		super(8000, 60, 2, 5);
+		super(8000, 40, 1, 5);
 
 		try {
 			Class<?> slotClass = VersionHelper.getTargetItemSlotClass();
 			InvSlotProcessable<IRecipeInput, Collection<ItemStack>, ItemStack> newInputSlot = 
 					 InvSlotProcessableGeneric.class.getConstructor(slotClass, String.class, int.class, IMachineRecipeManager.class)
-					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)Recipes.blastfurnace);
+					 .newInstance(slotClass.cast(this), "input", 1, (IMachineRecipeManager)SpecialRecipesHelper.electricBlastFurnaceRecipes);
 			this.inputSlot = newInputSlot;
 		} catch (Exception e) {
 			e.printStackTrace();
