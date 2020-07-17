@@ -33,15 +33,6 @@ public class ElectricFireProofNecklace extends UniformBaubleTemplate{
 	
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-		if(!player.isInLava())
-		{
-			player.extinguish();
-		}else 
-		{
-			if (player.ticksExisted % 25 == 0 && ElectricItem.manager.use(itemstack, 20, player)) {
-				player.extinguish();
-				player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 25, 0, true, true));
-			}
-		}
+		player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 20, 2));
 	}
 }

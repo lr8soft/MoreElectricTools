@@ -1,11 +1,18 @@
 package net.lrsoft.mets.util;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
 
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.ILiquidAcceptManager;
+import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.ISemiFluidFuelManager;
+import ic2.api.recipe.MachineRecipe;
+import ic2.api.recipe.MachineRecipeResult;
 import ic2.api.recipe.Recipes;
 import ic2.core.SemiFluidFuelManager;
 import ic2.core.recipe.BasicMachineRecipeManager;
@@ -16,8 +23,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class SpecialRecipesHelper {
-	public static IBasicMachineRecipeManager neutronPolymerizerRecipes = new BasicMachineRecipeManager();;
+	public static IBasicMachineRecipeManager neutronPolymerizerRecipes = new BasicMachineRecipeManager();
 	public static ISemiFluidFuelManager dieselGeneratorAcceptManager = new SemiFluidFuelManager();
+	
+	public static  IBasicMachineRecipeManager electricBlastFurnaceRecipes =  new BasicMachineRecipeManager();
 	static 
 	{
 		neutronPolymerizerRecipes.addRecipe(Recipes.inputFactory.forStack(new ItemStack(ItemCraftingManager.nano_living_metal)),
@@ -45,7 +54,32 @@ public class SpecialRecipesHelper {
 		neutronPolymerizerRecipes.addRecipe(Recipes.inputFactory.forStack(new ItemStack(Items.COAL)),
 				null, false,new ItemStack[] {new ItemStack(Items.DIAMOND)});
 		
-
+		onInitElectricBlastFurnace();
+	}
+	
+	protected static void onInitElectricBlastFurnace()
+	{
+		Iterable<? extends MachineRecipe<IRecipeInput, Collection<ItemStack>>> irIterator = Recipes.blastfurnace.getRecipes();
+		Iterator<? extends MachineRecipe<IRecipeInput, Collection<ItemStack>>> iterator = irIterator.iterator();
+		
+		while(iterator.hasNext())
+		{
+			MachineRecipe<IRecipeInput, Collection<ItemStack>> result = iterator.next();
+			Collection<ItemStack> output = result.getOutput();
+			
+			Iterator<ItemStack> kIterator = output.iterator();
+			ItemStack[] group = new ItemStack[1];
+			while(kIterator.hasNext())
+			{
+				ItemStack nextItem = kIterator.next();
+				if(!nextItem.getUnlocalizedName().equals("ic2.misc_resource.slag"))
+				{
+					group[0] = nextItem;
+					break;
+				}
+			}
+			electricBlastFurnaceRecipes.addRecipe(result.getInput(), result.getMetaData(), false, group);
+		}
 	}
 	
 	public static void onInitLiquidRecipe() throws Exception
