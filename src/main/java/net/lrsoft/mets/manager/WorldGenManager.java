@@ -35,7 +35,7 @@ public class WorldGenManager implements IWorldGenerator {
 		case 1:  break;
 		case -1: break;
 		default:
-			this.runGenerator(this.niobiumOre, world, random, chunkX, chunkZ, 11, 0, 75);
+			this.runGenerator(this.niobiumOre, world, random, chunkX, chunkZ, 15, 0, 75);
 			this.runGenerator(this.titaniumOre, world, random, chunkX, chunkZ, 18, 0, 75);	
 		}
 

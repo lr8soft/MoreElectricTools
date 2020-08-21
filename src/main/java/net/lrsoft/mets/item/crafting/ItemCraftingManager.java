@@ -265,11 +265,10 @@ public class ItemCraftingManager {
 		OreDictionary.registerOre("pileThorium", thorium_pile);
 		OreDictionary.registerOre("dustThorium", thorium_dust);
 		
-		OreDictionary.registerOre("dustNiobiumTitanium", niobium_titanium_dust);
+		/*OreDictionary.registerOre("dustNiobiumTitanium", niobium_titanium_dust);
 		OreDictionary.registerOre("ingotNiobiumTitanium", niobium_titanium_ingot);
-		OreDictionary.registerOre("plateNiobiumTitanium", niobium_titanium_plate);
+		OreDictionary.registerOre("plateNiobiumTitanium", niobium_titanium_plate);*/
 		
-		OreDictionary.registerOre("cableSuperconducting", superconducting_cable);
 		OreDictionary.registerOre("circuitElite", super_circuit);
 		OreDictionary.registerOre("circuitUltimate", living_circuit);
 		
@@ -277,8 +276,6 @@ public class ItemCraftingManager {
 		OreDictionary.registerOre("nuggetTin", tin_nugget);
 		OreDictionary.registerOre("nuggetTitanium", titanium_nugget);
 		OreDictionary.registerOre("nuggetLead", lead_nugget);
-		
-		OreDictionary.registerOre("plateNeutron", neutron_plate);
 	}
 	
 	public static void onCraftingItemRecipeInit()
@@ -356,7 +353,7 @@ public class ItemCraftingManager {
 						"ASA",
 						"ASA",
 						'A', IC2Items.getItem("plate", "steel"),
-						'S', titanium_plate
+						'S', Recipes.inputFactory.forOreDict("plateTitanium")//titanium_plate
 				});
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(super_iridium_alloy), //super_iridium_blade
@@ -458,7 +455,7 @@ public class ItemCraftingManager {
 						"LSL",
 						"TLT",
 						'S', Items.ENDER_EYE,
-						'L', living_circuit,
+						'L', Recipes.inputFactory.forOreDict("circuitUltimate"),//living_circuit,
 						'T', superconducting_cable
 				});
 		

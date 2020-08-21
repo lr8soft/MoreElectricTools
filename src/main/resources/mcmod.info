@@ -2,8 +2,8 @@
 {
   "modid": "mets",
   "name": "More Electric Tools",
-  "description":"An addon mod for Industrial Craft 2 Experimental",
-  "version": "1.631",
+  "description":"An IC2EXP addon mod",
+  "version": "1.632",
   "mcversion": "1.12.2",
   "url": "http://lrsoft.azurewebsites.net/",
   "updateUrl": "",

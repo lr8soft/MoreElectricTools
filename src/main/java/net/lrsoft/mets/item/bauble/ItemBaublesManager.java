@@ -49,7 +49,7 @@ public class ItemBaublesManager {
 						"SSS",
 						"BCB",
 						"LSL",
-						'S', ItemCraftingManager.titanium_casing,
+						'S', Recipes.inputFactory.forOreDict("casingTitanium"),//ItemCraftingManager.titanium_casing,
 						'C', IC2Items.getItem("crafting", "advanced_circuit"),
 						'L', Items.BLAZE_ROD,
 						'B', ItemStackUtils.getAllTypeStack(ItemManager.lithiumBattery)
@@ -62,7 +62,7 @@ public class ItemBaublesManager {
 						"PSP",
 						'P', IC2Items.getItem("crafting", "carbon_plate"),
 						'S', IC2Items.getItem("crafting", "advanced_circuit"),
-						'C', ItemCraftingManager.titanium_plate,
+						'C', Recipes.inputFactory.forOreDict("plateTitanium"),//ItemCraftingManager.titanium_plate,
 						'B', ItemStackUtils.getAllTypeStack(IC2Items.getItem("energy_crystal"))
 				});	
 		
@@ -72,7 +72,7 @@ public class ItemBaublesManager {
 						"BTB",
 						"PSP",
 						'P', ItemCraftingManager.niobium_titanium_plate,
-						'S', ItemCraftingManager.super_circuit,
+						'S', Recipes.inputFactory.forOreDict("circuitElite"),//ItemCraftingManager.super_circuit,
 						'T', ItemStackUtils.getAllTypeStack(energyCrystalBelt),
 						'B', ItemStackUtils.getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
 				});	
@@ -96,7 +96,7 @@ public class ItemBaublesManager {
 						"SBS",
 						"DJD",
 						'S', ItemCraftingManager.niobium_titanium_plate,
-						'C', ItemCraftingManager.super_circuit,
+						'C',  Recipes.inputFactory.forOreDict("circuitElite"),//ItemCraftingManager.super_circuit,
 						'B', ItemStackUtils.getAllTypeStack(IC2Items.getItem("lapotron_crystal")),
 						'D', IC2Items.getItem("dust", "energium"),
 						'J', ItemStackUtils.getAllTypeStack(ItemManager.advancedJetPack)

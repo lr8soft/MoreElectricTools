@@ -48,7 +48,7 @@ public class TileEntityFabricatorCore extends TileEntityBlock{
 			if(inputTemp.canConsume(inputTemp.getMaxEnergy()))
 			{
 				TileEntityFabricatorTank outputTemp = (TileEntityFabricatorTank) outputPart;
-				if (outputTemp.addToOutputSlot(1)) {
+				if (outputTemp != null && outputTemp.addToOutputSlot(1)) {
 					float discount = (scrapSlot == null) ? 0.0f : scrapSlot.consumeScrapValue((float)inputTemp.getMaxEnergy());
 					inputTemp.consumeEnergy(inputTemp.getMaxEnergy() - discount);
 				}
