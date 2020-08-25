@@ -317,10 +317,10 @@ public class ItemCraftingManager {
 		metablastfurnace.setInteger("fluid", 4);
 		metablastfurnace.setInteger("duration", 1000);
 		
-		Recipes.blastfurnace.addRecipe(Recipes.inputFactory.forOreDict("dustNiobiumTitanium"), metablastfurnace, false, 
+		Recipes.blastfurnace.addRecipe(Recipes.inputFactory.forStack(new ItemStack(niobium_titanium_dust)), metablastfurnace, false, 
 				new ItemStack[] {new ItemStack(niobium_titanium_ingot),IC2Items.getItem("misc_resource", "slag")});
 		
-		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forOreDict("ingotNiobiumTitanium"),
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(niobium_titanium_ingot)),
 				null, false, new ItemStack(niobium_titanium_plate));
 		
 		//Nano robot

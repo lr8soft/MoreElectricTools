@@ -56,6 +56,7 @@ minecraft {
 dependencies {
     deobfCompile "mezz.jei:jei_1.12.2:4.13.1.220"
     compile files ("libs/industrialcraft-2-2.8.218-ex112-dev.jar")
+    compile files ("libs/SlashBlade-mc1.12-r32-deobf.jar")
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
     //shade "com.azanor.baubles:Baubles:1.12-1.5.2"
 }

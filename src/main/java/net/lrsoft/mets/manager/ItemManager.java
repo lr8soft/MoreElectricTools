@@ -23,6 +23,7 @@ import net.lrsoft.mets.item.battery.LithiumBattery;
 import net.lrsoft.mets.item.battery.SuperLapotronCrystal;
 import net.lrsoft.mets.item.battery.ThoriumBattery;
 import net.lrsoft.mets.item.bauble.ItemBaublesManager;
+import net.lrsoft.mets.item.blade.BladeManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.item.rotor.SuperIridiumRotor;
@@ -178,6 +179,11 @@ public class ItemManager {
 		if (Loader.isModLoaded(Baubles.MODID)) 
 		{
 			ItemBaublesManager.onBaublesInit(event);
+		}
+		
+		if (Loader.isModLoaded("flammpfeil.slashblade")) 
+		{
+			//BladeManager.onBladeInit();
 		}
 	}
 	// new ItemStack(IC2Items.getItem("lapotron_crystal").getItem(), 1, OreDictionary.WILDCARD_VALUE),//IC2Items.getItem("energy_crystal"),
