@@ -182,3 +182,21 @@ mets.info.rig.noenergy=No energy input
 mets.info.geomagnetic_detector=Current geomagnetic intensity: %d
 
 enchantment.efficient_energy_cost=Energy Saving
+enchantment.level.12=§f「§eHighest Limit§f」
+
+item.flammpfeil.slashblade.named.bloodrev_extra.name=§6 God Forged Steel Blade§c 「Bloody Innovation」
+item.flammpfeil.slashblade.named.craftrev_extra.name=§6 God Forged Steel Blade§3 「Craft Renaissance」
+item.flammpfeil.slashblade.named.mrblade_final.name=§bSpirit Steel Blade§9 「Technical Innovation」
+item.flammpfeil.slashblade.named.kineticenergyblade_final.name=§bSpirit Steel Blade§e「Conservation of Energy」
+item.flammpfeil.slashblade.named.trblade_first.name=Steel Blade 「The First」
+item.flammpfeil.slashblade.named.hyperblade_second.name=Steel Blade 「Nano Technology」
+flammpfeil.slashblade.specialattack.SA_HighEnergyParticleFlow_alpha=§9HighEnergyParticleFlow§6EX
+flammpfeil.slashblade.specialattack.SA_EnergyLevelTransition=EnergyLevelTransition
+flammpfeil.slashblade.specialattack.SA_KineticImpact=Theorem of momentum
+flammpfeil.slashblade.specialattack.SA_BloodRev=§6Hyper System,§c 起動!
+flammpfeil.slashblade.specialattack.SA_CraftRev=§6High Speed ​​Phantom Sword§c-γ
+
+slashblade.seffect.name.CraftRevSE=§9 Shenjin·Karma
+slashblade.seffect.name.BloodRevSE=§9 Shenjin·Leebo
+slashblade.seffect.name.KineticSE=§3 Inch Jin·Arrow
+slashblade.seffect.name.MrbladeSE=§b Dead Force·Exterminator

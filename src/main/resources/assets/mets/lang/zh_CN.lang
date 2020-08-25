@@ -1,4 +1,4 @@
-
+﻿
 itemGroup.metsTabs=[METS]更多电力装置
 
 tile.mets.niobium_ore.name=铌矿石
@@ -180,3 +180,19 @@ mets.info.rig.noenergy=无能量输入
 mets.info.geomagnetic_detector=当前地磁强度：%d
 
 enchantment.efficient_energy_cost=节能
+enchantment.level.12=§f「§e至高极限§f」
+item.flammpfeil.slashblade.named.bloodrev_extra.name=§6神钢刃§c「血腥革新」
+item.flammpfeil.slashblade.named.craftrev_extra.name=§6神钢刃§3「工艺复兴」
+item.flammpfeil.slashblade.named.mrblade_final.name=§b灵钢刃§9「技术革新」
+item.flammpfeil.slashblade.named.kineticenergyblade_final.name=§b灵钢刃§e「能量守恒」
+item.flammpfeil.slashblade.named.trblade_first.name=钢刃「源初」
+item.flammpfeil.slashblade.named.hyperblade_second.name=钢刃「纳米科技」
+flammpfeil.slashblade.specialattack.SA_HighEnergyParticleFlow_alpha=§9高能粒子流§6EX
+flammpfeil.slashblade.specialattack.SA_EnergyLevelTransition=能级跃迁
+flammpfeil.slashblade.specialattack.SA_KineticImpact=动量定理
+flammpfeil.slashblade.specialattack.SA_BloodRev=§6Hyper System,§c起動！
+flammpfeil.slashblade.specialattack.SA_CraftRev=§6高速幻影剑§c-γ
+slashblade.seffect.name.CraftRevSE=§9神劲·火矢
+slashblade.seffect.name.BloodRevSE=§9神劲·烈波
+slashblade.seffect.name.KineticSE=§3寸劲·箭矢
+slashblade.seffect.name.MrbladeSE=§b死劲·灭咒

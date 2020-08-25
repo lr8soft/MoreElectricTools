@@ -12,6 +12,8 @@ import net.lrsoft.mets.entity.EntityPlasmaBullet;
 import net.lrsoft.mets.entity.EntityRocket;
 import net.lrsoft.mets.entity.EntityTachyonBullet;
 import net.lrsoft.mets.item.bauble.ItemBaublesManager;
+import net.lrsoft.mets.item.blade.BladeManager;
+import net.lrsoft.mets.item.blade.BladeModelManager;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.item.reactor.ReactorItemManager;
 import net.lrsoft.mets.renderer.BulletRenderer;
@@ -126,6 +128,11 @@ public class ModelManager {
 		if (Loader.isModLoaded(Baubles.MODID))
 		{
 			ItemBaublesManager.onBaublesModelInit();
+		}
+		
+		if (Loader.isModLoaded("flammpfeil.slashblade")) 
+		{
+			BladeModelManager.onModelInit();
 		}
 	}	
 	
