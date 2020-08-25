@@ -1,5 +1,6 @@
 package net.lrsoft.mets.item.blade;
 
+import ic2.api.item.IC2Items;
 import mods.flammpfeil.slashblade.ItemSlashBladeNamed;
 import mods.flammpfeil.slashblade.RecipeAwakeBlade;
 import mods.flammpfeil.slashblade.SlashBlade;
@@ -10,6 +11,8 @@ import mods.flammpfeil.slashblade.specialeffect.ISpecialEffect;
 import mods.flammpfeil.slashblade.specialeffect.SpecialEffects;
 import net.lrsoft.mets.blade.BloodRevSE;
 import net.lrsoft.mets.blade.SABloodRev;
+import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
@@ -24,7 +27,8 @@ public class BladeBloodRev {
 	public static String name = "flammpfeil.slashblade.named.bloodrev_extra";//
 	   @SubscribeEvent
 	   public void init(InitEvent event) {
-	      ItemStack customblade = new ItemStack(SlashBlade.bladeNamed, 1, 0);
+		  ItemStack customblade = new ItemStack(BladeManager.bloodrev_extra, 1, 0);
+	      //ItemStack customblade = new ItemStack(SlashBlade.bladeNamed, 1, 0);
 	    
 ///////////////////////////////////////////////////////////////////////////////////////////	  
 	      ItemSlashBlade.specialAttacks.put(Integer.valueOf(13248569), new SABloodRev());
@@ -35,7 +39,7 @@ public class BladeBloodRev {
 	      ItemSlashBladeNamed.setBaseAttackModifier(tag, 1024);//
 	      ItemSlashBladeNamed.IsDefaultBewitched.set(tag, Boolean.valueOf(true));//
 	      ItemSlashBladeNamed.TextureName.set(tag, "named/mrblade/texture_blood");
-	      ItemSlashBladeNamed.ModelName.set(tag, "named/mrblade/model");
+	      ItemSlashBladeNamed.ModelName.set(tag, "named/mrblade/advanced");
 	      ItemSlashBladeNamed.SpecialAttackType.set(tag, Integer.valueOf(13248569));//saex
 	      ItemSlashBladeNamed.StandbyRenderType.set(tag, Integer.valueOf(2));//
 	      ItemSlashBladeNamed.SummonedSwordColor.set(tag,12326679);
@@ -57,15 +61,16 @@ public class BladeBloodRev {
           ItemStack mrblade_need = SlashBlade.findItemStack("flammpfeil.slashblade", name, 1);  
           SlashBlade.addRecipe(name, 
 				new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid,name),bladewecreate, custombladeReqired,
-	    		  new Object[]{"CCC",
-	    		               "YBY",
-	    		               "CCC",
-	    		  Character.valueOf('B'), custombladeReqired,
-	    		  Character.valueOf('Y'), Items.NETHER_STAR, 
-	    		  Character.valueOf('C'), Blocks.DIAMOND_BLOCK
+			    		new Object[] { 
+			    	    		"XXC",
+			    	            "YBY",
+			    	            "CZZ",
+			    				Character.valueOf('B'), custombladeReqired,
+			    				Character.valueOf('X'), ItemCraftingManager.super_iridium_compress_plate, 
+			    				Character.valueOf('Z'), ItemCraftingManager.nano_living_metal,//ItemManager.getAllTypeStack(ItemManager),
+			    				Character.valueOf('Y'), ItemManager.getAllTypeStack(ItemManager.superLapotronCrystal),
+			    				Character.valueOf('C'), Items.NETHER_STAR
 	    		  }));
-
-	      
 ////////////////////////////////////////////////////////////////////////////////////////////////////	      
 	      NamedBladeManager.registerBladeSoul(tag, "bloodrev_extra");
 	   }

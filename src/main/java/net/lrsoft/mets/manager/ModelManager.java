@@ -132,7 +132,7 @@ public class ModelManager {
 		
 		if (Loader.isModLoaded("flammpfeil.slashblade")) 
 		{
-			//BladeModelManager.onModelInit();
+			BladeModelManager.onModelInit();
 		}
 	}	
 	

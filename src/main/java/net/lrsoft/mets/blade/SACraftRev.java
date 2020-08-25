@@ -1,6 +1,8 @@
 package net.lrsoft.mets.blade;
 
 import java.util.List;
+
+import ic2.api.item.ElectricItem;
 import mods.flammpfeil.slashblade.ability.StylishRankManager;
 import mods.flammpfeil.slashblade.entity.EntityWitherSword;
 import mods.flammpfeil.slashblade.item.ItemSlashBlade;
@@ -45,7 +47,9 @@ public class SACraftRev extends SpecialAttackBase {
         target = getEntityToWatch(player); 
       if (target != null) {
         ItemSlashBlade.setComboSequence(tag, ItemSlashBlade.ComboSequence.SlashDim);
-        ItemSlashBlade.damageItem(stack, 80, (EntityLivingBase)player);
+        if(!ElectricItem.manager.use(stack, 1000000, player))
+        	return;
+        //ItemSlashBlade.damageItem(stack, 80, (EntityLivingBase)player);
         StylishRankManager.setNextAttackType((Entity)player, StylishRankManager.AttackTypes.PhantomSword);
         blade.attackTargetEntity(stack, target, player, Boolean.valueOf(true));
         player.onCriticalHit(target);
@@ -63,9 +67,7 @@ public class SACraftRev extends SpecialAttackBase {
               ((EntityLivingBase)target).setHealth(((EntityLivingBase)target).getHealth() / 2.0F); 
           } 
         } 
-        for (int i = 0; i < 7 && 
-          !target.isDead && 
-          !world.isRemote; ) {
+        for (int i = 0; i < 7 && !target.isDead && !world.isRemote; ) {
           EntityWitherSword entityDrive = new EntityWitherSword(world, (EntityLivingBase)player, magicDamage, 90.0F);
           if (entityDrive != null) {
             entityDrive.setInterval(1 + i);

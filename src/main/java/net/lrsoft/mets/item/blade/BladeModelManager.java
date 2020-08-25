@@ -19,24 +19,11 @@ public class BladeModelManager {
     public static void onModelInit() {
         
     	registBladeModel(BladeManager.trblade_first);
-        //ModelLoader.setCustomModelResourceLocation(BladeManager.trblade_first, 0, modelLoc);
-        //BladeManager.trblade_first.setTileEntityItemStackRenderer((TileEntityItemStackRenderer)new BladeSpecialRender());
-        //ForgeHooksClient.registerTESRItemStack(BladeManager.trblade_first, 0, DummyTileEntity.class);
-        
-        /*ModelLoader.setCustomModelResourceLocation(BladeManager.hyperblade_second, 0, modelLoc);
-        ForgeHooksClient.registerTESRItemStack(BladeManager.hyperblade_second, 0, DummyTileEntity.class); 
-        
-        ModelLoader.setCustomModelResourceLocation(BladeManager.mrblade_final, 0, modelLoc);
-        ForgeHooksClient.registerTESRItemStack(BladeManager.mrblade_final, 0, DummyTileEntity.class);
-        
-        ModelLoader.setCustomModelResourceLocation(BladeManager.kineticenergyblade_final, 0, modelLoc);
-        ForgeHooksClient.registerTESRItemStack(BladeManager.kineticenergyblade_final, 0, DummyTileEntity.class);
-        
-        ModelLoader.setCustomModelResourceLocation(BladeManager.bloodrev_extra, 0, modelLoc);
-        ForgeHooksClient.registerTESRItemStack(BladeManager.bloodrev_extra, 0, DummyTileEntity.class);
-        
-        ModelLoader.setCustomModelResourceLocation(BladeManager.craftrev_extra, 0, modelLoc);
-        ForgeHooksClient.registerTESRItemStack(BladeManager.craftrev_extra, 0, DummyTileEntity.class);*/
+    	registBladeModel(BladeManager.hyperblade_second);
+    	registBladeModel(BladeManager.mrblade_final);
+    	registBladeModel(BladeManager.kineticenergyblade_final);
+    	registBladeModel(BladeManager.bloodrev_extra);
+    	registBladeModel(BladeManager.craftrev_extra);
     }
     
     private static void registBladeModel(Item item)

@@ -183,7 +183,7 @@ public class ItemManager {
 		
 		if (Loader.isModLoaded("flammpfeil.slashblade")) 
 		{
-			//BladeManager.onBladeInit();
+			BladeManager.onBladeInit();
 		}
 	}
 	// new ItemStack(IC2Items.getItem("lapotron_crystal").getItem(), 1, OreDictionary.WILDCARD_VALUE),//IC2Items.getItem("energy_crystal"),
@@ -554,11 +554,11 @@ public class ItemManager {
 		}
 	}	
 	
-	private static ItemStack getAllTypeStack(ItemStack itemstack) {
+	public static ItemStack getAllTypeStack(ItemStack itemstack) {
 		return new ItemStack(itemstack.getItem(), 1, OreDictionary.WILDCARD_VALUE);
 	}
 
-	private static ItemStack getAllTypeStack(Item item) {
+	public static ItemStack getAllTypeStack(Item item) {
 		return new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE);
 	}
 }

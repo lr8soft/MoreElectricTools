@@ -3,6 +3,7 @@ package net.lrsoft.mets.blade;
 
 import java.util.List;
 
+import ic2.api.item.ElectricItem;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -57,7 +58,10 @@ public class SABloodRev extends SpecialAttackBase {
             }
             if(target != null){
                 ItemSlashBlade.setComboSequence(tag, ItemSlashBlade.ComboSequence.SlashDim);
-                ItemSlashBlade.damageItem(stack, 80, player);
+                
+                if(!ElectricItem.manager.use(stack, 1000000, player))
+                	return;
+                //ItemSlashBlade.damageItem(stack, 80, player);
                 StylishRankManager.setNextAttackType(player, StylishRankManager.AttackTypes.PhantomSword);
                 blade.attackTargetEntity(stack, target, player, true);
                 player.onCriticalHit(target);
@@ -78,9 +82,9 @@ public class SABloodRev extends SpecialAttackBase {
                 int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
                 float magicDamage = 500.0f  + ItemSlashBlade.AttackAmplifier.get(tag) *level+ItemSlashBlade.RepairCount.get(tag)*5;
 //////////////////////////////////////////////////////////////////////////////////
-               int  count =35,tickcount=0;
+               int  count = 35,tickcount=0;
        		  	
-                for(int i = 0; i < count;i++){//50
+                for(int i = 0; i < count;i++){
                 	if(target.isDead) break;
                     if(!world.isRemote){
                         boolean select = (i % 2 == 0);

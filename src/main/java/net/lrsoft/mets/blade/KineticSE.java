@@ -41,7 +41,7 @@ public class KineticSE implements ISpecialEffect, IRemovable{
             case Effective:
             	float damage;
             	try {
-            		damage=event.target.getHealth()/4;
+            		damage=event.target.getHealth() / 4;
             	}catch(Exception e) {
             		damage=20f+EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, event.blade);
             	}
