@@ -15,6 +15,9 @@ public class BladeManager {
 	public static Item bloodrev_extra;
 	public static Item craftrev_extra;
 	
+	public static Item fox_faerie;
+	public static Item fox_elf;
+	
 	public static void onBladeInit() {
 		trblade_first = (Item)(new ItemMETSNamedBlade(30000, 128, 2, ToolMaterial.IRON, 7.0f)).setRegistryName("trblade_first");
 		ForgeRegistries.ITEMS.register(trblade_first);
@@ -28,11 +31,17 @@ public class BladeManager {
 		kineticenergyblade_final = (Item)(new ItemMETSNamedBlade(5000000, 8192, 4, ToolMaterial.DIAMOND, 20.0f)).setRegistryName("kineticenergyblade_final");
 		ForgeRegistries.ITEMS.register(kineticenergyblade_final);
 		
-		bloodrev_extra = (Item)(new ItemMETSNamedBlade(100000000, 16384, 5, ToolMaterial.DIAMOND, 20.0f)).setRegistryName("bloodrev_extra");
+		bloodrev_extra = (Item)(new ItemMETSNamedBlade(100000000, 32768, 5, ToolMaterial.DIAMOND, 20.0f)).setRegistryName("bloodrev_extra");
 		ForgeRegistries.ITEMS.register(bloodrev_extra);
 		
-		craftrev_extra = (Item)(new ItemMETSNamedBlade(100000000, 16384, 5, ToolMaterial.DIAMOND, 20.0f)).setRegistryName("craftrev_extra");
+		craftrev_extra = (Item)(new ItemMETSNamedBlade(100000000, 32768, 5, ToolMaterial.DIAMOND, 20.0f)).setRegistryName("craftrev_extra");
 		ForgeRegistries.ITEMS.register(craftrev_extra);
+		
+		fox_faerie = (Item)(new ItemMETSNamedBlade(2000000, 2048, 3, ToolMaterial.DIAMOND, 15.0f)).setRegistryName("fox_faerie");
+		ForgeRegistries.ITEMS.register(fox_faerie);
+		
+		fox_elf = (Item)(new ItemMETSNamedBlade(2000000, 2048, 3, ToolMaterial.DIAMOND, 15.0f)).setRegistryName("fox_elf");
+		ForgeRegistries.ITEMS.register(fox_elf);
 
 		SlashBlade.InitEventBus.register(new BladeBasic());
 		SlashBlade.InitEventBus.register(new BladeAdvanced());
@@ -40,5 +49,8 @@ public class BladeManager {
 		SlashBlade.InitEventBus.register(new BladeKineticEnergy());
 		SlashBlade.InitEventBus.register(new BladeBloodRev());
 		SlashBlade.InitEventBus.register(new BladeProcessRev());
+		
+		SlashBlade.InitEventBus.register(new BladeFoxElf());
+		SlashBlade.InitEventBus.register(new BladeFoxFaerie());
 	}
 }

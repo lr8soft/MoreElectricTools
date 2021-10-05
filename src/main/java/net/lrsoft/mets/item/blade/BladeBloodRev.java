@@ -12,6 +12,7 @@ import mods.flammpfeil.slashblade.specialeffect.SpecialEffects;
 import net.lrsoft.mets.blade.BloodRevSE;
 import net.lrsoft.mets.blade.SABloodRev;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
@@ -59,18 +60,21 @@ public class BladeBloodRev {
           ItemSlashBlade.RepairCount.set(reqTag, Integer.valueOf(10));
           //custombladeReqired.removeSubCompound("Enchantment");
           ItemStack mrblade_need = SlashBlade.findItemStack("flammpfeil.slashblade", name, 1);  
-          SlashBlade.addRecipe(name, 
-				new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid,name),bladewecreate, custombladeReqired,
-			    		new Object[] { 
-			    	    		"XXC",
-			    	            "YBY",
-			    	            "CZZ",
-			    				Character.valueOf('B'), custombladeReqired,
-			    				Character.valueOf('X'), ItemCraftingManager.super_iridium_compress_plate, 
-			    				Character.valueOf('Z'), ItemCraftingManager.nano_living_metal,//ItemManager.getAllTypeStack(ItemManager),
-			    				Character.valueOf('Y'), ItemManager.getAllTypeStack(ItemManager.superLapotronCrystal),
-			    				Character.valueOf('C'), Items.NETHER_STAR
-	    		  }));
+          
+  		  if (ConfigManager.EnableEUSlashBladeRecipe) {
+	          SlashBlade.addRecipe(name, 
+					new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid,name),bladewecreate, custombladeReqired,
+				    		new Object[] { 
+				    	    		"XXC",
+				    	            "YBY",
+				    	            "CZZ",
+				    				Character.valueOf('B'), custombladeReqired,
+				    				Character.valueOf('X'), ItemCraftingManager.super_iridium_compress_plate, 
+				    				Character.valueOf('Z'), ItemCraftingManager.nano_living_metal,//ItemManager.getAllTypeStack(ItemManager),
+				    				Character.valueOf('Y'), ItemManager.getAllTypeStack(ItemManager.superLapotronCrystal),
+				    				Character.valueOf('C'), Items.NETHER_STAR
+		    		  }));
+  		  }
 ////////////////////////////////////////////////////////////////////////////////////////////////////	      
 	      NamedBladeManager.registerBladeSoul(tag, "bloodrev_extra");
 	   }

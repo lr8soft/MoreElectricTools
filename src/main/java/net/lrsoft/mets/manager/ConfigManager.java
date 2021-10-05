@@ -21,6 +21,8 @@ public class ConfigManager {
 	 public static boolean EnableFastTESR = false;
 	 @Config.RequiresMcRestart
 	 public static boolean EnableLighterDynamicSource = true;
+	 @Config.RequiresMcRestart
+	 public static boolean EnableEUSlashBladeRecipe = true;
 	
 	 @Config.RequiresWorldRestart
 	 public static double AdvancedIridiumSwordBaseCost = 800d;
@@ -72,4 +74,6 @@ public class ConfigManager {
 	 
 	 @Config.RequiresWorldRestart
 	 public static double TachyonDisruptorCost = 50000d;
+	 
+	 
 }

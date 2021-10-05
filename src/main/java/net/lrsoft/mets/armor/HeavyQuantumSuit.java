@@ -39,7 +39,7 @@ public class HeavyQuantumSuit extends ItemArmor
 			MoreElectricTools.MODID + ":heavy_quantum_suit", 50, new int[] { 7, 15, 9, 6 }, 40,
 			SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2);
 	public final static UUID KNOWBACK_MODIFER = UUID.fromString("191a4c46-856a-4a51-a3d9-a466f1a1ca5b");
-	private static double maxStorageEnergy = 10000000d, transferSpeed = 2048d;
+	private static double maxStorageEnergy = 10000000d, transferSpeed = 4096d;
 	private static int suitTier = 4;
 
 	public HeavyQuantumSuit(String itemName) {

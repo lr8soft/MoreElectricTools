@@ -7,10 +7,15 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import mods.flammpfeil.slashblade.ItemSlashBladeNamed;
+import mods.flammpfeil.slashblade.ability.StylishRankManager;
 import mods.flammpfeil.slashblade.item.ItemSlashBlade;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.enchantment.EfficientEnergyCost;
+import net.lrsoft.mets.manager.EnchantmentManager;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,6 +26,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 
 public class ItemMETSNamedBlade extends ItemSlashBladeNamed implements IElectricItem, IItemHudInfo{
 	private int maxEnergy, maxTransfer, tier;
@@ -69,6 +75,7 @@ public class ItemMETSNamedBlade extends ItemSlashBladeNamed implements IElectric
         }
         
     }
+    
     
 	@Override
 	public List<String> getHudInfo(ItemStack stack, boolean advanced) {

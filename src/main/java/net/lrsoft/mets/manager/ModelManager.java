@@ -3,6 +3,8 @@ package net.lrsoft.mets.manager;
 import baubles.common.Baubles;
 import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.blade.EntitySlashDimensionEx;
+import net.lrsoft.mets.blade.RenderSlashDimensionEx;
 import net.lrsoft.mets.block.tileentity.TileEntityLighterBlock;
 import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
 import net.lrsoft.mets.crop.CropManager;
@@ -205,6 +207,16 @@ public class ModelManager {
 						new ResourceLocation("mets", "textures/entity/tachyon.png"));
 			}
 		});
+		
+		if (Loader.isModLoaded("flammpfeil.slashblade")) 
+		{
+			RenderingRegistry.registerEntityRenderingHandler(EntitySlashDimensionEx.class, new IRenderFactory<EntitySlashDimensionEx>() {
+				public Render createRenderFor(RenderManager manager) {
+					return (Render)new RenderSlashDimensionEx(manager);
+				}
+			});
+			
+		}
 	}
 	
 	private static final ResourceLocation fluidLocation = new ResourceLocation(MoreElectricTools.MODID, "fluid");

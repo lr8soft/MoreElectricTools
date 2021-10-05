@@ -1,10 +1,12 @@
 package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.blade.EntitySlashDimensionEx;
 import net.lrsoft.mets.entity.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -21,6 +23,11 @@ public class EntityManager {
 		registerEntity(event, EntityRocket.class, "RocketBullet", 200, 3);
 		registerEntity(event, EntityPlasmaBullet.class, "PlasmaBullet", 200, 5);
 		registerEntity(event, EntityTachyonBullet.class, "TachyonBullet", 300, 5);
+		
+		if (Loader.isModLoaded("flammpfeil.slashblade")) 
+		{
+			registerEntity(event, EntitySlashDimensionEx.class, "EntitySlashDimensionEx", 200, 7);
+		}
 	}
 	
 	private static void registerEntity(RegistryEvent.Register<EntityEntry> event, 
