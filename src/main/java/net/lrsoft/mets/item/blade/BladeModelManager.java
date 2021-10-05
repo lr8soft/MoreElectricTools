@@ -24,6 +24,8 @@ public class BladeModelManager {
     	registBladeModel(BladeManager.bloodrev_extra);
     	registBladeModel(BladeManager.craftrev_extra);
     	
+    	registBladeModel(BladeManager.fox_white);
+    	registBladeModel(BladeManager.fox_black);
     	registBladeModel(BladeManager.fox_elf);
     	registBladeModel(BladeManager.fox_faerie);
     }

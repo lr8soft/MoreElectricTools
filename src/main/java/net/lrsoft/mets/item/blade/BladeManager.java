@@ -15,6 +15,8 @@ public class BladeManager {
 	public static Item bloodrev_extra;
 	public static Item craftrev_extra;
 	
+	public static Item fox_white;
+	public static Item fox_black;
 	public static Item fox_faerie;
 	public static Item fox_elf;
 	
@@ -37,6 +39,12 @@ public class BladeManager {
 		craftrev_extra = (Item)(new ItemMETSNamedBlade(100000000, 32768, 5, ToolMaterial.DIAMOND, 20.0f)).setRegistryName("craftrev_extra");
 		ForgeRegistries.ITEMS.register(craftrev_extra);
 		
+		fox_white = (Item)(new ItemMETSNamedBlade(50000, 256, 2, ToolMaterial.IRON, 12.0f)).setRegistryName("fox_white");
+		ForgeRegistries.ITEMS.register(fox_white);
+		
+		fox_black = (Item)(new ItemMETSNamedBlade(50000, 256, 2, ToolMaterial.IRON, 12.0f)).setRegistryName("fox_black");
+		ForgeRegistries.ITEMS.register(fox_black);
+		
 		fox_faerie = (Item)(new ItemMETSNamedBlade(2000000, 2048, 3, ToolMaterial.DIAMOND, 15.0f)).setRegistryName("fox_faerie");
 		ForgeRegistries.ITEMS.register(fox_faerie);
 		
@@ -50,6 +58,7 @@ public class BladeManager {
 		SlashBlade.InitEventBus.register(new BladeBloodRev());
 		SlashBlade.InitEventBus.register(new BladeProcessRev());
 		
+		SlashBlade.InitEventBus.register(new BladeFoxBasic());
 		SlashBlade.InitEventBus.register(new BladeFoxElf());
 		SlashBlade.InitEventBus.register(new BladeFoxFaerie());
 	}
