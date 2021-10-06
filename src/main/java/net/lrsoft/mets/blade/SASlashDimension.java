@@ -141,7 +141,6 @@ public class SASlashDimension extends SpecialAttackBase implements IJustSpecialA
                 }
                 
                 for(int i = 0; i < 5;i++){
-
                 	EntityDriveEx entityDrive = new EntityDriveEx(world, player, Math.min(1.0f,magicDamage/3.0f),false,0, driveColor);
 
                     float rotationYaw = player.rotationYaw + 60 * i + (entityDrive.getRand().nextFloat() - 0.5f) * 60;

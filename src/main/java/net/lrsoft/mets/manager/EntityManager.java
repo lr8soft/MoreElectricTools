@@ -3,6 +3,7 @@ package net.lrsoft.mets.manager;
 import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.blade.EntityDriveEx;
 import net.lrsoft.mets.blade.EntitySlashDimensionEx;
+import net.lrsoft.mets.blade.EntitySpearManagerEx;
 import net.lrsoft.mets.entity.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -29,6 +30,7 @@ public class EntityManager {
 		{
 			registerEntity(event, EntitySlashDimensionEx.class, "EntitySlashDimensionEx", 400, 1);
 			registerEntity(event, EntityDriveEx.class, "EntityDriveEx", 400, 1);
+			registerEntity(event, EntitySpearManagerEx.class, "EntitySpearManagerEx", 400, 1);
 		}
 	}
 	

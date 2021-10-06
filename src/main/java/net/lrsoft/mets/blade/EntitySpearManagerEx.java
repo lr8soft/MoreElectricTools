@@ -18,10 +18,11 @@ import net.minecraft.world.World;
 
 public class EntitySpearManagerEx extends EntitySpearManager {
 	private double dRustDist = 3.0d;
+
 	public EntitySpearManagerEx(World par1World) {
 		super(par1World);
 	}
-	
+
 	public EntitySpearManagerEx(World par1World, EntityLivingBase entityLiving) {
 		super(par1World, entityLiving);
 	}
@@ -57,20 +58,21 @@ public class EntitySpearManagerEx extends EntitySpearManager {
 						ReflectionAccessHelper.setVelocity(curEntity, 0, 0, 0);
 						if (curEntity instanceof EntityLivingBase) {
 							EntityLivingBase curLivingEntity = (EntityLivingBase) curEntity;
-							curLivingEntity.setHealth(curLivingEntity.getHealth() / 4.0f);
 							curLivingEntity.addPotionEffect(new PotionEffect(IC2Potion.radiation, 100, 3));
+							curLivingEntity.setHealth(0);
 						}
 					}
 					StylishRankManager.doAttack(this.thrower);
+
 				}
 
 			}
 		}
-		
-		if(ticksExisted >= getLifeTime()) {
-            alreadyHitEntity.clear();
-            alreadyHitEntity = null;
-            setDead();
-        }
+
+		if (ticksExisted >= getLifeTime()) {
+			alreadyHitEntity.clear();
+			alreadyHitEntity = null;
+			setDead();
+		}
 	}
 }

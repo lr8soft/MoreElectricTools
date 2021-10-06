@@ -67,7 +67,7 @@ public class EntitySlashDimensionEx extends EntitySlashDimension {
 					continue;
 
 				double d1 = (this.posX - curEntity.posX + 0.5d) / 8.0D;
-				double d2 = (this.posY - curEntity.posY + 0.5d) / 8.0D;
+				double d2 = (this.posY - curEntity.posY + 0.5d) / 16.0D;
 				double d3 = (this.posZ - curEntity.posZ + 0.5d) / 8.0D;
 				double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
 				double d5 = 1.0D - d4;
@@ -78,13 +78,14 @@ public class EntitySlashDimensionEx extends EntitySlashDimension {
 					curEntity.motionY += d2 / d4 * d5 * 5D;
 					curEntity.motionZ += d3 / d4 * d5 * 5D;
 				} else {
+					d5 = d5 * d5;
 					curEntity.motionX -= d1 / d4 * d5 * 5D;
 					curEntity.motionY -= d2 / d4 * d5 * 5D;
 					curEntity.motionZ -= d3 / d4 * d5 * 5D;
 				}
 
 				curEntity.hurtResistantTime = 0;
-				curEntity.attackEntityFrom(DamageSource.causePlayerDamage(shooter), 4.0f);
+				curEntity.attackEntityFrom(DamageSource.causePlayerDamage(shooter), 7.0f);
 			}
 			updateTick = 0;
 		}

@@ -54,11 +54,39 @@ public class SASpear extends SpecialAttackBase {
 			player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 300, 2, true, false));
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 250, 2, true, false));
 			
-			EntitySpearManagerEx entityDA = new EntitySpearManagerEx(world, player, false, 3f);
+			EntitySpearManagerEx entityDA = new EntitySpearManagerEx(world, player, false, 3d);
 			entityDA.setLifeTime(10);
 			if (entityDA != null) {
 				world.spawnEntity(entityDA);
 			}
+			
+			for(int i = 0; i < 24;i++){
+            	EntityDriveEx entityDrive = new EntityDriveEx(world, player, 7.0f, false, 0);
+            	
+                float rotationYaw = player.rotationYaw + 30 * i + (entityDrive.getRand().nextFloat() - 0.5f) * 30;
+                float rotationPitch = player.rotationPitch + 30 * i + (entityDrive.getRand().nextFloat() - 0.5f) * 30;
+
+                float fYawDtoR = (  rotationYaw / 180F) * (float)Math.PI;
+                float fPitDtoR = (rotationPitch / 180F) * (float)Math.PI;
+                float fYVecOfst = 0.5f;
+
+                float motionX = -MathHelper.sin(fYawDtoR) * MathHelper.cos(fPitDtoR) * fYVecOfst * 2;
+                float motionY = -MathHelper.sin(fPitDtoR) * fYVecOfst;
+                float motionZ =  MathHelper.cos(fYawDtoR) * MathHelper.cos(fPitDtoR) * fYVecOfst * 2;
+                entityDrive.setLocationAndAngles(player.posX - motionX,
+                		player.posY + (double) player.getEyeHeight() / 2D - motionY,
+                		player.posZ - motionZ,
+                        rotationYaw,
+                        rotationPitch);
+                entityDrive.setDriveVector(fYVecOfst);
+                entityDrive.setLifeTime(25);
+                entityDrive.setIsMultiHit(false);
+
+                entityDrive.setRoll(90.0f + 120 * (entityDrive.getRand().nextFloat() - 0.5f));
+                if (entityDrive != null) {
+                    world.spawnEntity(entityDrive);
+                }
+            }
 		}
 
 		UntouchableTime.setUntouchableTime(player, 5);
