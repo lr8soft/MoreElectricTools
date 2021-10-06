@@ -13,6 +13,7 @@ import mods.flammpfeil.slashblade.specialeffect.SpecialEffects;
 import net.lrsoft.mets.blade.MrbladeSE;
 import net.lrsoft.mets.blade.SAHighEnergyParticleFlowAlpha;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -60,6 +61,8 @@ public class BladeTechRevTheme {
 		ItemSlashBladeNamed.KillCount.set(reqTag, Integer.valueOf(1000));
 		ItemSlashBladeNamed.RepairCount.set(reqTag, Integer.valueOf(6));
 		ItemStack mrblade_need = SlashBlade.findItemStack("flammpfeil.slashblade", name, 1);
+		
+		if (ConfigManager.EnableEUSlashBladeRecipe) {
 		SlashBlade.addRecipe(name,
 				new RecipeAwakeBlade(null, mrblade_need, custombladeReqired,
 						new Object[] {
@@ -72,7 +75,7 @@ public class BladeTechRevTheme {
 								Character.valueOf('Y'), ItemCraftingManager.niobium_titanium_plate,
 								Character.valueOf('L'), ItemManager.getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
 								}));
-
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////	      
 		NamedBladeManager.registerBladeSoul(tag, "mrblade_final");
 	}

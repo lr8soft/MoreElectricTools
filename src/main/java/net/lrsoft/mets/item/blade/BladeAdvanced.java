@@ -9,6 +9,7 @@ import mods.flammpfeil.slashblade.named.NamedBladeManager;
 import mods.flammpfeil.slashblade.named.event.LoadEvent.InitEvent;
 import net.lrsoft.mets.blade.SAEnergyLevelTransition;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
@@ -51,18 +52,22 @@ public class BladeAdvanced {
 		NBTTagCompound reqTag = ItemSlashBladeNamed.getItemTagCompound(custombladeReqired);//
 		ItemSlashBlade.KillCount.set(reqTag, 300);
 
-		SlashBlade.addRecipe(name,
-				new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid, name), bladewecreate, custombladeReqired,
-						new Object[] { 
-								"CYC", 
-								"XBX", 
-								"CLC", 
-								Character.valueOf('X'), IC2Items.getItem("crafting", "alloy"),
-								Character.valueOf('Y'), IC2Items.getItem("crafting", "advanced_circuit"),
-								Character.valueOf('L'), ItemManager.getAllTypeStack(IC2Items.getItem("energy_crystal")),
-								Character.valueOf('B'), custombladeReqired, 
-								Character.valueOf('C'), ItemCraftingManager.niobium_titanium_plate 
-								}));
+		if(ConfigManager.EnableEUSlashBladeRecipe)
+		{
+			SlashBlade.addRecipe(name,
+					new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid, name), bladewecreate, custombladeReqired,
+							new Object[] { 
+									"CYC", 
+									"XBX", 
+									"CLC", 
+									Character.valueOf('X'), IC2Items.getItem("crafting", "alloy"),
+									Character.valueOf('Y'), IC2Items.getItem("crafting", "advanced_circuit"),
+									Character.valueOf('L'), ItemManager.getAllTypeStack(IC2Items.getItem("energy_crystal")),
+									Character.valueOf('B'), custombladeReqired, 
+									Character.valueOf('C'), ItemCraftingManager.niobium_titanium_plate 
+									}));			
+		}
+
 	}
 
 }

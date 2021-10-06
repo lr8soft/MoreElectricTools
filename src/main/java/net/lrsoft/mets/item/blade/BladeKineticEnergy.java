@@ -11,6 +11,7 @@ import mods.flammpfeil.slashblade.specialeffect.SpecialEffects;
 import net.lrsoft.mets.blade.KineticSE;
 import net.lrsoft.mets.blade.SAKineticImpact;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
@@ -54,18 +55,21 @@ public class BladeKineticEnergy {
 		ItemSlashBladeNamed.KillCount.set(reqTag, Integer.valueOf(1000));
 		ItemSlashBladeNamed.RepairCount.set(reqTag, Integer.valueOf(6));
 		ItemStack mrblade_need = SlashBlade.findItemStack("flammpfeil.slashblade", name, 1);
-		SlashBlade.addRecipe(name,
-				new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid, name), mrblade_need, custombladeReqired,
-						new Object[] {
-								"CYC", 
-								"XBX", 
-								"CLC", 
-								Character.valueOf('B'), custombladeReqired,
-								Character.valueOf('C'), IC2Items.getItem("crafting", "iridium"), 
-								Character.valueOf('X'), IC2Items.getItem("te", "manual_kinetic_generator"), 
-								Character.valueOf('Y'), ItemCraftingManager.super_circuit,
-								Character.valueOf('L'), ItemManager.getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
-								}));
+		
+		if (ConfigManager.EnableEUSlashBladeRecipe) {
+			SlashBlade.addRecipe(name,
+					new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid, name), mrblade_need, custombladeReqired,
+							new Object[] {
+									"CYC", 
+									"XBX", 
+									"CLC", 
+									Character.valueOf('B'), custombladeReqired,
+									Character.valueOf('C'), IC2Items.getItem("crafting", "iridium"), 
+									Character.valueOf('X'), IC2Items.getItem("te", "manual_kinetic_generator"), 
+									Character.valueOf('Y'), ItemCraftingManager.super_circuit,
+									Character.valueOf('L'), ItemManager.getAllTypeStack(IC2Items.getItem("lapotron_crystal"))
+									}));
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////	      
 		NamedBladeManager.registerBladeSoul(tag, "kineticenergyblade_final");
 	}

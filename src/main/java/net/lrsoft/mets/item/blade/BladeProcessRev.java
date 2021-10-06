@@ -12,6 +12,7 @@ import mods.flammpfeil.slashblade.specialeffect.SpecialEffects;
 import net.lrsoft.mets.blade.CraftRevSE;
 import net.lrsoft.mets.blade.SACraftRev;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
+import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
@@ -59,17 +60,20 @@ public class BladeProcessRev {
     ItemSlashBlade.ProudSoul.set(reqTag, Integer.valueOf(5000));
     ItemSlashBlade.RepairCount.set(reqTag, Integer.valueOf(12));
     ItemStack mrblade_need = SlashBlade.findItemStack("flammpfeil.slashblade", name, 1);
-    SlashBlade.addRecipe(name, (IRecipe)new RecipeAwakeBlade(new ResourceLocation("flammpfeil.slashblade", name), bladewecreate, custombladeReqired, 
-    		new Object[] { 
-    		"XXC",
-            "YBY",
-            "CZZ",
-			Character.valueOf('B'), custombladeReqired,
-			Character.valueOf('X'), ItemCraftingManager.super_iridium_compress_plate, 
-			Character.valueOf('Z'), ItemCraftingManager.nano_living_metal,//ItemManager.getAllTypeStack(ItemManager),
-			Character.valueOf('Y'), ItemManager.getAllTypeStack(ItemManager.superLapotronCrystal),
-			Character.valueOf('C'), IC2Items.getItem("iridium_reflector")
-    }));
+    
+	if (ConfigManager.EnableEUSlashBladeRecipe) {
+	    SlashBlade.addRecipe(name, (IRecipe)new RecipeAwakeBlade(new ResourceLocation("flammpfeil.slashblade", name), bladewecreate, custombladeReqired, 
+	    		new Object[] { 
+	    		"XXC",
+	            "YBY",
+	            "CZZ",
+				Character.valueOf('B'), custombladeReqired,
+				Character.valueOf('X'), ItemCraftingManager.super_iridium_compress_plate, 
+				Character.valueOf('Z'), ItemCraftingManager.nano_living_metal,//ItemManager.getAllTypeStack(ItemManager),
+				Character.valueOf('Y'), ItemManager.getAllTypeStack(ItemManager.superLapotronCrystal),
+				Character.valueOf('C'), IC2Items.getItem("iridium_reflector")
+	    }));
+	}
     NamedBladeManager.registerBladeSoul(tag, "bloodrev_extra");
   }
 }
