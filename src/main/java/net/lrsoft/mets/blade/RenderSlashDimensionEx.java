@@ -104,7 +104,7 @@ public class RenderSlashDimensionEx extends Render {
         int baseColor = color;
         Color col = new Color(baseColor);
         float[] hsb = Color.RGBtoHSB(col.getRed(),col.getGreen(),col.getBlue(), null);
-        baseColor = Color.getHSBColor(0.52f + hsb[0], hsb[1], 0.25f/*hsb[2]*/).getRGB() & 0xFFFFFF;
+        baseColor = Color.getHSBColor(0.5f + hsb[0], hsb[1], 0.2f/*hsb[2]*/).getRGB() & 0xFFFFFF;
         baseColor = baseColor | (int)(0x66 * baseAlpha) << 24;
 
         GL11.glTranslatef((float) x, (float) y, (float) z);

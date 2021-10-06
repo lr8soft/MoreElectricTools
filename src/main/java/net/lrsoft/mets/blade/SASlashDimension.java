@@ -17,7 +17,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import mods.flammpfeil.slashblade.ability.StylishRankManager;
 import mods.flammpfeil.slashblade.ability.UntouchableTime;
-import mods.flammpfeil.slashblade.entity.EntityDrive;
 import mods.flammpfeil.slashblade.entity.EntityJudgmentCutManager;
 import mods.flammpfeil.slashblade.entity.selector.EntitySelectorAttackable;
 import mods.flammpfeil.slashblade.event.ScheduleEntitySpawner;
@@ -29,9 +28,13 @@ import mods.flammpfeil.slashblade.specialattack.SpecialAttackBase;
 import java.util.EnumSet;
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import ic2.api.item.ElectricItem;
+import ic2.core.util.Vector3;
 public class SASlashDimension extends SpecialAttackBase implements IJustSpecialAttack,ISuperSpecialAttack{
 	private static float cost = 10000f;
+	private static Vector3f driveColor = new Vector3f(1.0f, 0.2f, 1.0f);
     @Override
     public String toString() {
         return "SA_SlashDimensionEX";
@@ -129,11 +132,42 @@ public class SASlashDimension extends SpecialAttackBase implements IJustSpecialA
                 int level = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
                 float magicDamage = 10.0f + ItemSlashBlade.AttackAmplifier.get(tag) * level;
                 EntitySlashDimensionEx dim = new EntitySlashDimensionEx(world, player, magicDamage);
+                Vector3 vecGenPos = new Vector3(target.posX,target.posY + target.height / 2.0,target.posZ);
                 if(dim != null){
-                    dim.setPosition(target.posX,target.posY + target.height / 2.0,target.posZ);
+                    dim.setPosition(vecGenPos.x, vecGenPos.y, vecGenPos.z);
                     dim.setLifeTime(40);
                     dim.setGlowing(true);
                     world.spawnEntity(dim);
+                }
+                
+                for(int i = 0; i < 5;i++){
+
+                	EntityDriveEx entityDrive = new EntityDriveEx(world, player, Math.min(1.0f,magicDamage/3.0f),false,0, driveColor);
+
+                    float rotationYaw = player.rotationYaw + 60 * i + (entityDrive.getRand().nextFloat() - 0.5f) * 60;
+                    float rotationPitch = player.rotationPitch + 60 * i + (entityDrive.getRand().nextFloat() - 0.5f) * 60;
+
+                    float fYawDtoR = (  rotationYaw / 180F) * (float)Math.PI;
+                    float fPitDtoR = (rotationPitch / 180F) * (float)Math.PI;
+                    float fYVecOfst = 0.5f;
+
+                    float motionX = -MathHelper.sin(fYawDtoR) * MathHelper.cos(fPitDtoR) * fYVecOfst * 2;
+                    float motionY = -MathHelper.sin(fPitDtoR) * fYVecOfst;
+                    float motionZ =  MathHelper.cos(fYawDtoR) * MathHelper.cos(fPitDtoR) * fYVecOfst * 2;
+
+                    entityDrive.setLocationAndAngles(vecGenPos.x - motionX,
+                    		vecGenPos.y + (double) player.getEyeHeight() / 2D - motionY,
+                    		vecGenPos.z - motionZ,
+                            rotationYaw,
+                            rotationPitch);
+                    entityDrive.setDriveVector(fYVecOfst);
+                    entityDrive.setLifeTime(20);
+                    entityDrive.setIsMultiHit(false);
+
+                    entityDrive.setRoll(90.0f + 120 * (entityDrive.getRand().nextFloat() - 0.5f));
+                    if (entityDrive != null) {
+                        world.spawnEntity(entityDrive);
+                    }
                 }
             }
         }
@@ -166,7 +200,6 @@ public class SASlashDimension extends SpecialAttackBase implements IJustSpecialA
     }
 
     private void spawnParticle(World world, Entity target){
-        //target.spawnExplosionParticle();
         world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE,
                 target.posX,
                 target.posY + target.height,
@@ -252,8 +285,7 @@ public class SASlashDimension extends SpecialAttackBase implements IJustSpecialA
 
                 for(int i = 0; i < 5;i++){
 
-                    EntityDrive entityDrive = new EntityDrive(world, player, Math.min(1.0f,magicDamage/3.0f),false,0);
-
+                	EntityDriveEx entityDrive = new EntityDriveEx(world, player, Math.min(1.0f,magicDamage/3.0f), false, 0, driveColor);
 
                     float rotationYaw = 60 * i + (entityDrive.getRand().nextFloat() - 0.5f) * 60;
                     float rotationPitch = (entityDrive.getRand().nextFloat() - 0.5f) * 60;
@@ -307,8 +339,7 @@ public class SASlashDimension extends SpecialAttackBase implements IJustSpecialA
             if(0 < level){
                 for(int i = 0; i < 5;i++){
 
-                    EntityDrive entityDrive = new EntityDrive(world, player, Math.min(1.0f,magicDamage/3.0f),false,0);
-
+                	EntityDriveEx entityDrive = new EntityDriveEx(world, player, Math.min(1.0f,magicDamage/3.0f),false, 0, driveColor);
 
                     float rotationYaw = target.rotationYaw + 60 * i + (entityDrive.getRand().nextFloat() - 0.5f) * 60;
                     float rotationPitch = (entityDrive.getRand().nextFloat() - 0.5f) * 60;

@@ -45,17 +45,18 @@ public class BladeFoxElf {
 		ItemSlashBlade.TextureName.set(tag, "named/foxextra/bladeElf");
 		ItemSlashBlade.ModelName.set(tag, "named/foxextra/model");
 		ItemSlashBlade.SpecialAttackType.set(tag, Integer.valueOf(12080));
-		ItemSlashBlade.StandbyRenderType.set(tag, Integer.valueOf(1));//
+		ItemSlashBlade.StandbyRenderType.set(tag, Integer.valueOf(1));
 
 		SpecialEffects.addEffect(customblade, BladeFoxFaerie.BladeSpeicalEffect.getEffectKey(),
 				BladeFoxFaerie.BladeSpeicalEffect.getDefaultRequiredLevel());
 
 		SlashBlade.registerCustomItemStack(name, customblade);
 		ItemSlashBladeNamed.NamedBlades.add(name);
-		customblade.addEnchantment(Enchantments.POWER, 3);//
-		customblade.addEnchantment(Enchantments.SMITE, 5);
+		customblade.addEnchantment(Enchantments.POWER, 3);
 		customblade.addEnchantment(Enchantments.UNBREAKING, 3);
-      
+		customblade.addEnchantment(Enchantments.LOOTING, 3);
+		customblade.addEnchantment(Enchantments.SHARPNESS, 6);
+
 		NamedBladeManager.registerBladeSoul(tag, "fox_elf");
 	}
 	
@@ -72,7 +73,7 @@ public class BladeFoxElf {
 		  ItemStack foxex = SlashBlade.findItemStack("flammpfeil.slashblade", name, 1);
 		  
 		  
-			SlashBlade.addRecipe(name,
+		  SlashBlade.addRecipe(name,
 					new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid, name), foxex, custombladeReqired,
 							new Object[] { 
 									"CYC", 

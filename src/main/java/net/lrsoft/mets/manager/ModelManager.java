@@ -3,7 +3,9 @@ package net.lrsoft.mets.manager;
 import baubles.common.Baubles;
 import ic2.core.item.tool.RenderCrossed;
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.blade.EntityDriveEx;
 import net.lrsoft.mets.blade.EntitySlashDimensionEx;
+import net.lrsoft.mets.blade.RenderDriveEx;
 import net.lrsoft.mets.blade.RenderSlashDimensionEx;
 import net.lrsoft.mets.block.tileentity.TileEntityLighterBlock;
 import net.lrsoft.mets.block.tileentity.TileEntityWirelessPowerTransmissionNode;
@@ -216,6 +218,11 @@ public class ModelManager {
 				}
 			});
 			
+			RenderingRegistry.registerEntityRenderingHandler(EntityDriveEx.class, new IRenderFactory<EntityDriveEx>() {
+				public Render createRenderFor(RenderManager manager) {
+					return (Render)new RenderDriveEx(manager);
+				}
+			});
 		}
 	}
 	

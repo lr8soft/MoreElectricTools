@@ -16,18 +16,31 @@ import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 
 public class EntitySlashDimensionEx extends EntitySlashDimension {
+
 	private EntityPlayer shooter;
 	private int updateTick = 0;
+	
 	public EntitySlashDimensionEx(World par1World) {
 		super(par1World);
 		setSize(2.0F, 2.0F);
 	}
 
-	public EntitySlashDimensionEx(World par1World, EntityPlayer entityLiving, float AttackLevel) {
+	public EntitySlashDimensionEx(World par1World, EntityLivingBase entityLiving, float AttackLevel) {
 		super(par1World, entityLiving, AttackLevel);
 		setSize(2.0F, 2.0F);
-		shooter = entityLiving;
+		if(entityLiving instanceof EntityPlayer) {
+			shooter = (EntityPlayer)entityLiving;
+		}
+		
 	}
+	
+	public EntitySlashDimensionEx(World par1World, EntityLivingBase entityLiving, float AttackLevel, boolean multiHit) {
+		super(par1World, entityLiving, AttackLevel, multiHit);
+		if(entityLiving instanceof EntityPlayer) {
+			shooter = (EntityPlayer)entityLiving;
+		}
+	}
+
 
 	@Override
 	public void onUpdate() {
@@ -45,6 +58,10 @@ public class EntitySlashDimensionEx extends EntitySlashDimension {
 			AxisAlignedBB bb = new AxisAlignedBB(minPos, maxPos);
 
 			List<Entity> list = this.world.getEntitiesInAABBexcluding(shooter, bb, HyperEntitySelector.getInstance());
+			if(list != null && alreadyHitEntity!= null && !list.isEmpty() && !alreadyHitEntity.isEmpty()) {
+				list.removeAll(alreadyHitEntity);
+			}
+
 			for (Entity curEntity : list) {
 				if (curEntity == shooter)
 					continue;
@@ -72,5 +89,10 @@ public class EntitySlashDimensionEx extends EntitySlashDimension {
 			updateTick = 0;
 		}
 
+	}
+	
+	@Override
+	public int getColor() {
+		return 0xFF1493;
 	}
 }

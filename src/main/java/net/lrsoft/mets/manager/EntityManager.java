@@ -1,6 +1,7 @@
 package net.lrsoft.mets.manager;
 
 import net.lrsoft.mets.MoreElectricTools;
+import net.lrsoft.mets.blade.EntityDriveEx;
 import net.lrsoft.mets.blade.EntitySlashDimensionEx;
 import net.lrsoft.mets.entity.*;
 import net.minecraft.entity.Entity;
@@ -26,7 +27,8 @@ public class EntityManager {
 		
 		if (Loader.isModLoaded("flammpfeil.slashblade")) 
 		{
-			registerEntity(event, EntitySlashDimensionEx.class, "EntitySlashDimensionEx", 200, 7);
+			registerEntity(event, EntitySlashDimensionEx.class, "EntitySlashDimensionEx", 400, 1);
+			registerEntity(event, EntityDriveEx.class, "EntityDriveEx", 400, 1);
 		}
 	}
 	
