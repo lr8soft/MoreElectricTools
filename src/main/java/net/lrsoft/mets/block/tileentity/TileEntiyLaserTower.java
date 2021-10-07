@@ -16,8 +16,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EntitySelectors;
@@ -29,7 +27,7 @@ import net.minecraft.util.math.Vec3d;
 public class TileEntiyLaserTower extends TileEntityElectricMachine {
 	private static Vec3d shootOffset = new Vec3d(0.5d, 1.0d, 0.5d);
 	private static int scanRange = 15;
-	private static int maxEnergy = 50000, tier = 2;
+	private static int maxEnergy = 100000, tier = 2;
 	private static double attackConsume = ConfigManager.LaserTowerCost;
 	private EntityPlayer owner;
 	

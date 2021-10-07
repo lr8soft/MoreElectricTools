@@ -697,7 +697,7 @@ public class BlockManager {
 						'P', ItemCraftingManager.titanium_plate,
 						'S', ItemCraftingManager.lens,
 						'J', IC2Items.getItem("neutron_reflector"),
-						'E', lesuStack,
+						'E', IC2Items.getItem("te", "cesu"),
 						'C', Recipes.inputFactory.forOreDict("circuitAdvanced")//ic2 advanced circuit
 				});
 	}
