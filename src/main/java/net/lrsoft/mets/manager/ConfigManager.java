@@ -75,5 +75,6 @@ public class ConfigManager {
 	 @Config.RequiresWorldRestart
 	 public static double TachyonDisruptorCost = 50000d;
 	 
-	 
+	 @Config.RequiresWorldRestart
+	 public static double LaserTowerCost = 250d;
 }

@@ -8,6 +8,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
 import ic2.core.util.Vector3;
+import net.lrsoft.mets.blade.EntityDriveEx;
 import net.lrsoft.mets.renderer.particle.EntityParticleSpray;
 import net.lrsoft.mets.util.MathUtils;
 import net.minecraft.block.Block;
@@ -16,8 +17,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -36,6 +41,18 @@ public class EntityGunBullet extends Entity implements IProjectile{
         }
     });
 	
+	public static final Predicate<Entity> MACHINE_TARGETS = Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.IS_ALIVE, new Predicate<Entity>()
+    {
+        public boolean apply(@Nullable Entity entity)
+        {
+            if (entity != null && !(entity instanceof EntityPlayer))
+            {
+            	return entity.canBeCollidedWith();
+            }
+            return false;
+        }
+    });
+	
 	protected EntityPlayer shooter;
 	protected int ticksInAir;
 	protected int maxExistTicks;
@@ -51,6 +68,19 @@ public class EntityGunBullet extends Entity implements IProjectile{
 		setPosition(owner.posX, owner.posY + (double)shooter.getEyeHeight() - 0.1, owner.posZ);
 		this.power = power;
 		this.maxExistTicks = maxTick;
+	}
+	
+	public EntityGunBullet(World world, Vec3d pos, float power, int maxTick, boolean isMachineShoot) {
+		super(world);
+		this.ticksInAir = 0;
+		this.shooter = null;
+		
+		setSize(0.39F, 0.39F);
+		
+		setPosition(pos.x, pos.y, pos.z);
+		this.power = power;
+		this.maxExistTicks = maxTick;
+		setMachineShoot(isMachineShoot);
 	}
 
 	public EntityGunBullet(World world)
@@ -77,18 +107,27 @@ public class EntityGunBullet extends Entity implements IProjectile{
         IBlockState iblockstate = this.world.getBlockState(blockpos);
         Block block = iblockstate.getBlock();
         
-        if (iblockstate.getMaterial() != Material.AIR)
-        {
-            AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
-
-            if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
+        boolean isMachineShoot = getIsMachineShoot();
+        if(!world.isRemote) {
+            if (iblockstate.getMaterial() != Material.AIR && !isMachineShoot)
             {
-            	sprayEffect();
-                setDead();
-                return;
+                AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
+
+                if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
+                {
+                	System.out.println("collide!");
+                	sprayEffect();
+                    setDead();
+                    return;
+                }
             }
+            
+        }else {
+        	if(this.isDead) {
+            	sprayEffect();
+        	}
         }
-        
+
         ++this.ticksInAir;
         Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
@@ -119,7 +158,11 @@ public class EntityGunBullet extends Entity implements IProjectile{
             	{
             		target.attackEntityFrom(DamageSource.causePlayerDamage(shooter), power);
                 	sprayEffect();
+            	}else if(isMachineShoot && target != shooter) {
+            		target.attackEntityFrom(DamageSource.FIREWORKS, power);
+                	sprayEffect();
             	}
+            	
             	setDead();
             	return;
             }
@@ -145,7 +188,7 @@ public class EntityGunBullet extends Entity implements IProjectile{
     {
 		Entity entity = null;
 		List<Entity> list = this.world.getEntitiesInAABBexcluding(this,
-				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), GUN_TARGETS);
+				this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D), getIsMachineShoot() ? MACHINE_TARGETS : GUN_TARGETS);
 		double d0 = 0.0D;
 
 		for (int i = 0; i < list.size(); ++i) {
@@ -192,9 +235,12 @@ public class EntityGunBullet extends Entity implements IProjectile{
         float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
         this.shoot((double)f, (double)f1, (double)f2, velocity);
         
-        this.motionX += shooter.motionX;
-        this.motionY += shooter.motionY;
-        this.motionZ += shooter.motionZ;
+        if(shooter != null) {
+            this.motionX += shooter.motionX;
+            this.motionY += shooter.motionY;
+            this.motionZ += shooter.motionZ;
+        }
+
         this.velocity = velocity;
 	}
 
@@ -220,9 +266,21 @@ public class EntityGunBullet extends Entity implements IProjectile{
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
     }
+    
+	private static final DataParameter<Boolean> IsMachineShoot = EntityDataManager.<Boolean>createKey(EntityGunBullet.class, DataSerializers.BOOLEAN);
 
 	@Override
-	protected void entityInit(){}
+	protected void entityInit() {
+		dataManager.register(IsMachineShoot, false);
+	}
+	
+	public void setMachineShoot(boolean v) {
+		dataManager.set(IsMachineShoot, v);
+	}
+	
+	public boolean getIsMachineShoot() {
+		return dataManager.get(IsMachineShoot);
+	}
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound)

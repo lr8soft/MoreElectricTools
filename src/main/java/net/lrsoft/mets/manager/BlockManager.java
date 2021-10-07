@@ -687,6 +687,19 @@ public class BlockManager {
 						'C', IC2Items.getItem("resource", "advanced_machine"),
 						'S', Recipes.inputFactory.forOreDict("circuitElite")//ItemCraftingManager.super_circuit
 				});
+		
+		ItemStack laser_tower = teBlock.getItemStack(MetsBlockWithTileEntity.laser_tower);
+		Recipes.advRecipes.addRecipe(laser_tower, 
+				new Object[] {
+						"PPP",
+						"SSJ",
+						"CEJ",
+						'P', ItemCraftingManager.titanium_plate,
+						'S', ItemCraftingManager.lens,
+						'J', IC2Items.getItem("neutron_reflector"),
+						'E', IC2Items.getItem("te", "cesu"),
+						'C', Recipes.inputFactory.forOreDict("circuitAdvanced")//ic2 advanced circuit
+				});
 	}
 	
 	@SubscribeEvent

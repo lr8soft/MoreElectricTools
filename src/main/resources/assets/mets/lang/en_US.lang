@@ -151,6 +151,8 @@ mets.te.fabricator_input=§bLarge Mass Fabricator Input Module(IV)
 mets.te.fabricator_tank=§bLarge Mass Fabricator Storage Module
 mets.te.fabricator_scrap=§bLarge Mass Fabricator Scrap Module
 
+mets.te.laser_tower=Laser Defense Tower
+
 item.mets.titanium_iron_alloy_rotor.name=Titanium Iron Alloy Rotor
 item.mets.super_iridium_rotor.name=§bSuper Iridium Rotor
 
