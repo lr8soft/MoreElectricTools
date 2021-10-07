@@ -153,6 +153,8 @@ mets.te.fabricator_input=§b大型物质生成机输入模块（IV）
 mets.te.fabricator_tank=§b大型物质生成机储罐模块
 mets.te.fabricator_scrap=§b大型物质生成机废料输入模块
 
+mets.te.laser_tower=镭射激光防御塔
+
 mets.info.ens.auto=模式：自动
 mets.info.ens.disable=模式：禁用
 mets.info.crafting_only=仅用于合成

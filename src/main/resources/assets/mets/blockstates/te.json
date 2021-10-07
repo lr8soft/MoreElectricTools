@@ -88,7 +88,10 @@
       "fabricator_input": { "model": "mets:fabricator/input" },
       "fabricator_input_active": { "model": "mets:fabricator/input_active" },
       "fabricator_tank": { "model": "mets:fabricator/tank" },
-      "fabricator_scrap": { "model": "mets:fabricator/scrap" }
+      "fabricator_scrap": { "model": "mets:fabricator/scrap" },
+
+      "laser_tower": { "model": "mets:laser_tower" },
+      "laser_tower_active": { "model": "mets:laser_tower_active" }
     },
     "facing": {
       "down": { "x": 90 },

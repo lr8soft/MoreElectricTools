@@ -78,7 +78,6 @@ public class EntitySlashDimensionEx extends EntitySlashDimension {
 					curEntity.motionY += d2 / d4 * d5 * 5D;
 					curEntity.motionZ += d3 / d4 * d5 * 5D;
 				} else {
-					d5 = d5 * d5;
 					curEntity.motionX -= d1 / d4 * d5 * 5D;
 					curEntity.motionY -= d2 / d4 * d5 * 5D;
 					curEntity.motionZ -= d3 / d4 * d5 * 5D;
