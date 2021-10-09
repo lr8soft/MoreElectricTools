@@ -115,7 +115,7 @@ public class EntityGunBullet extends Entity implements IProjectile{
 
                 if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ)))
                 {
-                	System.out.println("collide!");
+                	//System.out.println("collide!");
                 	sprayEffect();
                     setDead();
                     return;
@@ -217,7 +217,7 @@ public class EntityGunBullet extends Entity implements IProjectile{
 	{
 		float initYaw =  this.rotationYaw;
 		float initPitch = this.rotationPitch;
-		for(int i=0; i < 2; i++)
+		for(int i = 0; i < 2; i++)
 		{
 			initYaw += MathUtils.getRandomFromRange(360, 0);
 			initPitch += MathUtils.getRandomFromRange(360, 0);
