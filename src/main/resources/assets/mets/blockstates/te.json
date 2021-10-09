@@ -91,7 +91,10 @@
       "fabricator_scrap": { "model": "mets:fabricator/scrap" },
 
       "laser_tower": { "model": "mets:laser_tower" },
-      "laser_tower_active": { "model": "mets:laser_tower_active" }
+      "laser_tower_active": { "model": "mets:laser_tower_active" },
+
+      "advanced_laser_tower": { "model": "mets:advanced_laser_tower" },
+      "advanced_laser_tower_active": { "model": "mets:advanced_laser_tower_active" }
     },
     "facing": {
       "down": { "x": 90 },

@@ -2,40 +2,31 @@ package net.lrsoft.mets.block.tileentity;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
-import mods.flammpfeil.slashblade.SlashBlade;
 import net.lrsoft.mets.block.tileentity.OilRig.TileEntityGUIMachine;
 import net.lrsoft.mets.entity.EntityGunBullet;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.SoundManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class TileEntiyLaserTower extends TileEntityGUIMachine {
-	private static double attackConsume = ConfigManager.LaserTowerCost;
+public class TileEntityAdvancedLaserTower extends TileEntityGUIMachine {
+	private static double attackConsume = ConfigManager.AdvancedLaserTowerCost;
 	private Vec3d shootOffset = new Vec3d(0.5d, 1.0d, 0.5d);
-	private static int maxEnergy = 100000, tier = 2;
+	private static int maxEnergy = 500000, tier = 3;
+	private static int maxLockTarget = 5;
 	
-	private int scanRange = 15;
+	private int scanRange = 30;
 	
-	private int updateInterval = 45, currentInterval = 0;
-	public TileEntiyLaserTower() {
+	private int updateInterval = 25, currentInterval = 0;
+	public TileEntityAdvancedLaserTower() {
 		super(maxEnergy, tier);
 	}
 	
@@ -44,7 +35,7 @@ public class TileEntiyLaserTower extends TileEntityGUIMachine {
 		super.updateEntityServer();
 		updateTileEntity();
 	}
-	
+
 	private void updateTileEntity() {
 		boolean shouldActive = false;
 		if (this.energy.canUseEnergy(attackConsume)) {
@@ -59,27 +50,31 @@ public class TileEntiyLaserTower extends TileEntityGUIMachine {
 						currentPos.x - scanRange, currentPos.y - scanRange, currentPos.z - scanRange, 
 						currentPos.x + scanRange, currentPos.y + scanRange, currentPos.z + scanRange);
 
-				List<Entity> list = this.world.getEntitiesInAABBexcluding(null, bb, ALIVE_MOB_SELECTOR);
+				List<Entity> list = this.world.getEntitiesInAABBexcluding(null, bb, TileEntiyLaserTower.ALIVE_MOB_SELECTOR);
 				if (!list.isEmpty() && this.energy.useEnergy(attackConsume)) {
-					Entity mob = list.get(0);
+					int currentSize = list.size();
+					int maxSize = currentSize >= maxLockTarget ? maxLockTarget : currentSize;
+					for(int index = 0; index < maxSize; index++) {
+						Entity mob = list.get(index);
 
-					double yOffset = mob.getEyeHeight();
-					Vec3d mobPos = new Vec3d(mob.posX, mob.posY + yOffset, mob.posZ);
-					mobPos = mobPos.subtract(currentPos);
+						double yOffset = mob.getEyeHeight();
+						Vec3d mobPos = new Vec3d(mob.posX, mob.posY + yOffset, mob.posZ);
+						mobPos = mobPos.subtract(currentPos);
+						
+						double vecLength = mobPos.lengthVector();
+						double tVecLength = 1.0D - vecLength;
+						tVecLength = tVecLength * tVecLength;
+						
+						Vec3d motion = new Vec3d(mobPos.x / vecLength * tVecLength, mobPos.y / vecLength * tVecLength, mobPos.z / vecLength * tVecLength);
+						
+						EntityGunBullet bullet = new EntityGunBullet(world, currentPos, 40f, 420, true);
+						bullet.shoot(motion.x, motion.y, motion.z, 3f, 0.0f);
+						
+						world.spawnEntity(bullet);	
 					
-					double vecLength = mobPos.lengthVector();
-					double tVecLength = 1.0D - vecLength;
-					tVecLength = tVecLength * tVecLength;
-					
-					Vec3d motion = new Vec3d(mobPos.x / vecLength * tVecLength, mobPos.y / vecLength * tVecLength, mobPos.z / vecLength * tVecLength);
-					
-					EntityGunBullet bullet = new EntityGunBullet(world, currentPos, 12f, 360, true);
-					bullet.shoot(motion.x, motion.y, motion.z, 3f, 0.0f);
-					
-					world.spawnEntity(bullet);	
-					
+					}
 					world.playSound((EntityPlayer)null, currentPos.x , currentPos.y, currentPos.z, 
-							SoundManager.laser_bullet_shoot, SoundCategory.AMBIENT, 0.35f, 0.1F);
+							SoundManager.laser_bullet_shoot, SoundCategory.AMBIENT, 0.6f, 0.8F);
 				}
 				
 				currentInterval = 0;
@@ -102,13 +97,5 @@ public class TileEntiyLaserTower extends TileEntityGUIMachine {
 		super.readFromNBT(tag);
 		currentInterval = tag.getInteger("shootInterval");
 	}
-	
-    public static Predicate<Entity> ALIVE_MOB_SELECTOR = new Predicate<Entity>()
-    {
-        public boolean apply(@Nullable Entity entity)
-        {
-            return entity != null && entity instanceof IMob && entity.isEntityAlive();
-        }
-    };
 
 }

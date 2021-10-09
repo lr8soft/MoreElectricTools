@@ -700,6 +700,19 @@ public class BlockManager {
 						'E', IC2Items.getItem("te", "cesu"),
 						'C', Recipes.inputFactory.forOreDict("circuitAdvanced")//ic2 advanced circuit
 				});
+		
+		ItemStack advanced_laser_tower = teBlock.getItemStack(MetsBlockWithTileEntity.advanced_laser_tower);
+		Recipes.advRecipes.addRecipe(advanced_laser_tower, 
+				new Object[] {
+						"PPP",
+						"SMS",
+						"CEC",
+						'P', ItemCraftingManager.niobium_titanium_plate,
+						'S', ItemCraftingManager.diamond_lens,
+						'M', laser_tower,
+						'E', IC2Items.getItem("te", "mfe"),
+						'C', Recipes.inputFactory.forOreDict("circuitElite")//ItemCraftingManager.super_circuit
+				});
 	}
 	
 	@SubscribeEvent
@@ -718,9 +731,6 @@ public class BlockManager {
 	    		new ResourceLocation(MoreElectricTools.MODID, "lighter_block"));
 	    CropManager.onBlockInit(event);
 	    FluidManager.onFluidBlockInit(event);
-	    //
-	    //onCommonBlockItemInit();
-	    //
 	}
 	
 	@SubscribeEvent

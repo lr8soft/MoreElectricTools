@@ -85,7 +85,8 @@ public enum MetsBlockWithTileEntity implements ITeBlock {
 	
 	dimension_oil_rig_core((Class)TileEntityDimensionOilRigCore.class, 41, false, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
 	
-	laser_tower((Class)TileEntiyLaserTower.class, 42, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
+	laser_tower((Class)TileEntiyLaserTower.class, 42, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false),
+	advanced_laser_tower((Class)TileEntityAdvancedLaserTower.class, 43, true, Util.horizontalFacings, true, HarvestTool.Wrench, DefaultDrop.Machine, 2.0F, 10.0F, EnumRarity.COMMON, IC2Material.MACHINE, false);
 	
 	public static final ResourceLocation loc = new ResourceLocation(MoreElectricTools.MODID, "te");
 	private Class<? extends TileEntityBlock> teClass;

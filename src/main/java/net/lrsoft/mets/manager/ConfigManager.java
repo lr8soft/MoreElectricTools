@@ -77,4 +77,7 @@ public class ConfigManager {
 	 
 	 @Config.RequiresWorldRestart
 	 public static double LaserTowerCost = 250d;
+	 
+	 @Config.RequiresWorldRestart
+	 public static double AdvancedLaserTowerCost = 2500d;
 }
