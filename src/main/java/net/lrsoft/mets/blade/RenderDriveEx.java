@@ -9,10 +9,9 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-
+import net.minecraft.util.math.Vec3d;
 import mods.flammpfeil.slashblade.util.ResourceLocationRaw;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.vector.Vector3f;
 
 //Modify from https://github.com/flammpfeil/SlashBlade/blob/1.12.2/src/main/java/mods/flammpfeil/slashblade/client/renderer/entity/RenderDrive.java
 //Original author flammpfeil
@@ -85,16 +84,19 @@ public class RenderDriveEx extends Render {
 		float alpha = (float) Math.pow((lifetime - Math.min(lifetime, ticks)) / lifetime, 2.0f);
 
 		double dScale = 1.0;
-		Vector3f color  = entityDrive.getColor();
+		Vec3d color  = entityDrive.getColor();
 		for (int idx = 0; idx < nVecPos.length; idx++) {
+			float r = (float)color.x;
+			float g = (float)color.y;
+			float b = (float)color.z;
 			wr.pos(dVec[nVecPos[idx][0]][0] * dScale, dVec[nVecPos[idx][0]][1] * dScale,
-					dVec[nVecPos[idx][0]][2] * dScale).color(color.x, color.y, color.z, alpha).endVertex();
+					dVec[nVecPos[idx][0]][2] * dScale).color(r, g, b, alpha).endVertex();
 			wr.pos(dVec[nVecPos[idx][1]][0] * dScale, dVec[nVecPos[idx][1]][1] * dScale,
-					dVec[nVecPos[idx][1]][2] * dScale).color(color.x, color.y, color.z, alpha).endVertex();
+					dVec[nVecPos[idx][1]][2] * dScale).color(r, g, b, alpha).endVertex();
 			wr.pos(dVec[nVecPos[idx][2]][0] * dScale, dVec[nVecPos[idx][2]][1] * dScale,
-					dVec[nVecPos[idx][2]][2] * dScale).color(color.x, color.y, color.z, alpha).endVertex();
+					dVec[nVecPos[idx][2]][2] * dScale).color(r, g, b, alpha).endVertex();
 			wr.pos(dVec[nVecPos[idx][3]][0] * dScale, dVec[nVecPos[idx][3]][1] * dScale,
-					dVec[nVecPos[idx][3]][2] * dScale).color(color.x, color.y, color.z, alpha).endVertex();
+					dVec[nVecPos[idx][3]][2] * dScale).color(r, g, b, alpha).endVertex();
 		}
 		tessellator.draw();
 

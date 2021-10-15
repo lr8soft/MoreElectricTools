@@ -1,17 +1,16 @@
 package net.lrsoft.mets.blade;
 
-import org.lwjgl.util.vector.Vector3f;
-
 import mods.flammpfeil.slashblade.entity.EntityDrive;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class EntityDriveEx extends EntityDrive {
 	private boolean hasUpdate = false;
-	private Vector3f color = new Vector3f(0.2f, 0.2f, 1.0f);
+	private Vec3d color = new Vec3d(0.2f, 0.2f, 1.0f);
 
 	public EntityDriveEx(World par1World) {
 		super(par1World);
@@ -31,7 +30,7 @@ public class EntityDriveEx extends EntityDrive {
 	}
 
 	public EntityDriveEx(World par1World, EntityLivingBase entityLiving, float AttackLevel, boolean multiHit,
-			float roll, Vector3f rgbColor) {
+			float roll, Vec3d rgbColor) {
 		super(par1World, entityLiving, AttackLevel, multiHit, roll);
 		setColor(rgbColor);
 	}
@@ -51,20 +50,18 @@ public class EntityDriveEx extends EntityDrive {
 		dataManager.register(COLOR_BLUE, 1.0f);
 	}
 
-	public void setColor(Vector3f rbg) {
+	public void setColor(Vec3d rbg) {
 		color = rbg;
 
-		dataManager.set(COLOR_RED, color.x);
-		dataManager.set(COLOR_GREEN, color.y);
-		dataManager.set(COLOR_BLUE, color.z);
+		dataManager.set(COLOR_RED, (float)color.x);
+		dataManager.set(COLOR_GREEN, (float)color.y);
+		dataManager.set(COLOR_BLUE, (float)color.z);
 		hasUpdate = true;
 	}
 
-	public Vector3f getColor() {
+	public Vec3d getColor() {
 		if (!hasUpdate) {
-			color.x = dataManager.get(COLOR_RED);
-			color.y = dataManager.get(COLOR_GREEN);
-			color.z = this.getDataManager().get(COLOR_BLUE);
+			color = new Vec3d(dataManager.get(COLOR_RED), dataManager.get(COLOR_GREEN), this.getDataManager().get(COLOR_BLUE));
 			hasUpdate = true;
 		}
 		return color;

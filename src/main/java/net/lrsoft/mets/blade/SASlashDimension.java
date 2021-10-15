@@ -28,13 +28,11 @@ import mods.flammpfeil.slashblade.specialattack.SpecialAttackBase;
 import java.util.EnumSet;
 import java.util.List;
 
-import org.lwjgl.util.vector.Vector3f;
-
 import ic2.api.item.ElectricItem;
 import ic2.core.util.Vector3;
 public class SASlashDimension extends SpecialAttackBase implements IJustSpecialAttack,ISuperSpecialAttack{
 	private static float cost = 10000f;
-	private static Vector3f driveColor = new Vector3f(1.0f, 0.2f, 1.0f);
+	private static Vec3d driveColor = new Vec3d(1.0f, 0.2f, 1.0f);
     @Override
     public String toString() {
         return "SA_SlashDimensionEX";
