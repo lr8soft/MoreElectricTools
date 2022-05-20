@@ -1,39 +1,36 @@
 buildscript {
     repositories {
+        mavenLocal()
+        flatDir {
+            dirs 'libs'
+        }
+        maven {
+            name = "aliyun-public"
+            url = "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven {
+            name = "lss233-repo"
+            url = "https://lss233.littleservice.cn/repositories/minecraft"
+        }
+        maven {
+            name = "gradle-plugin"
+            url = "https://maven.aliyun.com/repository/gradle-plugin"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-    }
-}
-
-repositories {
-    maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
-    }
-	
-    maven {
-        name = "azanor"
-        url = "http://maven.thiakil.com"
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
     }
 }
 
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'net.minecraftforge.gradle'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.0"
-group = "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+version = "1.662"
+group = "net.lrsoft.mets" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "mets"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -41,36 +38,69 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2847"
-    runDir = "run"
-    
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
+    // The mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   Snapshot are built nightly.
+    // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20171003"
+    // Simply re-run your setup task after changing the mappings to update your workspace.
+    //mappings channel: 'snapshot', version: '20171003-1.12'
+    mappings channel: 'snapshot', version: '20171003-1.12'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+
+    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+        }
+
+        server {
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+        }
+    }
+}
+
+repositories {
+    maven {
+        url = "https://www.cursemaven.com"
+    }
 }
 
 dependencies {
-    deobfCompile "mezz.jei:jei_1.12.2:4.13.1.220"
-    compile files ("libs/industrialcraft-2-2.8.218-ex112-dev.jar")
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
+    // deobfCompile "mezz.jei:jei_1.12.2:4.13.1.220"
+    implementation fg.deobf("curse.maven:jei-238222:2635239")
+    compile files ("libs/industrialcraft-2-2.8.188-ex112-dev.jar")
     compile files ("libs/SlashBlade-mc1.12-r32-deobf.jar")
-    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
+    // deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
+    implementation fg.deobf("curse.maven:baubles-227083:2518667")
+    implementation fg.deobf("curse.maven:tls-306385:3314856")
 }
 
 processResources {
     // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    // inputs.property "version", project.version
+    // inputs.property "mcversion", project.minecraft.version
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        // expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
     // copy everything else except the mcmod.info
