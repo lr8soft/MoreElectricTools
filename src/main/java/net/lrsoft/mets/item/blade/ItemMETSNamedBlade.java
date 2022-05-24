@@ -1,38 +1,27 @@
 package net.lrsoft.mets.item.blade;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.EnumSet;
-import java.util.LinkedList;
-import java.util.List;
-
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
 import mods.flammpfeil.slashblade.ItemSlashBladeNamed;
 import mods.flammpfeil.slashblade.ability.StylishRankManager;
 import mods.flammpfeil.slashblade.item.ItemSlashBlade;
-import net.lrsoft.mets.MoreElectricTools;
 import net.lrsoft.mets.blade.HyperEntitySelector;
-import net.lrsoft.mets.enchantment.EfficientEnergyCost;
-import net.lrsoft.mets.manager.EnchantmentManager;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeEventFactory;
+
+import java.lang.reflect.Method;
+import java.util.EnumSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ItemMETSNamedBlade extends ItemSlashBladeNamed implements IElectricItem, IItemHudInfo{
 	private int maxEnergy, maxTransfer, tier;

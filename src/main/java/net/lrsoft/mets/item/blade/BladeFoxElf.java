@@ -1,36 +1,33 @@
 package net.lrsoft.mets.item.blade;
 
 
+import cn.mmf.lastsmith.recipe.RecipeAwakeBladeTLS;
+import cn.mmf.lastsmith.util.BladeUtil;
 import ic2.api.item.IC2Items;
 import mods.flammpfeil.slashblade.ItemSlashBladeNamed;
 import mods.flammpfeil.slashblade.RecipeAwakeBlade;
 import mods.flammpfeil.slashblade.SlashBlade;
 import mods.flammpfeil.slashblade.item.ItemSlashBlade;
-import mods.flammpfeil.slashblade.named.Fox;
 import mods.flammpfeil.slashblade.named.NamedBladeManager;
-import mods.flammpfeil.slashblade.SlashBlade;
 import mods.flammpfeil.slashblade.named.event.LoadEvent.InitEvent;
 import mods.flammpfeil.slashblade.named.event.LoadEvent.PostInitEvent;
-import mods.flammpfeil.slashblade.specialeffect.ISpecialEffect;
 import mods.flammpfeil.slashblade.specialeffect.SpecialEffects;
-import net.lrsoft.mets.blade.FoxBladeSE;
 import net.lrsoft.mets.blade.SASpear;
 import net.lrsoft.mets.item.crafting.ItemCraftingManager;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+//灵钢刃「灵狐」
 public class BladeFoxElf {
 	public String name = "flammpfeil.slashblade.named.fox_elf";
+
 	@SubscribeEvent
 	public void init(InitEvent event) {
 		ItemStack customblade = new ItemStack(BladeManager.fox_elf, 1, 0);
@@ -42,6 +39,9 @@ public class BladeFoxElf {
 		ItemSlashBladeNamed.CustomMaxDamage.set(tag, Integer.valueOf(540));
 		ItemSlashBlade.setBaseAttackModifier(tag, 23f);
 		ItemSlashBladeNamed.IsDefaultBewitched.set(tag, Boolean.valueOf(true));
+		if (Loader.isModLoaded("lastsmith")) {
+			BladeUtil.getInstance().IsBewitchedActived.set(tag, true);
+		}
 		ItemSlashBlade.TextureName.set(tag, "named/foxextra/bladeElf");
 		ItemSlashBlade.ModelName.set(tag, "named/foxextra/model");
 		ItemSlashBlade.SpecialAttackType.set(tag, Integer.valueOf(12080));
@@ -71,20 +71,25 @@ public class BladeFoxElf {
 		  ItemSlashBlade.RepairCount.set(reqTag, Integer.valueOf(6));
 		  ItemSlashBladeNamed.IsDefaultBewitched.set(reqTag, Boolean.valueOf(true));
 		  ItemStack foxex = SlashBlade.findItemStack("flammpfeil.slashblade", name, 1);
-		  
-		  
-		  SlashBlade.addRecipe(name,
-					new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid, name), foxex, custombladeReqired,
-							new Object[] { 
-									"CYC", 
-									"XBX", 
-									"CLC", 
-									Character.valueOf('X'), Blocks.EMERALD_BLOCK,
-									Character.valueOf('Y'), IC2Items.getItem("crafting", "advanced_circuit"),
-									Character.valueOf('L'), ItemManager.getAllTypeStack(IC2Items.getItem("energy_crystal")),
-									Character.valueOf('B'), custombladeReqired, 
-									Character.valueOf('C'), ItemCraftingManager.niobium_titanium_plate 
-									}));		
+
+		  Object[] recipetable =new Object[] {
+				  "CYC",
+				  "XBX",
+				  "CLC",
+				  Character.valueOf('X'), Blocks.EMERALD_BLOCK,
+				  Character.valueOf('Y'), IC2Items.getItem("crafting", "advanced_circuit"),
+				  Character.valueOf('L'), ItemManager.getAllTypeStack(IC2Items.getItem("energy_crystal")),
+				  Character.valueOf('B'), custombladeReqired,
+				  Character.valueOf('C'), ItemCraftingManager.niobium_titanium_plate
+		  };
+
+		  if (Loader.isModLoaded("lastsmith")){
+		  	SlashBlade.addRecipe(name, new RecipeAwakeBladeTLS(new ResourceLocation(SlashBlade.modid, name),
+					"sharpness", foxex, custombladeReqired, recipetable));
+		  } else {
+		  	SlashBlade.addRecipe(name, new RecipeAwakeBlade(new ResourceLocation(SlashBlade.modid, name),
+					foxex, custombladeReqired, recipetable));
+		  }
 		}
     }
 }

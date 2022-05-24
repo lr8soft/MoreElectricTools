@@ -1,5 +1,6 @@
 package net.lrsoft.mets.item.blade;
 
+import cn.mmf.lastsmith.recipe.RecipeAwakeBladeTLS;
 import ic2.api.item.IC2Items;
 import mods.flammpfeil.slashblade.ItemSlashBladeNamed;
 import mods.flammpfeil.slashblade.RecipeAwakeBlade;
@@ -8,21 +9,22 @@ import mods.flammpfeil.slashblade.item.ItemSlashBlade;
 import mods.flammpfeil.slashblade.named.NamedBladeManager;
 import mods.flammpfeil.slashblade.named.event.LoadEvent.InitEvent;
 import mods.flammpfeil.slashblade.named.event.LoadEvent.PostInitEvent;
-import mods.flammpfeil.slashblade.specialeffect.SpecialEffects;
-import net.lrsoft.mets.blade.SASpear;
 import net.lrsoft.mets.manager.ConfigManager;
 import net.lrsoft.mets.manager.ItemManager;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class BladeFoxBasic {
 	public static String strBladeWhite = "flammpfeil.slashblade.named.electric_fox_white";
 	public static String strBladeBlack = "flammpfeil.slashblade.named.electric_fox_black";
+
 	@SubscribeEvent
 	public void init(InitEvent event) {
+		//钢刃「白狐」
 		{
 			ItemStack customblade = new ItemStack(BladeManager.fox_white, 1, 0);  
 			NBTTagCompound tag = new NBTTagCompound();// NBT
@@ -30,7 +32,6 @@ public class BladeFoxBasic {
 			ItemSlashBladeNamed.CurrentItemName.set(tag, strBladeWhite);
 			ItemSlashBladeNamed.CustomMaxDamage.set(tag, Integer.valueOf(160));
 			ItemSlashBlade.setBaseAttackModifier(tag, 16f);
-			ItemSlashBladeNamed.IsDefaultBewitched.set(tag, true);
 			ItemSlashBlade.TextureName.set(tag, "named/sange/white");
 			ItemSlashBlade.ModelName.set(tag, "named/sange/sange");
 
@@ -43,6 +44,7 @@ public class BladeFoxBasic {
 	     
 			NamedBladeManager.registerBladeSoul(tag, "electric_fox_white");
 		}
+		//钢刃「黑狐」
 		{
 			ItemStack customblade = new ItemStack(BladeManager.fox_black, 1, 0);  
 			NBTTagCompound tag = new NBTTagCompound();// NBT
@@ -50,7 +52,6 @@ public class BladeFoxBasic {
 			ItemSlashBladeNamed.CurrentItemName.set(tag, strBladeBlack);
 			ItemSlashBladeNamed.CustomMaxDamage.set(tag, Integer.valueOf(160));
 			ItemSlashBlade.setBaseAttackModifier(tag, 16f);
-			ItemSlashBladeNamed.IsDefaultBewitched.set(tag, true);
 			ItemSlashBlade.TextureName.set(tag, "named/sange/black");
 			ItemSlashBlade.ModelName.set(tag, "named/sange/sange");
 
@@ -75,15 +76,21 @@ public class BladeFoxBasic {
         		ItemSlashBlade.KillCount.set(reqTag, Integer.valueOf(70));
         		ItemStack foxex = SlashBlade.findItemStack("flammpfeil.slashblade", strBladeWhite, 1);
 
-        		SlashBlade.addRecipe(strBladeWhite, new RecipeAwakeBlade(new ResourceLocation("flammpfeil.slashblade", strBladeWhite), foxex,
-        				custombladeReqired,
-        				new Object[] { 
-        						"XAX", "XBX", "CAC", 
-        						Character.valueOf('X'), IC2Items.getItem("casing", "gold"),
-        						Character.valueOf('A'), IC2Items.getItem("crafting", "circuit"),
-        						Character.valueOf('B'), custombladeReqired, 
-        						Character.valueOf('C'), ItemManager.getAllTypeStack(ItemManager.lithiumBattery) 
-        				}));
+        		Object[] recipetable_white = new Object[] {
+						"XAX", "XBX", "CAC",
+						Character.valueOf('X'), IC2Items.getItem("casing", "gold"),
+						Character.valueOf('A'), IC2Items.getItem("crafting", "circuit"),
+						Character.valueOf('B'), custombladeReqired,
+						Character.valueOf('C'), ItemManager.getAllTypeStack(ItemManager.lithiumBattery)
+				};
+
+        		if (Loader.isModLoaded("lastsmith")){
+					SlashBlade.addRecipe(strBladeWhite, new RecipeAwakeBladeTLS(new ResourceLocation("flammpfeil.slashblade", strBladeWhite),
+							"bewitched_blade", foxex, custombladeReqired, recipetable_white));
+				} else {
+					SlashBlade.addRecipe(strBladeWhite, new RecipeAwakeBlade(new ResourceLocation("flammpfeil.slashblade", strBladeWhite),
+							foxex, custombladeReqired, recipetable_white));
+				}
         	}
         	{
         		ItemStack custombladeReqired = new ItemStack(SlashBlade.weapon);
@@ -91,15 +98,21 @@ public class BladeFoxBasic {
         		ItemSlashBlade.KillCount.set(reqTag, Integer.valueOf(70));
         		ItemStack foxex = SlashBlade.findItemStack("flammpfeil.slashblade", strBladeBlack, 1);
 
-        		SlashBlade.addRecipe(strBladeBlack, new RecipeAwakeBlade(new ResourceLocation("flammpfeil.slashblade", strBladeBlack), foxex,
-        				custombladeReqired,
-        				new Object[] { 
-        						"XAX", "XBX", "CAC", 
-        						Character.valueOf('X'), IC2Items.getItem("casing", "tin"),
-        						Character.valueOf('A'), IC2Items.getItem("crafting", "circuit"),
-        						Character.valueOf('B'), custombladeReqired, 
-        						Character.valueOf('C'), ItemManager.getAllTypeStack(ItemManager.lithiumBattery) 
-        				}));
+				Object[] recipetable_black =new Object[] {
+						"XAX", "XBX", "CAC",
+						Character.valueOf('X'), IC2Items.getItem("casing", "tin"),
+						Character.valueOf('A'), IC2Items.getItem("crafting", "circuit"),
+						Character.valueOf('B'), custombladeReqired,
+						Character.valueOf('C'), ItemManager.getAllTypeStack(ItemManager.lithiumBattery)
+				};
+
+				if (Loader.isModLoaded("lastsmith")){
+					SlashBlade.addRecipe(strBladeBlack, new RecipeAwakeBladeTLS(new ResourceLocation("flammpfeil.slashblade", strBladeBlack),
+							"bewitched_blade", foxex, custombladeReqired, recipetable_black));
+				} else {
+					SlashBlade.addRecipe(strBladeBlack, new RecipeAwakeBlade(new ResourceLocation("flammpfeil.slashblade", strBladeBlack),
+							foxex, custombladeReqired, recipetable_black));
+				}
         	}
     	}
     }
